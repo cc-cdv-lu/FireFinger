@@ -2,6 +2,9 @@
 
 **wip** concept
 
+## Technical
+Uses node.js 10.3.0 and npm 6.xxx
+
 ## Introduction
 
 ## Mockups
