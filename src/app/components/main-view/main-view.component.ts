@@ -16,12 +16,17 @@ export class MainViewComponent implements OnInit {
   /* Styling */
   style = {
     backgroundColor: "white",
-    fontSize: "20vh",
+    fontSize: "50vh",
     color: {
       current: 'black',
       prev: 'lightgray',
       next: 'lightgray'
     }
+  }
+  //TODO some hacky stuff
+  getRowHeight() {
+    let n = this.style.fontSize.split("vh")[0];
+    return parseInt(n) * 1.5 + "%"
   }
 
   // Session data
@@ -117,10 +122,14 @@ export class MainViewComponent implements OnInit {
     return char;
   }
 
+  getMistakePercentage() {
+    return Math.round(this.mistakes / this.input.length * 100) + "%";
+  }
+
   printInfo() {
-    console.log(this.getPrevSegment(this.input, this.index))
-    console.log(this.getCurrentChar(this.input, this.index))
-    console.log(this.getNextSegment(this.input, this.index))
+    console.log("Start:   ", this.getPrevSegment(this.input, this.index))
+    console.log("Current: ", this.getCurrentChar(this.input, this.index))
+    console.log("Next:    ", this.getNextSegment(this.input, this.index))
   }
 
 }
