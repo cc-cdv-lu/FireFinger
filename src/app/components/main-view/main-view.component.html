@@ -1,0 +1,11 @@
+<div class="mainView" [style.backgroundColor]="style.backgroundColor" [style.font-size]="style.fontSize">
+
+  <mat-grid-list cols="1" rowHeight="200px" class="viewContainer">
+    <mat-grid-tile colspan="1">
+      <span class="prev"  [style.color]="style.color.prev">{{getPrevSegment(input, index)}}&lrm;</span>
+      <span class="current" [style.color]="style.color.current">{{this.attemptHighlight(getCurrentChar(input,index))}}</span>
+      <span class="next"  [style.color]="style.color.next">&lrm;{{getNextSegment(input, index)}}</span>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</div>

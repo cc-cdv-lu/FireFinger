@@ -33,7 +33,11 @@
     "test": "ng test",
     "e2e": "ng e2e"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@angular/animations": "^6.0.3",
+    "@angular/cdk": "^6.2.1",
+    "@angular/material": "^6.2.1"
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.6.3",
     "@angular/cli": "6.0.3",
