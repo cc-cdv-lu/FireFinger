@@ -1,6 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { SessionService } from '../../services/session.service';
 
+import { ColorSchemes } from '../../shared/const';
+
 export enum VIEW {
   CHAR, WORD, LINE
 }
@@ -36,21 +38,23 @@ export class MainViewComponent implements OnInit {
 
   VIEW = VIEW;
   view: VIEW = VIEW.CHAR;
-
+  fontSize = 800;
+  warningSize = this.fontSize / 8 + "px";
+  warningText = "";
   /* Styling */
   style = {
-    backgroundColor: "white",
-    fontSize: "50vh",
-    color: {
-      current: 'black',
-      prev: 'lightgray',
-      next: 'lightgray'
-    }
+    fontSize: this.fontSize + "px",
+    colorScheme: ColorSchemes.inverted
   }
-  //TODO some hacky stuff
-  getRowHeight() {
+  //some hacky stuff
+  getRowHeight_old() {
     let n = this.style.fontSize.split("vh")[0];
     return parseInt(n) * 1.5 + "%"
+  }
+
+  factor = 7;
+  getRowHeight() {
+    return this.fontSize / this.factor + "px";
   }
 
   /* Shortcuts */
@@ -67,7 +71,15 @@ export class MainViewComponent implements OnInit {
     return this.attemptHighlight(this.session.getCurrentChar(this.session.getText(), this.session.getIndex()))
   }
 
-
+  getWarningText() {
+    let c = this.session.getCurrentChar(this.session.getText(), this.session.getIndex());
+    switch (c) {
+      case "\n": return "Eingabe";
+      case " ": return "Leerzeichen";
+      case "ä": case "Ä": case "ü": case "Ü": case "ö": case "Ö": return "Umlaut"
+      default: return "";
+    }
+  }
 
   attemptHighlight(char: string) {
     if (!char) return;

@@ -41,10 +41,12 @@ export class SessionService {
     //console.log(event);
     let key = event.key;
     this.checkSpeed();
+    if (key == "Escape") return this.reset();
     if (key == "Shift") return;
     if (this.session.index >= this.session.input.length - 1) {
       // Check if fast enough & didn't make to many mistakes
-      this.session.index = 0;
+      console.log("DONE!", this.session);
+      this.reset();
     }
     if (key == 'Enter' && this.getCurrentChar(this.session.input, this.session.index) == '\n')
       this.session.index++;

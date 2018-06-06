@@ -10,9 +10,17 @@
     top: 50%;
     transform: translateY(-50%);
 
+    .textTile {
+      border-bottom: 5px solid gray;
+    }
+
     mat-grid-tile {
-      border-bottom: 1px solid gray;
-      padding: 20px;
+      font-family: Verdana, Geneva, sans-serif;
+      //font-size: 14px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+      //line-height: 20px;
     }
 
     .prev {
@@ -20,7 +28,7 @@
       //text-overflow: ellipsis;
       /* Required for text-overflow to do anything */
       white-space: nowrap;
-      overflow: hidden;
+      overflow-x: hidden;
       direction: rtl;
       text-align: right;
       //background-color: rgba(255,0,0,0.1);
@@ -28,6 +36,7 @@
     }
 
     .current {
+      overflow: visible;
       //background-color: rgba(0,255,0,0.1);
       //border: 1px solid rgba(0,255,0,0.6);
     }
@@ -38,7 +47,7 @@
       text-overflow: clip;
       /* Required for text-overflow to do anything */
       white-space: nowrap;
-      overflow: hidden;
+      overflow-x: hidden;
       text-align: left;
       //background-color: rgba(0,0,255,0.1);
       //border: 1px solid rgba(0,0,255,0.6);
