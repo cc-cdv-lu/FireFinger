@@ -1,9 +1,9 @@
 <div class="mainView" [style.backgroundColor]="style.backgroundColor" [style.font-size]="style.fontSize">
   <mat-grid-list cols="1" [rowHeight]="getRowHeight()" class="viewContainer">
     <mat-grid-tile colspan="1">
-      <span class="prev" [style.color]="style.color.prev">{{getPrevSegment(input, index)}}&lrm;</span>
-      <span class="current" [style.color]="style.color.current">{{this.attemptHighlight(getCurrentChar(input,index))}}</span>
-      <span class="next" [style.color]="style.color.next">&lrm;{{getNextSegment(input, index)}}</span>
+      <span class="prev" [style.color]="style.color.prev">{{getPrev()}}&lrm;</span>
+      <span class="current" [style.color]="style.color.current">{{getCurrent()}}</span>
+      <span class="next" [style.color]="style.color.next">&lrm;{{getNext()}}</span>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
@@ -17,7 +17,7 @@
       <button mat-raised-button (click)="printInfo()">Print info</button>
     </mat-grid-tile>
     <mat-grid-tile>
-      Mistakes: {{getMistakePercentage()}}
+      Mistakes: {{session.getMistakePercentage()}}
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
       <button mat-raised-button (click)="setCharMode()">Char Mode</button>
@@ -25,7 +25,7 @@
       <button mat-raised-button (click)="setLineMode()">Line Mode</button>
     </mat-grid-tile>
     <mat-grid-tile>
-      CPM: {{cpm}}
+      CPM: {{session.cpm}}
     </mat-grid-tile>
   </mat-grid-list>
 </div>
