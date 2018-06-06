@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { SessionService } from '../../services/session.service';
 
 export enum VIEW {
   CHAR, WORD, LINE
@@ -11,6 +12,20 @@ export enum VIEW {
 })
 export class MainViewComponent implements OnInit {
 
+  /* TODO
+  * input letters to views
+  * input current word set oooor whole text with ref to index
+  */
+
+  constructor(session: SessionService) {
+    this.view = VIEW.LINE;
+    this.index += 0;
+
+    session.test();
+  }
+
+
+  VIEW = VIEW;
   view: VIEW = VIEW.CHAR;
 
   /* Styling */
@@ -41,10 +56,11 @@ export class MainViewComponent implements OnInit {
     * ...
   */
 
-  @HostListener('window:keyup', ['$event'])
+  @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
     //console.log(event);
     let key = event.key;
+    this.checkSpeed();
     if (key == "Shift") return;
     if (this.index >= this.input.length - 1) {
       // Check if fast enough & didn't make to many mistakes
@@ -58,17 +74,25 @@ export class MainViewComponent implements OnInit {
     }
   }
 
+  iLastTime = 0;
+  iTime = 0;
+  iTotal = 0;
+  iKeys = 0;
 
-  /* TODO
-  * add keystroke listener
-  * input letters to views
-  * input current word set oooor whole text with ref to index
-  */
+  cpm = 0;
+  wpm = 0;
+  checkSpeed() {
+    this.iTime = new Date().getTime();
 
-  constructor() {
-    this.view = VIEW.LINE;
-    this.index += 1;
+    if (this.iLastTime != 0) {
+      this.iKeys++;
+      this.iTotal += this.iTime - this.iLastTime;
+      this.cpm = Math.round(this.iKeys / this.iTotal * 6000);
+    }
+
+    this.iLastTime = this.iTime;
   }
+
 
   ngOnInit() {
   }
@@ -120,6 +144,22 @@ export class MainViewComponent implements OnInit {
     if (char == " ") return "_";
     if (char == "\n") return "<_";
     return char;
+  }
+
+  /*
+    Debugging
+  */
+  setCharMode() {
+    this.setViewMode(VIEW.CHAR)
+  }
+  setWordMode() {
+    this.setViewMode(VIEW.WORD)
+  }
+  setLineMode() {
+    this.setViewMode(VIEW.LINE);
+  }
+  setViewMode(VIEW: VIEW) {
+    this.view = VIEW;
   }
 
   getMistakePercentage() {

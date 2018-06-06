@@ -19,10 +19,17 @@ import { ElectronService } from './providers/electron.service';
 import { WebviewDirective } from './directives/webview.directive';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
 
+/* Custom components */
+import { HomeComponent } from './components/home/home.component';
 import { MainViewComponent } from './components/main-view/main-view.component';
+
+/* Custom Modules */
 import { MaterialManagerModule } from './shared/material-manager/material-manager.module'
+
+/* Custom Services */
+import { SessionService } from './services/session.service';
+import { KeyProcessorService } from './services/key-processor.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -50,7 +57,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [ElectronService],
+  providers: [ElectronService, SessionService, KeyProcessorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
