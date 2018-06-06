@@ -1,6 +1,8 @@
 import { Injectable, HostListener } from '@angular/core';
 import { VIEW } from '../components/main-view/main-view.component';
 
+import { Lessons } from '../shared/tempLessons';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,6 +15,12 @@ export class SessionService {
     * ...
   */
 
+  user = {
+    name: "",
+    stats: {
+
+    }
+  }
 
   // Session data
   session = {
@@ -22,6 +30,9 @@ export class SessionService {
   }
 
   constructor() {
+    console.log("Lessons:", Lessons);
+
+
   }
 
 
@@ -35,6 +46,8 @@ export class SessionService {
       // Check if fast enough & didn't make to many mistakes
       this.session.index = 0;
     }
+    if (key == 'Enter' && this.getCurrentChar(this.session.input, this.session.index) == '\n')
+      this.session.index++;
     if (key == this.getCurrentChar(this.session.input, this.session.index))
       this.session.index++;
     else {
@@ -46,7 +59,7 @@ export class SessionService {
   reset() {
     this.session = {
       index: 0,
-      input: "This is an example text! The text that is present in it does not have any importance. The text just needs to act as lorem ipsum...",
+      input: "",
       mistakes: 0
     }
 
@@ -79,8 +92,8 @@ export class SessionService {
   getPrevSegment(input, index, view: VIEW) {
     switch (view) {
       case VIEW.CHAR: return "";
-      case VIEW.WORD: return this.getWordAt(input, index); //TODO only return start of word
-      case VIEW.LINE: return input.substring(0, index);
+      case VIEW.WORD: return this.getBeginningOfWord(input, index);
+      case VIEW.LINE: return this.getBeginningOfLine(input, index);
     }
     return "";
   }
@@ -88,11 +101,64 @@ export class SessionService {
   getNextSegment(input, index, view: VIEW) {
     switch (view) {
       case VIEW.CHAR: return "";
-      case VIEW.CHAR: return this.getWordAt(input, index);  //TODO only return rest of word
-      case VIEW.LINE: return input.substring(index + 1);
+      case VIEW.WORD: return this.getRestOfWord(input, index);
+      case VIEW.LINE: return this.getRestOfLine(input, index);
     }
   }
 
+  getBeginningOfWord(str, pos) {
+    let output = "";
+    if (str[pos] == "\n" || str[pos] == " ") return output;
+
+    for (let i = pos - 1; i > 0; i--) {
+      if (str[i] != "\n" && str[i] != " ")
+        output = str[i] + output;
+      else
+        return output
+    }
+    return output;
+  }
+
+  getRestOfWord(str, pos) {
+    let output = "";
+    if (str[pos] == "\n" || str[pos] == " ") return output;
+
+    for (let i = pos + 1; i < str.length; i++) {
+      if (str[i] != "\n" && str[i] != " ")
+        output += str[i];
+      else
+        return output
+    }
+    return output;
+  }
+
+  // TODO this could be much cleaner
+  getBeginningOfLine(str, pos) {
+    let output = str[pos - 1];
+    if (str[pos - 1] == "\n") return output;
+    if (str[pos] == "\n") return this.getBeginningOfLine(str, pos - 1) + str[pos - 1];
+
+    for (let i = pos - 2; i > 0; i--) {
+      if (str[i] != "\n") {
+        output = str[i] + output;
+      }
+      else return output;
+    }
+
+    return output;
+  }
+
+  getRestOfLine(str, pos) {
+    let output = "";
+    if (str[pos] == "\n") return output;
+    for (let i = pos + 1; i < str.length; i++) {
+      if (str[i] != "\n") output += str[i];
+      else return output;
+    }
+    return output;
+  }
+
+  /* For reading out loud*/
   getWordAt(str, pos) {
 
     // Perform type conversions.
@@ -131,5 +197,13 @@ export class SessionService {
     }
 
     this.iLastTime = this.iTime;
+  }
+
+  loadUser(username: string) {
+    this.user = null; //TODO conf.get(username);
+  }
+
+  loadLesson(index) {
+    this.session.input = Lessons[index].content;
   }
 }

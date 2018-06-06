@@ -21,6 +21,8 @@ export class MainViewComponent implements OnInit {
     this.view = VIEW.LINE;
 
     session.reset();
+
+    session.loadLesson(3);
   }
 
   @HostListener('window:keydown', ['$event'])
@@ -71,7 +73,7 @@ export class MainViewComponent implements OnInit {
     if (!char) return;
     if (char.length > 1) return "";
     if (char == " ") return "_";
-    if (char == "\n") return "<_";
+    if (char == "\n") return "↲";
     return char;
   }
 
