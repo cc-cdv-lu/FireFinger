@@ -32,6 +32,9 @@ import { MaterialManagerModule } from './shared/material-manager/material-manage
 import { SessionService } from './services/session.service';
 import { LessonService } from './services/lesson.service';
 import { StatisticsService } from './services/statistics.service';
+import { ColorSchemeService } from './services/color-scheme.service';
+import { UserService } from './services/user.service';
+
 import { SettingsComponent } from './components/settings/settings.component';
 
 // AoT requires an exported function for factories
@@ -66,7 +69,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ElectronService,
     SessionService,
     LessonService,
-    StatisticsService
+    ColorSchemeService,
+    StatisticsService,
+    UserService
   ],
   bootstrap: [AppComponent],
   entryComponents: [SettingsComponent]

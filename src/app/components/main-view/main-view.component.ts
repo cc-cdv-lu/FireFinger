@@ -1,10 +1,11 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { SessionService } from '../../services/session.service';
+import { ElectronService } from '../../providers/electron.service';
 import { MatDialog } from '@angular/material';
 
-import { ColorSchemes } from '../../shared/const';
+import { ColorSchemeService } from '../../services/color-scheme.service';
 import { SettingsComponent } from '../settings/settings.component';
-import { ElectronService } from '../../providers/electron.service';
+import { SessionService } from '../../services/session.service';
+
 
 export enum VIEW {
   CHAR, WORD, LINE
@@ -17,12 +18,7 @@ export enum VIEW {
 })
 export class MainViewComponent implements OnInit {
 
-  /* TODO
-  * input letters to views
-  * input current word set oooor whole text with ref to index
-  */
-
-  constructor(private session: SessionService, private electron: ElectronService, private dialog: MatDialog) {
+  constructor(private session: SessionService, private electron: ElectronService, private dialog: MatDialog, private colorScheme: ColorSchemeService) {
     this.view = VIEW.LINE;
   }
 
@@ -41,10 +37,10 @@ export class MainViewComponent implements OnInit {
   fontSize = 800;
   warningSize = this.fontSize / 8 + "px";
   warningText = "";
+
   /* Styling */
   style = {
-    fontSize: this.fontSize + "px",
-    colorScheme: ColorSchemes.inverted
+    fontSize: this.fontSize + "px"
   }
 
   areSettingsOpen: boolean = false;

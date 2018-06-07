@@ -1,7 +1,7 @@
 <div class="container">
-  <h1>Chapter Selection</h1>
-  <mat-accordion *ngFor="let set of allLessons">
-    <mat-expansion-panel>
+  <mat-accordion>
+    <h1>Chapter Selection</h1>
+    <mat-expansion-panel  *ngFor="let set of allLessons">
       <mat-expansion-panel-header>
         <mat-panel-title>
           {{set.name}}
@@ -11,10 +11,41 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <section class="section" *ngFor="let chapter of set.chapters">
-        <button mat-raised-button (click)="loadChapter(chapter.content, chapter.name, null)">{{chapter.name}}</button>
 
+      <section class="section">
+        <mat-grid-list cols="5">
+          <mat-grid-tile  *ngFor="let chapter of set.chapters">
+            <button mat-raised-button (click)="loadChapter(chapter.content, chapter.name, null)">{{chapter.name}}</button>
+          </mat-grid-tile>
+        </mat-grid-list>
       </section>
     </mat-expansion-panel>
+
+
+
+    <h1>Color schemes</h1>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Change color scheme
+        </mat-panel-title>
+        <mat-panel-description>
+          General settings for the whole application
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+
+      <section class="section">
+        <mat-grid-list cols="5">
+          <mat-grid-tile  *ngFor="let c of colorScheme.colorSchemes">
+            <button mat-raised-button (click)="colorScheme.setActiveColorScheme(c)" [style.color]="c.current" [style.backgroundColor]="c.backgroundColor" [style.border]="c == colorScheme.activeColorScheme ? '8px solid red' : '0px'">{{c.name}}</button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </section>
+    </mat-expansion-panel>
+
+
+
+
   </mat-accordion>
 </div>

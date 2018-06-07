@@ -1,17 +1,17 @@
-<div class="mainView" [style.backgroundColor]="style.colorScheme.backgroundColor">
+<div class="mainView" [style.backgroundColor]="colorScheme.activeColorScheme.backgroundColor">
   <mat-grid-list cols="9" [rowHeight]="getRowHeight()" class="viewContainer">
     <mat-grid-tile class="textTile" colspan="9" [rowspan]="factor"  [style.font-size]="style.fontSize">
-      <span class="prev" [style.color]="style.colorScheme.prev">{{getPrev()}}&lrm;</span>
-      <span class="current" [style.color]="style.colorScheme.current">{{getCurrent()}}</span>
-      <span class="next" [style.color]="style.colorScheme.next">&lrm;{{getNext()}}</span>
+      <span class="prev" [style.color]="colorScheme.activeColorScheme.prev">{{getPrev()}}&lrm;</span>
+      <span class="current" [style.color]="colorScheme.activeColorScheme.current">{{getCurrent()}}</span>
+      <span class="next" [style.color]="colorScheme.activeColorScheme.next">&lrm;{{getNext()}}</span>
     </mat-grid-tile>
-    <mat-grid-tile  colspan="9" [style.color]="style.colorScheme.current" [style.font-size]="warningSize">
+    <mat-grid-tile  colspan="9" [style.color]="colorScheme.activeColorScheme.current" [style.font-size]="warningSize">
       {{getWarningText()}}
     </mat-grid-tile>
   </mat-grid-list>
 </div>
 
-<div class="footer"  [style.color]="style.colorScheme.current">
+<div class="footer"  [style.color]="colorScheme.activeColorScheme.current">
   <mat-grid-list cols="10" rowHeight="50px">
     <mat-grid-tile>
       Debugging tools
