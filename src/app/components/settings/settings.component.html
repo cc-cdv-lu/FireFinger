@@ -51,6 +51,34 @@
     </mat-expansion-panel>
 
 
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          User Info
+        </mat-panel-title>
+        <mat-panel-description>
+          General settings for the whole application
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+
+      <section class="section">
+        <h2>General</h2>
+        <span><b>Name:</b> {{user.loggedInUser.name}}</span>
+      </section>
+
+      <section class="section">
+        <h2>Last session stats</h2>
+        <mat-grid-list cols="4">
+          <mat-grid-tile><b>Typespeed: {{user.loggedInUser.lastSessionStats.typeSpeed}}</b></mat-grid-tile>
+          <mat-grid-tile><b>mistakePercentage: {{user.loggedInUser.lastSessionStats.mistakePercentage}}</b></mat-grid-tile>
+        </mat-grid-list>
+      </section>
+
+      <section class="section">
+        <h2>Overall stats</h2>
+      </section>
+    </mat-expansion-panel>
 
 
   </mat-accordion>

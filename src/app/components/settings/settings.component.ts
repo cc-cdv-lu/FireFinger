@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { LessonService } from '../../services/lesson.service';
 import { SessionService } from '../../services/session.service';
 import { StyleService } from '../../services/style.service';
-import { User } from '../../services/user.service'
+import { User, UserService } from '../../services/user.service'
 
 @Component({
   selector: 'app-settings',
@@ -14,7 +14,7 @@ export class SettingsComponent implements OnInit {
 
   allLessons = this.lessonService.lessons;
 
-  constructor(private lessonService: LessonService, private session: SessionService, private style: StyleService) { }
+  constructor(private lessonService: LessonService, private session: SessionService, private style: StyleService, private user: UserService) { }
 
   ngOnInit() {
   }

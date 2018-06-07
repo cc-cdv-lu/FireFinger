@@ -36,6 +36,7 @@ export class SessionService {
     if (this.session.index >= this.session.input.length - 1) {
       // Check if fast enough & didn't make to many mistakes
       console.log("DONE!", this.session);
+      //TODO save stats to user profile and recalculate overall stats
       this.reset();
     }
     if (pressedKey == 'Enter' && this.getCurrentChar(this.session.input, this.session.index) == '\n')

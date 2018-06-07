@@ -7,10 +7,10 @@ export class StatisticsService {
 
   constructor() { }
 
-  iLastTime = 0;
-  iTime = 0;
-  iTotal = 0;
-  iKeys = 0;
+  private iLastTime = 0;
+  private iTime = 0;
+  private iTotal = 0;
+  private iKeys = 0;
 
   cpm = 0;
   wpm = 0;
@@ -43,5 +43,12 @@ export class StatisticsService {
 }
 
 export class Statistics {
-
+  sessionCount: number = 0;
+  typeSpeed: number = 0;
+  mistakePercentage: number = 0;
+  mistakeKeys: [{
+    key: string,
+    count: number
+  }];
+  constructor() { }
 }
