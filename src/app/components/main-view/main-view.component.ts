@@ -1,7 +1,10 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { SessionService } from '../../services/session.service';
+import { MatDialog } from '@angular/material';
 
 import { ColorSchemes } from '../../shared/const';
+import { SettingsComponent } from '../settings/settings.component';
+import { ElectronService } from '../../providers/electron.service';
 
 export enum VIEW {
   CHAR, WORD, LINE
@@ -19,16 +22,14 @@ export class MainViewComponent implements OnInit {
   * input current word set oooor whole text with ref to index
   */
 
-  constructor(private session: SessionService) {
+  constructor(private session: SessionService, private electron: ElectronService, private dialog: MatDialog) {
     this.view = VIEW.LINE;
-
-    session.reset();
-
-    session.loadLesson(3);
   }
 
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
+    if (this.areSettingsOpen) return;
+    this.openSettings();
     this.session.handleKeyEvent(event);
   }
 
@@ -46,6 +47,9 @@ export class MainViewComponent implements OnInit {
     fontSize: this.fontSize + "px",
     colorScheme: ColorSchemes.inverted
   }
+
+  areSettingsOpen: boolean = false;
+
   //some hacky stuff
   getRowHeight_old() {
     let n = this.style.fontSize.split("vh")[0];
@@ -109,6 +113,25 @@ export class MainViewComponent implements OnInit {
     console.log("Start:   ", this.session.getPrevSegment(this.session.getText(), this.session.getIndex(), this.view))
     console.log("Current: ", this.session.getCurrentChar(this.session.getText(), this.session.getIndex()))
     console.log("Next:    ", this.session.getNextSegment(this.session.getText(), this.session.getIndex(), this.view))
+  }
+
+  skipLesson() {
+    this.session.skipLesson();
+  }
+
+  openSettings() {
+    if (this.areSettingsOpen) return;
+    this.areSettingsOpen = true;
+    let dialogRef = this.dialog.open(SettingsComponent, {
+      height: '80%',
+      width: '40%',
+      data: {
+        electron_service: this.electron
+      }
+    });
+    dialogRef.beforeClose().subscribe(() => {
+      this.areSettingsOpen = false;
+    })
   }
 
 }

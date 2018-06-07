@@ -3,7 +3,13 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class KeyProcessorService {
+export class UserService {
 
   constructor() { }
+}
+
+export class User {
+  constructor() {
+
+  }
 }

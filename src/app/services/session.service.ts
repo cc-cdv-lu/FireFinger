@@ -2,6 +2,9 @@ import { Injectable, HostListener } from '@angular/core';
 import { VIEW } from '../components/main-view/main-view.component';
 
 import { Lessons } from '../shared/tempLessons';
+import { StatisticsService } from './statistics.service';
+import { LessonService } from './lesson.service';
+import { User } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,32 +32,29 @@ export class SessionService {
     mistakes: 0
   }
 
-  constructor() {
-    console.log("Lessons:", Lessons);
-
-
-  }
-
+  constructor(private stats: StatisticsService, private lesson: LessonService) { }
 
   /*TODO move to KeyProcessorService */
   handleKeyEvent(event: KeyboardEvent) {
     //console.log(event);
-    let key = event.key;
-    this.checkSpeed();
-    if (key == "Escape") return this.reset();
-    if (key == "Shift") return;
+    let pressedKey = event.key;
+    let expectedKey = this.getCurrentChar(this.session.input, this.session.index)
+    this.stats.checkSpeed();
+    if (pressedKey == "Escape") return this.reset();
+    if (pressedKey == "Shift") return;
     if (this.session.index >= this.session.input.length - 1) {
       // Check if fast enough & didn't make to many mistakes
       console.log("DONE!", this.session);
       this.reset();
     }
-    if (key == 'Enter' && this.getCurrentChar(this.session.input, this.session.index) == '\n')
+    if (pressedKey == 'Enter' && this.getCurrentChar(this.session.input, this.session.index) == '\n')
       this.session.index++;
-    if (key == this.getCurrentChar(this.session.input, this.session.index))
+    if (pressedKey == this.getCurrentChar(this.session.input, this.session.index))
       this.session.index++;
     else {
-      console.log("Entered " + key + " instead of " + this.getCurrentChar(this.session.input, this.session.index));
+      console.log("Entered " + pressedKey + " instead of " + expectedKey);
       this.session.mistakes++;
+      this.stats.logMistakes(pressedKey, expectedKey)
     }
   }
 
@@ -64,14 +64,6 @@ export class SessionService {
       input: "",
       mistakes: 0
     }
-
-    this.iLastTime = 0;
-    this.iTime = 0;
-    this.iTotal = 0;
-    this.iKeys = 0;
-
-    this.cpm = 0;
-    this.wpm = 0;
   }
 
   getText() {
@@ -181,31 +173,18 @@ export class SessionService {
 
   }
 
-
-  iLastTime = 0;
-  iTime = 0;
-  iTotal = 0;
-  iKeys = 0;
-
-  cpm = 0;
-  wpm = 0;
-  checkSpeed() {
-    this.iTime = new Date().getTime();
-
-    if (this.iLastTime != 0) {
-      this.iKeys++;
-      this.iTotal += this.iTime - this.iLastTime;
-      this.cpm = Math.round(this.iKeys / this.iTotal * 6000);
-    }
-
-    this.iLastTime = this.iTime;
-  }
-
   loadUser(username: string) {
     this.user = null; //TODO conf.get(username);
   }
 
-  loadLesson(index) {
-    this.session.input = Lessons[index].content;
+  loadSession(text: string, title: string, user: User) {
+    this.reset();
+    this.session.input = this.lesson.lessons["braille"][this.index].content;
+  }
+
+  index = 0;
+  skipLesson() {
+    this.index++;
+    this.loadSession(this.lesson.lessons["braille"][this.index].content, this.lesson.lessons["braille"][this.index].title, null);
   }
 }

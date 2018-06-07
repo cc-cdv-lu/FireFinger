@@ -1,0 +1,7 @@
+Kapitel 7: shift
+cccccccccccccccc
+shift links – alle Buchstaben der rechten Hand werden groß geschrieben.
+shift rechts – alle Buchstaben der linken Hand werden groß geschrieben.
+cccccccccccccccccccccccc
+Adler, Haus, Tasse, Ritter, Lisa, Lila, Affe, Frau, Hut, Helle, Heiss, Flöhe, Röhre, Höhle, Leihe, Liege, Jagd, Aula, Kiste, Reise, Sau, Faust, Geist, Reise, Ölig, Geige, Krug, Sarg, Dose, Eis, Grau, Hose, Giftig, Haare, Sattel, Euter, Liste, Höhle, Gras, Jus, Saft, Halfter, Heft, Leise, Aus, 
+

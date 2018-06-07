@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import '../polyfills';
 
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -29,7 +30,9 @@ import { MaterialManagerModule } from './shared/material-manager/material-manage
 
 /* Custom Services */
 import { SessionService } from './services/session.service';
-import { KeyProcessorService } from './services/key-processor.service';
+import { LessonService } from './services/lesson.service';
+import { StatisticsService } from './services/statistics.service';
+import { SettingsComponent } from './components/settings/settings.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -41,7 +44,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     HomeComponent,
     WebviewDirective,
-    MainViewComponent
+    MainViewComponent,
+    SettingsComponent
   ],
   imports: [
     MaterialManagerModule,
@@ -49,6 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -57,7 +62,13 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [ElectronService, SessionService, KeyProcessorService],
-  bootstrap: [AppComponent]
+  providers: [
+    ElectronService,
+    SessionService,
+    LessonService,
+    StatisticsService
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [SettingsComponent]
 })
 export class AppModule { }

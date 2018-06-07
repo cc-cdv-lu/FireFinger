@@ -36,7 +36,8 @@
   "dependencies": {
     "@angular/animations": "^6.0.3",
     "@angular/cdk": "^6.2.1",
-    "@angular/material": "^6.2.1"
+    "@angular/material": "^6.2.1",
+    "word-extractor": "^0.1.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.6.3",
