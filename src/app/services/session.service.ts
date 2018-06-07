@@ -179,7 +179,7 @@ export class SessionService {
 
   loadSession(text: string, title: string, user: User) {
     this.reset();
-    this.session.input = this.lesson.lessons["braille"][this.index].content;
+    this.session.input = text;
   }
 
   index = 0;

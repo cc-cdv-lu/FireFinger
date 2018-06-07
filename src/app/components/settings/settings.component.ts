@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { LessonService } from '../../services/lesson.service';
+import { SessionService } from '../../services/session.service';
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
+  allLessons = this.lessonService.lessons;
+
+  constructor(private lessonService: LessonService, private session: SessionService) { }
 
   ngOnInit() {
+  }
+
+  loadChapter(content: string, name: string, user: User) {
+    this.session.loadSession(content, name, user);
   }
 
 }

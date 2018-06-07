@@ -1,3 +1,20 @@
-<p>
-  settings works!
-</p>
+<div class="container">
+  <h1>Chapter Selection</h1>
+  <mat-accordion *ngFor="let set of allLessons">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{set.name}}
+        </mat-panel-title>
+        <mat-panel-description>
+          General settings for the whole application
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <section class="section" *ngFor="let chapter of set.chapters">
+        <button mat-raised-button (click)="loadChapter(chapter.content, chapter.name, null)">{{chapter.name}}</button>
+
+      </section>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

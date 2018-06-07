@@ -29,7 +29,6 @@ export class MainViewComponent implements OnInit {
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (this.areSettingsOpen) return;
-    this.openSettings();
     this.session.handleKeyEvent(event);
   }
 

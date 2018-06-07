@@ -19,9 +19,12 @@ export class LessonService {
   - .doc and .txt supported
   */
 
-  lessons = {
-    static: []
-  }
+  lessons = [
+    {
+      name: 'static',
+      chapters: []
+    }
+  ]
 
   loadAllDirs() {
     let url = 'src/assets/lessons/';
@@ -37,14 +40,18 @@ export class LessonService {
     let url = path + folderName + "/";
     let dir = this.electron.fs.readdirSync(url);
     console.log("DIR:", dir);
-    this.lessons[folderName] = [];
+    let lesson = {
+      name: folderName,
+      chapters: []
+    }
     console.log("Lessons:", this.lessons)
     for (let file of dir) {
-      this.lessons[folderName].push({
+      lesson.chapters.push({
         name: file,
         content: this.loadFromFile(url + file)
       })
     }
+    this.lessons.push(lesson);
     console.log("Loaded lessons: ", this.lessons);
   }
 
