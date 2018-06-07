@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { ElectronService } from '../../providers/electron.service';
 import { MatDialog } from '@angular/material';
 
-import { ColorSchemeService } from '../../services/color-scheme.service';
+import { StyleService } from '../../services/style.service';
 import { SettingsComponent } from '../settings/settings.component';
 import { SessionService } from '../../services/session.service';
 
@@ -18,7 +18,7 @@ export enum VIEW {
 })
 export class MainViewComponent implements OnInit {
 
-  constructor(private session: SessionService, private electron: ElectronService, private dialog: MatDialog, private colorScheme: ColorSchemeService) {
+  constructor(private session: SessionService, private electron: ElectronService, private dialog: MatDialog, private style: StyleService) {
     this.view = VIEW.LINE;
   }
 
@@ -34,26 +34,13 @@ export class MainViewComponent implements OnInit {
 
   VIEW = VIEW;
   view: VIEW = VIEW.CHAR;
-  fontSize = 800;
-  warningSize = this.fontSize / 8 + "px";
   warningText = "";
-
-  /* Styling */
-  style = {
-    fontSize: this.fontSize + "px"
-  }
 
   areSettingsOpen: boolean = false;
 
-  //some hacky stuff
-  getRowHeight_old() {
-    let n = this.style.fontSize.split("vh")[0];
-    return parseInt(n) * 1.5 + "%"
-  }
-
   factor = 7;
   getRowHeight() {
-    return this.fontSize / this.factor + "px";
+    return this.style.fontSize / this.factor + "px";
   }
 
   /* Shortcuts */
@@ -76,6 +63,7 @@ export class MainViewComponent implements OnInit {
       case "\n": return "Eingabe";
       case " ": return "Leerzeichen";
       case "ä": case "Ä": case "ü": case "Ü": case "ö": case "Ö": return "Umlaut"
+      //TODO add großschrift
       default: return "";
     }
   }

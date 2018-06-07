@@ -1,10 +1,10 @@
 <div class="container">
+  <h1>Settings</h1>
   <mat-accordion>
-    <h1>Chapter Selection</h1>
-    <mat-expansion-panel  *ngFor="let set of allLessons">
+    <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          {{set.name}}
+          Chapter selection
         </mat-panel-title>
         <mat-panel-description>
           General settings for the whole application
@@ -12,9 +12,10 @@
       </mat-expansion-panel-header>
 
 
-      <section class="section">
+      <section class="section" *ngFor="let set of allLessons">
+        <h2>{{set.name}}</h2>
         <mat-grid-list cols="5">
-          <mat-grid-tile  *ngFor="let chapter of set.chapters">
+          <mat-grid-tile *ngFor="let chapter of set.chapters">
             <button mat-raised-button (click)="loadChapter(chapter.content, chapter.name, null)">{{chapter.name}}</button>
           </mat-grid-tile>
         </mat-grid-list>
@@ -23,11 +24,10 @@
 
 
 
-    <h1>Color schemes</h1>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Change color scheme
+          Style
         </mat-panel-title>
         <mat-panel-description>
           General settings for the whole application
@@ -36,11 +36,17 @@
 
 
       <section class="section">
+        <h2>Change color scheme</h2>
         <mat-grid-list cols="5">
-          <mat-grid-tile  *ngFor="let c of colorScheme.colorSchemes">
-            <button mat-raised-button (click)="colorScheme.setActiveColorScheme(c)" [style.color]="c.current" [style.backgroundColor]="c.backgroundColor" [style.border]="c == colorScheme.activeColorScheme ? '8px solid red' : '0px'">{{c.name}}</button>
+          <mat-grid-tile *ngFor="let c of style.colorSchemes">
+            <button mat-raised-button (click)="style.setActiveColorScheme(c)" [style.color]="c.current" [style.backgroundColor]="c.backgroundColor" [style.border]="c == style.activeColorScheme ? '8px solid red' : '0px'">{{c.name}}</button>
           </mat-grid-tile>
         </mat-grid-list>
+      </section>
+
+      <section class="section">
+        <h2>Font size</h2>
+        <mat-slider tickInterval="1" [(ngModel)]="style.fontSize" min="50" max="1100" step="1"></mat-slider>
       </section>
     </mat-expansion-panel>
 

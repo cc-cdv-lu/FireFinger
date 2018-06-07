@@ -1,10 +1,9 @@
 import { Injectable, HostListener } from '@angular/core';
 import { VIEW } from '../components/main-view/main-view.component';
 
-import { Lessons } from '../shared/tempLessons';
 import { StatisticsService } from './statistics.service';
 import { LessonService } from './lesson.service';
-import { User } from './user.service';
+import { UserService, User } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,13 +17,6 @@ export class SessionService {
     * ...
   */
 
-  user = {
-    name: "",
-    stats: {
-
-    }
-  }
-
   // Session data
   session = {
     index: 0,
@@ -32,9 +24,8 @@ export class SessionService {
     mistakes: 0
   }
 
-  constructor(private stats: StatisticsService, private lesson: LessonService) { }
+  constructor(private stats: StatisticsService, private lesson: LessonService, private user: UserService) { }
 
-  /*TODO move to KeyProcessorService */
   handleKeyEvent(event: KeyboardEvent) {
     //console.log(event);
     let pressedKey = event.key;
@@ -185,6 +176,6 @@ export class SessionService {
   index = 0;
   skipLesson() {
     this.index++;
-    this.loadSession(this.lesson.lessons["braille"][this.index].content, this.lesson.lessons["braille"][this.index].title, null);
+    this.loadSession(this.lesson.lessons["braille"][this.index].content, this.lesson.lessons["braille"][this.index].title, this.user.loggedInUser);
   }
 }

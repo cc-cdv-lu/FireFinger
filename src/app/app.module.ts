@@ -24,18 +24,18 @@ import { AppComponent } from './app.component';
 /* Custom components */
 import { HomeComponent } from './components/home/home.component';
 import { MainViewComponent } from './components/main-view/main-view.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 /* Custom Modules */
-import { MaterialManagerModule } from './shared/material-manager/material-manager.module'
+import { MaterialManagerModule } from './material-manager.module'
 
 /* Custom Services */
 import { SessionService } from './services/session.service';
 import { LessonService } from './services/lesson.service';
 import { StatisticsService } from './services/statistics.service';
-import { ColorSchemeService } from './services/color-scheme.service';
+import { StyleService } from './services/style.service';
 import { UserService } from './services/user.service';
 
-import { SettingsComponent } from './components/settings/settings.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -69,7 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ElectronService,
     SessionService,
     LessonService,
-    ColorSchemeService,
+    StyleService,
     StatisticsService,
     UserService
   ],

@@ -41,3 +41,7 @@ export class StatisticsService {
   }
 
 }
+
+export class Statistics {
+
+}

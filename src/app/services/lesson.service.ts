@@ -56,10 +56,8 @@ export class LessonService {
   }
 
   loadFromFile(url: string): string {
-    //if fileending .doc
     let split = url.split(".");
     let fileEnding = split[split.length - 1];
-    console.log("File ending is: ", fileEnding)
 
     switch (fileEnding) {
       case "doc": case "docx": return this.getDocFileContents(url);
