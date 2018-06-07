@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { StyleService } from '../../services/style.service';
 import { SettingsComponent } from '../settings/settings.component';
 import { SessionService } from '../../services/session.service';
+import { StatisticsService } from '../../services/statistics.service';
 
 
 export enum VIEW {
@@ -18,7 +19,7 @@ export enum VIEW {
 })
 export class MainViewComponent implements OnInit {
 
-  constructor(private session: SessionService, private electron: ElectronService, private dialog: MatDialog, private style: StyleService) {
+  constructor(public session: SessionService, private electron: ElectronService, private dialog: MatDialog, public style: StyleService, public stats: StatisticsService) {
     this.view = VIEW.LINE;
   }
 

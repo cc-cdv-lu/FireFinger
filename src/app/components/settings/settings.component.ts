@@ -14,7 +14,7 @@ export class SettingsComponent implements OnInit {
 
   allLessons = this.lessonService.lessons;
 
-  constructor(private lessonService: LessonService, private session: SessionService, private style: StyleService, private user: UserService) { }
+  constructor(private lessonService: LessonService, private session: SessionService, public style: StyleService, public user: UserService) { }
 
   ngOnInit() {
   }

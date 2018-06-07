@@ -1,8 +1,8 @@
 {
-  "name": "angular-electron",
-  "version": "4.0.0",
-  "description": "Angular 6 with Electron (Typescript + SASS + Hot Reload)",
-  "homepage": "https://github.com/maximegris/angular-electron",
+  "name": "FireFinger",
+  "version": "0.0.1",
+  "description": "Dactylo training app build upon Angular 6",
+  "homepage": "http://gitlab.lowvision.lu/it/FireFinger",
   "author": {
     "name": "Maxime GRIS",
     "email": "maxime.gris@gmail.com"
