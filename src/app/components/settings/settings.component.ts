@@ -12,9 +12,9 @@ import { User, UserService } from '../../services/user.service'
 })
 export class SettingsComponent implements OnInit {
 
-  allLessons = this.lessonService.lessons;
+  allLessons = this.lessons.lessons;
 
-  constructor(private lessonService: LessonService, private session: SessionService, public style: StyleService, public user: UserService) { }
+  constructor(public lessons: LessonService, private session: SessionService, public style: StyleService, public user: UserService) { }
 
   ngOnInit() {
   }

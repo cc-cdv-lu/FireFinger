@@ -8,7 +8,7 @@ import { ElectronService } from '../providers/electron.service'
 export class LessonService {
 
   constructor(private electron: ElectronService) {
-    //this.readDir("src/assets/lessons/braille/");
+
     this.loadAllDirs()
   }
 
@@ -18,21 +18,25 @@ export class LessonService {
 
   - .doc and .txt supported
   */
-
+  url: string = 'C:/Users/jhoffmann/Documents/Projects/FireFinger/src/assets/lessons/';//'src/assets/lessons/';
   lessons = [
     {
-      name: 'static',
-      chapters: []
+      name: 'example',
+      chapters: [
+        {
+          name: 'test',
+          content: 'this is just an example...'
+        }
+      ]
     }
   ]
 
   loadAllDirs() {
-    let url = 'src/assets/lessons/';
-    let dir = this.electron.fs.readdirSync(url);
+    let dir = this.electron.fs.readdirSync(this.url);
+    if (!dir) return console.warn("This url does not exist:", this.url)
     for (let folder of dir) {
-      console.log(folder)
       if (folder.indexOf(".") == -1)
-        this.loadFolder(url, folder);
+        this.loadFolder(this.url, folder);
     }
   }
 
