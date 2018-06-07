@@ -1,0 +1,10 @@
+<mat-grid-list cols="2" rowHeight="80px">
+  <mat-grid-tile>
+    <mat-form-field>
+      <input #loginField matInput matAutosize=true maxRows=1 placeholder="Enter your name" [(ngModel)]="inputField" (keydown)="onKeydown($event)" />
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button mat-raised-button (click)="onConfirm()">Login</button>
+  </mat-grid-tile>
+</mat-grid-list>

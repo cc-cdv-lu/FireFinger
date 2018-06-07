@@ -1,9 +1,13 @@
 import { Injectable, HostListener } from '@angular/core';
-import { VIEW } from '../components/main-view/main-view.component';
 
-import { StatisticsService } from './statistics.service';
+import { StatisticsService, Statistics } from './statistics.service';
 import { LessonService } from './lesson.service';
 import { UserService, User } from './user.service';
+
+enum VIEW {
+  CHAR, WORD, LINE
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +25,6 @@ export class SessionService {
   session = {
     index: 0,
     input: "This is an example text! The text that is present in it does not have any importance. The text just needs to act as lorem ipsum...",
-    mistakes: 0
   }
 
   constructor(private stats: StatisticsService, private lesson: LessonService, private user: UserService) { }
@@ -36,7 +39,14 @@ export class SessionService {
     if (this.session.index >= this.session.input.length - 1) {
       // Check if fast enough & didn't make to many mistakes
       console.log("DONE!", this.session);
-      //TODO save stats to user profile and recalculate overall stats
+      //TODO save stats to user profile
+      this.user.loggedInUser.lastSessionStats = this.stats.currentStats;
+      this.user.loggedInUser.lastSessionStats.mistakePercentage = this.getMistakePercentageAsNumber();
+
+      this.user.recalculateOverallStats();
+      this.user.saveUserChanges();
+      console.log("Current stats at end of session:", this.stats.currentStats);
+      console.log("Overall stats now:", this.user.loggedInUser.overallStats);
       this.reset();
     }
     if (pressedKey == 'Enter' && this.getCurrentChar(this.session.input, this.session.index) == '\n')
@@ -45,7 +55,6 @@ export class SessionService {
       this.session.index++;
     else {
       console.log("Entered " + pressedKey + " instead of " + expectedKey);
-      this.session.mistakes++;
       this.stats.logMistakes(pressedKey, expectedKey)
     }
   }
@@ -53,8 +62,7 @@ export class SessionService {
   reset() {
     this.session = {
       index: 0,
-      input: "",
-      mistakes: 0
+      input: ""
     }
   }
 
@@ -66,8 +74,13 @@ export class SessionService {
     return this.session.index
   }
 
+  getMistakePercentageAsNumber() {
+    return Math.round(this.stats.currentStats.mistakesCount / this.session.input.length * 100);
+
+  }
+
   getMistakePercentage() {
-    return Math.round(this.session.mistakes / this.session.input.length * 100) + "%";
+    return this.getMistakePercentageAsNumber() + '%'
   }
 
 

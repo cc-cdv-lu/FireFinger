@@ -18,14 +18,19 @@ export class LessonService {
 
   - .doc and .txt supported
   */
+  //TODO try to find a way to make this not hard coded
   url: string = 'C:/Users/jhoffmann/Documents/Projects/FireFinger/src/assets/lessons/';//'src/assets/lessons/';
   lessons = [
     {
-      name: 'example',
+      name: 'debug',
       chapters: [
         {
-          name: 'test',
-          content: 'this is just an example...'
+          name: 'debug01',
+          content: 'qwertz'
+        },
+        {
+          name: 'debug02',
+          content: 'asdfg'
         }
       ]
     }
@@ -43,12 +48,10 @@ export class LessonService {
   loadFolder(path: string, folderName: string) {
     let url = path + folderName + "/";
     let dir = this.electron.fs.readdirSync(url);
-    console.log("DIR:", dir);
     let lesson = {
       name: folderName,
       chapters: []
     }
-    console.log("Lessons:", this.lessons)
     for (let file of dir) {
       lesson.chapters.push({
         name: file,
@@ -56,7 +59,6 @@ export class LessonService {
       })
     }
     this.lessons.push(lesson);
-    console.log("Loaded lessons: ", this.lessons);
   }
 
   loadFromFile(url: string): string {

@@ -12,7 +12,8 @@ export class StatisticsService {
   private iTotal = 0;
   private iKeys = 0;
 
-  cpm = 0;
+  currentStats: Statistics = new Statistics();
+
   wpm = 0;
   checkSpeed() {
     this.iTime = new Date().getTime();
@@ -20,7 +21,7 @@ export class StatisticsService {
     if (this.iLastTime != 0) {
       this.iKeys++;
       this.iTotal += this.iTime - this.iLastTime;
-      this.cpm = Math.round(this.iKeys / this.iTotal * 6000);
+      this.currentStats.typeSpeed = Math.round(this.iKeys / this.iTotal * 6000);
     }
 
     this.iLastTime = this.iTime;
@@ -32,13 +33,14 @@ export class StatisticsService {
     this.iTotal = 0;
     this.iKeys = 0;
 
-    this.cpm = 0;
     this.wpm = 0;
   }
 
   logMistakes(pressedKey: string, expectedKey: string) {
+    this.currentStats.mistakesCount++;
     //STUB TODO
   }
+
 
 }
 
@@ -46,6 +48,7 @@ export class Statistics {
   sessionCount: number = 0;
   typeSpeed: number = 0;
   mistakePercentage: number = 0;
+  mistakesCount: number = 0;
   mistakeKeys: [{
     key: string,
     count: number

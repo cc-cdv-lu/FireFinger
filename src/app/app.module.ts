@@ -25,6 +25,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { LoginComponent } from './components/login/login.component';
 
 /* Custom Modules */
 import { MaterialManagerModule } from './material-manager.module'
@@ -48,7 +49,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     WebviewDirective,
     MainViewComponent,
-    SettingsComponent
+    SettingsComponent,
+    LoginComponent
   ],
   imports: [
     MaterialManagerModule,
@@ -74,6 +76,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [SettingsComponent]
+  entryComponents: [SettingsComponent, LoginComponent]
 })
 export class AppModule { }

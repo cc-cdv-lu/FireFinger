@@ -37,6 +37,7 @@
     "@angular/animations": "^6.0.3",
     "@angular/cdk": "^6.2.1",
     "@angular/material": "^6.2.1",
+    "electron-store": "^2.0.0",
     "word-extractor": "^0.1.4"
   },
   "devDependencies": {
