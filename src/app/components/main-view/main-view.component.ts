@@ -23,11 +23,16 @@ enum VIEW {
 export class MainViewComponent implements OnInit {
 
   constructor(public session: SessionService, private electron: ElectronService, private dialog: MatDialog, public style: StyleService, public stats: StatisticsService, private user: UserService, private router: Router) {
-    //TODO DEBUG - PLEASE REMOVE
-    this.user.login(this.electron.config.get("LAST_LOGIN").name);
+    //TODO - LEVEL selection is triggered before login creation
+    let lastLogin = this.electron.config.get("LAST_LOGIN");
+    if (!lastLogin)
+      this.router.navigateByUrl('/login');
+    if (lastLogin)
+      this.user.login(lastLogin.name);
 
-    if (!this.user.loggedInUser) this.router.navigateByUrl('/login');
-    //TODO if no session is loaded of lesson/chapter is over -> route to level-selection
+    this.session.restoreSession();
+    if (!this.session.isSessionLoaded)
+      this.router.navigateByUrl('/levels');
 
     this.view = VIEW.LINE;
   }
@@ -120,6 +125,10 @@ export class MainViewComponent implements OnInit {
     dialogRef.beforeClose().subscribe(() => {
       this.areSettingsOpen = false;
     })
+  }
+
+  nukeElectronStorage() {
+    this.electron.config.clear();
   }
 
 }

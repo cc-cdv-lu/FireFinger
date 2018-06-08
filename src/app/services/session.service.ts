@@ -3,12 +3,13 @@ import { Injectable, HostListener } from '@angular/core';
 import { StatisticsService, Statistics } from './statistics.service';
 import { LessonService, Lesson, Chapter } from './lesson.service';
 import { UserService, User } from './user.service';
+import { ElectronService } from '../providers/electron.service'
 
 enum VIEW {
   CHAR, WORD, LINE
 }
 
-
+const LAST_SESSION_KEY = 'LAST_SESSION'
 @Injectable({
   providedIn: 'root'
 })
@@ -22,23 +23,21 @@ export class SessionService {
   */
 
   // Session data
-  session = {
-    index: 0,
-    //input: "This is an example text! The text that is present in it does not have any importance. The text just needs to act as lorem ipsum...",
-  }
+  indexInText = 0;
+  isSessionLoaded = false;
 
-  constructor(private stats: StatisticsService, private lesson: LessonService, private user: UserService) { }
+  constructor(private stats: StatisticsService, private lesson: LessonService, private user: UserService, private electron: ElectronService) { }
 
   handleKeyEvent(event: KeyboardEvent) {
     //console.log(event);
     let pressedKey = event.key;
-    let expectedKey = this.getCurrentChar(this.getText(), this.session.index)
+    let expectedKey = this.getCurrentChar(this.getText(), this.indexInText)
     this.stats.checkSpeed();
     if (pressedKey == "Escape") return this.reset();
     if (pressedKey == "Shift") return;
-    if (this.session.index >= this.getText().length - 1) {
+    if (this.indexInText >= this.getText().length - 1) {
       // Check if fast enough & didn't make to many mistakes
-      console.log("DONE!", this.session);
+      console.log("DONE!", this.currentChapter);
       this.user.loggedInUser.lastSessionStats = this.stats.currentStats;
       this.user.loggedInUser.lastSessionStats.mistakePercentage = this.getMistakePercentageAsNumber();
 
@@ -46,10 +45,10 @@ export class SessionService {
       this.user.saveUserChanges();
       this.reset();
     }
-    if (pressedKey == 'Enter' && this.getCurrentChar(this.getText(), this.session.index) == '\n')
-      this.session.index++;
-    if (pressedKey == this.getCurrentChar(this.getText(), this.session.index))
-      this.session.index++;
+    if (pressedKey == 'Enter' && this.getCurrentChar(this.getText(), this.indexInText) == '\n')
+      this.indexInText++;
+    if (pressedKey == this.getCurrentChar(this.getText(), this.indexInText))
+      this.indexInText++;
     else {
       console.log("Entered " + pressedKey + " instead of " + expectedKey);
       this.stats.logMistakes(pressedKey, expectedKey)
@@ -57,11 +56,9 @@ export class SessionService {
   }
 
   reset() {
-    this.session = {
-      index: 0,
-      //input: ""
-    }
+    this.indexInText;
     this.stats.reset();
+    this.isSessionLoaded = false;
   }
 
   getText() {
@@ -70,7 +67,7 @@ export class SessionService {
   }
 
   getIndex() {
-    return this.session.index
+    return this.indexInText;
   }
 
   getMistakePercentageAsNumber() {
@@ -181,16 +178,36 @@ export class SessionService {
 
   }
 
+  saveSession() {
+    let session = {
+      lesson: this.currentLesson,
+      chapter: this.currentChapter,
+      index: this.currentIndex
+    }
+    this.electron.config.set(LAST_SESSION_KEY, session);
+  }
+  restoreSession() {
+    let session = this.electron.config.get(LAST_SESSION_KEY);
+    if (!session) {
+      this.isSessionLoaded = false;
+      return console.log("No previous session was found...");
+    }
+    this.currentLesson = session.lesson;
+    this.currentChapter = session.chapter;
+    this.currentIndex = session.index;
+    this.isSessionLoaded = true;
+  }
+
   currentLesson: Lesson;
   currentChapter: Chapter;
   currentIndex: number;
   loadSession(lesson: Lesson, index: number) {
+    this.reset();
     this.currentLesson = lesson;
     this.currentChapter = lesson.chapters[index];;
     this.currentIndex = index;
-
-    //TODO try to get rid of input and load stuff straight from the lesson
-    //this.session.input = this.currentChapter.content;
+    this.isSessionLoaded = true;
+    this.saveSession();
   }
 
   index = 0;
@@ -203,12 +220,10 @@ export class SessionService {
       //TODO reached end of chapters
       console.log("Reached end of lesson!");
     }
-    //TODO make it so that sessions are loaded by supplying a index with an lesson array
-    //this.loadSession(this.lesson.lessons["braille"][this.index].content, this.lesson.lessons["braille"][this.index].title, this.user.loggedInUser);
   }
 
   previousChapter() {
-    if (this.currentIndex > 1) {
+    if (this.currentIndex > 0) {
       this.loadSession(this.currentLesson, this.currentIndex - 1)
     }
     else {

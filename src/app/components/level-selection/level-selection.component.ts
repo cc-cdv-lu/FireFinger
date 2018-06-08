@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
+
+import { LessonService } from '../../services/lesson.service';
+import { SessionService } from '../../services/session.service'
 
 @Component({
   selector: 'app-level-selection',
@@ -7,9 +11,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LevelSelectionComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(public lesson: LessonService, public session: SessionService, public router: Router) { }
+  allLessons = this.lesson.lessons;
   ngOnInit() {
+  }
+
+  goHome() {
+    this.router.navigateByUrl('/');
   }
 
 }

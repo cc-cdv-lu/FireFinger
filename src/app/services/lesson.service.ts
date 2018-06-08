@@ -26,9 +26,9 @@ export class LessonService {
   - Predefined chapters
   - Custom folder
 
-  - .doc and .txt supported
+  - .doc TODO
+  .txt supported
   */
-  //TODO try to find a way to make this not hard coded
   url: string = 'C:/Users/jhoffmann/Documents/Projects/FireFinger/src/assets/lessons/';//'src/assets/lessons/';
   lessons: Array<Lesson> = [
     {

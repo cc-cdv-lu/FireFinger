@@ -4,3 +4,13 @@
 <nav>
   <a routerLink="/home">Home</a>
 </nav>
+
+
+<section class="section" *ngFor="let set of allLessons">
+  <h2>{{set.name}}</h2>
+  <mat-grid-list cols="10" rowHeight="50px">
+    <mat-grid-tile *ngFor="let chapter of set.chapters; let i = index">
+      <button mat-raised-button (click)="session.loadSession(set, i); goHome()">{{chapter.name}}</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</section>

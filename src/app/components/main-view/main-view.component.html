@@ -16,16 +16,17 @@
     <mat-grid-tile>
       <b>Debugging tools</b>
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile colspan="2">
       <button mat-raised-button (click)="printInfo()">Print info</button>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      Mistakes: {{session.getMistakePercentage()}}
+      <button mat-raised-button (click)="nukeElectronStorage()">Nuke data</button>
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
       <button mat-raised-button (click)="setCharMode()">Char Mode</button>
       <button mat-raised-button (click)="setWordMode()">Word Mode</button>
       <button mat-raised-button (click)="setLineMode()">Line Mode</button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      Mistakes: {{session.getMistakePercentage()}}
     </mat-grid-tile>
     <mat-grid-tile>
       CPM: {{stats.currentStats.typeSpeed}}
