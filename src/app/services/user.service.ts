@@ -40,15 +40,31 @@ export class UserService {
     if (this.loggedInUser.overallStats.sessionCount > 0) sessionCount = this.loggedInUser.overallStats.sessionCount;
     else sessionCount = 0;
 
+    if (this.loggedInUser.lastSessionStats.mistakeKeys) { //Check if user has made any mistakes at all
+      for (let mistake of this.loggedInUser.lastSessionStats.mistakeKeys) {
+        let keyPair = this.findKeyPair(mistake.key, this.loggedInUser.overallStats.mistakeKeys);
+        if (!keyPair) {
+          keyPair = mistake;
+          if (!this.loggedInUser.overallStats.mistakeKeys)
+            this.loggedInUser.overallStats.mistakeKeys = [keyPair]
+          else
+            this.loggedInUser.overallStats.mistakeKeys.push(keyPair)
+        }
+        keyPair.count++;
+      }
+    }
+
     //Averages
     this.loggedInUser.overallStats.typeSpeed = (this.loggedInUser.overallStats.typeSpeed * sessionCount + this.loggedInUser.lastSessionStats.typeSpeed) / (sessionCount + 1);
     this.loggedInUser.overallStats.mistakePercentage = (this.loggedInUser.overallStats.mistakePercentage * sessionCount + this.loggedInUser.lastSessionStats.mistakePercentage) / (sessionCount + 1);
 
+    /*
     if (this.loggedInUser.overallStats.mistakeKeys) {
       for (let i = 0; i < this.loggedInUser.overallStats.mistakeKeys.length; i++) {
         this.loggedInUser.overallStats.mistakeKeys[i].count = (this.loggedInUser.overallStats.mistakeKeys[i].count * sessionCount + this.findKeyPair(this.loggedInUser.overallStats.mistakeKeys[i].key, this.loggedInUser.lastSessionStats.mistakeKeys).count) / (sessionCount + 1);
       }
     }
+    */
 
 
     this.loggedInUser.overallStats.sessionCount++;
@@ -56,6 +72,8 @@ export class UserService {
   }
 
   private findKeyPair(key: string, arr) {
+    if (!arr) return null;
+    if (arr.length == 0) return null;
     for (let entry of arr) {
       if (entry.key == key) return entry;
     }

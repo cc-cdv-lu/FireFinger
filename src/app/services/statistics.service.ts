@@ -34,11 +34,49 @@ export class StatisticsService {
     this.iKeys = 0;
 
     this.wpm = 0;
+
+    this.currentStats = new Statistics();
   }
 
   logMistakes(pressedKey: string, expectedKey: string) {
+    switch (expectedKey) {
+      case ' ': expectedKey = "Space"; break;
+      case '\n': expectedKey = 'Enter'; break;
+      default: break;
+    }
     this.currentStats.mistakesCount++;
-    //STUB TODO
+    if (!this.currentStats.mistakeKeys) {
+      this.currentStats.mistakeKeys = [{ key: expectedKey, count: 0 }]
+    }
+    let obj = this.getMatchingObject(this.currentStats.mistakeKeys, 'key', expectedKey);
+    if (obj == null) {
+      obj = { key: expectedKey, count: 0 }
+      this.currentStats.mistakeKeys.push(obj);
+    }
+    obj.count++;
+  }
+
+  getMatchingObject(arr: Array<any>, identifier: string, query: string) {
+    for (let o of arr) {
+      if (o[identifier] == query) return o;
+    }
+  }
+
+  getTopMistakes(stats: Statistics, amount: number) {
+    if (!stats.mistakeKeys) return [];
+    let sortedArray = stats.mistakeKeys.sort((a, b) => {
+      let x = a.count; let y = b.count;
+      return ((x < y) ? -1 : ((x > y) ? 0 : 1));
+    });
+    let output = [];
+    for (let i = 0; i < amount; i++) {
+      if (sortedArray[i])
+        output.push(sortedArray[i])
+    }
+
+    return output;
+
+
   }
 
 

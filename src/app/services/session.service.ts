@@ -39,14 +39,11 @@ export class SessionService {
     if (this.session.index >= this.session.input.length - 1) {
       // Check if fast enough & didn't make to many mistakes
       console.log("DONE!", this.session);
-      //TODO save stats to user profile
       this.user.loggedInUser.lastSessionStats = this.stats.currentStats;
       this.user.loggedInUser.lastSessionStats.mistakePercentage = this.getMistakePercentageAsNumber();
 
       this.user.recalculateOverallStats();
       this.user.saveUserChanges();
-      console.log("Current stats at end of session:", this.stats.currentStats);
-      console.log("Overall stats now:", this.user.loggedInUser.overallStats);
       this.reset();
     }
     if (pressedKey == 'Enter' && this.getCurrentChar(this.session.input, this.session.index) == '\n')
@@ -64,6 +61,7 @@ export class SessionService {
       index: 0,
       input: ""
     }
+    this.stats.reset();
   }
 
   getText() {
@@ -75,6 +73,7 @@ export class SessionService {
   }
 
   getMistakePercentageAsNumber() {
+    if (this.session.input.length < 1) return 0;
     return Math.round(this.stats.currentStats.mistakesCount / this.session.input.length * 100);
 
   }
@@ -176,10 +175,6 @@ export class SessionService {
     // Return the word, using the located bounds to extract it from the string.
     return str.slice(left, right + pos);
 
-  }
-
-  loadUser(username: string) {
-    this.user = null; //TODO conf.get(username);
   }
 
   loadSession(text: string, title: string, user: User) {
