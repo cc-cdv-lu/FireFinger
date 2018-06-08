@@ -24,6 +24,7 @@ export class UserService {
       this.electron.config.set("USER_" + name, this.loggedInUser);
     }
 
+    this.electron.config.set("LAST_LOGIN", this.loggedInUser);
     console.log("Logged in as: " + this.loggedInUser.name);
     console.log("Detailed view:", this.loggedInUser);
   }

@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { UserService } from '../../services/user.service';
+import { ElectronService } from '../../providers/electron.service';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +15,17 @@ export class LoginComponent implements OnInit {
   //TODO save used login to storage
   //TODO trigger onCofirm when hitting enter
   //TODO grab focus
+  //[mat-dialog-close]="inputField != ''"
 
-  @ViewChild('loginField') loginField;
+  @ViewChild('loginField') loginField: ElementRef;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private user: UserService, public dialogRef: MatDialogRef<LoginComponent>) {
-    console.log(data)
-    this.inputField = data.name;
-
+  constructor(private electron: ElectronService, private user: UserService, private router: Router) {
+    let lastUser = this.electron.config.get("LAST_LOGIN");
+    if (!lastUser)
+      this.inputField = "";
+    else {
+      this.inputField = lastUser.name
+    }
   }
   inputField: string;
   ngOnInit() {
@@ -28,8 +33,10 @@ export class LoginComponent implements OnInit {
   }
 
   onConfirm() {
+    if (this.inputField == "") return;
     this.user.login(this.inputField);
-    this.dialogRef.close();
+    //TODO route to home
+    this.router.navigateByUrl('/home');
   }
 
   onKeydown(event: KeyboardEvent) {

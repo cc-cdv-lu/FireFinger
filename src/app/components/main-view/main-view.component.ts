@@ -1,9 +1,9 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 import { ElectronService } from '../../providers/electron.service';
 import { MatDialog } from '@angular/material';
 
 import { SettingsComponent } from '../settings/settings.component';
-import { LoginComponent } from '../login/login.component';
 
 import { StyleService } from '../../services/style.service';
 import { SessionService } from '../../services/session.service';
@@ -22,34 +22,18 @@ enum VIEW {
 })
 export class MainViewComponent implements OnInit {
 
-  constructor(public session: SessionService, private electron: ElectronService, private dialog: MatDialog, public style: StyleService, public stats: StatisticsService, private user: UserService) {
+  constructor(public session: SessionService, private electron: ElectronService, private dialog: MatDialog, public style: StyleService, public stats: StatisticsService, private user: UserService, private router: Router) {
+    //TODO DEBUG - PLEASE REMOVE
+    this.user.login(this.electron.config.get("LAST_LOGIN").name);
+
+
+    if (!this.user.loggedInUser) this.router.navigateByUrl('/login');
     this.view = VIEW.LINE;
-    let tempUser = this.electron.config.get("LAST_LOGIN");
-    let name = "";
-    if (tempUser) name = tempUser.name
-
-    this.isLoginOpen = true;
-    let loginDialog = this.dialog.open(LoginComponent, {
-      height: '10%',
-      width: '40%',
-      autoFocus: true,
-      closeOnNavigation: false,
-      disableClose: true,
-      hasBackdrop: true,
-      data: {
-        name: name
-      }
-    });
-    loginDialog.beforeClose().subscribe(() => {
-      this.isLoginOpen = false;
-      this.electron.config.set("LAST_LOGIN", this.user.loggedInUser);
-    })
-
   }
 
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    if (this.areSettingsOpen || this.isLoginOpen) return;
+    if (this.areSettingsOpen) return;
     this.session.handleKeyEvent(event);
   }
   ngOnInit() {
@@ -61,7 +45,6 @@ export class MainViewComponent implements OnInit {
   warningText = "";
 
   areSettingsOpen: boolean = false;
-  isLoginOpen: boolean = false;
 
   factor = 7;
   getRowHeight() {
