@@ -58,14 +58,6 @@ export class UserService {
     this.loggedInUser.overallStats.typeSpeed = (this.loggedInUser.overallStats.typeSpeed * sessionCount + this.loggedInUser.lastSessionStats.typeSpeed) / (sessionCount + 1);
     this.loggedInUser.overallStats.mistakePercentage = (this.loggedInUser.overallStats.mistakePercentage * sessionCount + this.loggedInUser.lastSessionStats.mistakePercentage) / (sessionCount + 1);
 
-    /*
-    if (this.loggedInUser.overallStats.mistakeKeys) {
-      for (let i = 0; i < this.loggedInUser.overallStats.mistakeKeys.length; i++) {
-        this.loggedInUser.overallStats.mistakeKeys[i].count = (this.loggedInUser.overallStats.mistakeKeys[i].count * sessionCount + this.findKeyPair(this.loggedInUser.overallStats.mistakeKeys[i].key, this.loggedInUser.lastSessionStats.mistakeKeys).count) / (sessionCount + 1);
-      }
-    }
-    */
-
 
     this.loggedInUser.overallStats.sessionCount++;
 

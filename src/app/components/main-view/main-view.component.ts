@@ -32,6 +32,10 @@ export class MainViewComponent implements OnInit {
     let loginDialog = this.dialog.open(LoginComponent, {
       height: '10%',
       width: '40%',
+      autoFocus: true,
+      closeOnNavigation: false,
+      disableClose: true,
+      hasBackdrop: true,
       data: {
         name: name
       }
@@ -53,7 +57,7 @@ export class MainViewComponent implements OnInit {
   }
 
   VIEW = VIEW;
-  view: VIEW = VIEW.CHAR;
+  view: VIEW = VIEW.LINE;
   warningText = "";
 
   areSettingsOpen: boolean = false;

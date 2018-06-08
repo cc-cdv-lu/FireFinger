@@ -69,7 +69,6 @@ export class StyleService {
   }
 
   setActiveColorScheme(c: ColorScheme) {
-    console.log("Updating color scheme to :", c)
     this.activeColorScheme = c;
   }
 }
