@@ -30,8 +30,9 @@
     <mat-grid-tile>
       CPM: {{stats.currentStats.typeSpeed}}
     </mat-grid-tile>
-    <mat-grid-tile>
-      <button mat-raised-button (click)="skipLesson()">Skip lesson</button>
+    <mat-grid-tile colspan="2">
+      <button mat-raised-button (click)="session.previousChapter()">Prev chapter</button>
+      <button mat-raised-button (click)="session.nextChapter()">Next chapter</button>
     </mat-grid-tile>
     <mat-grid-tile>
       <button mat-raised-button (click)="openSettings()">Open Settings</button>

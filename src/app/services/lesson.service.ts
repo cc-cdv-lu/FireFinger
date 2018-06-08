@@ -2,6 +2,16 @@ import { Injectable } from '@angular/core';
 import * as WordExtractor from 'word-extractor';
 import { ElectronService } from '../providers/electron.service'
 
+
+export class Lesson {
+  name: string;
+  chapters: Array<Chapter>;
+}
+export class Chapter {
+  name: string;
+  content: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +30,7 @@ export class LessonService {
   */
   //TODO try to find a way to make this not hard coded
   url: string = 'C:/Users/jhoffmann/Documents/Projects/FireFinger/src/assets/lessons/';//'src/assets/lessons/';
-  lessons = [
+  lessons: Array<Lesson> = [
     {
       name: 'debug',
       chapters: [

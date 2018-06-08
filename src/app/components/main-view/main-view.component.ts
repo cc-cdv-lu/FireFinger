@@ -26,8 +26,9 @@ export class MainViewComponent implements OnInit {
     //TODO DEBUG - PLEASE REMOVE
     this.user.login(this.electron.config.get("LAST_LOGIN").name);
 
-
     if (!this.user.loggedInUser) this.router.navigateByUrl('/login');
+    //TODO if no session is loaded of lesson/chapter is over -> route to level-selection
+
     this.view = VIEW.LINE;
   }
 
@@ -104,10 +105,6 @@ export class MainViewComponent implements OnInit {
     console.log("Start:   ", this.session.getPrevSegment(this.session.getText(), this.session.getIndex(), this.view))
     console.log("Current: ", this.session.getCurrentChar(this.session.getText(), this.session.getIndex()))
     console.log("Next:    ", this.session.getNextSegment(this.session.getText(), this.session.getIndex(), this.view))
-  }
-
-  skipLesson() {
-    this.session.skipLesson();
   }
 
   openSettings() {

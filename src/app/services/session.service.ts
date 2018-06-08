@@ -1,7 +1,7 @@
 import { Injectable, HostListener } from '@angular/core';
 
 import { StatisticsService, Statistics } from './statistics.service';
-import { LessonService } from './lesson.service';
+import { LessonService, Lesson, Chapter } from './lesson.service';
 import { UserService, User } from './user.service';
 
 enum VIEW {
@@ -24,7 +24,7 @@ export class SessionService {
   // Session data
   session = {
     index: 0,
-    input: "This is an example text! The text that is present in it does not have any importance. The text just needs to act as lorem ipsum...",
+    //input: "This is an example text! The text that is present in it does not have any importance. The text just needs to act as lorem ipsum...",
   }
 
   constructor(private stats: StatisticsService, private lesson: LessonService, private user: UserService) { }
@@ -32,11 +32,11 @@ export class SessionService {
   handleKeyEvent(event: KeyboardEvent) {
     //console.log(event);
     let pressedKey = event.key;
-    let expectedKey = this.getCurrentChar(this.session.input, this.session.index)
+    let expectedKey = this.getCurrentChar(this.getText(), this.session.index)
     this.stats.checkSpeed();
     if (pressedKey == "Escape") return this.reset();
     if (pressedKey == "Shift") return;
-    if (this.session.index >= this.session.input.length - 1) {
+    if (this.session.index >= this.getText().length - 1) {
       // Check if fast enough & didn't make to many mistakes
       console.log("DONE!", this.session);
       this.user.loggedInUser.lastSessionStats = this.stats.currentStats;
@@ -46,9 +46,9 @@ export class SessionService {
       this.user.saveUserChanges();
       this.reset();
     }
-    if (pressedKey == 'Enter' && this.getCurrentChar(this.session.input, this.session.index) == '\n')
+    if (pressedKey == 'Enter' && this.getCurrentChar(this.getText(), this.session.index) == '\n')
       this.session.index++;
-    if (pressedKey == this.getCurrentChar(this.session.input, this.session.index))
+    if (pressedKey == this.getCurrentChar(this.getText(), this.session.index))
       this.session.index++;
     else {
       console.log("Entered " + pressedKey + " instead of " + expectedKey);
@@ -59,13 +59,14 @@ export class SessionService {
   reset() {
     this.session = {
       index: 0,
-      input: ""
+      //input: ""
     }
     this.stats.reset();
   }
 
   getText() {
-    return this.session.input;
+    if (!this.currentLesson) return "No lesson loaded...";
+    return this.currentLesson.chapters[this.currentIndex].content;
   }
 
   getIndex() {
@@ -73,8 +74,8 @@ export class SessionService {
   }
 
   getMistakePercentageAsNumber() {
-    if (this.session.input.length < 1) return 0;
-    return Math.round(this.stats.currentStats.mistakesCount / this.session.input.length * 100);
+    if (this.getText().length < 1) return 0;
+    return Math.round(this.stats.currentStats.mistakesCount / this.getText().length * 100);
 
   }
 
@@ -84,10 +85,12 @@ export class SessionService {
 
 
   getCurrentChar(input, index) {
+    if (!input) return "";
     return input[index];
   }
 
   getPrevSegment(input, index, view: VIEW) {
+    if (!input) return "";
     switch (view) {
       case VIEW.CHAR: return "";
       case VIEW.WORD: return this.getBeginningOfWord(input, index);
@@ -97,6 +100,7 @@ export class SessionService {
   }
 
   getNextSegment(input, index, view: VIEW) {
+    if (!input) return "";
     switch (view) {
       case VIEW.CHAR: return "";
       case VIEW.WORD: return this.getRestOfWord(input, index);
@@ -177,14 +181,38 @@ export class SessionService {
 
   }
 
-  loadSession(text: string, title: string, user: User) {
-    this.reset();
-    this.session.input = text;
+  currentLesson: Lesson;
+  currentChapter: Chapter;
+  currentIndex: number;
+  loadSession(lesson: Lesson, index: number) {
+    this.currentLesson = lesson;
+    this.currentChapter = lesson.chapters[index];;
+    this.currentIndex = index;
+
+    //TODO try to get rid of input and load stuff straight from the lesson
+    //this.session.input = this.currentChapter.content;
   }
 
   index = 0;
-  skipLesson() {
-    this.index++;
-    this.loadSession(this.lesson.lessons["braille"][this.index].content, this.lesson.lessons["braille"][this.index].title, this.user.loggedInUser);
+  nextChapter() {
+    if (!this.currentLesson) return console.log("No lesson loaded...");
+    if (this.currentIndex < this.currentLesson.chapters.length - 1) {
+      this.loadSession(this.currentLesson, this.currentIndex + 1)
+    }
+    else {
+      //TODO reached end of chapters
+      console.log("Reached end of lesson!");
+    }
+    //TODO make it so that sessions are loaded by supplying a index with an lesson array
+    //this.loadSession(this.lesson.lessons["braille"][this.index].content, this.lesson.lessons["braille"][this.index].title, this.user.loggedInUser);
+  }
+
+  previousChapter() {
+    if (this.currentIndex > 1) {
+      this.loadSession(this.currentLesson, this.currentIndex - 1)
+    }
+    else {
+      console.log("Reached beginning of lesson")
+    }
   }
 }

@@ -15,13 +15,9 @@ export class SettingsComponent implements OnInit {
 
   allLessons = this.lessons.lessons;
 
-  constructor(public lessons: LessonService, private session: SessionService, public style: StyleService, public user: UserService, public stats: StatisticsService) { }
+  constructor(public lessons: LessonService, public session: SessionService, public style: StyleService, public user: UserService, public stats: StatisticsService) { }
   Math = Math;
   ngOnInit() {
-  }
-
-  loadChapter(content: string, name: string, user: User) {
-    this.session.loadSession(content, name, user);
   }
 
   getFormat(n: number) {

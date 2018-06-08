@@ -20,8 +20,8 @@
       <section class="section" *ngFor="let set of allLessons">
         <h2>{{set.name}}</h2>
         <mat-grid-list cols="5">
-          <mat-grid-tile *ngFor="let chapter of set.chapters">
-            <button mat-raised-button (click)="loadChapter(chapter.content, chapter.name, null)">{{chapter.name}}</button>
+          <mat-grid-tile *ngFor="let chapter of set.chapters; let i = index">
+            <button mat-raised-button (click)="session.loadSession(set, i)">{{chapter.name}}</button>
           </mat-grid-tile>
         </mat-grid-list>
       </section>
