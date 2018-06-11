@@ -1,5 +1,14 @@
 <div class="mainView" [style.backgroundColor]="style.activeColorScheme.backgroundColor">
   <mat-grid-list cols="9" [rowHeight]="getRowHeight()" class="viewContainer">
+    <mat-grid-tile colspan="3" [style.color]="style.activeColorScheme.current">
+      Mistakes: {{stats.currentStats.mistakesCount}} ({{session.getMistakePercentage()}})
+    </mat-grid-tile>
+    <mat-grid-tile class="ProgressBar" colspan="3" [style.color]="style.activeColorScheme.current">
+      <mat-progress-bar mode="determinate" [value]="getProgress()"></mat-progress-bar>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3" [style.color]="style.activeColorScheme.current">
+      typeSpeed: {{stats.currentStats.typeSpeed}}
+    </mat-grid-tile>
     <mat-grid-tile class="textTile" colspan="9" [rowspan]="factor" [style.font-size]="style.getFormattedFontSize()">
       <span class="prev" [style.color]="style.activeColorScheme.prev">{{getPrev()}}&lrm;</span>
       <span class="current" [style.color]="style.activeColorScheme.current">{{getCurrent()}}</span>
@@ -8,6 +17,7 @@
     <mat-grid-tile  colspan="9" [style.color]="style.activeColorScheme.current" [style.font-size]="style.getFormattedWarningSize()">
       {{getWarningText()}}
     </mat-grid-tile>
+
   </mat-grid-list>
 </div>
 
@@ -26,10 +36,7 @@
       <button mat-raised-button (click)="setLineMode()">Line Mode</button>
     </mat-grid-tile>
     <mat-grid-tile>
-      Mistakes: {{session.getMistakePercentage()}}
-    </mat-grid-tile>
-    <mat-grid-tile>
-      CPM: {{stats.currentStats.typeSpeed}}
+      <button mat-raised-button (click)="skipLetter()">Skip char</button>
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
       <button mat-raised-button (click)="session.previousChapter()">Prev chapter</button>

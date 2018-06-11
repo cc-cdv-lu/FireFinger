@@ -15,7 +15,7 @@ export class SessionService {
   //TODO add this to settings
   maxMistakePercentage = 5; //in percentage
   maxMistakeCount = 10000;  // as mistakes per session
-  minTypeSpeed = 20;        //as characters per minute
+  minTypeSpeed = 1;        //as characters per seconds?
 
 
   // Statistics
@@ -36,8 +36,8 @@ export class SessionService {
     if (!this.isSessionLoaded) return console.log("No session loaded...");
 
     // What should happen when level is over
-    if (this.indexInText >= this.getText().length - 1) {
-      this.onEndOfChapter(event);
+    if (this.indexInText >= this.getText().length) {
+      return this.onEndOfChapter(event);
     }
 
     // Handle special keys
@@ -56,17 +56,17 @@ export class SessionService {
 
     //Default case
     if (pressedKey == this.getCurrentChar())
-      this.indexInText++;
+      return this.indexInText++;
     // Special cases
     if (pressedKey == 'Enter' && this.getCurrentChar() == '\n')
-      this.indexInText++;
+      return this.indexInText++;
 
     if (this.getCurrentChar() == '�')
-      this.indexInText++;
-    else {
-      console.log("Entered " + pressedKey + " instead of " + expectedKey);
-      this.stats.logMistakes(pressedKey, expectedKey)
-    }
+      return this.indexInText++;
+
+    console.log("Entered " + pressedKey + " instead of " + expectedKey);
+    return this.stats.logMistakes(pressedKey, expectedKey)
+
   }
 
   onEndOfChapter(event) {
@@ -95,8 +95,10 @@ export class SessionService {
 
     else {
       // TODO add too bad screen with indication on how much better they need to get
+      if (mistakeCount > this.maxMistakeCount) console.log("Too many mistakes");
+      if (mistakePercentage > this.maxMistakePercentage) console.log("Too high mistake percentage!");
+      if (typeSpeed < this.minTypeSpeed) console.log("Too slow!");
       console.log("Better luck next time");
-      this.reset();
     }
 
 
@@ -110,7 +112,7 @@ export class SessionService {
   }
 
   getText() {
-    if (!this.currentLesson) return "No lesson loaded...";
+    if (!this.currentLesson || !this.isSessionLoaded) return "✌️";
     return this.currentLesson.chapters[this.currentIndex].content;
   }
 

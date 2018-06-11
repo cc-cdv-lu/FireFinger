@@ -82,6 +82,11 @@ export class MainViewComponent implements OnInit {
     }
   }
 
+  getProgress() {
+    let progress = (this.session.indexInText / (this.session.getText().length)) * 100;
+    return parseFloat(progress + "").toFixed(2);
+  }
+
   attemptHighlight(char: string) {
     if (!char) return;
     if (char.length > 1) return "";
@@ -129,6 +134,10 @@ export class MainViewComponent implements OnInit {
 
   nukeElectronStorage() {
     this.electron.config.clear();
+  }
+
+  skipLetter() {
+    this.session.indexInText++;
   }
 
 }

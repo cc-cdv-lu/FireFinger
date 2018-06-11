@@ -29,7 +29,8 @@ export class LessonService {
   - .doc TODO
   .txt supported
   */
-  url: string = 'C:/Users/jhoffmann/Documents/Projects/FireFinger/src/assets/lessons/';//'src/assets/lessons/';
+  //url: string = 'C:/Users/jhoffmann/Documents/Projects/FireFinger/src/assets/lessons/';//'src/assets/lessons/';
+  url: string = 'C:/Program Files/FireFinger/docs/';
   lessons: Array<Lesson> = [
     {
       name: 'debug',
