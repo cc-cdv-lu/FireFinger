@@ -13,7 +13,8 @@ import { ElectronService } from '../../providers/electron.service';
 })
 export class LoginComponent implements OnInit {
   @ViewChild('loginField') loginField: ElementRef;
-  form: FormGroup;
+
+  inputField: string;
 
   constructor(private electron: ElectronService, private user: UserService, private router: Router, public style: StyleService) {
     let lastUser = this.electron.config.get("LAST_LOGIN");
@@ -23,13 +24,8 @@ export class LoginComponent implements OnInit {
       this.inputField = lastUser.name
     }
   }
-  inputField: string;
   ngOnInit() {
     this.loginField.nativeElement.focus();
-
-    /*this.form = this.fb.group({
-      userName: ['', Validators.required]
-    })*/
   }
 
   isFieldInvalid(username: string) {
@@ -40,14 +36,14 @@ export class LoginComponent implements OnInit {
   }
 
   onConfirm() {
-    if (this.inputField == "") return;
-    this.user.login(this.inputField);
-    //TODO route to home
-    this.router.navigateByUrl('/home');
+    if (this.isFieldInvalid(this.inputField)) return;
+    else {
+      this.user.login(this.inputField);
+      this.router.navigateByUrl('/home');
+    }
   }
 
   onKeydown(event: KeyboardEvent) {
-    console.log(event)
     if (event.key == 'Enter') {
       console.log("Detacted enter key")
       this.onConfirm();

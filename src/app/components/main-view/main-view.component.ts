@@ -59,20 +59,20 @@ export class MainViewComponent implements OnInit {
 
   /* Shortcuts */
   getPrev() {
-    return this.session.getPrevSegment(this.session.getText(), this.session.getIndex(), this.view)
+    return this.session.getPrevSegment(this.view)
   }
 
   getNext() {
-    return this.session.getNextSegment(this.session.getText(), this.session.getIndex(), this.view)
+    return this.session.getNextSegment(this.view)
 
   }
 
   getCurrent() {
-    return this.attemptHighlight(this.session.getCurrentChar(this.session.getText(), this.session.getIndex()))
+    return this.attemptHighlight(this.session.getCurrentChar())
   }
 
   getWarningText() {
-    let c = this.session.getCurrentChar(this.session.getText(), this.session.getIndex());
+    let c = this.session.getCurrentChar();
     switch (c) {
       case "\n": return "Eingabe";
       case " ": return "Leerzeichen";
@@ -107,9 +107,9 @@ export class MainViewComponent implements OnInit {
   }
 
   printInfo() {
-    console.log("Start:   ", this.session.getPrevSegment(this.session.getText(), this.session.getIndex(), this.view))
-    console.log("Current: ", this.session.getCurrentChar(this.session.getText(), this.session.getIndex()))
-    console.log("Next:    ", this.session.getNextSegment(this.session.getText(), this.session.getIndex(), this.view))
+    console.log("Start:   ", this.session.getPrevSegment(this.view))
+    console.log("Current: ", this.session.getCurrentChar())
+    console.log("Next:    ", this.session.getNextSegment(this.view))
   }
 
   openSettings() {

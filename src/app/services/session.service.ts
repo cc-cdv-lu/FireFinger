@@ -4,16 +4,19 @@ import { StatisticsService, Statistics } from './statistics.service';
 import { LessonService, Lesson, Chapter } from './lesson.service';
 import { UserService, User } from './user.service';
 import { ElectronService } from '../providers/electron.service'
-
-enum VIEW {
-  CHAR, WORD, LINE
-}
+import { StringHelperService } from '../services/string-helper.service';
 
 const LAST_SESSION_KEY = 'LAST_SESSION'
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
+
+  //TODO add this to settings
+  maxMistakePercentage = 5; //in percentage
+  maxMistakeCount = 10000;  // as mistakes per session
+  minTypeSpeed = 20;        //as characters per minute
+
 
   // Statistics
   /*
@@ -26,28 +29,39 @@ export class SessionService {
   indexInText = 0;
   isSessionLoaded = false;
 
-  constructor(private stats: StatisticsService, private lesson: LessonService, private user: UserService, private electron: ElectronService) { }
+  constructor(private stats: StatisticsService, private lesson: LessonService, private user: UserService, private electron: ElectronService, private stringHelper: StringHelperService) { }
 
   handleKeyEvent(event: KeyboardEvent) {
-    //console.log(event);
+
+    if (!this.isSessionLoaded) return console.log("No session loaded...");
+
+    // What should happen when level is over
+    if (this.indexInText >= this.getText().length - 1) {
+      this.onEndOfChapter(event);
+    }
+
+    // Handle special keys
     let pressedKey = event.key;
-    let expectedKey = this.getCurrentChar(this.getText(), this.indexInText)
+    let expectedKey = this.stringHelper.getCurrentChar(this.getText(), this.indexInText)
     this.stats.checkSpeed();
     if (pressedKey == "Escape") return this.reset();
-    if (pressedKey == "Shift") return;
-    if (this.indexInText >= this.getText().length - 1) {
-      // Check if fast enough & didn't make to many mistakes
-      console.log("DONE!", this.currentChapter);
-      this.user.loggedInUser.lastSessionStats = this.stats.currentStats;
-      this.user.loggedInUser.lastSessionStats.mistakePercentage = this.getMistakePercentageAsNumber();
 
-      this.user.recalculateOverallStats();
-      this.user.saveUserChanges();
-      this.reset();
-    }
-    if (pressedKey == 'Enter' && this.getCurrentChar(this.getText(), this.indexInText) == '\n')
+    if (pressedKey == "Shift") return;
+    if (pressedKey == "Control") return;
+    if (pressedKey == "CapsLock") return;
+    if (pressedKey == "Alt") return;
+    if (pressedKey == "AltGraph") return;
+    if (pressedKey == "Meta") return;
+    if (pressedKey == "Dead") return;
+
+    //Default case
+    if (pressedKey == this.getCurrentChar())
       this.indexInText++;
-    if (pressedKey == this.getCurrentChar(this.getText(), this.indexInText))
+    // Special cases
+    if (pressedKey == 'Enter' && this.getCurrentChar() == '\n')
+      this.indexInText++;
+
+    if (this.getCurrentChar() == '�')
       this.indexInText++;
     else {
       console.log("Entered " + pressedKey + " instead of " + expectedKey);
@@ -55,8 +69,42 @@ export class SessionService {
     }
   }
 
+  onEndOfChapter(event) {
+
+    // Log success relevant values
+    let mistakeCount = this.stats.currentStats.mistakesCount;
+    let mistakePercentage = this.stats.currentStats.mistakesCount;
+    let typeSpeed = this.stats.currentStats.typeSpeed;
+
+
+    // Calculating overall stats
+    this.user.loggedInUser.lastSessionStats = this.stats.currentStats;
+    this.user.loggedInUser.lastSessionStats.mistakePercentage = this.getMistakePercentageAsNumber();
+    this.user.recalculateOverallStats();
+    this.user.saveUserChanges();
+
+
+    // Check if fast enough & didn't make to many mistakes
+    if (mistakeCount <= this.maxMistakeCount &&
+      mistakePercentage <= this.maxMistakePercentage &&
+      typeSpeed >= this.minTypeSpeed) {
+      // TODO add congratulation screen with stats
+      this.nextChapter();
+      console.log("BIG success! Next level coming up!")
+    }
+
+    else {
+      // TODO add too bad screen with indication on how much better they need to get
+      console.log("Better luck next time");
+      this.reset();
+    }
+
+
+    this.reset();
+  }
+
   reset() {
-    this.indexInText;
+    this.indexInText = 0;
     this.stats.reset();
     this.isSessionLoaded = false;
   }
@@ -78,104 +126,6 @@ export class SessionService {
 
   getMistakePercentage() {
     return this.getMistakePercentageAsNumber() + '%'
-  }
-
-
-  getCurrentChar(input, index) {
-    if (!input) return "";
-    return input[index];
-  }
-
-  getPrevSegment(input, index, view: VIEW) {
-    if (!input) return "";
-    switch (view) {
-      case VIEW.CHAR: return "";
-      case VIEW.WORD: return this.getBeginningOfWord(input, index);
-      case VIEW.LINE: return this.getBeginningOfLine(input, index);
-    }
-    return "";
-  }
-
-  getNextSegment(input, index, view: VIEW) {
-    if (!input) return "";
-    switch (view) {
-      case VIEW.CHAR: return "";
-      case VIEW.WORD: return this.getRestOfWord(input, index);
-      case VIEW.LINE: return this.getRestOfLine(input, index);
-    }
-  }
-
-  getBeginningOfWord(str, pos) {
-    let output = "";
-    if (str[pos] == "\n" || str[pos] == " ") return output;
-
-    for (let i = pos - 1; i > 0; i--) {
-      if (str[i] != "\n" && str[i] != " ")
-        output = str[i] + output;
-      else
-        return output
-    }
-    return output;
-  }
-
-  getRestOfWord(str, pos) {
-    let output = "";
-    if (str[pos] == "\n" || str[pos] == " ") return output;
-
-    for (let i = pos + 1; i < str.length; i++) {
-      if (str[i] != "\n" && str[i] != " ")
-        output += str[i];
-      else
-        return output
-    }
-    return output;
-  }
-
-  // TODO this could be much cleaner
-  getBeginningOfLine(str, pos) {
-    let output = str[pos - 1];
-    if (str[pos - 1] == "\n") return output;
-    if (str[pos] == "\n") return this.getBeginningOfLine(str, pos - 1) + str[pos - 1];
-
-    for (let i = pos - 2; i > 0; i--) {
-      if (str[i] != "\n") {
-        output = str[i] + output;
-      }
-      else return output;
-    }
-
-    return output;
-  }
-
-  getRestOfLine(str, pos) {
-    let output = "";
-    if (str[pos] == "\n") return output;
-    for (let i = pos + 1; i < str.length; i++) {
-      if (str[i] != "\n") output += str[i];
-      else return output;
-    }
-    return output;
-  }
-
-  /* For reading out loud*/
-  getWordAt(str, pos) {
-
-    // Perform type conversions.
-    str = String(str);
-    pos = Number(pos) >>> 0;
-
-    // Search for the word's beginning and end.
-    var left = str.slice(0, pos + 1).search(/\S+$/),
-      right = str.slice(pos).search(/\s/);
-
-    // The last word in the string is a special case.
-    if (right < 0) {
-      return str.slice(left);
-    }
-
-    // Return the word, using the located bounds to extract it from the string.
-    return str.slice(left, right + pos);
-
   }
 
   saveSession() {
@@ -209,6 +159,25 @@ export class SessionService {
     this.isSessionLoaded = true;
     this.saveSession();
   }
+
+  getPrevSegment(view) {
+    let str = this.getText();
+    let index = this.getIndex();
+    return this.stringHelper.getPrevSegment(str, index, view)
+  }
+
+  getNextSegment(view) {
+    let str = this.getText();
+    let index = this.getIndex();
+    return this.stringHelper.getNextSegment(str, index, view)
+  }
+
+  getCurrentChar() {
+    let str = this.getText();
+    let index = this.getIndex();
+    return this.stringHelper.getCurrentChar(str, index);
+  }
+
 
   index = 0;
   nextChapter() {

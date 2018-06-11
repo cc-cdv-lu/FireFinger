@@ -37,6 +37,7 @@ import { LessonService } from './services/lesson.service';
 import { StatisticsService } from './services/statistics.service';
 import { StyleService } from './services/style.service';
 import { UserService } from './services/user.service';
+import { StringHelperService } from './services/string-helper.service';
 
 
 // AoT requires an exported function for factories
@@ -75,7 +76,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     LessonService,
     StyleService,
     StatisticsService,
-    UserService
+    UserService,
+    StringHelperService
   ],
   bootstrap: [AppComponent],
   entryComponents: [SettingsComponent, LoginComponent]
