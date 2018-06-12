@@ -19,7 +19,7 @@ export class LessonService {
 
   constructor(private electron: ElectronService) {
 
-    this.loadAllDirs()
+    this.loadAllDirs();
   }
 
   /*

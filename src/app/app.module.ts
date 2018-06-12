@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 // NG Translate
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -19,7 +20,6 @@ import { ElectronService } from './providers/electron.service';
 
 import { WebviewDirective } from './directives/webview.directive';
 
-import { AppComponent } from './app.component';
 
 /* Custom components */
 import { HomeComponent } from './components/home/home.component';
@@ -38,6 +38,7 @@ import { StatisticsService } from './services/statistics.service';
 import { StyleService } from './services/style.service';
 import { UserService } from './services/user.service';
 import { StringHelperService } from './services/string-helper.service';
+import { ReaderService } from './services/reader.service';
 
 
 // AoT requires an exported function for factories
@@ -77,7 +78,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     StyleService,
     StatisticsService,
     UserService,
-    StringHelperService
+    StringHelperService,
+    ReaderService
   ],
   bootstrap: [AppComponent],
   entryComponents: [SettingsComponent, LoginComponent]

@@ -21,16 +21,20 @@ function createWindow() {
 
   if (serve) {
     require('electron-reload')(__dirname, {
-     electron: require(`${__dirname}/node_modules/electron`)});
+      electron: require(`${__dirname}/node_modules/electron`)
+    });
     win.loadURL('http://localhost:4200');
+    win.webContents.openDevTools();
   } else {
     win.loadURL(url.format({
       pathname: path.join(__dirname, 'dist/index.html'),
       protocol: 'file:',
       slashes: true
     }));
+    win.webContents.closeDevTools();
   }
 
+  //TODO remove on last build
   win.webContents.openDevTools();
 
   // Emitted when the window is closed.

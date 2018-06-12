@@ -1,10 +1,12 @@
 import { Injectable, HostListener } from '@angular/core';
 
+import { ElectronService } from '../providers/electron.service'
+
 import { StatisticsService, Statistics } from './statistics.service';
 import { LessonService, Lesson, Chapter } from './lesson.service';
 import { UserService, User } from './user.service';
-import { ElectronService } from '../providers/electron.service'
-import { StringHelperService } from '../services/string-helper.service';
+import { StringHelperService } from './string-helper.service';
+import { ReaderService } from './reader.service';
 
 const LAST_SESSION_KEY = 'LAST_SESSION'
 @Injectable({
@@ -29,20 +31,23 @@ export class SessionService {
   indexInText = 0;
   isSessionLoaded = false;
 
-  constructor(private stats: StatisticsService, private lesson: LessonService, private user: UserService, private electron: ElectronService, private stringHelper: StringHelperService) { }
+  constructor(private stats: StatisticsService, private lesson: LessonService,
+    private user: UserService, private electron: ElectronService,
+    private stringHelper: StringHelperService, public reader: ReaderService) {
+
+  }
 
   handleKeyEvent(event: KeyboardEvent) {
-
     if (!this.isSessionLoaded) return console.log("No session loaded...");
 
     // What should happen when level is over
-    if (this.indexInText >= this.getText().length) {
+    if (this.getIndex() >= this.getText().length) {
       return this.onEndOfChapter(event);
     }
 
     // Handle special keys
     let pressedKey = event.key;
-    let expectedKey = this.stringHelper.getCurrentChar(this.getText(), this.indexInText)
+    let expectedKey = this.stringHelper.getCurrentChar(this.getText(), this.getIndex())
     this.stats.checkSpeed();
     if (pressedKey == "Escape") return this.reset();
 
@@ -54,15 +59,22 @@ export class SessionService {
     if (pressedKey == "Meta") return;
     if (pressedKey == "Dead") return;
 
+    if (pressedKey == 'ArrowDown')
+      return this.reader.play(this.getCurrentChar())// play current char
+    if (pressedKey == 'ArrowRight')
+      return this.reader.play(this.stringHelper.getWordAt(this.getText(), this.getIndex()));//play current word
+    if (pressedKey == 'ArrowLeft') return;
+    if (pressedKey == 'ArrowUp') return;
+
     //Default case
     if (pressedKey == this.getCurrentChar())
-      return this.indexInText++;
+      return this.nextTextIndex()
     // Special cases
     if (pressedKey == 'Enter' && this.getCurrentChar() == '\n')
-      return this.indexInText++;
+      return this.nextTextIndex()
 
     if (this.getCurrentChar() == '�')
-      return this.indexInText++;
+      return this.nextTextIndex()
 
     console.log("Entered " + pressedKey + " instead of " + expectedKey);
     return this.stats.logMistakes(pressedKey, expectedKey)
@@ -180,8 +192,19 @@ export class SessionService {
     return this.stringHelper.getCurrentChar(str, index);
   }
 
+  nextTextIndex() {
+    if (this.getIndex() < this.getText().length)
+      this.indexInText++;
 
-  index = 0;
+    let word = this.stringHelper.getWordAt(this.getText(), this.getIndex());
+
+    if (word.length > 2 && this.getText()[this.getIndex() - 1] == " ")
+      this.reader.play(word)
+    else
+      this.reader.play(this.getCurrentChar());
+  }
+
+  //index = 0;
   nextChapter() {
     if (!this.currentLesson) return console.log("No lesson loaded...");
     if (this.currentIndex < this.currentLesson.chapters.length - 1) {

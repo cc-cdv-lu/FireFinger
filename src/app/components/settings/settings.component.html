@@ -94,7 +94,7 @@
       <section class="section">
         <h2>Last session stats</h2>
         <b>Typespeed:</b> {{getFormat(user.loggedInUser.lastSessionStats.typeSpeed)}}
-        <b>mistakePercentage:</b> {{getFormat(user.loggedInUser.lastSessionStats.mistakePercentage)}}
+        <b>Mistakes:</b>{{user.loggedInUser.lastSessionStats.mistakesCount}} ({{getFormat(user.loggedInUser.lastSessionStats.mistakePercentage)}} %)
 
         <h3>Most mistakes:</h3>
         <mat-grid-list cols="5">
@@ -107,7 +107,7 @@
       <section class="section">
         <h2>Overall stats</h2>
         <b>Typespeed:</b> {{getFormat(user.loggedInUser.overallStats.typeSpeed)}}
-        <b>mistakePercentage:</b> {{getFormat(user.loggedInUser.overallStats.mistakePercentage)}}
+        <b>Mistakes:</b>{{user.loggedInUser.overallStats.mistakesCount}} ({{getFormat(user.loggedInUser.overallStats.mistakePercentage)}} %)
 
         <h3>Most mistakes:</h3>
         <mat-grid-list cols="5">

@@ -9,6 +9,7 @@ import { StyleService } from '../../services/style.service';
 import { SessionService } from '../../services/session.service';
 import { StatisticsService } from '../../services/statistics.service';
 import { UserService } from '../../services/user.service';
+import { ReaderService } from '../../services/reader.service';
 
 
 enum VIEW {
@@ -22,7 +23,8 @@ enum VIEW {
 })
 export class MainViewComponent implements OnInit {
 
-  constructor(public session: SessionService, private electron: ElectronService, private dialog: MatDialog, public style: StyleService, public stats: StatisticsService, private user: UserService, private router: Router) {
+  constructor(public session: SessionService, private electron: ElectronService, private dialog: MatDialog,
+    public style: StyleService, public stats: StatisticsService, private user: UserService, private router: Router) {
     //TODO - LEVEL selection is triggered before login creation
     let lastLogin = this.electron.config.get("LAST_LOGIN");
     if (!lastLogin)

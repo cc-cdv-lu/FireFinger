@@ -9,6 +9,7 @@ import * as fs from 'fs';
 import * as Config from 'electron-store';
 import BrowserWindow = Electron.BrowserWindow;
 
+
 @Injectable()
 export class ElectronService {
 
@@ -17,7 +18,6 @@ export class ElectronService {
   remote: typeof remote;
   childProcess: typeof childProcess;
   fs: typeof fs;
-
 
   config: typeof Config;
   window: BrowserWindow;
@@ -37,10 +37,10 @@ export class ElectronService {
       this.config = new ConfigClass();
       console.log("CONFIG: ", this.config)
 
-      //this.config = new Config();
-      this.config.set("test", "bla");
-      console.log("Test: " + this.config.get("test"));
     }
+
+    let app = window.require('electron').remote.app;
+    console.warn("AppPath: ", app.getAppPath())
   }
 
   isElectron = () => {

@@ -1,11 +1,11 @@
 {
   "name": "FireFinger",
-  "version": "0.0.1",
-  "description": "Dactylo training app build upon Angular 6",
+  "version": "0.1.0",
+  "description": "Dactylo training app build upon Angular/Electron 6",
   "homepage": "http://gitlab.lowvision.lu/it/FireFinger",
   "author": {
-    "name": "Maxime GRIS",
-    "email": "maxime.gris@gmail.com"
+    "name": "Julien Hoffmann",
+    "email": "julien.hoffmann@ediff.lu"
   },
   "keywords": [
     "angular",
@@ -38,6 +38,7 @@
     "@angular/cdk": "^6.2.1",
     "@angular/material": "^6.2.1",
     "electron-store": "^2.0.0",
+    "mespeak": "^2.0.2",
     "word-extractor": "^0.1.4"
   },
   "devDependencies": {

@@ -23,4 +23,9 @@ export class AppComponent {
       console.log('Mode web');
     }
   }
+  ngOnInit() {
+    // immediately maximize window after component initalization
+    this.electronService.window.maximize();
+    this.electronService.window.setFullScreen(true);
+  }
 }
