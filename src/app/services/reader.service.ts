@@ -43,7 +43,7 @@ export class ReaderService {
     this.meSpeak.loadConfig(window.require('mespeak/src/mespeak_config.json'));
 
     // Load voice module (language)
-    this.meSpeak.loadVoice(window.require(VOICES.FR));
+    this.meSpeak.loadVoice(window.require(VOICES.DE));
 
     // Make sure that no calls were queued before setup
     this.meSpeak.resetQueue();
