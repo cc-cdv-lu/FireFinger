@@ -7,8 +7,14 @@ import { LessonService, Lesson, Chapter } from './lesson.service';
 import { UserService, User } from './user.service';
 import { StringHelperService } from './string-helper.service';
 import { ReaderService } from './reader.service';
+import { SoundEffectService, SOUNDS } from './sound-effect.service';
 
-const LAST_SESSION_KEY = 'LAST_SESSION'
+const LAST_SESSION_KEY = 'LAST_SESSION';
+
+const enum GAME_STATE {
+  PLAYING, SUCCESS, FAILURE
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,21 +24,16 @@ export class SessionService {
   maxMistakePercentage = 5; //in percentage
   maxMistakeCount = 10000;  // as mistakes per session
   minTypeSpeed = 1;        //as characters per seconds?
+  gameState = GAME_STATE.PLAYING;
 
-
-  // Statistics
-  /*
-    * record which keys had the most mistakes
-    * record speed
-    * ...
-  */
-
-  // Session data
-  indexInText = 0;
   isSessionLoaded = false;
 
+  // Session data
+  private indexInText = 0;
+  last_wrong_char = "";
+
   constructor(private stats: StatisticsService, private lesson: LessonService,
-    private user: UserService, private electron: ElectronService,
+    private user: UserService, private electron: ElectronService, private sound: SoundEffectService,
     private stringHelper: StringHelperService, public reader: ReaderService) {
 
   }
@@ -76,13 +77,18 @@ export class SessionService {
     if (this.getCurrentChar() == '�')
       return this.nextTextIndex()
 
-    console.log("Entered " + pressedKey + " instead of " + expectedKey);
-    return this.stats.logMistakes(pressedKey, expectedKey)
+    // If wrong letter was entered
+    this.sound.play(SOUNDS.ERROR);
+    if (pressedKey != this.last_wrong_char) {
+      console.log("Entered " + pressedKey + " instead of " + expectedKey);
+      this.last_wrong_char = pressedKey;
+      this.stats.logMistakes(pressedKey, expectedKey)
+      return;
+    }
 
   }
 
   onEndOfChapter(event) {
-
     // Log success relevant values
     let mistakeCount = this.stats.currentStats.mistakesCount;
     let mistakePercentage = this.stats.currentStats.mistakesCount;
@@ -100,21 +106,33 @@ export class SessionService {
     if (mistakeCount <= this.maxMistakeCount &&
       mistakePercentage <= this.maxMistakePercentage &&
       typeSpeed >= this.minTypeSpeed) {
-      // TODO add congratulation screen with stats
-      this.nextChapter();
-      console.log("BIG success! Next level coming up!")
+      this.onSuccess();
     }
 
     else {
-      // TODO add too bad screen with indication on how much better they need to get
       if (mistakeCount > this.maxMistakeCount) console.log("Too many mistakes");
       if (mistakePercentage > this.maxMistakePercentage) console.log("Too high mistake percentage!");
       if (typeSpeed < this.minTypeSpeed) console.log("Too slow!");
-      console.log("Better luck next time");
+      this.onFailure();
     }
 
 
     this.reset();
+  }
+
+  onSuccess() {
+    // TODO add congratulation screen with stats
+    this.nextChapter();
+    console.log("BIG success! Next level coming up!");
+    this.sound.play(SOUNDS.SUCCESS);
+    this.gameState = GAME_STATE.SUCCESS;
+  }
+
+  onFailure() {
+    // TODO add too bad screen with indication on how much better they need to get
+    console.log("Better luck next time");
+    this.sound.play(SOUNDS.FAILURE);
+    this.gameState = GAME_STATE.FAILURE;
   }
 
   reset() {
@@ -124,7 +142,13 @@ export class SessionService {
   }
 
   getText() {
-    if (!this.currentLesson || !this.isSessionLoaded) return "✌️";
+    if (!this.currentLesson || !this.isSessionLoaded) {
+      switch (this.gameState) {
+        case GAME_STATE.SUCCESS: return "✌️";
+        case GAME_STATE.FAILURE: return "👎";
+        default: return "Something went wrong..."
+      }
+    }
     return this.currentLesson.chapters[this.currentIndex].content;
   }
 
@@ -193,8 +217,12 @@ export class SessionService {
   }
 
   nextTextIndex() {
+    this.last_wrong_char = "";
+
     if (this.getIndex() < this.getText().length)
       this.indexInText++;
+    else
+      return console.log("Cannot continue, reached end of text!");
 
     let word = this.stringHelper.getWordAt(this.getText(), this.getIndex());
 

@@ -41,6 +41,7 @@ export class MainViewComponent implements OnInit {
 
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
+    this.blurAllButtons();
     if (this.areSettingsOpen) return;
     this.session.handleKeyEvent(event);
   }
@@ -85,7 +86,7 @@ export class MainViewComponent implements OnInit {
   }
 
   getProgress() {
-    let progress = (this.session.indexInText / (this.session.getText().length)) * 100;
+    let progress = (this.session.getIndex() / (this.session.getText().length)) * 100;
     return parseFloat(progress + "").toFixed(2);
   }
 
@@ -134,12 +135,19 @@ export class MainViewComponent implements OnInit {
     })
   }
 
+  blurAllButtons() {
+    let buttons = document.getElementsByTagName('button');
+    for (let i = 0; i < buttons.length; i++) {
+      buttons.item(i).blur()
+    }
+  }
+
   nukeElectronStorage() {
     this.electron.config.clear();
   }
 
   skipLetter() {
-    this.session.indexInText++;
+    this.session.nextTextIndex();
   }
 
 }

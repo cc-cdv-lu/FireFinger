@@ -42,6 +42,10 @@ export class LessonService {
         {
           name: 'debug02',
           content: 'asdfg'
+        },
+        {
+          name: 'special_char',
+          content: '! ? € , . -\n_ ; : ( ) & %'
         }
       ]
     }

@@ -1,15 +1,26 @@
 import { Injectable } from '@angular/core';
 import { ElectronService } from '../providers/electron.service';
-import * as MeSpeak from 'mespeak'
+import * as MeSpeak from 'mespeak';
 
+export var VOICES = {
+  DE: 'mespeak/voices/de.json',
+  FR: 'mespeak/voices/fr.json'
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReaderService {
 
-  meSpeak: MeSpeak;
+  variants = [
+    "f1", "f2", "f3", "f4", "f5",
+    "m1", "m2", "m3", "m4", "m5", "m6", "m7",
+    "croak", "klatt", "klatt2", "klatt3", "whisper", "whisperf"
+  ]
 
+  private meSpeak: MeSpeak;
+
+  //TODO try to load this from config
   options = {
     amplitude: 100,
     pitch: 50,
@@ -18,8 +29,8 @@ export class ReaderService {
     wordgap: 0,
     volume: 1,
     punct: true,
-    capitals: 1
-    //rawdata,
+    capitals: 1,
+    variant: this.variants[2]
   };
 
 
@@ -27,19 +38,19 @@ export class ReaderService {
 
     // Init service
     this.meSpeak = window.require('mespeak');
-    console.log("MeSpeak:", this.meSpeak)
 
     // Load config
     this.meSpeak.loadConfig(window.require('mespeak/src/mespeak_config.json'));
 
     // Load voice module (language)
-    this.meSpeak.loadVoice(window.require('mespeak/voices/de.json'));
+    this.meSpeak.loadVoice(window.require(VOICES.FR));
 
     // Make sure that no calls were queued before setup
     this.meSpeak.resetQueue();
   }
 
   play(str: string) {
+    if (!str) return;
     if (str.length == 1) this.playChar(str);
     else this.playWord(str);
   }
@@ -56,16 +67,11 @@ export class ReaderService {
       return this.speak("Großes " + str);
 
     switch (str) {
-      case "\n": return this.speak("Enter");
-      case " ": return this.speak("Leerzeichen");
-
-      //case ":": return this.speak("Doppelpunkt");
-      //case ".": return this.speak("Punkt");
-      //case ",": return this.speak(",");
-      //case "?": return this.speak("Fragezeichen");
-      //case "!": return this.speak("Ausrufezeichen");
-      case "-": return this.speak("Bindestrich");
-      //case "€": return this.speak("Euro-Zeichen");
+      case "\n": return this.speak("eingabe");
+      case " ": return this.speak("leerzeichen");
+      case "&": return this.speak("undzeichen");
+      case "€": return this.speak("euro zeichen");
+      case "-": return this.speak("bindestrich");
       default: {
         this.speak(str);
       }

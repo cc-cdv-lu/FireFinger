@@ -39,6 +39,7 @@ import { StyleService } from './services/style.service';
 import { UserService } from './services/user.service';
 import { StringHelperService } from './services/string-helper.service';
 import { ReaderService } from './services/reader.service';
+import { SoundEffectService } from './services/sound-effect.service';
 
 
 // AoT requires an exported function for factories
@@ -79,7 +80,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     StatisticsService,
     UserService,
     StringHelperService,
-    ReaderService
+    ReaderService,
+    SoundEffectService
   ],
   bootstrap: [AppComponent],
   entryComponents: [SettingsComponent, LoginComponent]

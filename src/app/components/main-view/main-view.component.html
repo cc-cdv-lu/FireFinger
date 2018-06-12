@@ -1,4 +1,4 @@
-<div class="mainView" [style.backgroundColor]="style.activeColorScheme.backgroundColor">
+<div class="mainView" [style.backgroundColor]="session.last_wrong_char != '' ? 'red' : style.activeColorScheme.backgroundColor">
   <mat-grid-list cols="9" [rowHeight]="getRowHeight()" class="viewContainer">
     <mat-grid-tile colspan="3" [style.color]="style.activeColorScheme.current">
       Mistakes: {{stats.currentStats.mistakesCount}} ({{session.getMistakePercentage()}})
