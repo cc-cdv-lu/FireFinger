@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
 // the resulting javascript file will look as if you never imported the module at all.
 import { ipcRenderer, webFrame, remote } from 'electron';
 import * as childProcess from 'child_process';
-import * as fs from 'fs';
+import * as fs from 'fs-extra';
+import * as path from 'path';
 
 import * as Config from 'electron-store';
 import BrowserWindow = Electron.BrowserWindow;
@@ -18,6 +19,9 @@ export class ElectronService {
   remote: typeof remote;
   childProcess: typeof childProcess;
   fs: typeof fs;
+  app: Electron.App;
+  path: typeof path;
+  shell: typeof Electron.shell;
 
   config: typeof Config;
   window: BrowserWindow;
@@ -30,21 +34,29 @@ export class ElectronService {
       this.remote = window.require('electron').remote;
 
       this.childProcess = window.require('child_process');
-      this.fs = window.require('fs');
+      this.fs = window.require('fs-extra');
 
       this.window = window.require('electron').remote.getCurrentWindow();
       const ConfigClass = window.require('electron-store');
       this.config = new ConfigClass();
-      console.log("CONFIG: ", this.config)
+      console.log("Config location: ", this.config)
+
+
+      this.app = this.remote.app;
+      this.shell = this.remote.shell;
+      this.path = window.require('path');
 
     }
 
     let app = window.require('electron').remote.app;
-    console.warn("AppPath: ", app.getAppPath())
   }
 
   isElectron = () => {
     return window && window.process && window.process.type;
+  }
+
+  isDev() {
+    return process.mainModule.filename.indexOf('app.asar') === -1;
   }
 
 }

@@ -142,21 +142,25 @@ export class SessionService {
   }
 
   getText() {
-    if (!this.currentLesson || !this.isSessionLoaded) {
+    if (!this.currentLesson) return "";
+    if (!this.isSessionLoaded) {
       switch (this.gameState) {
         case GAME_STATE.SUCCESS: return "✌️";
         case GAME_STATE.FAILURE: return "👎";
         default: return "Something went wrong..."
       }
     }
+
     return this.currentLesson.chapters[this.currentIndex].content;
   }
 
   getIndex() {
+    if (!this.indexInText) return 0;
     return this.indexInText;
   }
 
   getMistakePercentageAsNumber() {
+    if (!this.getText()) return 0;
     if (this.getText().length < 1) return 0;
     return Math.round(this.stats.currentStats.mistakesCount / this.getText().length * 100);
 

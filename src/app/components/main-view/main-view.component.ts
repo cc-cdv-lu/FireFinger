@@ -86,6 +86,7 @@ export class MainViewComponent implements OnInit {
   }
 
   getProgress() {
+    if (!this.session.getText()) return 0;
     let progress = (this.session.getIndex() / (this.session.getText().length)) * 100;
     return parseFloat(progress + "").toFixed(2);
   }
