@@ -19,45 +19,28 @@ export class LessonService {
   appDataURL: string;
   docsURL: string;
   constructor(private electron: ElectronService) {
+    if (this.electron.isDev())
+      this.loadDebugData();
     this.appDataURL = this.electron.app.getPath('userData');
     this.docsURL = this.electron.path.join(this.appDataURL, 'docs');
     this.loadAllDirs();
   }
 
   /*
-  - Predefined chapters
-  - Custom folder
+    - Predefined chapters
+    - Custom folder
 
-  - .doc TODO
-  .txt supported
+    - .doc TODO
+    .txt supported
   */
-  //url: string = 'C:/Users/jhoffmann/Documents/Projects/FireFinger/src/assets/lessons/';//'src/assets/lessons/';
-  //url: string = 'C:/Program Files/FireFinger/docs/';
-  lessons: Array<Lesson> = [
-    {
-      name: 'debug',
-      chapters: [
-        {
-          name: 'debug01',
-          content: 'qwertz'
-        },
-        {
-          name: 'debug02',
-          content: 'asdfg'
-        },
-        {
-          name: 'special_char',
-          content: '! ? € , . -\n_ ; : ( ) & %'
-        }
-      ]
-    }
-  ]
+
+  lessons: Array<Lesson> = [];
 
   loadAllDirs() {
-    //let dir = this.electron.fs.readdirSync(this.url);
     if (!this.electron.fs.existsSync(this.docsURL)) {
       this.firstLaunch();
     }
+
     let docsDir = this.electron.fs.readdirSync(this.docsURL);
 
     if (!docsDir) return console.warn("This url does not exist:", this.docsURL)
@@ -73,16 +56,16 @@ export class LessonService {
   }
 
   firstLaunch() {
-    this.electron.fs.mkdirSync(this.docsURL);
-
-    console.log("AppPath:", this.electron.app.getAppPath());
+    if (!this.electron.fs.existsSync(this.docsURL)) {
+      this.electron.fs.mkdirSync(this.docsURL);
+    }
 
     let assetsURL = "";
     if (this.electron.isDev()) {
       assetsURL = this.electron.path.join(this.electron.app.getAppPath(), 'src/assets/lessons');
     }
     else {
-      assetsURL = this.electron.path.join(this.electron.app.getAppPath(), 'assets/lessons');
+      this.createExampleFolder();
     }
 
     // If user has not yet had any files in their folder, copy the example files to their folder
@@ -136,5 +119,45 @@ export class LessonService {
     let file = this.electron.fs.readFileSync(url, 'utf8')
     file = file.replace(/(?:\r\n|\r|\n)/g, '\n');
     return file;
+  }
+
+  createExampleFolder() {
+    let url = this.electron.path.join(this.docsURL, 'example-folder');
+    for (let i = 0; i < 5; i++) {
+      let content = "Dies ist Beispieltext Nummer " + i;
+      let filename = "beispieltext" + i + ".txt";
+      this.writeTextFileToFolder(content, filename, url);
+    }
+  }
+
+  writeTextFileToFolder(content: string, filename: string, location: string) {
+    if (!this.electron.fs.existsSync(location)) {
+      this.electron.fs.mkdirSync(location);
+    }
+    let path = this.electron.path.join(location, filename);
+    this.electron.fs.writeFile(path, content, (err) => {
+      if (err) throw console.warn("The was an issue writing this file:", err)
+      console.log("The file was save successfully: ", path)
+    });
+  }
+
+  loadDebugData() {
+    this.lessons.push({
+      name: 'debug',
+      chapters: [
+        {
+          name: 'debug01',
+          content: 'qwertz'
+        },
+        {
+          name: 'debug02',
+          content: 'asdfg'
+        },
+        {
+          name: 'special_char',
+          content: '! ? € , . -\n_ ; : ( ) & %'
+        }
+      ]
+    })
   }
 }

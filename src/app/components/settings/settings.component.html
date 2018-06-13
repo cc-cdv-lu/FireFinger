@@ -1,10 +1,6 @@
 <div class="container">
   <h1>Settings</h1>
-  <nav>
-    <a routerLink="/levels">Levels</a>
-    <a routerLink="/login">login</a>
-    <a routerLink="/settings">Settings</a>
-  </nav>
+
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -67,10 +63,9 @@
 
 
       <section class="section">
-        <h2>Text file location</h2>
-        <mat-form-field>
-          <input matInput matAutosize=true maxRows=1 placeholder="Path to chapter folders" [(ngModel)]="lessons.url" />
-        </mat-form-field>
+        <h2>Lesson files</h2>
+        <p>Each text needs to be put into a folder with the name of the lesson. See example lesson with example texts as template.</p>
+        <button mat-raised-button color="primary" (click)="lessons.openDocsFolderInExplorer()">Open folder in Explorer</button>
       </section>
     </mat-expansion-panel>
 
@@ -113,6 +108,29 @@
         <mat-grid-list cols="5">
           <mat-grid-tile *ngFor="let mistake of stats.getTopMistakes(user.loggedInUser.overallStats,10)">
             <b>{{mistake?.key}}:</b> {{mistake?.count}}
+          </mat-grid-tile>
+        </mat-grid-list>
+      </section>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Manual navigation
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <section class="section">
+        <mat-grid-list cols="5">
+          <mat-grid-tile>
+            <nav><a mat-raised-button color="primary" routerLink="/levels">Levels</a></nav>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <nav><a mat-raised-button color="primary" routerLink="/login">login</a></nav>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <nav> <a mat-raised-button color="primary" routerLink="/settings">Settings</a></nav>
           </mat-grid-tile>
         </mat-grid-list>
       </section>

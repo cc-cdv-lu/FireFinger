@@ -45,7 +45,6 @@ export class ElectronService {
       this.app = this.remote.app;
       this.shell = this.remote.shell;
       this.path = window.require('path');
-
     }
 
     let app = window.require('electron').remote.app;
