@@ -33,13 +33,13 @@
       </mat-card-content>
     </mat-card>
 
-    <mat-card>
+    <mat-card class="card">
       <nav><a mat-raised-button color="primary" routerLink="/home">{{'summary.backbutton' | translate}}</a></nav>
     </mat-card>
   </div>
 
 </div>
 
-<mat-card *ngIf="!session_stats">
+<mat-card class="card" *ngIf="!session_stats">
   <nav><a mat-raised-button color="primary" routerLink="/home">{{'summary.backbutton' | translate}}</a></nav>
 </mat-card>

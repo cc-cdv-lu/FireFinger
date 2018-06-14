@@ -8,6 +8,20 @@
   //background-size: cover; /* version standardisée */
   main-view {
     width: 100%;
-    height: 100%;
+    height: 79%;
+  }
+
+  .control {
+    max-height: 20%;
+    width: 100%;
+    top: 0;
+    position: absolute;
+
+    mat-grid-tile {}
+
+    mat-progress-bar {
+      max-width: 80%;
+      height: 50%;
+    }
   }
 }

@@ -47,7 +47,7 @@ export class SettingsComponent implements OnInit {
     return parseFloat(n.toFixed(2))
   }
 
-  onVoiceChange(ev) {
+  onVoiceChange() {
     this.reader.loadVoice(this.reader.config.voice);
   }
 

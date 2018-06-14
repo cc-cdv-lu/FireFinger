@@ -1,5 +1,6 @@
 {
   "general": {
+    "closeapp": "X",
     "typingspeed": "Typing speed"
   },
   "keys": {
@@ -71,7 +72,7 @@
           "title": "Amplitude"
         },
         "capitals": {
-          "description": "Emit click sound if word starts with capital\\n\n          <b>1:</b> Use a click sound to indicate when a word starts with a capital letter, or double click if word is all capitals.\n<br>\n          <b>2:</b> Speak the word \"capital\" before a word which begins with a capital letter.\n<br>\n          <b>Other values:</b> Increases the pitch for words which begin with a capital letter. The greater the value, the greater the increase in pitch. (eg.: 20)",
+          "description": "Emit click sound if word starts with capital\n\n          <b>1:</b> Use a click sound to indicate when a word starts with a capital letter, or double click if word is all capitals.\n<br>\n          <b>2:</b> Speak the word \"capital\" before a word which begins with a capital letter.\n<br>\n          <b>Other values:</b> Increases the pitch for words which begin with a capital letter. The greater the value, the greater the increase in pitch. (eg.: 20)",
           "title": "Capitals"
         },
         "pitch": {

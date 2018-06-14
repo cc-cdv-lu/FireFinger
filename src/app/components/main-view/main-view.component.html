@@ -1,5 +1,6 @@
 <div class="mainView" [style.backgroundColor]="session.last_wrong_char != '' ? 'red' : style.activeColorScheme.backgroundColor">
   <mat-grid-list cols="9" [rowHeight]="getRowHeight()" class="viewContainer">
+    <!--
     <mat-grid-tile colspan="3" [style.color]="style.activeColorScheme.current">
       {{'mainView.mistakes' | translate}}: {{stats.currentStats.mistakesCount}} ({{session.getMistakePercentage()}})
     </mat-grid-tile>
@@ -8,7 +9,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="3" [style.color]="style.activeColorScheme.current">
       {{'mainView.typespeed'  | translate}}: {{stats.currentStats.typeSpeed}}
-    </mat-grid-tile>
+    </mat-grid-tile>-->
     <mat-grid-tile class="textTile" colspan="9" [rowspan]="factor" [style.font-size]="style.getFormattedFontSize()">
       <span class="prev" [style.color]="style.activeColorScheme.prev">{{getPrev()}}&lrm;</span>
       <span class="current" [style.color]="style.activeColorScheme.current">{{getCurrent()}}</span>
@@ -23,9 +24,6 @@
 
 <div class="footer"  [style.color]="style.activeColorScheme.current">
   <mat-grid-list cols="10" rowHeight="50px">
-    <mat-grid-tile>
-      <b>Debugging tools</b>
-    </mat-grid-tile>
     <mat-grid-tile colspan="2">
       <button mat-raised-button (click)="printInfo()">Print info</button>
       <button mat-raised-button (click)="nukeElectronStorage()">Nuke data</button>

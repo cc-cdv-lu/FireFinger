@@ -1,3 +1,28 @@
-<div class="container">
+<div class="container" [style.font-size]="'4vh'" [style.backgroundColor]="session.last_wrong_char != '' ? 'red' : style.activeColorScheme.backgroundColor"
+[style.color]="style.activeColorScheme.current">
+  <mat-grid-list class="control" cols=5 rowHeight="40%">
+    <mat-grid-tile>
+      <button mat-button mat-raised-button color="primary" (click)="closeApp()">{{'general.closeapp' | translate}}</button>
+    </mat-grid-tile>
+
+    <mat-grid-tile class="ProgressBar" colspan="3" [style.color]="style.activeColorScheme.current">
+      <mat-progress-bar mode="determinate" [value]="getProgress()"></mat-progress-bar>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1">
+      <nav><a mat-raised-button color="primary"  [style.font-size]="'2vh'" routerLink="/settings">{{'settings.nav.settings' | translate}}</a></nav>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="2" [style.color]="style.activeColorScheme.current">
+      {{'mainView.mistakes' | translate}}: {{stats.currentStats.mistakesCount}} ({{session.getMistakePercentage()}})
+    </mat-grid-tile>
+
+
+    <mat-grid-tile colspan="3" [style.color]="style.activeColorScheme.current">
+      {{'mainView.typespeed' | translate}}: {{stats.currentStats.typeSpeed}}
+    </mat-grid-tile>
+
+
+  </mat-grid-list>
   <main-view></main-view>
 </div>
