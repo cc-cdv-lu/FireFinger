@@ -1,4 +1,5 @@
 import { Injectable, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ElectronService } from '../providers/electron.service'
 
@@ -11,7 +12,7 @@ import { SoundEffectService, SOUNDS } from './sound-effect.service';
 
 const LAST_SESSION_KEY = 'LAST_SESSION';
 
-const enum GAME_STATE {
+export const enum GAME_STATE {
   PLAYING, SUCCESS, FAILURE
 }
 
@@ -22,8 +23,8 @@ export class SessionService {
 
   //TODO add this to settings
   maxMistakePercentage = 5; //in percentage
-  maxMistakeCount = 10000;  // as mistakes per session
-  minTypeSpeed = 1;        //as characters per seconds?
+  maxMistakeCount = 50;  // as mistakes per session
+  minTypeSpeed = 1;        //as characters per seconds? TODO revisit stats for this
   gameState = GAME_STATE.PLAYING;
 
   isSessionLoaded = false;
@@ -32,11 +33,9 @@ export class SessionService {
   private indexInText = 0;
   last_wrong_char = "";
 
-  constructor(private stats: StatisticsService, private lesson: LessonService,
+  constructor(private stats: StatisticsService, private lesson: LessonService, private router: Router,
     private user: UserService, private electron: ElectronService, private sound: SoundEffectService,
-    private stringHelper: StringHelperService, public reader: ReaderService) {
-
-  }
+    private stringHelper: StringHelperService, public reader: ReaderService) { }
 
   handleKeyEvent(event: KeyboardEvent) {
     if (!this.isSessionLoaded) return console.log("No session loaded...");
@@ -126,6 +125,7 @@ export class SessionService {
     console.log("BIG success! Next level coming up!");
     this.sound.play(SOUNDS.SUCCESS);
     this.gameState = GAME_STATE.SUCCESS;
+    this.router.navigateByUrl('summary');
   }
 
   onFailure() {
@@ -133,6 +133,7 @@ export class SessionService {
     console.log("Better luck next time");
     this.sound.play(SOUNDS.FAILURE);
     this.gameState = GAME_STATE.FAILURE;
+    this.router.navigateByUrl('summary');
   }
 
   reset() {

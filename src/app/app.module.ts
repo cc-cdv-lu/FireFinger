@@ -27,6 +27,7 @@ import { MainViewComponent } from './components/main-view/main-view.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { LoginComponent } from './components/login/login.component';
 import { LevelSelectionComponent } from './components/level-selection/level-selection.component';
+import { SummaryComponent } from './components/summary/summary.component'
 
 /* Custom Modules */
 import { MaterialManagerModule } from './material-manager.module'
@@ -55,7 +56,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MainViewComponent,
     SettingsComponent,
     LoginComponent,
-    LevelSelectionComponent
+    LevelSelectionComponent,
+    SummaryComponent
   ],
   imports: [
     MaterialManagerModule,

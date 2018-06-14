@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { LevelSelectionComponent } from './components/level-selection/level-selection.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { SummaryComponent } from './components/summary/summary.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'settings',
     component: SettingsComponent
+  },
+  {
+    path: 'summary',
+    component: SummaryComponent
   }
 ];
 
