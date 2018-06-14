@@ -45,7 +45,7 @@ import { SoundEffectService } from './services/sound-effect.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, './assets/i18n/', "/translations.json");
 }
 
 @NgModule({

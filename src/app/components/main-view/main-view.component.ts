@@ -11,6 +11,7 @@ import { StatisticsService } from '../../services/statistics.service';
 import { UserService } from '../../services/user.service';
 import { ReaderService } from '../../services/reader.service';
 
+import { TranslateService } from '@ngx-translate/core';
 
 enum VIEW {
   CHAR, WORD, LINE
@@ -24,7 +25,8 @@ enum VIEW {
 export class MainViewComponent implements OnInit {
 
   constructor(public session: SessionService, private electron: ElectronService, private dialog: MatDialog,
-    public style: StyleService, public stats: StatisticsService, private user: UserService, private router: Router) {
+    public style: StyleService, public stats: StatisticsService, private user: UserService, private router: Router,
+    public translate: TranslateService) {
     //TODO - LEVEL selection is triggered before login creation
     let lastLogin = this.electron.config.get("LAST_LOGIN");
     if (!lastLogin)
@@ -77,9 +79,9 @@ export class MainViewComponent implements OnInit {
   getWarningText() {
     let c = this.session.getCurrentChar();
     switch (c) {
-      case "\n": return "Eingabe";
-      case " ": return "Leerzeichen";
-      case "ä": case "Ä": case "ü": case "Ü": case "ö": case "Ö": return "Umlaut"
+      case "\n": return this.translate.instant('keys.enter');
+      case " ": return this.translate.instant('keys.space');
+      case "ä": case "Ä": case "ü": case "Ü": case "ö": case "Ö": return this.translate.instant('keys.umlaut')
       //TODO add großschrift
       default: return "";
     }
