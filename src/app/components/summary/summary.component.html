@@ -1,38 +1,45 @@
 <div class="container" *ngIf="session_stats">
-  <mat-card class="card" [style.backgroundColor]="didWin() ? 'green' : 'red'" [style.color]="'white'">
-    <mat-card-title>
-      {{'summary.result.title' | translate}}
-    </mat-card-title>
-    <mat-card-content>
-      {{getResultText()}}
-    </mat-card-content>
-  </mat-card>
+  <div class="center">
+    <mat-card class="card" [style.backgroundColor]="didWin() ? 'green' : 'red'" [style.color]="'white'">
+      <mat-card-title>
+        {{'summary.result.title' | translate}}
+      </mat-card-title>
+      <mat-card-content>
+        {{getResultText()}}
+      </mat-card-content>
+    </mat-card>
 
-  <mat-card  class="card">
-    <mat-card-title>
-      {{'summary.mistakesperkey' | translate}}
-    </mat-card-title>
-    <mat-card-content>
-      <mat-list>
-        <mat-list-item><b>{{'summary.totalmistakes' | translate }}:</b>{{session_stats.mistakesCount}}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item *ngFor="let mistake of stats.getTopMistakes(session_stats, 10)">
-          <b>{{mistake?.key}}:</b> {{mistake?.count}}
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
+    <mat-card class="card">
+      <mat-card-title>
+        {{'summary.mistakesperkey' | translate}}
+      </mat-card-title>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item><b>{{'summary.totalmistakes' | translate }}:</b>{{session_stats.mistakesCount}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item *ngFor="let mistake of stats.getTopMistakes(session_stats, 10)">
+            <b>{{mistake?.key}}:</b> {{mistake?.count}}
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
 
-  <mat-card  class="card">
-    <mat-card-title>
-      {{'general.typingspeed' | translate}}
-    </mat-card-title>
-    <mat-card-content>
-      {{session_stats.typeSpeed}}
-    </mat-card-content>
-  </mat-card>
+    <mat-card class="card">
+      <mat-card-title>
+        {{'general.typingspeed' | translate}}
+      </mat-card-title>
+      <mat-card-content>
+        {{session_stats.typeSpeed}}
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <nav><a mat-raised-button color="primary" routerLink="/home">{{'summary.backbutton' | translate}}</a></nav>
+    </mat-card>
+  </div>
 
 </div>
-<mat-card>
+
+<mat-card *ngIf="!session_stats">
   <nav><a mat-raised-button color="primary" routerLink="/home">{{'summary.backbutton' | translate}}</a></nav>
 </mat-card>
