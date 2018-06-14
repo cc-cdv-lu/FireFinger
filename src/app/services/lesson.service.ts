@@ -6,10 +6,28 @@ import { ElectronService } from '../providers/electron.service'
 export class Lesson {
   name: string;
   chapters: Array<Chapter>;
+  lang: string;
 }
 export class Chapter {
   name: string;
   content: string;
+  type: ChapterType;
+  characters: string;
+  count: number
+}
+export enum ChapterType {
+  CHAR, WORD, DICATION
+}
+
+
+interface FileImport {
+  meta: {
+    name: string,
+    count: number,
+    type: ChapterType,
+    characters: string
+  },
+  content: string
 }
 
 @Injectable({
@@ -81,19 +99,25 @@ export class LessonService {
     let dir = this.electron.fs.readdirSync(url);
     let lesson = {
       name: folderName,
-      chapters: []
+      chapters: new Array<Chapter>(),
+      lang: 'de'              //read from meta data
     }
     for (let file of dir) {
       let fileURL = this.electron.path.join(url, file);
+      let fileContent: FileImport = this.loadFromFile(fileURL);
+
       lesson.chapters.push({
         name: file,
-        content: this.loadFromFile(fileURL)
+        content: fileContent.content,         //temp
+        type: fileContent.meta.type,    //temp
+        characters: fileContent.meta.characters,
+        count: fileContent.meta.count
       })
     }
     this.lessons.push(lesson);
   }
 
-  loadFromFile(url: string): string {
+  loadFromFile(url: string): FileImport {
     let fileEnding = this.electron.path.extname(url)
 
     switch (fileEnding) {
@@ -102,7 +126,7 @@ export class LessonService {
     }
   }
 
-  getDocFileContents(url: string): string {
+  getDocFileContents(url: string): FileImport {
     let file = this.electron.fs.readFileSync(url, 'utf8');
     //TODO not implemented
     /*
@@ -115,10 +139,28 @@ export class LessonService {
     return file;
   }
 
-  getTXTFileContents(url: string): string {
+  getTXTFileContents(url: string): FileImport {
     let file = this.electron.fs.readFileSync(url, 'utf8')
     file = file.replace(/(?:\r\n|\r|\n)/g, '\n');
-    return file;
+
+
+    /* TODO extract meta data */
+    let split = file.split('##########');
+
+    let non_sanatized_meta = split[0];
+
+    // TODO add actual values
+    let output: FileImport = {
+      meta: {
+        name: "",
+        type: 2,
+        count: 1000,
+        characters: "",
+      },
+      content: file//split[1]
+    };
+
+    return output;
   }
 
   createExampleFolder() {
@@ -144,18 +186,28 @@ export class LessonService {
   loadDebugData() {
     this.lessons.push({
       name: 'debug',
+      lang: 'de',
       chapters: [
         {
           name: 'debug01',
-          content: 'qwertz'
+          content: 'qwertz',
+          type: ChapterType.DICATION,
+          characters: 'qwertz',
+          count: 100
         },
         {
           name: 'debug02',
-          content: 'asdfg'
+          content: 'asdfg',
+          type: ChapterType.DICATION,
+          characters: 'asdfg',
+          count: 100
         },
         {
           name: 'special_char',
-          content: '! ? € , . -\n_ ; : ( ) & %'
+          content: '! ? € , . -\n_ ; : ( ) & %',
+          characters: '!?€,.-\n_;:()&%',
+          type: ChapterType.DICATION,
+          count: 100
         }
       ]
     })
