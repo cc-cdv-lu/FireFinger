@@ -11,8 +11,14 @@ import { AppConfig } from '../environments/environment';
 export class AppComponent {
   constructor(public electronService: ElectronService,
     private translate: TranslateService) {
+    translate.addLangs(['de', 'fr', 'en']);
 
-    translate.setDefaultLang('en');
+    let lang = this.electronService.config.get("LANG");
+    if (!lang) lang = 'de';
+
+    translate.setDefaultLang(lang);
+    translate.use(lang);
+
     //console.log('AppConfig', AppConfig);
 
     if (electronService.isElectron()) {

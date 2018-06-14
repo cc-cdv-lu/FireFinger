@@ -11,12 +11,28 @@ export class ReaderService {
 
   voices = [
     {
+      description: 'English',
+      url: 'mespeak/voices/en/en.json'
+    },
+    {
       description: 'German',
       url: 'mespeak/voices/de.json'
     },
     {
       description: 'French',
       url: 'mespeak/voices/fr.json'
+    },
+    {
+      description: 'Portugees',
+      url: 'mespeak/voices/pt.json'
+    },
+    {
+      description: 'Spanish',
+      url: 'mespeak/voices/es.json'
+    },
+    {
+      description: 'Italian',
+      url: 'mespeak/voices/it.json'
     }
   ]
 
@@ -117,7 +133,7 @@ export class ReaderService {
   constructor(private electron: ElectronService) {
 
     // Restore options from last session if available
-    //this.restore();
+    this.restore();
 
     // Init service
     this.meSpeak = window.require('mespeak');

@@ -1,7 +1,104 @@
 {
+  "general": {
+    "typingspeed": "Vitesse de frappe"
+  },
   "keys": {
     "enter": "nouvelle ligne",
     "space": "Espace",
     "umlaut": "inflexion"
+  },
+  "mainView": {
+    "mistakes": "Fautes",
+    "typespeed": "Vitesse de tappage"
+  },
+  "settings": {
+    "application": {
+      "description": "Paramètres généraux pour l'ensemble de l'application",
+      "files": {
+        "button": "Ouvrir le dossier dans l' Explorateur de fichiers",
+        "description": "Chaque texte doit être placé dans un dossier avec le nom de la leçon. Voir exemple de leçon avec des exemples de textes comme modèle.",
+        "title": "Fichiers de leçon"
+      },
+      "lang": {
+        "description": "Choisissez la langue de l'interface. Pour changer la langue de la voix de lecture, accédez aux paramètres de la voix.",
+        "title": "Paramètres de langue"
+      },
+      "title": "Paramètres de l'application"
+    },
+    "chapter": {
+      "description": "Sélectionnez manuellement le chapitre à lancer",
+      "title": "Selection de chapitre"
+    },
+    "lang": {
+      "de": "Allemand",
+      "en": "Anglais",
+      "fr": "Français"
+    },
+    "nav": {
+      "levels": "Chapitre",
+      "login": "S'identifier",
+      "settings": "Paramètres",
+      "summary": "Résumé",
+      "title": "Navigation manuelle"
+    },
+    "style": {
+      "colorscheme": "Modifier le schéma de couleurs",
+      "description": "Ajuster les couleurs et la taille de la police",
+      "fontsize": "Taille de la police",
+      "title": "Style"
+    },
+    "user": {
+      "description": "Informations sur les sessions de l'utilisateur",
+      "stats": {
+        "laststats": "Statistiques de la dernière session",
+        "mistakes": "Erreurs",
+        "mostmistakes": "La plupart des erreurs",
+        "name": "Nom",
+        "overallstats": "Statistiques générales",
+        "title": "Statistiques"
+      },
+      "title": "Informations utilisateur"
+    },
+    "voice": {
+      "control": {
+        "save": "Enregistrer ces paramètres",
+        "test": "Testez la voix"
+      },
+      "description": "Tous les paramètres liés à la voix de lecture",
+      "other": {
+        "amplitude": {
+          "description": "A quel point la voix sera forte",
+          "title": "Amplitude"
+        },
+        "capitals": {
+          "description": "Emit un son 'click' si le mot commence par majuscule \\n\n           <b>1:</b> Utilisez un son de clic pour indiquer quand un mot commence avec une lettre majuscule, ou double-cliquez si le mot est tout en majuscules.\n<br>\n           <b>2:</b> Prononce le mot \"capital\" avant un mot qui commence par une lettre majuscule.\n<br>\n           <b>Autres valeurs:</b> Augmente la hauteur du ton des mots commençant par une lettre majuscule. Plus la valeur est grande, plus l'augmentation de la hauteur du ton est importante. (ex .: 20)",
+          "title": "Lettre majuscule"
+        },
+        "pitch": {
+          "description": "Espace supplémentaire entre les mots en unités de 10 ms",
+          "title": "Ton"
+        },
+        "speed": {
+          "description": "Mots par minute",
+          "title": "La vitesse"
+        },
+        "volume": {
+          "description": "Volume relatif au volume global",
+          "title": "Le volume"
+        }
+      },
+      "title": "Paramètres de voix",
+      "variant": "Variante vocale"
+    }
+  },
+  "summary": {
+    "backbutton": "Retour",
+    "mistakesperkey": "Taux d'erreur par lettre",
+    "result": {
+      "fail": "Awww! Plus de chance la prochaine fois!",
+      "title": "Résultat",
+      "win": "Félicitation tu as maîtrisé cette leçon! Vérifiez vos résultats et passez au niveau suivant."
+    },
+    "totalmistakes": "Erreur totale"
   }
 }

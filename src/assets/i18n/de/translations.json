@@ -1,7 +1,104 @@
 {
+  "general": {
+    "typingspeed": "Tippgeschwindigkeit"
+  },
   "keys": {
     "enter": "Neue Zeile",
     "space": "Leerzeichen",
     "umlaut": "Umlaut"
+  },
+  "mainView": {
+    "mistakes": "Fehler",
+    "typespeed": "Tippgeschwindigkeit"
+  },
+  "settings": {
+    "application": {
+      "description": "Allgemeine Einstellungen für die gesamte Anwendung",
+      "files": {
+        "button": "Öffnen Sie den Ordner im Datei Explorer",
+        "description": "Jeder Text muss in einem Ordner mit dem Namen der Lektion abgelegt werden. Siehe Beispiellektion mit Beispieltexten als Vorlage.",
+        "title": "Unterrichtsdateien"
+      },
+      "lang": {
+        "description": "Wählen Sie die Sprache der Schnittstelle. Um die Sprache der Lesestimme zu ändern, wechseln Sie zu den Spracheinstellungen.",
+        "title": "Spracheinstellungen"
+      },
+      "title": "Anwendungseinstellungen"
+    },
+    "chapter": {
+      "description": "Wählen Sie manuell aus, welches Kapitel gestartet werden soll",
+      "title": "Kapitel Auswahl"
+    },
+    "lang": {
+      "de": "Deutsch",
+      "en": "Englisch",
+      "fr": "Französich"
+    },
+    "nav": {
+      "levels": "Kapitel",
+      "login": "Anmeldung",
+      "settings": "Einstellungen",
+      "summary": "Zusammenfassung",
+      "title": "Manuelle Navigation"
+    },
+    "style": {
+      "colorscheme": "Ändern Sie das Farbschema",
+      "description": "Passen Sie Farben und Schriftgröße an",
+      "fontsize": "Schriftgröße",
+      "title": "Stil"
+    },
+    "user": {
+      "description": "Informationen zu den Sitzungen des Benutzers",
+      "stats": {
+        "laststats": "Statistiken der letzten Sitzung",
+        "mistakes": "Fehler",
+        "mostmistakes": "Die meisten Fehler",
+        "name": "Name",
+        "overallstats": "Gesamtstatistik",
+        "title": "Statistiken"
+      },
+      "title": "Benutzerinformation"
+    },
+    "voice": {
+      "control": {
+        "save": "Spracheinstellungen speichern",
+        "test": "Spracheinstellungen testen"
+      },
+      "description": "Alle Einstellungen beziehen sich auf die Lesestimme",
+      "other": {
+        "amplitude": {
+          "description": "Wie laut die Stimme sein wird",
+          "title": "Amplitude"
+        },
+        "capitals": {
+          "description": "Ein Klick Geräusch ist zu hören, wenn das Wort mit Großbuchstaben beginnt\n<br>\n           <b>1:</b> Verwenden Sie einen Klick-Sound, um anzuzeigen, wenn ein Wort mit einem Großbuchstaben beginnt, oder Doppel-Klick, wenn das Wort nur Großbuchstaben enthält.\n<br>\n           <b>2:</b> Mit dem Wort \"Großbuchstabe\" werden großgeschriebene Wörter angekündigt\n<br>\n           <b>Andere Werte:</b> Erhöht die Tonhöhe für Wörter, die mit einem Großbuchstaben beginnen. Je größer der Wert, desto größer die Tonhöhenzunahme. (zB .: 20)",
+          "title": "Großbuchstaben"
+        },
+        "pitch": {
+          "description": "Zusätzliche Lücke zwischen Wörtern in 10-ms-Einheiten",
+          "title": "Tonhöhe"
+        },
+        "speed": {
+          "description": "Wörter pro Minute",
+          "title": "Geschwindigkeit"
+        },
+        "volume": {
+          "description": "Lautstärke relativ zur globalen Lautstärke",
+          "title": "Lautstärke"
+        }
+      },
+      "title": "Spracheinstellungen",
+      "variant": "Sprachvariante"
+    }
+  },
+  "summary": {
+    "backbutton": "Zurück",
+    "mistakesperkey": "Fehlerhäufigkeit pro Buchstabe",
+    "result": {
+      "fail": "Awww! Viel Glück beim nächsten Mal!",
+      "title": "Ergebnis",
+      "win": "Glückwunsch, du hast diese Lektion gemeistert! Überprüfen Sie Ihre Ergebnisse und fahren Sie mit dem nächsten Level fort."
+    },
+    "totalmistakes": "Fehler insgesamt"
   }
 }

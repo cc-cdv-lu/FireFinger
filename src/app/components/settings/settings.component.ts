@@ -7,6 +7,9 @@ import { User, UserService } from '../../services/user.service'
 import { StatisticsService } from '../../services/statistics.service'
 import { ReaderService } from '../../services/reader.service';
 
+import { ElectronService } from '../../providers/electron.service';
+
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -14,11 +17,29 @@ import { ReaderService } from '../../services/reader.service';
 })
 export class SettingsComponent implements OnInit {
 
+  langs = [
+    {
+      id: 'de',
+      description: this.translate.instant('settings.lang.de')
+    },
+    {
+      id: 'fr',
+      description: this.translate.instant('settings.lang.fr')
+    },
+    {
+      id: 'en',
+      description: this.translate.instant('settings.lang.en')
+    }
+  ]
+  lang;
+
   allLessons = this.lessons.lessons;
 
-  constructor(public lessons: LessonService, public session: SessionService, public style: StyleService, public user: UserService, public stats: StatisticsService, public reader: ReaderService) { }
+  constructor(public lessons: LessonService, public session: SessionService, public style: StyleService, public user: UserService,
+    public stats: StatisticsService, public reader: ReaderService, public translate: TranslateService, private electron: ElectronService) { }
   Math = Math;
   ngOnInit() {
+    this.lang = this.translate.currentLang;
   }
 
   getFormat(n: number) {
@@ -33,5 +54,12 @@ export class SettingsComponent implements OnInit {
   readTest() {
     this.reader.play(this.reader.config.test)
   }
+
+  onLangChange() {
+    this.translate.use(this.lang);
+    this.electron.config.set("LANG", this.lang)
+  }
+
+
 
 }

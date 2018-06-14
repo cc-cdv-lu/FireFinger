@@ -1,7 +1,7 @@
 <div class="container" *ngIf="session_stats">
   <mat-card class="card" [style.backgroundColor]="didWin() ? 'green' : 'red'" [style.color]="'white'">
     <mat-card-title>
-      Result
+      {{'summary.result.title' | translate}}
     </mat-card-title>
     <mat-card-content>
       {{getResultText()}}
@@ -10,11 +10,11 @@
 
   <mat-card  class="card">
     <mat-card-title>
-      Fehlerhäufigkeit pro Buchstabe
+      {{'summary.mistakesperkey' | translate}}
     </mat-card-title>
     <mat-card-content>
       <mat-list>
-        <mat-list-item><b>Fehler insgesammt:</b>{{session_stats.mistakesCount}}</mat-list-item>
+        <mat-list-item><b>{{'summary.totalmistakes' | translate }}:</b>{{session_stats.mistakesCount}}</mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item *ngFor="let mistake of stats.getTopMistakes(session_stats, 10)">
           <b>{{mistake?.key}}:</b> {{mistake?.count}}
@@ -25,7 +25,7 @@
 
   <mat-card  class="card">
     <mat-card-title>
-      Typespeed
+      {{'general.typingspeed' | translate}}
     </mat-card-title>
     <mat-card-content>
       {{session_stats.typeSpeed}}
@@ -34,5 +34,5 @@
 
 </div>
 <mat-card>
-  <nav><a mat-raised-button color="primary" routerLink="/home">Home</a></nav>
+  <nav><a mat-raised-button color="primary" routerLink="/home">{{'summary.backbutton' | translate}}</a></nav>
 </mat-card>

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { StatisticsService, Statistics } from '../../services/statistics.service';
 import { SessionService, GAME_STATE } from '../../services/session.service'
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-summary',
@@ -12,7 +13,7 @@ import { SessionService, GAME_STATE } from '../../services/session.service'
 export class SummaryComponent implements OnInit {
   session_stats: Statistics;
 
-  constructor(private user: UserService, private stats: StatisticsService, private session: SessionService) { }
+  constructor(private user: UserService, private stats: StatisticsService, private session: SessionService, public translate: TranslateService) { }
   /*
     Needed data:
       Chapter that has just been solved
@@ -38,10 +39,10 @@ export class SummaryComponent implements OnInit {
 
   getResultText() {
     if (this.didWin()) {
-      return "Congratulation you mastered this lesson! Check your results and proceed to the next level."
+      return this.translate.instant('summary.result.win')
     }
     else {
-      return "Awww! Better luck next time!"
+      return this.translate.instant('summary.result.fail')
     }
   }
 

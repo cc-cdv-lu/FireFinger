@@ -128,7 +128,7 @@ export class MainViewComponent implements OnInit {
     this.areSettingsOpen = true;
     let dialogRef = this.dialog.open(SettingsComponent, {
       height: '80%',
-      width: '40%',
+      width: '55%',
       data: {
         electron_service: this.electron
       }
