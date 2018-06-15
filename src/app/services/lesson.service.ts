@@ -13,21 +13,11 @@ export class Chapter {
   content: string;
   type: ChapterType;
   characters: string;
+  newCharacters: string;
   count: number
 }
 export enum ChapterType {
   CHAR, WORD, DICATION
-}
-
-
-interface FileImport {
-  meta: {
-    name: string,
-    count: number,
-    type: ChapterType,
-    characters: string
-  },
-  content: string
 }
 
 @Injectable({
@@ -37,8 +27,8 @@ export class LessonService {
   appDataURL: string;
   docsURL: string;
   constructor(private electron: ElectronService) {
-    if (this.electron.isDev())
-      this.loadDebugData();
+    //if (this.electron.isDev())
+    //  this.loadDebugData();
     this.appDataURL = this.electron.app.getPath('userData');
     this.docsURL = this.electron.path.join(this.appDataURL, 'docs');
     this.loadAllDirs();
@@ -104,29 +94,124 @@ export class LessonService {
     }
     for (let file of dir) {
       let fileURL = this.electron.path.join(url, file);
-      let fileContent: FileImport = this.loadFromFile(fileURL);
+      let newChapter: Chapter = this.loadFromFile(fileURL);
 
-      lesson.chapters.push({
-        name: file,
-        content: fileContent.content,         //temp
-        type: fileContent.meta.type,    //temp
-        characters: fileContent.meta.characters,
-        count: fileContent.meta.count
-      })
+      lesson.chapters.push(newChapter)
     }
     this.lessons.push(lesson);
   }
 
-  loadFromFile(url: string): FileImport {
-    let fileEnding = this.electron.path.extname(url)
+  loadFromFile(url: string): Chapter {
+    let fileEnding = this.electron.path.extname(url);
+    let filename = this.electron.path.basename(url);
+
+    let regexp = /#{5,}/;
+    let fileContent: string = "";
 
     switch (fileEnding) {
-      case ".doc": case ".docx": return this.getDocFileContents(url);
-      case ".txt": return this.getTXTFileContents(url);
+      case ".doc": case ".docx": fileContent = this.getDocFileContents(url); break;
+      case ".txt": fileContent = this.getTXTFileContents(url); break;
+      default: console.log("Cannot get contents from this file:", url); break;
     }
+
+    /* Parse content */
+
+    let output: Chapter = {
+      name: filename, // Try to get it from name field
+      type: -1,
+      count: -1,
+      characters: "",
+      newCharacters: "",
+      content: ''
+    };
+
+    /* IF IT'S A DICTATION LESSON */
+    if (!fileContent.match(regexp)) {
+      /* If there is no ###### present, then it's simply a dictation
+        take the whole text as content and generate the rest/use default values */
+      output.content = fileContent;
+      output.characters = this.getCharsOfText(fileContent);
+      output.type = ChapterType.DICATION;
+
+      return output;
+    }
+    else {
+      let split = fileContent.split(regexp);
+
+      let jsonString = split[0].trim();
+      let data = JSON.parse(jsonString);
+
+      output.content = split[1];
+      output.characters = this.getCharsOfText(output.content);
+      if (data.type != undefined) output.type = data.type;
+      if (data.name != undefined) output.name = data.name;
+      if (data.newCharacters != undefined) output.newCharacters = data.newCharacters;
+
+      switch (output.type) {
+        case ChapterType.CHAR: this.generateCharLesson(output, data.amount); break;
+        case ChapterType.WORD: this.generateWordLesson(output); break;
+        default: {
+          console.error("Something smells fucky with the type of this...", output);
+          break;
+        }
+      }
+
+
+      // TODO add actual values
+      console.log(url);
+      console.log(jsonString);
+
+      return output;
+
+    }
+
+
+
   }
 
-  getDocFileContents(url: string): FileImport {
+  getCharsOfText(text: string): string {
+    let data = {};
+    for (let c of text) {
+      data[c] = 'present'
+    }
+    let output = "";
+    for (let c of Object.keys(data)) {
+      output += c;
+    }
+    return output;
+  }
+
+  generateCharLesson(chapter: Chapter, amount: number) {
+    // chapter.characters     -> which characters
+    // amount                 -> how many letters total
+    // chapter.newCharacters  -> favor new characters
+    console.log("Starting character generation!");
+
+    // Try to fill half of output with new characters
+    let output = "";
+    for (let i = 0; i < amount / 2; i++) {
+      output += this.getRandom(chapter.newCharacters);
+    }
+
+    console.log("Added new characters:", output);
+
+    // Fill the rest with the old characters
+    for (let i = output.length - 1; i < amount; i++) {
+      output += this.getRandom(chapter.characters)
+    }
+
+    console.log(output);
+    this.shuffle(output);
+
+    // copy by reference: simply edit chapter file - no return needed
+    chapter.content = output;
+  }
+
+  generateWordLesson(chapter: Chapter) {
+
+  }
+
+  getDocFileContents(url: string): string {
     let file = this.electron.fs.readFileSync(url, 'utf8');
     //TODO not implemented
     /*
@@ -139,28 +224,12 @@ export class LessonService {
     return file;
   }
 
-  getTXTFileContents(url: string): FileImport {
-    let file = this.electron.fs.readFileSync(url, 'utf8')
+  getTXTFileContents(url: string): string {
+    let file = this.electron.fs.readFileSync(url, 'utf8');
+
     file = file.replace(/(?:\r\n|\r|\n)/g, '\n');
 
-
-    /* TODO extract meta data */
-    let split = file.split('##########');
-
-    let non_sanatized_meta = split[0];
-
-    // TODO add actual values
-    let output: FileImport = {
-      meta: {
-        name: "",
-        type: 2,
-        count: 1000,
-        characters: "",
-      },
-      content: file//split[1]
-    };
-
-    return output;
+    return file;
   }
 
   createExampleFolder() {
@@ -183,33 +252,26 @@ export class LessonService {
     });
   }
 
-  loadDebugData() {
-    this.lessons.push({
-      name: 'debug',
-      lang: 'de',
-      chapters: [
-        {
-          name: 'debug01',
-          content: 'qwertz',
-          type: ChapterType.DICATION,
-          characters: 'qwertz',
-          count: 100
-        },
-        {
-          name: 'debug02',
-          content: 'asdfg',
-          type: ChapterType.DICATION,
-          characters: 'asdfg',
-          count: 100
-        },
-        {
-          name: 'special_char',
-          content: '! ? € , . -\n_ ; : ( ) & %',
-          characters: '!?€,.-\n_;:()&%',
-          type: ChapterType.DICATION,
-          count: 100
-        }
-      ]
-    })
+  /**
+ * Shuffles array in place. ES6 version
+ * @param {Array} a items An array containing the items.
+ */
+  shuffle(input_array) {
+    let a = input_array.slice();
+    if (!a) return console.error("Array is undefined!");
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a.slice(); //little hack to allow copy by value
+  }
+
+  getRandom(array) {
+    if (array.length <= 0 || !array) {
+      console.error("This is not a good array...")
+      return null;
+    }
+    let index = Math.floor(Math.random() * array.length);
+    return array[index];
   }
 }
