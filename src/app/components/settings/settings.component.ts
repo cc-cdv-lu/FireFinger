@@ -52,7 +52,7 @@ export class SettingsComponent implements OnInit {
   }
 
   readTest() {
-    this.reader.play(this.reader.config.test)
+    this.reader.play(this.reader.config.test, 2)
   }
 
   onLangChange() {

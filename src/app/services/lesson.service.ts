@@ -14,7 +14,7 @@ export class Chapter {
   type: ChapterType;
   characters: string;
   newCharacters: string;
-  count: number
+  amount: number
 }
 export enum ChapterType {
   CHAR, WORD, DICATION
@@ -119,7 +119,7 @@ export class LessonService {
     let output: Chapter = {
       name: filename, // Try to get it from name field
       type: -1,
-      count: -1,
+      amount: -1,
       characters: "",
       newCharacters: "",
       content: ''
@@ -145,10 +145,12 @@ export class LessonService {
       output.characters = this.getCharsOfText(output.content);
       if (data.type != undefined) output.type = data.type;
       if (data.name != undefined) output.name = data.name;
+      if (data.amount != undefined) output.amount = data.amount
+      if (data.characters != undefined) output.characters = data.characters;
       if (data.newCharacters != undefined) output.newCharacters = data.newCharacters;
 
       switch (output.type) {
-        case ChapterType.CHAR: this.generateCharLesson(output, data.amount); break;
+        case ChapterType.CHAR: this.generateCharLesson(output); break;
         case ChapterType.WORD: this.generateWordLesson(output); break;
         default: {
           console.error("Something smells fucky with the type of this...", output);
@@ -156,17 +158,8 @@ export class LessonService {
         }
       }
 
-
-      // TODO add actual values
-      console.log(url);
-      console.log(jsonString);
-
       return output;
-
     }
-
-
-
   }
 
   getCharsOfText(text: string): string {
@@ -181,30 +174,25 @@ export class LessonService {
     return output;
   }
 
-  generateCharLesson(chapter: Chapter, amount: number) {
+  generateCharLesson(chapter: Chapter) {
     // chapter.characters     -> which characters
     // amount                 -> how many letters total
     // chapter.newCharacters  -> favor new characters
-    console.log("Starting character generation!");
 
     // Try to fill half of output with new characters
     let output = "";
-    for (let i = 0; i < amount / 2; i++) {
-      output += this.getRandom(chapter.newCharacters);
+    if (!chapter.amount || !chapter.characters || !chapter.newCharacters) return;
+    for (let i = 0; i < chapter.amount / 2; i++) {
+      output += this.getRandom(chapter.newCharacters.split(""));
     }
-
-    console.log("Added new characters:", output);
 
     // Fill the rest with the old characters
-    for (let i = output.length - 1; i < amount; i++) {
-      output += this.getRandom(chapter.characters)
+    for (let i = output.length; i < chapter.amount; i++) {
+      output += this.getRandom(chapter.characters.split(""))
     }
 
-    console.log(output);
-    this.shuffle(output);
-
     // copy by reference: simply edit chapter file - no return needed
-    chapter.content = output;
+    chapter.content = this.shuffleString(output);
   }
 
   generateWordLesson(chapter: Chapter) {
@@ -250,6 +238,19 @@ export class LessonService {
       if (err) throw console.warn("The was an issue writing this file:", err)
       console.log("The file was save successfully: ", path)
     });
+  }
+
+  shuffleString(s: string): string {
+    var a = s.split(""),
+      n = a.length;
+
+    for (var i = n - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i];
+      a[i] = a[j];
+      a[j] = tmp;
+    }
+    return a.join("");
   }
 
   /**

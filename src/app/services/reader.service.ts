@@ -152,7 +152,11 @@ export class ReaderService {
     this.meSpeak.loadVoice(window.require(voice_url));
   }
 
-  play(str: string) {
+  play(str: string, type: number) {
+    if (!str || str.length == 0) return;
+    /* Special case for letter lessons */
+    if (type == 0) return this.speak(this.filterSpecialChars(str[0]));
+
     if (!str) return;
     if (str.length == 1) this.playChar(str);
     else this.playWord(str);
@@ -169,17 +173,24 @@ export class ReaderService {
     if (str != str.toLowerCase())
       return this.speak("Großes " + str);
 
-    switch (str) {
-      case "\n": return this.speak("eingabe");
-      case " ": return this.speak("leerzeichen");
-      case "&": return this.speak("undzeichen");
-      case "€": return this.speak("euro zeichen");
-      case "-": return this.speak("bindestrich");
+    str = this.filterSpecialChars(str);
+
+    this.speak(str);
+  }
+
+  filterSpecialChars(c: string): string {
+    switch (c) {
+      case "\n": return ("eingabe");
+      case " ": return ("leerzeichen");
+      case "&": return ("undzeichen");
+      case "€": return ("euro zeichen");
+      case "-": return ("bindestrich");
       default: {
-        this.speak(str);
+        return c
       }
     }
   }
+
   counter = 0;
   private speak(str: string) {
     this.counter++;

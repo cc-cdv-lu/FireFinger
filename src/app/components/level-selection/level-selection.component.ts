@@ -5,7 +5,7 @@ import { LessonService } from '../../services/lesson.service';
 import { SessionService } from '../../services/session.service'
 
 @Component({
-  selector: 'app-level-selection',
+  selector: 'level-selection',
   templateUrl: './level-selection.component.html',
   styleUrls: ['./level-selection.component.scss']
 })

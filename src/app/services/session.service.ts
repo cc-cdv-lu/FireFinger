@@ -60,9 +60,9 @@ export class SessionService {
     if (pressedKey == "Dead") return;
 
     if (pressedKey == 'ArrowDown')
-      return this.reader.play(this.getCurrentChar())// play current char
+      return this.reader.play(this.getCurrentChar(), this.currentChapter.type)// play current char
     if (pressedKey == 'ArrowRight')
-      return this.reader.play(this.stringHelper.getWordAt(this.getText(), this.getIndex()));//play current word
+      return this.reader.play(this.stringHelper.getWordAt(this.getText(), this.getIndex()), 2);//play current word
     if (pressedKey == 'ArrowLeft') return;
     if (pressedKey == 'ArrowUp') return;
 
@@ -232,9 +232,9 @@ export class SessionService {
     let word = this.stringHelper.getWordAt(this.getText(), this.getIndex());
 
     if (word.length > 2 && this.getText()[this.getIndex() - 1] == " ")
-      this.reader.play(word)
+      this.reader.play(word, this.currentChapter.type)
     else
-      this.reader.play(this.getCurrentChar());
+      this.reader.play(this.getCurrentChar(), this.currentChapter.type);
   }
 
   //index = 0;

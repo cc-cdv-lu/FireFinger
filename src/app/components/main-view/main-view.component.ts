@@ -52,7 +52,7 @@ export class MainViewComponent implements OnInit {
   }
 
   VIEW = VIEW;
-  view: VIEW = VIEW.LINE;
+  //view: VIEW = VIEW.LINE;
   warningText = "";
 
   areSettingsOpen: boolean = false;
@@ -96,26 +96,15 @@ export class MainViewComponent implements OnInit {
     return char;
   }
 
-  /*
-    Debugging
-  */
-  setCharMode() {
-    this.setViewMode(VIEW.CHAR)
-  }
-  setWordMode() {
-    this.setViewMode(VIEW.WORD)
-  }
-  setLineMode() {
-    this.setViewMode(VIEW.LINE);
-  }
   setViewMode(VIEW: VIEW) {
     this.view = VIEW;
   }
 
-  printInfo() {
-    console.log("Start:   ", this.session.getPrevSegment(this.view))
-    console.log("Current: ", this.session.getCurrentChar())
-    console.log("Next:    ", this.session.getNextSegment(this.view))
+  get view() {
+    return this.session.currentChapter.type
+  }
+  set view(v: any) {
+    console.log("No longer supported...");
   }
 
   openSettings() {
@@ -132,6 +121,8 @@ export class MainViewComponent implements OnInit {
       this.areSettingsOpen = false;
     })
   }
+
+  /* DEBUG stuff */
 
   blurAllButtons() {
     let buttons = document.getElementsByTagName('button');
