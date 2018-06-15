@@ -1,8 +1,8 @@
-<section class="section" *ngFor="let set of allLessons">
+<section class="section" *ngFor="let set of allLessons" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.current">
   <h2>{{set.name}}</h2>
-  <mat-grid-list cols="6" [style.font-size]="'4vh'">
+  <mat-grid-list cols="6" [style.font-size]="'1vh'">
     <div class="row" *ngFor="let chapter of set.chapters; let i = index" (click)="session.loadSession(set, i); goHome()">
-      <mat-grid-tile colspan="2">{{chapter.name}}</mat-grid-tile>
+      <mat-grid-tile  [style.font-size]="'2vh'" colspan="2">{{chapter.name}}</mat-grid-tile>
       <mat-grid-tile colspan="2">{{chapter.newCharacters}}</mat-grid-tile>
       <!--<mat-grid-tile colspan="4">{{chapter.characters}}</mat-grid-tile>-->
       <mat-grid-tile>{{chapter.intro}}</mat-grid-tile>

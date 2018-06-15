@@ -80,8 +80,8 @@ export class MainViewComponent implements OnInit {
     let c: string = this.session.getCurrentChar();
     let output = "";
     switch (c) {
-      case "\n": output += this.translate.instant('keys.enter');
-      case " ": output += this.translate.instant('keys.space');
+      case "\n": output += this.translate.instant('keys.enter'); break;
+      case " ": output += this.translate.instant('keys.space'); break;
       case "ä": case "Ä": case "ü": case "Ü": case "ö": case "Ö": output += this.translate.instant('keys.umlaut')
       //TODO add großschrift
     }

@@ -25,29 +25,20 @@ export enum ChapterType {
 export class LessonService {
   appDataURL: string;
   docsURL: string;
+  lessons: Array<Lesson> = [];
   constructor(private electron: ElectronService) {
-    //if (this.electron.isDev())
-    //  this.loadDebugData();
     this.appDataURL = this.electron.app.getPath('userData');
     this.docsURL = this.electron.path.join(this.appDataURL, 'docs');
     this.loadAllDirs();
 
     try {
-      this.docsURL = window.require('./assets/lessons/');
+      //TODO find a way to import this in production
+      this.docsURL = 'src/assets/lessons/';
       this.loadAllDirs();
     }
     catch (err) { console.log("Did not work...", err) }
   }
 
-  /*
-    - Predefined chapters
-    - Custom folder
-
-    - .doc TODO
-    .txt supported
-  */
-
-  lessons: Array<Lesson> = [];
 
   loadAllDirs() {
     if (!this.electron.fs.existsSync(this.docsURL)) {
