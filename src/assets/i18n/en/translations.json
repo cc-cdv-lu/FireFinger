@@ -6,7 +6,8 @@
   "keys": {
     "enter": "New Line",
     "space": "Space",
-    "umlaut": "umlaut"
+    "umlaut": "umlaut",
+    "uppercase": "Upper case"
   },
   "mainView": {
     "mistakes": "Mistakes",

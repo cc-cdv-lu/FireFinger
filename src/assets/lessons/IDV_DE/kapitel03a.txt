@@ -1,0 +1,10 @@
+﻿{
+	"name": "Kapitel 03a",
+	"intro": "xxxxxxxxxxxx",
+	"type": 0,
+	"characters": "asdf jklöghei",
+	"comments": "",
+	"amount": 100,
+	"newCharacters": "ei"
+}
+############################

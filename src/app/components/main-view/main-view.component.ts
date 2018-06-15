@@ -77,14 +77,19 @@ export class MainViewComponent implements OnInit {
   }
 
   getWarningText() {
-    let c = this.session.getCurrentChar();
+    let c: string = this.session.getCurrentChar();
+    let output = "";
     switch (c) {
-      case "\n": return this.translate.instant('keys.enter');
-      case " ": return this.translate.instant('keys.space');
-      case "ä": case "Ä": case "ü": case "Ü": case "ö": case "Ö": return this.translate.instant('keys.umlaut')
+      case "\n": output += this.translate.instant('keys.enter');
+      case " ": output += this.translate.instant('keys.space');
+      case "ä": case "Ä": case "ü": case "Ü": case "ö": case "Ö": output += this.translate.instant('keys.umlaut')
       //TODO add großschrift
-      default: return "";
     }
+    if (c.toLowerCase() != c) {
+      if (output != "") output += "\n";
+      output += this.translate.instant('keys.uppercase')
+    }
+    return output;
   }
 
 

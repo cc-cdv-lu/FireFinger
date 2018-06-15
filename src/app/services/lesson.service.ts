@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import * as WordExtractor from 'word-extractor';
 import { ElectronService } from '../providers/electron.service'
 
-
 export class Lesson {
   name: string;
   chapters: Array<Chapter>;
@@ -32,6 +31,12 @@ export class LessonService {
     this.appDataURL = this.electron.app.getPath('userData');
     this.docsURL = this.electron.path.join(this.appDataURL, 'docs');
     this.loadAllDirs();
+
+    try {
+      this.docsURL = window.require('./assets/lessons/');
+      this.loadAllDirs();
+    }
+    catch (err) { console.log("Did not work...", err) }
   }
 
   /*

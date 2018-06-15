@@ -1,0 +1,10 @@
+﻿{
+	"name": "Kapitel 14a",
+	"intro": "xxxxxxxxxxxx",
+	"type": 0,
+	"characters": "aAsSdDfF jJkKlLöÖgGhHeEiI\n,rRuUwWoO.qQpPtTzZvVmMbBnNcC;xX:yY-_",
+	"comments": "",
+	"amount": 100,
+	"newCharacters": "yY-_"
+}
+############################

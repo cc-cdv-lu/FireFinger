@@ -1,0 +1,69 @@
+﻿{
+	"name": "Kapitel 01b - Wiederholung\nÜbungen zur Basis",
+	"intro": "xxxxxxxxxxxx",
+	"type": 1,
+	"characters": "asdf jklö",
+	"newCharacters": "asdf jklö",
+	"comments": ""
+}
+############################
+fff jjj fff jjj fff jjj fff jjj fff
+jjj fjf jff jff jff jff jff jff jff
+fjf fjf fjf fjf fjf fjf fjf fjf jfj
+ffj jjj jff fff fjj fjf jjj jfj fjf
+jjj fjj fff jjj fff fjf jjj fjj jfj
+
+ddd kkk ddd kkk ddd kkk ddd kkk ddd kkk
+dkd dkd dkd dkd dkd kdk kdk kdk kdk kdk
+ddk ddk kkd kkd ddk kkd dkd kdk dkd kdk
+kkd dkd dkk ddk kdk dkk kkd kdk dkd ddk
+
+ffd ffd ffd ffd ffd ffd
+ddf ddf ddf ddf ddf ddf
+fdf dfd fdf dfd fdf dfd
+ddf ffd ddf ffd ddf ffd
+
+jjk jjk jjk jjk jjk jjk jjk jjk kkj kkj
+jkj kjk jkj kjk jkj kjk jkj jjk kkj jjk
+
+kjk kfk kjk kfk kjk kfk kjk kfk kjk kfk
+dfd djd dfd djd dfd djd dfd djd dfd djd
+jdd kdd jdd kdd jdd kdd jdd kdd jdd kdd
+fkk dkk fkk dkk fkk dkk fkk dkk fkk dkk
+
+sss sss sss sss sss lll lll lll lll lll
+ssl ssl ssl ssl ssl ssl lls lls lls lls
+sls sls sls sls sls sls sls sls sls sls
+
+fds fds fds fds fds fds fds fds fds fds
+jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl
+
+sdf sdf sdf sdf sdf sdf sdf sdf sdf sdf
+lkj lkj lkj lkj lkj lkj lkj lkj lkj lkj
+jds jds jds jds jds jds jds jds jds jds
+fkl fkl fkl fkl fkl fkl fkl fkl fkl fkl
+kds kds kds kds kds kds kds kds kds kds
+dkl dkl dkl dkl dkl dkl dkl dkl dkl dkl
+
+lfs lfs lfs lfs lfs lfs lfs lfs lfs lfs
+sjl sjl sjl sjl sjl sjl sjl sjl sjl sjl
+
+aaa aaa aaa aaa ööö ööö ööö öö
+aaö aaö aaö aaö aaö aaö aaö aaö
+ööa ööa ööa ööa ööa ööa ööa ööa
+
+öaö öaö öaö öaö aöa aöa aöa aöa
+aaö ööa öaö aöa ööa aöa öaö ööö
+fdsa fdsa fdsa fdsa fdsa fdsa fdsa fdsa fdsa fdsa
+jklö jklö jklö jklö jklö jklö jklö jklö jklö jklö
+fö fö fö fö fö ja ja ja ja lala lala dada dada
+das das das das das kaka kökö
+
+kaka kökö kaka kökö kaka kökö kaka kökö kaka kökö
+salö salö salö salö salö falls falls falls falls falls
+
+fdsa jklö fdsa jklö fdsa jklö fdsa jklö fdsa jklö
+fdsa jklö fdsa jklö fdsa jklö fdsa jklö fdsa jklö
+das f das f das f das f das f das f das f das f
+
+klö j klö j klö j klö j klö j klö j klö j klö j klö j klö

@@ -1,0 +1,10 @@
+﻿{
+	"name": "Kapitel 12a",
+	"intro": "xxxxxxxxxxxx",
+	"type": 0,
+	"characters": "aAsSdDfF jJkKlLöÖgGhHeEiI\n,rRuUwWoO.qQpPtTzZvVmMbBnNcC;",
+	"comments": "",
+	"amount": 100,
+	"newCharacters": "nNcC;"
+}
+############################

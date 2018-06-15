@@ -6,7 +6,8 @@
   "keys": {
     "enter": "Neue Zeile",
     "space": "Leerzeichen",
-    "umlaut": "Umlaut"
+    "umlaut": "Umlaut",
+    "uppercase": "Großschrift"
   },
   "mainView": {
     "mistakes": "Fehler",
