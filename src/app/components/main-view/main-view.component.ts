@@ -41,8 +41,10 @@ export class MainViewComponent implements OnInit {
     this.view = VIEW.LINE;
   }
 
+  activateDebug = false;
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
+    if (event.keyCode == 68 && event.ctrlKey && event.altKey) return this.activateDebug = !this.activateDebug;
     this.blurAllButtons();
     if (this.areSettingsOpen) return;
     this.session.handleKeyEvent(event);
@@ -57,7 +59,7 @@ export class MainViewComponent implements OnInit {
 
   areSettingsOpen: boolean = false;
 
-  factor = 7;
+  factor = 2;
   getRowHeight() {
     return this.style.fontSize / this.factor + "px";
   }
@@ -80,11 +82,13 @@ export class MainViewComponent implements OnInit {
     let c: string = this.session.getCurrentChar();
     let output = "";
     switch (c) {
-      case "\n": output += this.translate.instant('keys.enter'); break;
-      case " ": output += this.translate.instant('keys.space'); break;
+      case "\n": return this.translate.instant('keys.enter');
+      case " ": return this.translate.instant('keys.space');
+      case "\'": return this.translate.instant('keys.apostrophe');
       case "ä": case "Ä": case "ü": case "Ü": case "ö": case "Ö": output += this.translate.instant('keys.umlaut')
-      //TODO add großschrift
     }
+
+    // Check if the letter is uppercase
     if (c.toLowerCase() != c) {
       if (output != "") output += "\n";
       output += this.translate.instant('keys.uppercase')

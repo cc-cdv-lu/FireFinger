@@ -4,6 +4,7 @@
     "typingspeed": "Vitesse de frappe"
   },
   "keys": {
+    "apostrophe": "apostrophe",
     "enter": "nouvelle ligne",
     "space": "Espace",
     "umlaut": "inflexion",

@@ -37,6 +37,15 @@ export class SessionService {
     private user: UserService, private electron: ElectronService, private sound: SoundEffectService,
     private stringHelper: StringHelperService, public reader: ReaderService) { }
 
+  ignoreKeys = ["ContextMenu", "CapsLock", "Tab", "Insert", "Home", "PageUp", "PageDown", "Delete", "End", "Backspace", "Shift", "Control", "Alt", "AltGraph", "Meta", "Dead", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12"];
+
+  shouldIgnore(key: string): boolean {
+    /* If pressed key is part of the list, ignore it (return true)*/
+    /* If it is not part of the list (indexOf = -1), true false */
+    if (this.ignoreKeys.indexOf(key) == -1) return false;
+    return true;
+  }
+
   handleKeyEvent(event: KeyboardEvent) {
     if (!this.isSessionLoaded) return console.log("No session loaded...");
 
@@ -48,16 +57,8 @@ export class SessionService {
     // Handle special keys
     let pressedKey = event.key;
     let expectedKey = this.stringHelper.getCurrentChar(this.getText(), this.getIndex())
-    this.stats.checkSpeed();
     if (pressedKey == "Escape") return this.reset();
-
-    if (pressedKey == "Shift") return;
-    if (pressedKey == "Control") return;
-    if (pressedKey == "CapsLock") return;
-    if (pressedKey == "Alt") return;
-    if (pressedKey == "AltGraph") return;
-    if (pressedKey == "Meta") return;
-    if (pressedKey == "Dead") return;
+    if (this.shouldIgnore(pressedKey)) return;
 
     if (pressedKey == 'ArrowDown')
       return this.reader.play(this.getCurrentChar(), this.currentChapter.type)// play current char
@@ -65,6 +66,8 @@ export class SessionService {
       return this.reader.play(this.stringHelper.getWordAt(this.getText(), this.getIndex()), 2);//play current word
     if (pressedKey == 'ArrowLeft') return;
     if (pressedKey == 'ArrowUp') return;
+
+
 
     //Default case
     if (pressedKey == this.getCurrentChar())
@@ -120,7 +123,6 @@ export class SessionService {
   }
 
   onSuccess() {
-    // TODO add congratulation screen with stats
     this.nextChapter();
     console.log("BIG success! Next level coming up!");
     this.sound.play(SOUNDS.SUCCESS);
@@ -129,7 +131,6 @@ export class SessionService {
   }
 
   onFailure() {
-    // TODO add too bad screen with indication on how much better they need to get
     console.log("Better luck next time");
     this.sound.play(SOUNDS.FAILURE);
     this.gameState = GAME_STATE.FAILURE;
@@ -223,6 +224,7 @@ export class SessionService {
 
   nextTextIndex() {
     this.last_wrong_char = "";
+    this.stats.checkSpeed();
 
     if (this.getIndex() < this.getText().length)
       this.indexInText++;
