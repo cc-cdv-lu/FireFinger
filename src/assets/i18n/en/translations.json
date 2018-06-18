@@ -26,7 +26,7 @@
         "description": "Choose the language of the interface. To change the language of the reading voice go to the voice settings.",
         "title": "Language settings"
       },
-      "title": "Application settings"
+      "title": "Application"
     },
     "chapter": {
       "description": "Manually select which chapter to launch",
@@ -38,11 +38,12 @@
       "fr": "French"
     },
     "nav": {
+      "home": "Home",
       "levels": "Chapters",
       "login": "Login",
       "settings": "Settings",
       "summary": "Summary",
-      "title": "Manual navigation"
+      "title": "Navigation"
     },
     "style": {
       "colorscheme": "Change color scheme",
@@ -60,7 +61,7 @@
         "overallstats": "Overall stats",
         "title": "Statistics"
       },
-      "title": "User Info"
+      "title": "User"
     },
     "voice": {
       "control": {
@@ -90,7 +91,7 @@
           "title": "Volume"
         }
       },
-      "title": "Voice settings",
+      "title": "Voice",
       "variant": "Voice variant"
     }
   },

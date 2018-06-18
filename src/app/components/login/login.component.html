@@ -4,14 +4,14 @@
       <h1>Login</h1>
     </mat-card-title>
     <mat-card-content [style.color]="style.activeColorScheme.prev" [style.backgroundColor]="style.activeColorScheme.backgroundColor">
-      <mat-grid-list cols="1" [rowHeight]="style.getFontSize(SIZE.BIGGEST)" [style.fontSize]="style.getFontSize(SIZE.BIGGER)">
+      <mat-grid-list cols="1" [rowHeight]="style.getFontSize(SIZE.BIG)" [style.fontSize]="style.getFontSize(SIZE.DEFAULT)">
         <mat-grid-tile>
           <mat-form-field class="full-width-input">
-            <input #loginField matInput matAutosize=true maxRows=1 placeholder="Enter your name" [(ngModel)]="inputField" (keydown)="onKeydown($event)" required />
+            <input #loginField matInput matAutosize=true maxRows=1 [(ngModel)]="inputField" (keydown)="onKeydown($event)" required />
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
-          <button mat-raised-button (click)="onConfirm()" [style.fontSize]="style.getFontSize(SIZE.BIGGER)" [style.lineHeight]="style.getFontSize(SIZE.BIGGER)" color="primary">Confirm</button>
+          <button mat-raised-button (click)="onConfirm()" [style.fontSize]="style.getFontSize(SIZE.BIG)" [style.lineHeight]="style.getFontSize(SIZE.BIG)" color="primary">Confirm</button>
         </mat-grid-tile>
       </mat-grid-list>
     </mat-card-content>

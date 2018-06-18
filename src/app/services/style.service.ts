@@ -24,7 +24,7 @@ export class StyleService {
     this.activeColorScheme = this.electron.config.get(COLOR_SCHEME_KEY);
 
     if (!this.fontSize) this.fontSize = 800;
-    if (!this.activeColorScheme) this.activeColorScheme = this.colorSchemes[1];
+    if (!this.activeColorScheme) this.activeColorScheme = this.colorSchemes[5];
   }
 
   colorSchemes: Array<ColorScheme> = [
@@ -95,10 +95,9 @@ export class StyleService {
   set fontSize(n: number) {
     if (!n) return;
     this._fontSize = n;
-    console.log("Set font size to: ", n)
     this.electron.config.set(FONT_KEY, n);
   }
-  get activeColorScheme() {
+  get activeColorScheme(): ColorScheme {
     return this._activeColorScheme;
   }
   set activeColorScheme(c: ColorScheme) {

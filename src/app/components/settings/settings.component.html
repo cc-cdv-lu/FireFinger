@@ -1,74 +1,64 @@
-<div class="container">
+<div class="titleBar" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.current">
+  <h1 [style.fontSize]="style.getFontSize(SIZE.DEFAULT)">Settings</h1>
+</div>
+<div class="container" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
 
-  <h1>Settings</h1>
+  <mat-accordion [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
 
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{'settings.chapter.title' | translate}}
-        </mat-panel-title>
-        <mat-panel-description>
-          {{'settings.chapter.description' | translate}}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <level-selection></level-selection>
-
-    </mat-expansion-panel>
-
-
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
+    <mat-expansion-panel [style.backgroundColor]="style.activeColorScheme.backgroundColor">
+      <mat-expansion-panel-header [style.lineHeight]="style.getFontSize(SIZE.DEFAULT)" [collapsedHeight]="style.getFontSize(SIZE.DEFAULT)" [expandedHeight]="style.getFontSize(SIZE.DEFAULT)">
+        <mat-panel-title [style.font-size]="style.getFontSize(SIZE.DEFAULT)" [style.color]="style.activeColorScheme.current">
           {{'settings.style.title' | translate}}
         </mat-panel-title>
-        <mat-panel-description>
+        <!--
+        <mat-panel-description  [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.color]="style.activeColorScheme.prev">
           {{'settings.style.description' | translate}}
         </mat-panel-description>
+      -->
       </mat-expansion-panel-header>
 
 
-      <section class="section">
-        <h2>{{'settings.style.colorscheme' | translate}}</h2>
-        <mat-grid-list cols="5">
+      <section class="section" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev" [style.lineHeight]="style.getFontSize(SIZE.DEFAULT)">
+        <h2 [style.font-size]="style.getFontSize(SIZE.SMALL)">{{'settings.style.colorscheme' | translate}}</h2>
+        <mat-grid-list cols="1" gutterSize="10px" [style.font-size]="style.getFontSize(SIZE.SMALL)" [rowHeight]="style.getFontSize(SIZE.DEFAULT)">
           <mat-grid-tile *ngFor="let c of style.colorSchemes">
-            <button mat-raised-button (click)="style.activeColorScheme = c" [style.color]="c.current" [style.backgroundColor]="c.backgroundColor" [style.border]="c == style.activeColorScheme ? '8px solid red' : '0px'">{{c.name}}</button>
+            <button mat-raised-button (click)="style.activeColorScheme = c" [style.font-size]="style.getFontSize(SIZE.DEFAULT)" [style.height]="style.getFontSize(SIZE.DEFAULT)" [style.color]="c.current" [style.backgroundColor]="c.backgroundColor" [style.border]="c == style.activeColorScheme ? '8px solid red' : '0px'">{{c.name}}</button>
           </mat-grid-tile>
         </mat-grid-list>
       </section>
 
-      <section class="section">
-        <h2>{{'settings.style.fontsize' | translate}}</h2>
-        <mat-slider thumbLabel tickInterval="1" [(ngModel)]="style.fontSize" min="50" max="1100" step="1"></mat-slider>
+      <section class="section" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
+        <h2 [style.font-size]="style.getFontSize(SIZE.SMALL)">{{'settings.style.fontsize' | translate}}</h2>
+        <mat-slider thumbLabel tickInterval="1" [(ngModel)]="style.fontSize" [style.color]="style.activeColorScheme.current" min="50" max="1100" step="1"></mat-slider>
       </section>
     </mat-expansion-panel>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
+    <mat-expansion-panel [style.backgroundColor]="style.activeColorScheme.backgroundColor">
+      <mat-expansion-panel-header [style.lineHeight]="style.getFontSize(SIZE.DEFAULT)" [collapsedHeight]="style.getFontSize(SIZE.DEFAULT)" [expandedHeight]="style.getFontSize(SIZE.DEFAULT)">
+        <mat-panel-title [style.font-size]="style.getFontSize(SIZE.DEFAULT)" [style.color]="style.activeColorScheme.current">
           {{'settings.application.title' | translate}}
         </mat-panel-title>
-        <mat-panel-description>
+        <!--
+        <mat-panel-description  [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.color]="style.activeColorScheme.prev">
           {{'settings.application.description' | translate}}
         </mat-panel-description>
+      -->
       </mat-expansion-panel-header>
 
 
-      <section class="section">
-        <h2>{{'settings.application.files.title' | translate}}</h2>
-        <p>{{'settings.application.files.description' | translate}}</p>
+      <section class="section" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
+        <h2 [style.font-size]="style.getFontSize(SIZE.SMALL)" [style.lineHeight]="style.getFontSize(SIZE.SMALL)">{{'settings.application.files.title' | translate}}</h2>
+        <p [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.lineHeight]="style.getFontSize(SIZE.SMALLER)">{{'settings.application.files.description' | translate}}</p>
         <button mat-raised-button color="primary" (click)="lessons.openDocsFolderInExplorer()">{{'settings.application.files.button' | translate}}</button>
       </section>
 
-      <section class="section">
-        <h2>{{'settings.application.lang.title' | translate}}</h2>
-        <p>{{'settings.application.lang.description' | translate}}</p>
+      <section class="section" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
+        <h2 [style.font-size]="style.getFontSize(SIZE.SMALL)" [style.lineHeight]="style.getFontSize(SIZE.SMALL)">{{'settings.application.lang.title' | translate}}</h2>
+        <p [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.lineHeight]="style.getFontSize(SIZE.SMALLER)">{{'settings.application.lang.description' | translate}}</p>
 
-        <mat-form-field>
+        <mat-form-field [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
           <mat-select placeholder="Language" [(value)]="lang" (selectionChange)="onLangChange()">
-            <mat-option *ngFor="let l of langs" [value]="l.id">
+            <mat-option *ngFor="let l of langs" [value]="l.id" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
               {{ l.description }}
             </mat-option>
           </mat-select>
@@ -76,20 +66,22 @@
       </section>
     </mat-expansion-panel>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
+    <mat-expansion-panel [style.backgroundColor]="style.activeColorScheme.backgroundColor">
+      <mat-expansion-panel-header [style.lineHeight]="style.getFontSize(SIZE.DEFAULT)" [collapsedHeight]="style.getFontSize(SIZE.DEFAULT)" [expandedHeight]="style.getFontSize(SIZE.DEFAULT)">
+        <mat-panel-title [style.font-size]="style.getFontSize(SIZE.DEFAULT)" [style.color]="style.activeColorScheme.current">
           {{'settings.voice.title' | translate}}
         </mat-panel-title>
-        <mat-panel-description>
+        <!--
+        <mat-panel-description  [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.color]="style.activeColorScheme.prev">
           {{'settings.voice.description' | translate}}
         </mat-panel-description>
+      -->
       </mat-expansion-panel-header>
 
 
-      <section class="section">
+      <section class="section" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
 
-        <h2>Control</h2>
+        <h2 [style.font-size]="style.getFontSize(SIZE.SMALL)">Control</h2>
         <mat-grid-list cols="2" rowHeight="60px">
           <mat-grid-tile>
             <form class="example-form">
@@ -106,7 +98,7 @@
           </mat-grid-tile>
         </mat-grid-list>
 
-        <h2>{{'settings.voice.variant' | translate}}</h2>
+        <h2 [style.font-size]="style.getFontSize(SIZE.SMALL)">{{'settings.voice.variant' | translate}}</h2>
         <mat-grid-list cols="2" rowHeight="60px">
           <mat-grid-tile>
             <mat-form-field>
@@ -131,24 +123,24 @@
 
 
 
-        <h2>{{'settings.voice.other.amplitude.title' | translate}}</h2>
-        <p>{{'settings.voice.other.amplitude.description' | translate}}</p>
+        <h2 [style.font-size]="style.getFontSize(SIZE.SMALL)">{{'settings.voice.other.amplitude.title' | translate}}</h2>
+        <p [style.lineHeight]="style.getFontSize(SIZE.SMALLER)" [style.font-size]="style.getFontSize(SIZE.SMALLER)">{{'settings.voice.other.amplitude.description' | translate}}</p>
         <mat-slider thumbLabel tickInterval="1" [(ngModel)]="reader.config.options.amplitude" min="50" max="200" step="1"></mat-slider>
 
-        <h2>{{'settings.voice.other.pitch.title' | translate}}</h2>
-        <p>{{'settings.voice.other.pitch.description' | translate}}</p>
+        <h2 [style.font-size]="style.getFontSize(SIZE.SMALL)">{{'settings.voice.other.pitch.title' | translate}}</h2>
+        <p [style.lineHeight]="style.getFontSize(SIZE.SMALLER)" [style.font-size]="style.getFontSize(SIZE.SMALLER)">{{'settings.voice.other.pitch.description' | translate}}</p>
         <mat-slider thumbLabel tickInterval="1" [(ngModel)]="reader.config.options.pitch" min="50" max="200" step="1"></mat-slider>
 
-        <h2>{{'settings.voice.other.speed.title' | translate}}</h2>
-        <p>{{'settings.voice.other.speed.description' | translate}}</p>
+        <h2 [style.font-size]="style.getFontSize(SIZE.SMALL)">{{'settings.voice.other.speed.title' | translate}}</h2>
+        <p [style.lineHeight]="style.getFontSize(SIZE.SMALLER)" [style.font-size]="style.getFontSize(SIZE.SMALLER)">{{'settings.voice.other.speed.description' | translate}}</p>
         <mat-slider thumbLabel tickInterval="1" [(ngModel)]="reader.config.options.speed" min="50" max="400" step="1"></mat-slider>
 
-        <h2>{{'settings.voice.other.volume.title' | translate}}</h2>
-        <p>{{'settings.voice.other.volume.description' | translate}}</p>
+        <h2 [style.font-size]="style.getFontSize(SIZE.SMALL)">{{'settings.voice.other.volume.title' | translate}}</h2>
+        <p [style.lineHeight]="style.getFontSize(SIZE.SMALLER)" [style.font-size]="style.getFontSize(SIZE.SMALLER)">{{'settings.voice.other.volume.description' | translate}}</p>
         <mat-slider thumbLabel tickInterval="1" [(ngModel)]="reader.config.options.volume" min="0" max="1" step="0.1"></mat-slider>
 
-        <h2>{{'settings.voice.other.capitals.title' | translate}}</h2>
-        <p innerHTML="{{'settings.voice.other.capitals.description' | translate}}"></p>
+        <h2 [style.font-size]="style.getFontSize(SIZE.SMALL)">{{'settings.voice.other.capitals.title' | translate}}</h2>
+        <p [style.lineHeight]="style.getFontSize(SIZE.SMALLER)" [style.font-size]="style.getFontSize(SIZE.SMALLER)" innerHTML="{{'settings.voice.other.capitals.description' | translate}}"></p>
         <mat-slider thumbLabel tickInterval="1" [(ngModel)]="reader.config.options.capitals" min="0" max="30" step="1"></mat-slider>
 
 
@@ -157,74 +149,83 @@
       </section>
     </mat-expansion-panel>
 
-
-    <mat-expansion-panel *ngIf="user.loggedInUser">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
+    <mat-expansion-panel *ngIf="user.loggedInUser" [style.backgroundColor]="style.activeColorScheme.backgroundColor">
+      <mat-expansion-panel-header [style.lineHeight]="style.getFontSize(SIZE.DEFAULT)" [collapsedHeight]="style.getFontSize(SIZE.DEFAULT)" [expandedHeight]="style.getFontSize(SIZE.DEFAULT)">
+        <mat-panel-title [style.font-size]="style.getFontSize(SIZE.DEFAULT)" [style.color]="style.activeColorScheme.current">
           {{'settings.user.title' | translate}}
         </mat-panel-title>
-        <mat-panel-description>
+        <!--
+        <mat-panel-description  [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.color]="style.activeColorScheme.prev">
           {{'settings.user.description' | translate}}
         </mat-panel-description>
+      -->
       </mat-expansion-panel-header>
 
-      <h1>{{'settings.user.stats.title' | translate}}</h1>
-      <section class="section">
-        <h2>{{'settings.user.stats.name' | translate}}</h2>
-        <span>{{user.loggedInUser.name}}</span>
+      <h1 [style.font-size]="style.getFontSize(SIZE.DEFAULT)" [style.lineHeight]="style.getFontSize(SIZE.DEFAULT)">{{'settings.user.stats.title' | translate}}</h1>
+      <section class="section" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
+        <h2 [style.font-size]="style.getFontSize(SIZE.SMALL)" [style.lineHeight]="style.getFontSize(SIZE.SMALL)">{{'settings.user.stats.name' | translate}}</h2>
+        <span [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.lineHeight]="style.getFontSize(SIZE.SMALLER)">{{user.loggedInUser.name}}</span>
       </section>
 
-      <section class="section">
-        <h2>{{'settings.user.stats.laststats' | translate}}</h2>
-        <b>{{'general.typingspeed' | translate}}:</b> {{getFormat(user.loggedInUser?.lastSessionStats.typeSpeed)}}
-        <b>{{'settings.user.stats.mistakes' | translate}}:</b>{{user.loggedInUser?.lastSessionStats.mistakesCount}} ({{getFormat(user.loggedInUser.lastSessionStats.mistakePercentage)}} %)
+      <section class="section" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
+        <h2 [style.font-size]="style.getFontSize(SIZE.SMALL)">{{'settings.user.stats.laststats' | translate}}</h2>
+        <b [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.lineHeight]="style.getFontSize(SIZE.SMALLER)">{{'general.typingspeed' | translate}}:</b>
+        <p [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.lineHeight]="style.getFontSize(SIZE.SMALLER)">{{getFormat(user.loggedInUser?.lastSessionStats.typeSpeed)}}</p>
+        <b [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.lineHeight]="style.getFontSize(SIZE.SMALLER)">{{'settings.user.stats.mistakes' | translate}}:</b>
+        <p [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.lineHeight]="style.getFontSize(SIZE.SMALLER)">{{user.loggedInUser?.lastSessionStats.mistakesCount}} ({{getFormat(user.loggedInUser.lastSessionStats.mistakePercentage)}} %)</p>
 
-        <h3>{{'settings.user.stats.mostmistakes' | translate}}</h3>
-        <mat-grid-list cols="5">
-          <mat-grid-tile *ngFor="let mistake of stats?.getTopMistakes(user.loggedInUser?.lastSessionStats, 10)">
-            <b>{{mistake?.key}}:</b> {{mistake?.count}}
+        <h3 [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.lineHeight]="style.getFontSize(SIZE.SMALLER)">{{'settings.user.stats.mostmistakes' | translate}}</h3>
+        <mat-grid-list cols="5" [rowHeight]="style.getFontSize(SIZE.SMALLER)">
+          <mat-grid-tile *ngFor="let mistake of stats?.getTopMistakes(user.loggedInUser?.lastSessionStats, 10)" [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.lineHeight]="style.getFontSize(SIZE.SMALLER)">
+            <b [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.lineHeight]="style.getFontSize(SIZE.SMALLER)">{{mistake?.key}}:</b>
+            <p [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.lineHeight]="style.getFontSize(SIZE.SMALLER)">{{mistake?.count}}</p>
           </mat-grid-tile>
         </mat-grid-list>
       </section>
 
-      <section class="section">
-        <h2>{{'settings.user.stats.overallstats' | translate}}</h2>
-        <b>{{'general.typingspeed' | translate}}:</b> {{getFormat(user.loggedInUser.overallStats.typeSpeed)}}
-        <b>{{'settings.user.stats.mistakes' | translate}}:</b>{{user.loggedInUser.overallStats.mistakesCount}} ({{getFormat(user.loggedInUser.overallStats.mistakePercentage)}} %)
+      <section class="section" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
+        <h2 [style.font-size]="style.getFontSize(SIZE.SMALL)" [style.lineHeight]="style.getFontSize(SIZE.SMALL)">{{'settings.user.stats.overallstats' | translate}}</h2>
+        <b [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.lineHeight]="style.getFontSize(SIZE.SMALLER)">{{'general.typingspeed' | translate}}:</b>
+        <p [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.lineHeight]="style.getFontSize(SIZE.SMALLER)">{{getFormat(user.loggedInUser.overallStats.typeSpeed)}}</p>
+        <b [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.lineHeight]="style.getFontSize(SIZE.SMALLER)">{{'settings.user.stats.mistakes' | translate}}:</b>
+        <p [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.lineHeight]="style.getFontSize(SIZE.SMALLER)">{{user.loggedInUser.overallStats.mistakesCount}} ({{getFormat(user.loggedInUser.overallStats.mistakePercentage)}} %)</p>
 
-        <h3>{{'settings.user.stats.mostmistakes' | translate}}:</h3>
-        <mat-grid-list cols="5">
+        <h3 [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.lineHeight]="style.getFontSize(SIZE.SMALLER)">{{'settings.user.stats.mostmistakes' | translate}}:</h3>
+        <mat-grid-list cols="5" [rowHeight]="style.getFontSize(SIZE.SMALL)">
           <mat-grid-tile *ngFor="let mistake of stats?.getTopMistakes(user.loggedInUser.overallStats,10)">
-            <b>{{mistake?.key}}:</b> {{mistake?.count}}
+            <b [style.font-size]="style.getFontSize(SIZE.SMALLER)">{{mistake?.key}}:</b>
+            <p [style.font-size]="style.getFontSize(SIZE.SMALLER)">{{mistake?.count}}</p>
           </mat-grid-tile>
         </mat-grid-list>
       </section>
     </mat-expansion-panel>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
+    <mat-expansion-panel [style.backgroundColor]="style.activeColorScheme.backgroundColor">
+      <mat-expansion-panel-header [style.lineHeight]="style.getFontSize(SIZE.DEFAULT)" [collapsedHeight]="style.getFontSize(SIZE.DEFAULT)" [expandedHeight]="style.getFontSize(SIZE.DEFAULT)">
+        <mat-panel-title [style.font-size]="style.getFontSize(SIZE.DEFAULT)" [style.color]="style.activeColorScheme.current">
           {{'settings.nav.title' | translate}}
         </mat-panel-title>
-        <mat-panel-description>
+        <!--
+        <mat-panel-description  [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.color]="style.activeColorScheme.prev">
         </mat-panel-description>
+      -->
       </mat-expansion-panel-header>
-      <section class="section">
-        <mat-grid-list cols="5">
+      <section class="section" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
+        <mat-grid-list cols="2" [rowHeight]="style.getFontSize(SIZE.DEFAULT)">
           <mat-grid-tile>
-            <nav><a mat-raised-button color="primary" routerLink="/levels">{{'settings.nav.levels' | translate}}</a></nav>
+            <nav><a mat-raised-button color="primary" [style.font-size]="style.getFontSize(SIZE.SMALL)" [style.height]="style.getFontSize(SIZE.SMALL)" routerLink="/levels">{{'settings.nav.levels' | translate}}</a></nav>
           </mat-grid-tile>
           <mat-grid-tile>
-            <nav><a mat-raised-button color="primary" routerLink="/login">{{'settings.nav.login' | translate}}</a></nav>
+            <nav><a mat-raised-button color="primary" [style.font-size]="style.getFontSize(SIZE.SMALL)" [style.height]="style.getFontSize(SIZE.SMALL)" routerLink="/login">{{'settings.nav.login' | translate}}</a></nav>
           </mat-grid-tile>
           <mat-grid-tile>
-            <nav> <a mat-raised-button color="primary" routerLink="/settings">{{'settings.nav.settings' | translate}}</a></nav>
+            <nav> <a mat-raised-button color="primary" [style.font-size]="style.getFontSize(SIZE.SMALL)" [style.height]="style.getFontSize(SIZE.SMALL)" routerLink="/settings">{{'settings.nav.settings' | translate}}</a></nav>
           </mat-grid-tile>
           <mat-grid-tile>
-            <nav><a mat-raised-button color="primary" routerLink="/summary">{{'settings.nav.summary' | translate}}</a></nav>
+            <nav><a mat-raised-button color="primary" [style.font-size]="style.getFontSize(SIZE.SMALL)" [style.height]="style.getFontSize(SIZE.SMALL)" routerLink="/summary">{{'settings.nav.summary' | translate}}</a></nav>
           </mat-grid-tile>
           <mat-grid-tile>
-            <nav><a mat-raised-button color="primary" routerLink="/">{{'settings.nav.home' | translate}}</a></nav>
+            <nav><a mat-raised-button color="primary" [style.font-size]="style.getFontSize(SIZE.SMALL)" [style.height]="style.getFontSize(SIZE.SMALL)" routerLink="/">{{'settings.nav.home' | translate}}</a></nav>
           </mat-grid-tile>
         </mat-grid-list>
       </section>

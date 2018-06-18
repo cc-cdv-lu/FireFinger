@@ -9,10 +9,15 @@ mat-card {
 }
 
 .full-width-input {
-  width: 100%;
+  width: 90%;
 }
 
 .container {
   height: 100%;
   width: 100%;
+}
+
+input {
+  border: 1px solid white;
+  padding: 20px;
 }

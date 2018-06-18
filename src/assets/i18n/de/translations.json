@@ -26,7 +26,7 @@
         "description": "Wählen Sie die Sprache der Schnittstelle. Um die Sprache der Lesestimme zu ändern, wechseln Sie zu den Spracheinstellungen.",
         "title": "Spracheinstellungen"
       },
-      "title": "Anwendungseinstellungen"
+      "title": "Anwendung"
     },
     "chapter": {
       "description": "Wählen Sie manuell aus, welches Kapitel gestartet werden soll",
@@ -38,11 +38,12 @@
       "fr": "Französich"
     },
     "nav": {
+      "home": "Zurück",
       "levels": "Kapitel",
       "login": "Anmeldung",
       "settings": "Einstellungen",
       "summary": "Zusammenfassung",
-      "title": "Manuelle Navigation"
+      "title": "Navigation"
     },
     "style": {
       "colorscheme": "Ändern Sie das Farbschema",
@@ -60,7 +61,7 @@
         "overallstats": "Gesamtstatistik",
         "title": "Statistiken"
       },
-      "title": "Benutzerinformation"
+      "title": "Benutzer"
     },
     "voice": {
       "control": {
@@ -90,7 +91,7 @@
           "title": "Lautstärke"
         }
       },
-      "title": "Spracheinstellungen",
+      "title": "Sprache",
       "variant": "Sprachvariante"
     }
   },

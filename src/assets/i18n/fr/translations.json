@@ -26,7 +26,7 @@
         "description": "Choisissez la langue de l'interface. Pour changer la langue de la voix de lecture, accédez aux paramètres de la voix.",
         "title": "Paramètres de langue"
       },
-      "title": "Paramètres de l'application"
+      "title": "Application"
     },
     "chapter": {
       "description": "Sélectionnez manuellement le chapitre à lancer",
@@ -38,11 +38,12 @@
       "fr": "Français"
     },
     "nav": {
+      "home": "Accueil",
       "levels": "Chapitre",
       "login": "S'identifier",
       "settings": "Paramètres",
       "summary": "Résumé",
-      "title": "Navigation manuelle"
+      "title": "Navigation"
     },
     "style": {
       "colorscheme": "Modifier le schéma de couleurs",
@@ -60,7 +61,7 @@
         "overallstats": "Statistiques générales",
         "title": "Statistiques"
       },
-      "title": "Informations utilisateur"
+      "title": "Utilisateur"
     },
     "voice": {
       "control": {
@@ -90,7 +91,7 @@
           "title": "Le volume"
         }
       },
-      "title": "Paramètres de voix",
+      "title": "Voix",
       "variant": "Variante vocale"
     }
   },
