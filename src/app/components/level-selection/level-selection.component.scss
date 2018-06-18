@@ -1,3 +1,38 @@
-.section {
-  width: 75%;
+.titleBar {
+  position: relative;
+  width: 100%;
+
+  h1 {
+    text-align: center;
+  }
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+}
+
+mat-expansion-panel {
+  margin: 10px;
+  position: relative;
+}
+
+mat-card {
+  margin: 10px !important;
+  max-width: 80%;
+  max-height: 70%;
+
+  mat-card-title {
+    font-weight: bold;
+  }
+}
+@mixin mat-icon-size($size: 24px) {
+  font-size: $size;
+  height: $size;
+  width: $size;
+  line-height: $size;
+}
+
+mat-icon {
+  @include mat-icon-size(200px);
 }

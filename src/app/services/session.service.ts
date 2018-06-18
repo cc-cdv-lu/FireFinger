@@ -198,7 +198,7 @@ export class SessionService {
   loadSession(lesson: Lesson, index: number) {
     this.reset();
     this.currentLesson = lesson;
-    this.currentChapter = lesson.chapters[index];;
+    this.currentChapter = lesson.chapters[index];
     this.currentIndex = index;
     this.isSessionLoaded = true;
     this.saveSession();

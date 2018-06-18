@@ -1,5 +1,5 @@
 ﻿{
-	"name": "Kapitel 04a",
+	"name": "Kapitel 04b",
 	"intro": "xxxxxxxxxxxx",
 	"type": 0,
 	"characters": "asdf jklöghei\n,",

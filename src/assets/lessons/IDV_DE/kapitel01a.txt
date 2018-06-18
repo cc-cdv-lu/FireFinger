@@ -5,7 +5,6 @@
 	"characters": "asdf jklö",
 	"newCharacters": "asdf jklö",
 	"comments": "asdf jklö",
-	"amount": 100,
-	"newCharacters": ""
+	"amount": 100
 }
 ############################

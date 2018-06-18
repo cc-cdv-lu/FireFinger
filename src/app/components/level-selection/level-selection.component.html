@@ -1,12 +1,41 @@
-<section class="section" *ngFor="let set of allLessons" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.current">
-  <h2>{{set.name}}</h2>
-  <mat-grid-list cols="6" [style.font-size]="'1vh'">
-    <div class="row" *ngFor="let chapter of set.chapters; let i = index" (click)="session.loadSession(set, i); goHome()">
-      <mat-grid-tile  [style.font-size]="'2vh'" colspan="2">{{chapter.name}}</mat-grid-tile>
-      <mat-grid-tile colspan="2">{{chapter.newCharacters}}</mat-grid-tile>
-      <!--<mat-grid-tile colspan="4">{{chapter.characters}}</mat-grid-tile>-->
-      <mat-grid-tile>{{chapter.intro}}</mat-grid-tile>
-      <mat-grid-tile>{{chapter.amount}}</mat-grid-tile>
-    </div>
+<div class="titleBar" [style.backgroundColor]="style.activeColorScheme.backgroundColor">
+  <mat-grid-list cols="5">
+    <mat-grid-tile>
+      <button mat-icon-button [style.font-size]="style.fontSize / 4 + 'px'" [style.color]="style.activeColorScheme.prev" (click)="goHome();">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile colspan=3>
+      <h1 [style.font-size]="style.fontSize / 4 + 'px'" [style.color]="style.activeColorScheme.current">Chapter selection</h1>
+    </mat-grid-tile>
+    <mat-grid-tile>
+    </mat-grid-tile>
   </mat-grid-list>
-</section>
+</div>
+<div class="container" [style.backgroundColor]="style.activeColorScheme.prev">
+  <mat-expansion-panel *ngFor="let set of allLessons">
+    <mat-expansion-panel-header [style.backgroundColor]="style.activeColorScheme.backgroundColor" [collapsedHeight]="style.height / 4 + 'px'" [expandedHeight]="style.height / 4 + 'px'">
+      <mat-panel-title [style.font-size]="style.fontSize / 6 + 'px'" [style.color]="style.activeColorScheme.current">
+        {{set.name}}
+      </mat-panel-title>
+      <mat-panel-description [style.font-size]="style.fontSize / 8 + 'px'" [style.color]="style.activeColorScheme.prev">
+        Chapters: {{set.chapters.length}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-card class="example-card" *ngFor="let chapter of set.chapters; let i = index" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
+      <mat-card-header [style.color]="style.activeColorScheme.current">
+        <mat-card-title [style.color]="style.activeColorScheme.current" colspan="2" [style.font-size]="style.fontSize / 6 + 'px'" [style.lineHeight]="style.fontSize / 6 + 'px'">{{chapter.name}}</mat-card-title>
+        <mat-card-subtitle [style.color]="style.activeColorScheme.prev" *ngIf="chapter.newCharacters" [style.font-size]="style.fontSize / 8 + 'px'" [style.lineHeight]="style.fontSize / 8 + 'px'">{{chapter.newCharacters}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <span *ngIf="chapter.intro" [style.font-size]="style.fontSize / 8 + 'px'">Intro: {{chapter.intro}}</span>
+        <span [style.font-size]="style.fontSize / 8 + 'px'"> Letter count: {{chapter.content.length}}</span>
+        <!-- put length instead -->
+        <mat-card-actions>
+          <button mat-raised-button color="primary" [style.font-size]="style.fontSize / 6 + 'px'" [style.height]="style.fontSize / 6 + 'px'" (click)="session.loadSession(set, i); goHome()">Start</button>
+        </mat-card-actions>
+      </mat-card-content>
+    </mat-card>
+  </mat-expansion-panel>
+</div>

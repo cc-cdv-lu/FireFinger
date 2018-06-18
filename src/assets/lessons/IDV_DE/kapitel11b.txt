@@ -1,5 +1,5 @@
 ﻿{
-	"name": "Kapitel 11a",
+	"name": "Kapitel 11b",
 	"intro": "xxxxxxxxxxxx",
 	"type": 0,
 	"characters": "aAsSdDfF jJkKlLöÖgGhHeEiI\n,rRuUwWoO.qQpPtTzZvVmMbBnN",
