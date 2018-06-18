@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material';
 
 import { SettingsComponent } from '../settings/settings.component';
 
-import { StyleService } from '../../services/style.service';
+import { StyleService, SIZE } from '../../services/style.service';
 import { SessionService } from '../../services/session.service';
 import { StatisticsService } from '../../services/statistics.service';
 import { UserService } from '../../services/user.service';
@@ -23,7 +23,7 @@ enum VIEW {
   styleUrls: ['./main-view.component.scss']
 })
 export class MainViewComponent implements OnInit {
-
+  SIZE = SIZE;
   constructor(public session: SessionService, private electron: ElectronService, private dialog: MatDialog,
     public style: StyleService, public stats: StatisticsService, private user: UserService, private router: Router,
     public translate: TranslateService) {
@@ -59,10 +59,6 @@ export class MainViewComponent implements OnInit {
 
   areSettingsOpen: boolean = false;
 
-  factor = 2;
-  getRowHeight() {
-    return this.style.fontSize / this.factor + "px";
-  }
 
   /* Shortcuts */
   getPrev() {
@@ -79,8 +75,10 @@ export class MainViewComponent implements OnInit {
   }
 
   getWarningText() {
-    let c: string = this.session.getCurrentChar();
     let output = "";
+    if (!this.session) return output;
+    let c: string = this.session.getCurrentChar();
+    if (!c) return output;
     switch (c) {
       case "\n": return this.translate.instant('keys.enter');
       case " ": return this.translate.instant('keys.space');

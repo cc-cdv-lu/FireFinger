@@ -7,3 +7,9 @@ html {
   padding: 0;
   height: 100%;
 }
+
+* {
+  /*Replace with your custom font*/
+  font-family: Verdana , sans-serif !important;
+  /*Add the !important to overwrite all elements*/
+}

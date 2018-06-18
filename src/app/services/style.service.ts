@@ -10,6 +10,9 @@ export class ColorScheme {
 }
 const FONT_KEY = "FONT";
 const COLOR_SCHEME_KEY = "CS_KEY";
+export enum SIZE {
+  BIGGEST, BIGGER, BIG, DEFAULT, SMALL, SMALLER
+}
 
 @Injectable({
   providedIn: 'root'
@@ -70,11 +73,19 @@ export class StyleService {
   ]
   _activeColorScheme: ColorScheme = this.colorSchemes[1];
 
-  getFormattedFontSize() {
-    return this.fontSize + "px";
-  }
-  getFormattedWarningSize() {
-    return this.fontSize / 8 + "px";
+  getFontSize(n: SIZE) {
+    switch (n) {
+      case SIZE.SMALLER: return this.fontSize / 12 + 'px';
+      case SIZE.SMALL: return this.fontSize / 8 + 'px';
+      case SIZE.DEFAULT: return this.fontSize / 6 + 'px';
+      case SIZE.BIG: return this.fontSize / 4 + 'px';
+      case SIZE.BIGGER: return this.fontSize / 2 + 'px';
+      case SIZE.BIGGEST: return this.fontSize + 'px';
+      default: {
+        console.error("Undefined font size: ", n);
+        return this.fontSize;
+      }
+    }
   }
 
   private _fontSize: number = 800;

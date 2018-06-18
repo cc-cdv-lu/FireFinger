@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 
-import { StyleService } from '../../services/style.service';
+import { StyleService, SIZE } from '../../services/style.service';
 import { SessionService } from '../../services/session.service';
 import { StatisticsService } from '../../services/statistics.service';
 import { ElectronService } from '../../providers/electron.service';
@@ -12,7 +12,7 @@ import { ElectronService } from '../../providers/electron.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  SIZE = SIZE;
   constructor(public stats: StatisticsService, public style: StyleService,
     public session: SessionService, private electron: ElectronService) { }
 

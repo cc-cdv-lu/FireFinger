@@ -1,12 +1,12 @@
 <div class="mainView" [style.backgroundColor]="session.last_wrong_char != '' ? 'red' : style.activeColorScheme.backgroundColor">
-  <mat-grid-list cols="9" [rowHeight]="getRowHeight()" class="viewContainer">
+  <mat-grid-list cols="9" [rowHeight]="style.getFontSize(SIZE.BIGGER)" class="viewContainer">
     <!-- Some hacky stuff like &lrm; and direction: rtl; enabled the seemless transition from prev to current to next -->
-    <mat-grid-tile class="textTile" colspan="9" rowspan=3 [style.font-size]="style.getFormattedFontSize()">
+    <mat-grid-tile class="textTile" colspan="9" rowspan=3 [style.font-size]="style.getFontSize(SIZE.BIGGEST)">
       <span class="prev" [style.color]="style.activeColorScheme.prev">{{getPrev()}}&lrm;</span>
       <span class="current" [style.color]="style.activeColorScheme.current">{{getCurrent()}}</span>
       <span class="next" [style.color]="style.activeColorScheme.next">&lrm;{{getNext()}}</span>
     </mat-grid-tile>
-    <mat-grid-tile colspan="9" rowSpan=1 [style.color]="style.activeColorScheme.current" [style.font-size]="style.getFormattedWarningSize()">
+    <mat-grid-tile colspan="9" rowSpan=1 [style.color]="style.activeColorScheme.current" [style.font-size]="style.getFontSize(SIZE.SMALL)">
       {{getWarningText()}}
     </mat-grid-tile>
 
@@ -14,7 +14,7 @@
 </div>
 
 <div class="footer" *ngIf="activateDebug" [style.color]="style.activeColorScheme.current">
-  <mat-grid-list cols="10" rowHeight="50px">
+  <mat-grid-list cols="10" rowHeight="style.getFontSize(SIZE.BIGGEST)">
     <mat-grid-tile colspan="2">
       <button mat-raised-button (click)="printInfo()">Print info</button>
       <button mat-raised-button (click)="nukeElectronStorage()">Nuke data</button>
