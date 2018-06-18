@@ -34,7 +34,7 @@
         <h2>{{'settings.style.colorscheme' | translate}}</h2>
         <mat-grid-list cols="5">
           <mat-grid-tile *ngFor="let c of style.colorSchemes">
-            <button mat-raised-button (click)="style.setActiveColorScheme(c)" [style.color]="c.current" [style.backgroundColor]="c.backgroundColor" [style.border]="c == style.activeColorScheme ? '8px solid red' : '0px'">{{c.name}}</button>
+            <button mat-raised-button (click)="style.activeColorScheme = c" [style.color]="c.current" [style.backgroundColor]="c.backgroundColor" [style.border]="c == style.activeColorScheme ? '8px solid red' : '0px'">{{c.name}}</button>
           </mat-grid-tile>
         </mat-grid-list>
       </section>

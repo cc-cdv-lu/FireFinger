@@ -68,7 +68,7 @@ export class StyleService {
       next: 'lightgray'
     }
   ]
-  activeColorScheme: ColorScheme = this.colorSchemes[1];
+  _activeColorScheme: ColorScheme = this.colorSchemes[1];
 
   getFormattedFontSize() {
     return this.fontSize + "px";
@@ -87,8 +87,12 @@ export class StyleService {
     console.log("Set font size to: ", n)
     this.electron.config.set(FONT_KEY, n);
   }
-
-  setActiveColorScheme(c: ColorScheme) {
-    this.activeColorScheme = c;
+  get activeColorScheme() {
+    return this._activeColorScheme;
+  }
+  set activeColorScheme(c: ColorScheme) {
+    if (!c) return;
+    this._activeColorScheme = c;
+    this.electron.config.set(COLOR_SCHEME_KEY, c);
   }
 }
