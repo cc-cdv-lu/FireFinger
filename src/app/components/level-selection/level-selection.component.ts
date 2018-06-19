@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router } from '@angular/router'
 
 import { LessonService } from '../../services/lesson.service';
@@ -11,10 +11,12 @@ import { StyleService, SIZE } from '../../services/style.service';
   styleUrls: ['./level-selection.component.scss']
 })
 export class LevelSelectionComponent implements OnInit {
+  @HostBinding('class') componentCssClass;
   SIZE = SIZE;
   constructor(public lesson: LessonService, public session: SessionService, public router: Router, public style: StyleService) { }
   allLessons = this.lesson.lessons;
   ngOnInit() {
+    this.componentCssClass = this.style.theme;
   }
 
   goHome() {

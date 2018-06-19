@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostBinding } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   @ViewChild('loginField') loginField: ElementRef;
   SIZE = SIZE;
   inputField: string;
+  @HostBinding('class') componentCssClass;
 
   constructor(private electron: ElectronService, private user: UserService, private router: Router, public style: StyleService) {
     let lastUser = this.electron.config.get("LAST_LOGIN");
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
     this.loginField.nativeElement.focus();
+    this.componentCssClass = this.style.theme;
   }
 
   isFieldInvalid(username: string) {

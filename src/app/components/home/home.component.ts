@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 
 
 import { StyleService, SIZE } from '../../services/style.service';
@@ -12,11 +12,13 @@ import { ElectronService } from '../../providers/electron.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  @HostBinding('class') componentCssClass;
   SIZE = SIZE;
   constructor(public stats: StatisticsService, public style: StyleService,
     public session: SessionService, private electron: ElectronService) { }
 
   ngOnInit() {
+    this.componentCssClass = this.style.theme;
   }
 
 

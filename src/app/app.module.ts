@@ -11,6 +11,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 // NG Translate
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -66,6 +67,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    OverlayModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -83,7 +85,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserService,
     StringHelperService,
     ReaderService,
-    SoundEffectService
+    SoundEffectService,
+    SettingsComponent
   ],
   bootstrap: [AppComponent],
   entryComponents: [SettingsComponent, LoginComponent]

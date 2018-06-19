@@ -1,11 +1,11 @@
-<div class="container" [style.backgroundColor]="session.last_wrong_char != '' ? 'red' : style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.current">
+<div class="container" >
   <div class="header">
     <mat-grid-list cols=11 [rowHeight]="'4rem'">
       <mat-grid-tile>
         <button mat-button mat-raised-button color="primary" (click)="closeApp()">{{'general.closeapp' | translate}}</button>
       </mat-grid-tile>
 
-      <mat-grid-tile class="ProgressBar" colspan="5" [style.color]="style.activeColorScheme.current">
+      <mat-grid-tile class="ProgressBar" colspan="5">
         <mat-progress-bar mode="determinate" [value]="getProgress()"></mat-progress-bar>
       </mat-grid-tile>
 
@@ -26,12 +26,23 @@
   <main-view></main-view>
   <div class="footer">
     <mat-grid-list class="control" cols=11 [rowHeight]="'4rem'">
-      <mat-grid-tile colspan="5" [style.color]="style.activeColorScheme.current">
+      <!--
+      <mat-grid-tile colspan="3">
+        <button mat-raised-button color="primary" (click)="style.onSetTheme('default-theme')">Default</button>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="5">
+        <button mat-raised-button color="primary" (click)="style.onSetTheme('dark-theme')">Dark</button>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="3">
+        <button mat-raised-button color="primary" (click)="style.onSetTheme('light-theme')">Light</button>
+      </mat-grid-tile>
+    -->
+      <mat-grid-tile colspan="5">
         <p>{{'mainView.mistakes' | translate}}: {{stats.currentStats.mistakesCount}} ({{session.getMistakePercentage()}})</p>
       </mat-grid-tile>
 
 
-      <mat-grid-tile colspan="6" [style.color]="style.activeColorScheme.current">
+      <mat-grid-tile colspan="6">
         <p>{{'mainView.typespeed' | translate}}: {{stats.currentStats.typeSpeed}}</p>
       </mat-grid-tile>
     </mat-grid-list>

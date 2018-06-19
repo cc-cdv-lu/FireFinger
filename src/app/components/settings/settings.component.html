@@ -6,7 +6,7 @@
   <mat-accordion [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
 
     <mat-expansion-panel [style.backgroundColor]="style.activeColorScheme.backgroundColor">
-      <mat-expansion-panel-header  [collapsedHeight]="'4rem'" [expandedHeight]="'4rem'">
+      <mat-expansion-panel-header [collapsedHeight]="'4rem'" [expandedHeight]="'4rem'">
         <mat-panel-title [style.color]="style.activeColorScheme.current">
           {{'settings.style.title' | translate}}
         </mat-panel-title>
@@ -20,9 +20,16 @@
 
       <section class="section" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
         <h2>{{'settings.style.colorscheme' | translate}}</h2>
-          <div *ngFor="let c of style.colorSchemes">
-            <button mat-raised-button (click)="style.activeColorScheme = c" [style.color]="c.current" [style.backgroundColor]="c.backgroundColor" [style.border]="c == style.activeColorScheme ? '8px solid red' : '0px'">{{c.name}}</button>
-          </div>
+        <div *ngFor="let c of style.colorSchemes">
+          <button mat-raised-button (click)="style.activeColorScheme = c" [style.color]="c.current" [style.backgroundColor]="c.backgroundColor" [style.border]="c == style.activeColorScheme ? '8px solid red' : '0px'">{{c.name}}</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <button mat-raised-button color="primary" (click)="changeTheme('default-theme')">Default</button>
+        <button mat-raised-button color="primary" (click)="changeTheme('dark-theme')">Dark</button>
+        <button mat-raised-button color="primary" (click)="changeTheme('light-theme')">Light</button>
+        <button mat-raised-button color="primary" (click)="changeTheme('candy-carousel-theme')">candy-carousel-theme</button>
       </section>
 
       <section class="section" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
@@ -207,26 +214,26 @@
         <mat-panel-description  [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.color]="style.activeColorScheme.prev">
         </mat-panel-description>
       -->
-        </mat-expansion-panel-header>
-        <section class="section" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
-          <mat-grid-list cols="2" [rowHeight]="'4rem'">
-            <mat-grid-tile>
-              <nav><a mat-raised-button color="primary" routerLink="/levels">{{'settings.nav.levels' | translate}}</a></nav>
-            </mat-grid-tile>
-            <mat-grid-tile>
-              <nav><a mat-raised-button color="primary" routerLink="/login">{{'settings.nav.login' | translate}}</a></nav>
-            </mat-grid-tile>
-            <mat-grid-tile>
-              <nav> <a mat-raised-button color="primary" routerLink="/settings">{{'settings.nav.settings' | translate}}</a></nav>
-            </mat-grid-tile>
-            <mat-grid-tile>
-              <nav><a mat-raised-button color="primary" routerLink="/summary">{{'settings.nav.summary' | translate}}</a></nav>
-            </mat-grid-tile>
-            <mat-grid-tile>
-              <nav><a mat-raised-button color="primary" routerLink="/">{{'settings.nav.home' | translate}}</a></nav>
-            </mat-grid-tile>
-          </mat-grid-list>
-        </section>
+      </mat-expansion-panel-header>
+      <section class="section" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
+        <mat-grid-list cols="2" [rowHeight]="'4rem'">
+          <mat-grid-tile>
+            <nav><a mat-raised-button color="primary" routerLink="/levels">{{'settings.nav.levels' | translate}}</a></nav>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <nav><a mat-raised-button color="primary" routerLink="/login">{{'settings.nav.login' | translate}}</a></nav>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <nav> <a mat-raised-button color="primary" routerLink="/settings">{{'settings.nav.settings' | translate}}</a></nav>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <nav><a mat-raised-button color="primary" routerLink="/summary">{{'settings.nav.summary' | translate}}</a></nav>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <nav><a mat-raised-button color="primary" routerLink="/">{{'settings.nav.home' | translate}}</a></nav>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </section>
     </mat-expansion-panel>
 
 

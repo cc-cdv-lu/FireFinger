@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 
 import { LessonService } from '../../services/lesson.service';
 import { SessionService } from '../../services/session.service';
@@ -16,7 +16,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-
+  @HostBinding('class') componentCssClass;
   langs = [
     {
       id: 'de',
@@ -40,6 +40,7 @@ export class SettingsComponent implements OnInit {
   Math = Math;
   ngOnInit() {
     this.lang = this.translate.currentLang;
+    this.componentCssClass = this.style.theme;
   }
 
   getFormat(n: number) {
@@ -58,6 +59,10 @@ export class SettingsComponent implements OnInit {
   onLangChange() {
     this.translate.use(this.lang);
     this.electron.config.set("LANG", this.lang)
+  }
+  changeTheme(theme) {
+    this.style.theme = theme;
+    this.componentCssClass = this.style.theme;
   }
 
 

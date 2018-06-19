@@ -1,13 +1,12 @@
-<div class="mainView" [style.backgroundColor]="session.last_wrong_char != '' ? 'red' : style.activeColorScheme.backgroundColor">
+<div class="mainView" [style.backgroundColor]="session.last_wrong_char != '' ? 'warning' : 'primary'">
   <mat-grid-list cols="9" class="viewContainer" [rowHeight]="'8rem'">
-    <!-- Some hacky stuff like &lrm; and direction: rtl; enabled the seemless transition from prev to current to next -->
     <mat-grid-tile class="textTile HUGE" colspan="9" rowspan=3>
-      <span class="HUGE prev" [style.color]="style.activeColorScheme.prev">{{getPrev()}}&lrm;</span>
-      <span class="HUGE current" [style.color]="style.activeColorScheme.current">{{getCurrent()}}</span>
-      <span class="HUGE next" [style.color]="style.activeColorScheme.next">&lrm;{{getNext()}}</span>
+      <span class="HUGE prev">{{getPrev()}}&lrm;</span>
+      <span class="HUGE current highlight" [style.color]="'accent'">{{getCurrent()}}</span>
+      <span class="HUGE next">&lrm;{{getNext()}}</span>
     </mat-grid-tile>
-    <mat-grid-tile colspan="9" rowSpan=1 [style.color]="style.activeColorScheme.current">
-      <h3>{{getWarningText()}}</h3>
+    <mat-grid-tile colspan="9" rowSpan=1 [style.color]="'accent'">
+      <h3  class="highlight">{{getWarningText()}}</h3>
     </mat-grid-tile>
 
   </mat-grid-list>
