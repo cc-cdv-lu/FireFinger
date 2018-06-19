@@ -56,7 +56,7 @@ export class LessonService {
   }
 
   openDocsFolderInExplorer() {
-    this.electron.shell.openExternal(this.docsURL)
+    this.electron.shell.openExternal(this.appDataURL)
   }
 
   firstLaunch() {
