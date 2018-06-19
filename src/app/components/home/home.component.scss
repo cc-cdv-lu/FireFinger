@@ -11,17 +11,22 @@
     height: 79%;
   }
 
-  .control {
-    max-height: 20%;
+  .header {
+    max-height: 10%;
     width: 100%;
     top: 0;
     position: absolute;
-
-    mat-grid-tile {}
 
     mat-progress-bar {
       max-width: 80%;
       height: 50%;
     }
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    max-height: 10%;
   }
 }

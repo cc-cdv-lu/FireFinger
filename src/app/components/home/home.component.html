@@ -1,33 +1,39 @@
-<div class="container" [style.font-size]="style.getFontSize(SIZE.DEFAULT)" [style.backgroundColor]="session.last_wrong_char != '' ? 'red' : style.activeColorScheme.backgroundColor"
-[style.color]="style.activeColorScheme.current">
-  <mat-grid-list class="control" cols=11 rowHeight="40%">
-    <mat-grid-tile>
-      <button mat-button mat-raised-button color="primary"  [style.lineHeight]="style.getFontSize(SIZE.DEFAULT)" (click)="closeApp()">{{'general.closeapp' | translate}}</button>
-    </mat-grid-tile>
+<div class="container" [style.backgroundColor]="session.last_wrong_char != '' ? 'red' : style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.current">
+  <div class="header">
+    <mat-grid-list cols=11 [rowHeight]="'4rem'">
+      <mat-grid-tile>
+        <button mat-button mat-raised-button color="primary" (click)="closeApp()">{{'general.closeapp' | translate}}</button>
+      </mat-grid-tile>
 
-    <mat-grid-tile class="ProgressBar" colspan="5" [style.color]="style.activeColorScheme.current">
-      <mat-progress-bar mode="determinate" [value]="getProgress()"></mat-progress-bar>
-    </mat-grid-tile>
+      <mat-grid-tile class="ProgressBar" colspan="5" [style.color]="style.activeColorScheme.current">
+        <mat-progress-bar mode="determinate" [value]="getProgress()"></mat-progress-bar>
+      </mat-grid-tile>
 
-    <mat-grid-tile colspan="3">
-      <nav><a mat-raised-button color="primary"  [style.lineHeight]="style.getFontSize(SIZE.DEFAULT)" [style.font-size]="style.getFontSize(SIZE.DEFAULT)" routerLink="/settings">{{'settings.nav.settings' | translate}}</a></nav>
-    </mat-grid-tile>
+      <mat-grid-tile colspan="3">
+        <nav><a mat-raised-button color="primary" routerLink="/settings">{{'settings.nav.settings' | translate}}</a></nav>
+      </mat-grid-tile>
 
-    <mat-grid-tile colspan="2">
-      <nav><a mat-raised-button color="primary" [style.lineHeight]="style.getFontSize(SIZE.DEFAULT)" [style.font-size]="style.getFontSize(SIZE.DEFAULT)" routerLink="/levels">{{'settings.nav.levels' | translate}}</a></nav>
-    </mat-grid-tile>
-
-
-    <mat-grid-tile colspan="5" [style.color]="style.activeColorScheme.current">
-      {{'mainView.mistakes' | translate}}: {{stats.currentStats.mistakesCount}} ({{session.getMistakePercentage()}})
-    </mat-grid-tile>
+      <mat-grid-tile colspan="2">
+        <nav><a mat-raised-button color="primary" routerLink="/levels">{{'settings.nav.levels' | translate}}</a></nav>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
 
 
-    <mat-grid-tile colspan="6" [style.color]="style.activeColorScheme.current">
-      {{'mainView.typespeed' | translate}}: {{stats.currentStats.typeSpeed}}
-    </mat-grid-tile>
 
 
-  </mat-grid-list>
+
   <main-view></main-view>
+  <div class="footer">
+    <mat-grid-list class="control" cols=11 [rowHeight]="'4rem'">
+      <mat-grid-tile colspan="5" [style.color]="style.activeColorScheme.current">
+        <p>{{'mainView.mistakes' | translate}}: {{stats.currentStats.mistakesCount}} ({{session.getMistakePercentage()}})</p>
+      </mat-grid-tile>
+
+
+      <mat-grid-tile colspan="6" [style.color]="style.activeColorScheme.current">
+        <p>{{'mainView.typespeed' | translate}}: {{stats.currentStats.typeSpeed}}</p>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
 </div>

@@ -1,12 +1,12 @@
 <div class="titleBar" [style.backgroundColor]="style.activeColorScheme.backgroundColor">
   <mat-grid-list cols="5">
     <mat-grid-tile>
-      <button mat-icon-button [style.font-size]="style.getFontSize(SIZE.BIG)" [style.color]="style.activeColorScheme.prev" (click)="goHome();">
+      <button mat-icon-button [style.color]="style.activeColorScheme.prev" (click)="goHome();">
         <mat-icon>keyboard_arrow_left</mat-icon>
       </button>
     </mat-grid-tile>
     <mat-grid-tile colspan=3>
-      <h1 [style.font-size]="style.getFontSize(SIZE.BIG)" [style.color]="style.activeColorScheme.current">Chapter selection</h1>
+      <h3 [style.color]="style.activeColorScheme.current">Chapter selection</h3>
     </mat-grid-tile>
     <mat-grid-tile>
     </mat-grid-tile>
@@ -15,25 +15,25 @@
 <div class="container" [style.backgroundColor]="style.activeColorScheme.prev">
   <mat-expansion-panel *ngFor="let set of allLessons">
     <mat-expansion-panel-header [style.backgroundColor]="style.activeColorScheme.backgroundColor" [collapsedHeight]="style.getFontSize(SIZE.BIG)" [expandedHeight]="style.getFontSize(SIZE.BIG)">
-      <mat-panel-title [style.font-size]="style.getFontSize(SIZE.DEFAULT)" [style.color]="style.activeColorScheme.current">
+      <mat-panel-title [style.color]="style.activeColorScheme.current">
         {{set.name}}
       </mat-panel-title>
-      <mat-panel-description [style.font-size]="style.getFontSize(SIZE.SMALL)" [style.color]="style.activeColorScheme.prev">
+      <mat-panel-description [style.color]="style.activeColorScheme.prev">
         Chapters: {{set.chapters.length}}
       </mat-panel-description>
     </mat-expansion-panel-header>
 
     <mat-card class="example-card" *ngFor="let chapter of set.chapters; let i = index" [style.backgroundColor]="style.activeColorScheme.backgroundColor" [style.color]="style.activeColorScheme.prev">
       <mat-card-header [style.color]="style.activeColorScheme.current">
-        <mat-card-title [style.color]="style.activeColorScheme.current" colspan="2" [style.font-size]="style.getFontSize(SIZE.DEFAULT)" [style.lineHeight]="style.getFontSize(SIZE.DEFAULT)">{{chapter.name}}</mat-card-title>
-        <mat-card-subtitle [style.color]="style.activeColorScheme.prev" *ngIf="chapter.newCharacters" [style.font-size]="style.getFontSize(SIZE.SMALL)" [style.lineHeight]="style.getFontSize(SIZE.SMALL)">{{chapter.newCharacters}}</mat-card-subtitle>
+        <mat-card-title [style.color]="style.activeColorScheme.current" colspan="2">{{chapter.name}}</mat-card-title>
+        <mat-card-subtitle [style.color]="style.activeColorScheme.prev" *ngIf="chapter.newCharacters">{{chapter.newCharacters}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <span *ngIf="chapter.intro" [style.font-size]="style.getFontSize(SIZE.SMALL)">Intro: {{chapter.intro}}</span>
-        <span [style.font-size]="style.getFontSize(SIZE.SMALL)"> Letter count: {{chapter.content.length}}</span>
+        <span *ngIf="chapter.intro">Intro: {{chapter.intro}}</span>
+        <span> Letter count: {{chapter.content.length}}</span>
         <!-- put length instead -->
         <mat-card-actions>
-          <button mat-raised-button color="primary" [style.font-size]="style.getFontSize(SIZE.DEFAULT)" [style.height]="style.getFontSize(SIZE.DEFAULT)" (click)="session.loadSession(set, i); goHome()">Start</button>
+          <button mat-raised-button color="primary" (click)="session.loadSession(set, i); goHome()">Start</button>
         </mat-card-actions>
       </mat-card-content>
     </mat-card>

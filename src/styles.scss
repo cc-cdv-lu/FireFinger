@@ -8,6 +8,70 @@ html {
   height: 100%;
 }
 
+html {
+  font-size: 20px;
+
+  a,
+  button,
+  mat-button,
+  nav {
+    font-size: 3rem !important;
+    line-height: 3rem !important;
+  }
+
+  h1 {
+    font-size: 10rem !important;
+    line-height: 10rem !important;
+  }
+
+  h2 {
+    font-size: 6rem !important;
+    line-height: 6rem !important;
+  }
+
+  h3 {
+    font-size: 5rem !important;
+    line-height: 5rem !important;
+  }
+
+  h4,
+  input,
+  mat-card-title,
+  mat-expansion-panel-header,
+  mat-panel-title {
+    font-size: 4rem !important;
+    line-height: 4rem !important;
+  }
+
+  mat-expansion-panel-header {
+    expandedHeight: 4rem !important;
+  }
+
+  input {
+    border: 1px solid white !important;
+    padding: 20px !important;
+  }
+
+  h5,
+  mat-card-subtitle,
+  mat-panel-description {
+    font-size: 3rem !important;
+    line-height: 3rem !important;
+  }
+
+  b,
+  p,
+  span {
+    font-size: 2rem !important;
+    line-height: 2rem !important;
+  }
+
+  .HUGE {
+    font-size: 20rem !important;
+    line-height: 20rem !important;
+  }
+}
+
 * {
   /*Replace with your custom font*/
   font-family: Verdana , sans-serif !important;

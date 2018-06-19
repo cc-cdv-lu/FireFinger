@@ -2,10 +2,10 @@
   <div class="center">
     <mat-card class="card" [style.backgroundColor]="didWin() ? 'green' : 'red'" [style.color]="'white'">
       <mat-card-title>
-        {{'summary.result.title' | translate}}
+        <h1>{{'summary.result.title' | translate}}</h1>
       </mat-card-title>
       <mat-card-content>
-        {{getResultText()}}
+        <h4>{{getResultText()}}</h4>
       </mat-card-content>
     </mat-card>
 
@@ -15,10 +15,14 @@
       </mat-card-title>
       <mat-card-content>
         <mat-list>
-          <mat-list-item><b>{{'summary.totalmistakes' | translate }}:</b>{{session_stats.mistakesCount}}</mat-list-item>
+          <mat-list-item>
+            <b>{{'summary.totalmistakes' | translate }}:</b>
+            <p>{{session_stats.mistakesCount}}</p>
+          </mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item *ngFor="let mistake of stats.getTopMistakes(session_stats, 10)">
-            <b>{{mistake?.key}}:</b> {{mistake?.count}}
+            <b>{{mistake?.key}}:</b>
+            <p>{{mistake?.count}}</p>
           </mat-list-item>
         </mat-list>
       </mat-card-content>
@@ -29,7 +33,7 @@
         {{'general.typingspeed' | translate}}
       </mat-card-title>
       <mat-card-content>
-        {{session_stats.typeSpeed}}
+        <p>{{session_stats.typeSpeed}}</p>
       </mat-card-content>
     </mat-card>
 

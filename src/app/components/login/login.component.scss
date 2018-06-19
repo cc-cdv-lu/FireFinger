@@ -4,10 +4,6 @@ mat-card {
   text-align: center;
 }
 
-.signin-content {
-  padding: 60px 1rem;
-}
-
 .full-width-input {
   width: 90%;
 }
@@ -17,7 +13,12 @@ mat-card {
   width: 100%;
 }
 
-input {
-  border: 1px solid white;
-  padding: 20px;
+.left {
+  float: left;
+  width: 49%;
+}
+
+.right {
+  float: right;
+  width: 49%;
 }

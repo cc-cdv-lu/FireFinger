@@ -39,12 +39,19 @@ export class MainViewComponent implements OnInit {
       this.router.navigateByUrl('/levels');
 
     this.view = VIEW.LINE;
+
+    document.documentElement.style.fontSize = '20px'
   }
 
   activateDebug = false;
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
+    if (event.ctrlKey) return;
+    /*
+    if (event.keyCode == 107 && event.ctrlKey) return this.style.increaseFont();
+    if (event.keyCode == 109 && event.ctrlKey) return this.style.decreaseFont();
     if (event.keyCode == 68 && event.ctrlKey && event.altKey) return this.activateDebug = !this.activateDebug;
+    */
     this.blurAllButtons();
     if (this.areSettingsOpen) return;
     this.session.handleKeyEvent(event);
@@ -52,6 +59,7 @@ export class MainViewComponent implements OnInit {
   ngOnInit() {
 
   }
+
 
   VIEW = VIEW;
   //view: VIEW = VIEW.LINE;

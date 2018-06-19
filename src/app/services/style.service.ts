@@ -105,4 +105,21 @@ export class StyleService {
     this._activeColorScheme = c;
     this.electron.config.set(COLOR_SCHEME_KEY, c);
   }
+
+  increaseFont() {
+
+    let c = this.getFont() + 1;
+    document.documentElement.style.fontSize = c + 'px';
+  }
+
+  decreaseFont() {
+    let c = this.getFont() - 1;
+    document.documentElement.style.fontSize = c + 'px';
+
+  }
+
+  getFont() {
+    let str = document.documentElement.style.fontSize.replace('px', "");
+    return parseInt(str);
+  }
 }
