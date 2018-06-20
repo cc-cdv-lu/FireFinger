@@ -1,50 +1,19 @@
-<div class="container" >
-  <div class="header">
-    <mat-grid-list cols=11 [rowHeight]="'4rem'">
-      <mat-grid-tile>
-        <button mat-button mat-raised-button color="primary" (click)="closeApp()">{{'general.closeapp' | translate}}</button>
-      </mat-grid-tile>
-
-      <mat-grid-tile class="ProgressBar" colspan="5">
-        <mat-progress-bar mode="determinate" [value]="getProgress()"></mat-progress-bar>
-      </mat-grid-tile>
-
-      <mat-grid-tile colspan="3">
-        <nav><a mat-raised-button color="primary" routerLink="/settings">{{'settings.nav.settings' | translate}}</a></nav>
-      </mat-grid-tile>
-
-      <mat-grid-tile colspan="2">
-        <nav><a mat-raised-button color="primary" routerLink="/levels">{{'settings.nav.levels' | translate}}</a></nav>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </div>
-
-
-
-
+<div class="container" [ngClass]="style.theme" >
+  <mat-toolbar>
+    <span class="fill-remaining-space"></span>
+    <mat-progress-bar mode="determinate" [value]="getProgress()"></mat-progress-bar>
+    <span class="fill-remaining-space"></span>
+  </mat-toolbar>
 
   <main-view></main-view>
+
   <div class="footer">
-    <mat-grid-list class="control" cols=11 [rowHeight]="'4rem'">
-      <!--
-      <mat-grid-tile colspan="3">
-        <button mat-raised-button color="primary" (click)="style.onSetTheme('default-theme')">Default</button>
-      </mat-grid-tile>
-      <mat-grid-tile colspan="5">
-        <button mat-raised-button color="primary" (click)="style.onSetTheme('dark-theme')">Dark</button>
-      </mat-grid-tile>
-      <mat-grid-tile colspan="3">
-        <button mat-raised-button color="primary" (click)="style.onSetTheme('light-theme')">Light</button>
-      </mat-grid-tile>
-    -->
-      <mat-grid-tile colspan="5">
+    <mat-toolbar>
+      <mat-toolbar-row>
         <p>{{'mainView.mistakes' | translate}}: {{stats.currentStats.mistakesCount}} ({{session.getMistakePercentage()}})</p>
-      </mat-grid-tile>
-
-
-      <mat-grid-tile colspan="6">
+        <span class="fill-remaining-space"></span>
         <p>{{'mainView.typespeed' | translate}}: {{stats.currentStats.typeSpeed}}</p>
-      </mat-grid-tile>
-    </mat-grid-list>
+      </mat-toolbar-row>
+    </mat-toolbar>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, HostBinding } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { ElectronService } from '../../providers/electron.service';
 import { MatDialog } from '@angular/material';
@@ -23,7 +23,6 @@ enum VIEW {
   styleUrls: ['./main-view.component.scss']
 })
 export class MainViewComponent implements OnInit {
-  @HostBinding('class') componentCssClass;
   SIZE = SIZE;
   constructor(public session: SessionService, private electron: ElectronService, private dialog: MatDialog,
     public style: StyleService, public stats: StatisticsService, private user: UserService, private router: Router,
@@ -58,7 +57,6 @@ export class MainViewComponent implements OnInit {
     this.session.handleKeyEvent(event);
   }
   ngOnInit() {
-    this.componentCssClass = this.style.theme;
   }
 
 

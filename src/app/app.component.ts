@@ -14,16 +14,19 @@ import { SettingsComponent } from './components/settings/settings.component'
 })
 export class AppComponent {
 
+
+  @HostBinding('class') componentCssClass;
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.keyCode == 107 && event.ctrlKey) return this.style.increaseFont();
     if (event.keyCode == 109 && event.ctrlKey) return this.style.decreaseFont();
 
   }
+  routerLinks;
   constructor(public electronService: ElectronService,
-    private translate: TranslateService, public overlayContainer: OverlayContainer, public style: StyleService, public settings: SettingsComponent) {
+    private translate: TranslateService, public overlayContainer: OverlayContainer, public style: StyleService, public settings: SettingsComponent, private electron: ElectronService) {
 
-    this.overlayContainer.getContainerElement().classList.add('light-theme', 'dark-theme', 'default-theme', 'candy-carousel-theme');
+    this.overlayContainer.getContainerElement().classList.add('light-theme', 'dark-theme', 'default-theme');
 
     translate.addLangs(['de', 'fr', 'en']);
 
@@ -42,11 +45,35 @@ export class AppComponent {
     } else {
       console.log('Mode web');
     }
+
+    this.routerLinks = [
+      {
+        name: this.translate.get('nav.home'),
+        link: '/home'
+      },
+      {
+        name: this.translate.get('nav.settings'),
+        link: '/settings'
+      },
+      {
+        name: this.translate.get('nav.levels'),
+        link: '/levels'
+      },
+      {
+        name: this.translate.get('nav.login'),
+        link: '/login'
+      }
+    ]
   }
+
+
+
   ngOnInit() {
     // immediately maximize window after component initalization
     this.electronService.window.maximize();
     this.electronService.window.setFullScreen(true);
+
+    this.componentCssClass = this.style.theme;
   }
 
   /* DEBUG stuff */
@@ -56,5 +83,14 @@ export class AppComponent {
     for (let i = 0; i < buttons.length; i++) {
       buttons.item(i).blur()
     }
+  }
+
+
+  closeApp() {
+    console.warn("Shutting game down...");
+    if (this.electron.window)
+      this.electron.window.close();
+    else
+      window.close();
   }
 }

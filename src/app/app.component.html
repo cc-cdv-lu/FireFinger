@@ -1,6 +1,8 @@
-<router-outlet></router-outlet>
-<!--
-<button mat-raised-button color="primary" (click)="onSetTheme('default-theme')">Default</button>
-<button mat-raised-button color="primary" (click)="onSetTheme('dark-theme')">Dark</button>
-<button mat-raised-button color="primary" (click)="onSetTheme('light-theme')">Light</button>
--->
+<mat-toolbar [ngClass]="style.theme">
+  <mat-toolbar-row>
+    <div class="fill-remaining-space"></div>
+    <a mat-raised-button color="primary" [style.margin]="'0.5rem'" [routerLink]="nav.link" *ngFor="let nav of routerLinks">{{nav.name | async}}</a>
+    <div class="fill-remaining-space"></div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet [ngClass]="style.theme"></router-outlet>

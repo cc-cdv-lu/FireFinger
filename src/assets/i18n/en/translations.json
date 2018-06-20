@@ -14,6 +14,14 @@
     "mistakes": "Mistakes",
     "typespeed": "Typespeed"
   },
+  "nav": {
+    "home": "Home",
+    "levels": "Chapters",
+    "login": "Login",
+    "settings": "Settings",
+    "summary": "Summary",
+    "title": "Navigation"
+  },
   "settings": {
     "application": {
       "description": "General settings for the whole application",
@@ -37,14 +45,6 @@
       "en": "English",
       "fr": "French"
     },
-    "nav": {
-      "home": "Home",
-      "levels": "Chapters",
-      "login": "Login",
-      "settings": "Settings",
-      "summary": "Summary",
-      "title": "Navigation"
-    },
     "style": {
       "colorscheme": "Change color scheme",
       "description": "Adjust colors and font size",
@@ -66,7 +66,8 @@
     "voice": {
       "control": {
         "save": "Save voice settings",
-        "test": "Test voice settings"
+        "test": "Test voice settings",
+        "title": "Contro"
       },
       "description": "All settings related to the reading voice",
       "other": {

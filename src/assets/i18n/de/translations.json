@@ -14,6 +14,14 @@
     "mistakes": "Fehler",
     "typespeed": "Tippgeschwindigkeit"
   },
+  "nav": {
+    "home": "Zurück",
+    "levels": "Kapitel",
+    "login": "Anmeldung",
+    "settings": "Einstellungen",
+    "summary": "Zusammenfassung",
+    "title": "Navigation"
+  },
   "settings": {
     "application": {
       "description": "Allgemeine Einstellungen für die gesamte Anwendung",
@@ -37,14 +45,6 @@
       "en": "Englisch",
       "fr": "Französich"
     },
-    "nav": {
-      "home": "Zurück",
-      "levels": "Kapitel",
-      "login": "Anmeldung",
-      "settings": "Einstellungen",
-      "summary": "Zusammenfassung",
-      "title": "Navigation"
-    },
     "style": {
       "colorscheme": "Ändern Sie das Farbschema",
       "description": "Passen Sie Farben und Schriftgröße an",
@@ -66,7 +66,8 @@
     "voice": {
       "control": {
         "save": "Spracheinstellungen speichern",
-        "test": "Spracheinstellungen testen"
+        "test": "Spracheinstellungen testen",
+        "title": "Kontrolle"
       },
       "description": "Alle Einstellungen beziehen sich auf die Lesestimme",
       "other": {

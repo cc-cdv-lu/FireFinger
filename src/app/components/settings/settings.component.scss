@@ -18,3 +18,15 @@ mat-expansion-panel {
   position: relative;
   border: 1px solid white;
 }
+
+form {
+  width: 80%;
+
+  mat-form-field {
+    width: 100%;
+
+    input {
+      width: 100% !important;
+    }
+  }
+}

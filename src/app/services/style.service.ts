@@ -1,4 +1,4 @@
-import { Injectable, HostBinding } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ElectronService } from '../providers/electron.service';
 
 export class ColorScheme {
@@ -20,8 +20,6 @@ export enum SIZE {
   providedIn: 'root'
 })
 export class StyleService {
-  @HostBinding('class') componentCssClass;
-
   constructor(private electron: ElectronService) {
     this.fontSize = this.electron.config.get(FONT_KEY);
     this.activeColorScheme = this.electron.config.get(COLOR_SCHEME_KEY);

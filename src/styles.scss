@@ -1,5 +1,4 @@
 /* Application wide - via x rem adjustable sizes */
-
 body,
 html {
   margin: 0;
@@ -42,8 +41,8 @@ html {
     line-height: 4rem !important;
   }
 
-  mat-expansion-panel-header {
-    expandedHeight: 4rem !important;
+  mat-progress-bar {
+    height: 2rem !important;
   }
 
   input {
@@ -58,6 +57,20 @@ html {
     line-height: 3rem !important;
   }
 
+  mat-nav-list {
+    a {
+      height: 2em !important;
+    }
+  }
+
+  mat-toolbar {
+    min-height: 4rem;
+
+    mat-toolbar-row {
+      min-height: 4rem;
+    }
+  }
+
   b,
   p,
   span {
@@ -67,7 +80,20 @@ html {
 
   .HUGE {
     font-size: 20rem !important;
-    line-height: 20rem !important;
+    line-height: 25rem !important;
+  }
+
+  .CENTER {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .fill-remaining-space {
+    /* This fills the remaining space, by using flexbox.
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
   }
 }
 

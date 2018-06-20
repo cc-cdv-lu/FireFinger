@@ -28,12 +28,5 @@ export class HomeComponent implements OnInit {
     return parseFloat(progress + "").toFixed(2);
   }
 
-  closeApp() {
-    console.warn("Shutting game down...");
-    if (this.electron.window)
-      this.electron.window.close();
-    else
-      window.close();
-  }
 
 }

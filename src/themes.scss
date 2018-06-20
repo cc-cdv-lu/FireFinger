@@ -3,12 +3,20 @@
 @import '~@angular/material/theming';
 @include mat-core(); // Typography
 $custom-typography: mat-typography-config($font-family: Verdana, $headline: mat-typography-level(24px, 48px, 400), $body-1: mat-typography-level(16px, 24px, 400));
-@include angular-material-typography($custom-typography);
+@include angular-material-typography($custom-typography); /*
+*
+*  DEFAULT THEME
+*
+*/
 $my-app-primary: mat-palette($mat-teal, 700, 100, 800); // Default colors
 $my-app-accent: mat-palette($mat-teal, 700, 100, 800);
 $my-app-app-warn: mat-palette($mat-red);
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-app-warn);
-@include angular-material-theme($my-app-theme);
+@include angular-material-theme($my-app-theme); /*
+*
+*  DARK THEME
+*
+*/
 $dark-primary: mat-palette($mat-blue-grey); // Dark theme
 $dark-accent: mat-palette($mat-amber, A200, A100, A400);
 $dark-warn: mat-palette($mat-deep-orange);
@@ -18,7 +26,17 @@ $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   @include angular-material-theme($dark-theme);
   background-color: mat-color($dark-primary);
   border-color: mat-color($dark-accent, A400);
+  color: mat-color($dark-primary, 100) !important;
+
+  .highlight {
+    color: mat-color($dark-primary, 50) !important;
+  }
 }
+/*
+*
+*  LIGHT THEME
+*
+*/
 $light-primary: mat-palette($mat-grey, 200, 500, 300); // Light theme
 $light-accent: mat-palette($mat-brown, 200);
 $light-warn: mat-palette($mat-deep-orange, 200);
@@ -26,25 +44,8 @@ $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
 
 .light-theme {
   @include angular-material-theme($light-theme);
-  background-color: mat-color($light-primary, 50);
-  border-color: mat-color($light-accent, A400);
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  p,
-  span {
-    color: mat-color($light-primary, 500);
-  }
-
-  .container,
-  mat-grid-list {
-    background-color: mat-color($light-primary, 50);
-  }
 
   .highlight {
-    color: mat-color($light-accent, A400);
+    color: mat-color($light-accent, A400) !important;
   }
 }

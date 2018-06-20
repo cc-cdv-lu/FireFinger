@@ -14,6 +14,14 @@
     "mistakes": "Fautes",
     "typespeed": "Vitesse de tappage"
   },
+  "nav": {
+    "home": "Accueil",
+    "levels": "Chapitre",
+    "login": "S'identifier",
+    "settings": "Paramètres",
+    "summary": "Résumé",
+    "title": "Navigation"
+  },
   "settings": {
     "application": {
       "description": "Paramètres généraux pour l'ensemble de l'application",
@@ -37,14 +45,6 @@
       "en": "Anglais",
       "fr": "Français"
     },
-    "nav": {
-      "home": "Accueil",
-      "levels": "Chapitre",
-      "login": "S'identifier",
-      "settings": "Paramètres",
-      "summary": "Résumé",
-      "title": "Navigation"
-    },
     "style": {
       "colorscheme": "Modifier le schéma de couleurs",
       "description": "Ajuster les couleurs et la taille de la police",
@@ -66,7 +66,8 @@
     "voice": {
       "control": {
         "save": "Enregistrer ces paramètres",
-        "test": "Testez la voix"
+        "test": "Testez la voix",
+        "title": "Controle"
       },
       "description": "Tous les paramètres liés à la voix de lecture",
       "other": {

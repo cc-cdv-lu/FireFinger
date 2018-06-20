@@ -1,4 +1,4 @@
-<div class="container" *ngIf="session_stats">
+<div class="container" *ngIf="session_stats"  [ngClass]="style.theme">
   <div class="center">
     <mat-card class="card" [style.backgroundColor]="didWin() ? 'green' : 'red'" [style.color]="'white'">
       <mat-card-title>

@@ -1,9 +1,9 @@
-<div class="container" [style.backgroundColor]="style.activeColorScheme.backgroundColor">
-  <mat-card [style.backgroundColor]="style.activeColorScheme.backgroundColor">
-    <mat-card-title [style.color]="style.activeColorScheme.current" [style.backgroundColor]="style.activeColorScheme.backgroundColor">
-      <h2>Login</h2>
+<div class="container"  [ngClass]="style.theme">
+  <mat-card>
+    <mat-card-title>
+      <h2 class="hightlight">Login</h2>
     </mat-card-title>
-    <mat-card-content [style.color]="style.activeColorScheme.prev" [style.backgroundColor]="style.activeColorScheme.backgroundColor">
+    <mat-card-content>
       <div class="left">
         <mat-form-field class="full-width-input">
           <input #loginField matInput matAutosize=true maxRows=1 [(ngModel)]="inputField" (keydown)="onKeydown($event)" required />
