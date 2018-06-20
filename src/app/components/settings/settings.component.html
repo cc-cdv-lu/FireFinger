@@ -29,10 +29,7 @@
       </section>
 
       <section class="section">
-        <button mat-raised-button color="primary" (click)="changeTheme('default-theme')">Default</button>
-        <button mat-raised-button color="primary" (click)="changeTheme('dark-theme')">Dark</button>
-        <button mat-raised-button color="primary" (click)="changeTheme('light-theme')">Light</button>
-        <button mat-raised-button color="primary" (click)="changeTheme('candy-carousel-theme')">candy-carousel-theme</button>
+        <button mat-raised-button color="primary" *ngFor="let theme of style.themes" (click)="changeTheme(theme.id)">{{theme.name}}</button>
       </section>
 
       <section class="section">
@@ -139,7 +136,7 @@
         <p>{{'settings.voice.other.pitch.description' | translate}}</p>
         <mat-slider thumbLabel tickInterval="1" [(ngModel)]="reader.config.options.pitch" min="50" max="200" step="1"></mat-slider>
 
-        <h2 [style.font-size]="style.getFontSize(SIZE.SMALL)">{{'settings.voice.other.speed.title' | translate}}</h2>
+        <h2>{{'settings.voice.other.speed.title' | translate}}</h2>
         <p>{{'settings.voice.other.speed.description' | translate}}</p>
         <mat-slider thumbLabel tickInterval="1" [(ngModel)]="reader.config.options.speed" min="50" max="400" step="1"></mat-slider>
 
@@ -176,7 +173,7 @@
       </section>
 
       <section class="section">
-        <h2 [style.font-size]="style.getFontSize(SIZE.SMALL)">{{'settings.user.stats.laststats' | translate}}</h2>
+        <h2 [style.font-size]="'4rem'">{{'settings.user.stats.laststats' | translate}}</h2>
         <b>{{'general.typingspeed' | translate}}:</b>
         <p>{{getFormat(user.loggedInUser?.lastSessionStats.typeSpeed)}}</p>
         <b>{{'settings.user.stats.mistakes' | translate}}:</b>
@@ -207,38 +204,5 @@
         </mat-grid-list>
       </section>
     </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header [collapsedHeight]="'4rem'" [expandedHeight]="'4rem'">
-        <mat-panel-title>
-          {{'nav.title' | translate}}
-        </mat-panel-title>
-        <!--
-        <mat-panel-description  [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.color]="style.activeColorScheme.prev">
-        </mat-panel-description>
-      -->
-      </mat-expansion-panel-header>
-      <section class="section">
-        <mat-grid-list cols="2" [rowHeight]="'4rem'">
-          <mat-grid-tile>
-            <nav><a mat-raised-button color="primary" routerLink="/levels">{{'nav.levels' | translate}}</a></nav>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <nav><a mat-raised-button color="primary" routerLink="/login">{{'nav.login' | translate}}</a></nav>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <nav> <a mat-raised-button color="primary" routerLink="/settings">{{'nav.settings' | translate}}</a></nav>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <nav><a mat-raised-button color="primary" routerLink="/summary">{{'nav.summary' | translate}}</a></nav>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <nav><a mat-raised-button color="primary" routerLink="/">{{'nav.home' | translate}}</a></nav>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </section>
-    </mat-expansion-panel>
-
-
   </mat-accordion>
 </div>

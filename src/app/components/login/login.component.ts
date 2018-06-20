@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserService } from '../../services/user.service';
-import { StyleService, SIZE } from '../../services/style.service';
+import { StyleService } from '../../services/style.service';
 import { ElectronService } from '../../providers/electron.service';
 
 @Component({
@@ -13,7 +13,6 @@ import { ElectronService } from '../../providers/electron.service';
 })
 export class LoginComponent implements OnInit {
   @ViewChild('loginField') loginField: ElementRef;
-  SIZE = SIZE;
   inputField: string;
   @HostBinding('class') componentCssClass;
 

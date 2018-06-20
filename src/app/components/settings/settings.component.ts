@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { LessonService } from '../../services/lesson.service';
 import { SessionService } from '../../services/session.service';
-import { StyleService, SIZE } from '../../services/style.service';
+import { StyleService } from '../../services/style.service';
 import { User, UserService } from '../../services/user.service'
 import { StatisticsService } from '../../services/statistics.service'
 import { ReaderService } from '../../services/reader.service';
@@ -33,7 +33,6 @@ export class SettingsComponent implements OnInit {
   lang;
 
   allLessons = this.lessons.lessons;
-  SIZE = SIZE;
   constructor(public lessons: LessonService, public session: SessionService, public style: StyleService, public user: UserService,
     public stats: StatisticsService, public reader: ReaderService, public translate: TranslateService, private electron: ElectronService) { }
   Math = Math;

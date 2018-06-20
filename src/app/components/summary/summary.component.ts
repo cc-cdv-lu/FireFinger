@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { StatisticsService, Statistics } from '../../services/statistics.service';
 import { SessionService, GAME_STATE } from '../../services/session.service'
+import { StyleService } from '../../services/style.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -13,7 +14,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class SummaryComponent implements OnInit {
   session_stats: Statistics;
 
-  constructor(private user: UserService, private stats: StatisticsService, private session: SessionService, public translate: TranslateService) { }
+  constructor(private user: UserService, private stats: StatisticsService, private session: SessionService,
+    public translate: TranslateService, public style: StyleService) { }
   /*
     Needed data:
       Chapter that has just been solved

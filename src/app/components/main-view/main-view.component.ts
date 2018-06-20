@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material';
 
 import { SettingsComponent } from '../settings/settings.component';
 
-import { StyleService, SIZE } from '../../services/style.service';
+import { StyleService } from '../../services/style.service';
 import { SessionService } from '../../services/session.service';
 import { StatisticsService } from '../../services/statistics.service';
 import { UserService } from '../../services/user.service';
@@ -23,7 +23,6 @@ enum VIEW {
   styleUrls: ['./main-view.component.scss']
 })
 export class MainViewComponent implements OnInit {
-  SIZE = SIZE;
   constructor(public session: SessionService, private electron: ElectronService, private dialog: MatDialog,
     public style: StyleService, public stats: StatisticsService, private user: UserService, private router: Router,
     public translate: TranslateService) {

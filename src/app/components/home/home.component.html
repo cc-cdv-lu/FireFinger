@@ -1,4 +1,4 @@
-<div class="container" [ngClass]="style.theme" >
+<div class="container" [ngClass]="style.theme"    [style.backgroundColor]="session.last_wrong_char != '' ? 'red' : ''">
   <mat-toolbar>
     <span class="fill-remaining-space"></span>
     <mat-progress-bar mode="determinate" [value]="getProgress()"></mat-progress-bar>
@@ -11,6 +11,8 @@
     <mat-toolbar>
       <mat-toolbar-row>
         <p>{{'mainView.mistakes' | translate}}: {{stats.currentStats.mistakesCount}} ({{session.getMistakePercentage()}})</p>
+        <span class="fill-remaining-space"></span>
+        <p>{{session.currentChapter.name}}</p>
         <span class="fill-remaining-space"></span>
         <p>{{'mainView.typespeed' | translate}}: {{stats.currentStats.typeSpeed}}</p>
       </mat-toolbar-row>

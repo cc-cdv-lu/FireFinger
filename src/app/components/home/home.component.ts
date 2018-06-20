@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 
 
-import { StyleService, SIZE } from '../../services/style.service';
+import { StyleService } from '../../services/style.service';
 import { SessionService } from '../../services/session.service';
 import { StatisticsService } from '../../services/statistics.service';
 import { ElectronService } from '../../providers/electron.service';
@@ -13,7 +13,6 @@ import { ElectronService } from '../../providers/electron.service';
 })
 export class HomeComponent implements OnInit {
   @HostBinding('class') componentCssClass;
-  SIZE = SIZE;
   constructor(public stats: StatisticsService, public style: StyleService,
     public session: SessionService, private electron: ElectronService) { }
 

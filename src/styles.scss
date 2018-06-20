@@ -1,4 +1,5 @@
 /* Application wide - via x rem adjustable sizes */
+
 body,
 html {
   margin: 0;
@@ -70,6 +71,16 @@ html {
       min-height: 4rem;
     }
   }
+  @mixin mat-icon-size($size: 1rem) {
+    font-size: $size !important;
+    height: $size !important;
+    width: $size !important;
+  }
+
+  .mat-icon-button,
+  mat-icon {
+    @include mat-icon-size(4rem);
+  }
 
   b,
   p,
@@ -99,6 +110,6 @@ html {
 
 * {
   /*Replace with your custom font*/
-  font-family: Verdana , sans-serif !important;
+  font-family: Verdana , sans-serif;
   /*Add the !important to overwrite all elements*/
 }

@@ -26,7 +26,7 @@ export class AppComponent {
   constructor(public electronService: ElectronService,
     private translate: TranslateService, public overlayContainer: OverlayContainer, public style: StyleService, public settings: SettingsComponent, private electron: ElectronService) {
 
-    this.overlayContainer.getContainerElement().classList.add('light-theme', 'dark-theme', 'default-theme');
+    this.overlayContainer.getContainerElement().classList.add(this.style.getThemes());
 
     translate.addLangs(['de', 'fr', 'en']);
 

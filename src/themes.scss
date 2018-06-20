@@ -49,3 +49,23 @@ $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
     color: mat-color($light-accent, A400) !important;
   }
 }
+/*
+*
+*  DARK THEME
+*
+*/
+$by-primary: mat-palette($mat-blue-grey); // Dark theme
+$by-accent: mat-palette($mat-amber, A200, A100, A400);
+$by-warn: mat-palette($mat-deep-orange);
+$by-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+.by-theme {
+  @include angular-material-theme($by-theme);
+  background-color: mat-color($by-primary);
+  border-color: mat-color($by-accent, A400);
+  color: mat-color($by-primary, 100) !important;
+
+  .highlight {
+    color: mat-color($by-accent, A400) !important;
+  }
+}

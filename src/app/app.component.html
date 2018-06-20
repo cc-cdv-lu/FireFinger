@@ -3,6 +3,7 @@
     <div class="fill-remaining-space"></div>
     <a mat-raised-button color="primary" [style.margin]="'0.5rem'" [routerLink]="nav.link" *ngFor="let nav of routerLinks">{{nav.name | async}}</a>
     <div class="fill-remaining-space"></div>
+    <a mat-raised-button color="warn" (click)="closeApp()">X</a>
   </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet [ngClass]="style.theme"></router-outlet>
