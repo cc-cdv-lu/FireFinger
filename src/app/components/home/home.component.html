@@ -1,4 +1,4 @@
-<div class="container" [ngClass]="style.theme"    [style.backgroundColor]="session.last_wrong_char != '' ? 'red' : ''">
+<div class="container" [ngClass]="style.theme"    [style.backgroundColor]="shouldFlash() ? 'red' : ''">
   <mat-toolbar>
     <span class="fill-remaining-space"></span>
     <mat-progress-bar mode="determinate" [value]="getProgress()"></mat-progress-bar>

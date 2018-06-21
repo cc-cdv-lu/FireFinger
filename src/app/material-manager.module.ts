@@ -4,7 +4,7 @@ import {
   MatGridListModule, MatButtonModule, MatIconModule, MatDialogModule, MatExpansionModule,
   MatSliderModule, MatInputModule, MatCardModule, MatFormFieldModule, MatProgressBarModule,
   MatSlideToggleModule, MatSelectModule, MatListModule, MatDividerModule, MatToolbarModule,
-  MatSidenavModule
+  MatSidenavModule, MatButtonToggleModule
 } from '@angular/material';
 
 @NgModule({
@@ -25,7 +25,8 @@ import {
     MatListModule,
     MatDividerModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatButtonToggleModule
   ],
   declarations: [],
   exports: [
@@ -44,7 +45,8 @@ import {
     MatListModule,
     MatDividerModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatButtonToggleModule
   ]
 })
 export class MaterialManagerModule { }

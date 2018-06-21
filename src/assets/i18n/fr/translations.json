@@ -48,6 +48,7 @@
     "style": {
       "colorscheme": "Modifier le schéma de couleurs",
       "description": "Ajuster les couleurs et la taille de la police",
+      "errorwarning": "Clignote l'image en rouge lorsque les erreurs d'utilisateur entre unes erreurs",
       "fontsize": "Taille de la police",
       "title": "Style"
     },

@@ -1,36 +1,29 @@
-.container {
-  height: 100%;
-  width: 100%;
+.viewContainer {
+  .textTile {
+    border-bottom: 5px solid gray;
+  }
 
-  .viewContainer {
-    .textTile {
-      border-bottom: 5px solid gray;
-    }
+  .prev {
+    width: 100%;
+    //text-overflow: ellipsis;
+    /* Required for text-overflow to do anything */
+    white-space: nowrap;
+    overflow: hidden;
+    direction: rtl;
+    text-align: right;
+  }
 
-    .prev {
-      width: 100%;
-      //text-overflow: ellipsis;
-      /* Required for text-overflow to do anything */
-      white-space: nowrap;
-      overflow: hidden;
-      direction: rtl;
-      text-align: right;
-    }
+  .current {
+    overflow: visible;
+  }
 
-    .current {
-      overflow: visible;
-    }
-
-    .next {
-      width: 100%;
-      position: relative;
-      text-overflow: clip;
-      /* Required for text-overflow to do anything */
-      white-space: nowrap;
-      overflow: hidden;
-      text-align: left;
-    }
+  .next {
+    width: 100%;
+    position: relative;
+    text-overflow: clip;
+    /* Required for text-overflow to do anything */
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: left;
   }
 }
-
-.footer {}

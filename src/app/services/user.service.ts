@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { StatisticsService, Statistics } from './statistics.service';
-import { ColorScheme, StyleService } from './style.service';
+import { StyleService } from './style.service';
 import { ElectronService } from '../providers/electron.service';
 
 @Injectable({
@@ -78,7 +78,6 @@ export class User {
   name: string = "";
   lastSessionStats: Statistics = new Statistics();
   overallStats: Statistics = new Statistics();
-  preferedColorScheme: ColorScheme;
   preferedFont: number;
   constructor() {
   }

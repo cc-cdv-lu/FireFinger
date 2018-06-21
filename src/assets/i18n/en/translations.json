@@ -48,6 +48,7 @@
     "style": {
       "colorscheme": "Change color scheme",
       "description": "Adjust colors and font size",
+      "errorwarning": "Flash screen red when user mistyped letter",
       "fontsize": "Font size",
       "title": "Style"
     },

@@ -1,5 +1,4 @@
 /* Application wide - via x rem adjustable sizes */
-
 body,
 html {
   margin: 0;
@@ -9,6 +8,11 @@ html {
 
 html {
   font-size: 20px;
+
+  .container {
+    width: 100%;
+    height: 95%;
+  }
 
   a,
   button,
@@ -39,7 +43,29 @@ html {
   mat-expansion-panel-header,
   mat-panel-title {
     font-size: 4rem !important;
-    line-height: 4rem !important;
+    line-height: 4.5rem !important;
+  }
+
+  mat-slide-toggl,
+  mat-slide-toggle-bar,
+  mat-slide-toggle-input,
+  mat-slide-toggle-thumb,
+  mat-slide-toggle-thumb-container {
+    transform: scale(1rem) !important;
+  }
+
+  mat-form-field {
+    min-width: 50%;
+    height: 100%;
+  }
+
+  .mat-select-content {
+    line-height: 3rem !important;
+    font-size: 2rem !important;
+  }
+
+  .mat-select-panel {
+    height: 50% !important;
   }
 
   mat-progress-bar {
@@ -77,9 +103,16 @@ html {
     width: $size !important;
   }
 
+  .mat-button-toggle,
   .mat-icon-button,
-  mat-icon {
-    @include mat-icon-size(4rem);
+  .mat-raised-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    mat-icon {
+      @include mat-icon-size(3rem);
+    }
   }
 
   b,

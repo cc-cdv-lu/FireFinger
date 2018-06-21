@@ -48,6 +48,7 @@
     "style": {
       "colorscheme": "Ändern Sie das Farbschema",
       "description": "Passen Sie Farben und Schriftgröße an",
+      "errorwarning": "Rot blinken, wenn Benutzer sich vertippt",
       "fontsize": "Schriftgröße",
       "title": "Stil"
     },
