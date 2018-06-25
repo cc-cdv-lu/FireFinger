@@ -21,7 +21,14 @@
       </mat-expansion-panel-header>
 
       <section class="section">
-        <button mat-raised-button color="primary" *ngFor="let theme of style.themes" (click)="changeTheme(theme.id)">{{theme.name}}</button>
+        <mat-grid-list cols=4 rowHeight="4rem">
+          <mat-grid-tile *ngFor="let theme of style.themes">
+            <button mat-raised-button color="primary" (click)="changeTheme(theme.id)">{{theme.name}}</button>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <div class="preview">
+          <p [ngClass]="style.theme" >Pre<span class="highlight">vi</span>ew</p>
+        </div>
       </section>
 
       <section class="section">

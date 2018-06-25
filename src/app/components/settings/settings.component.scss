@@ -24,3 +24,16 @@ form {
     }
   }
 }
+
+.preview {
+  padding: 4rem;
+  text-align: center;
+
+  p,
+  span {
+    display: inline;
+    height: 10rem;
+    line-height: 8rem;
+    font-size: 8rem !important;
+  }
+}

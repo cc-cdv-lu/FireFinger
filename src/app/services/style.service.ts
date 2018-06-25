@@ -55,7 +55,7 @@ export class StyleService {
 
 
   themes = [
-    {
+    /*{
       name: 'Light',
       id: 'light-theme'
     },
@@ -66,10 +66,18 @@ export class StyleService {
     {
       name: 'Default',
       id: 'default-theme'
+    },*/
+    {
+      name: 'Blue & Yellow',
+      id: 'by-theme'
     },
     {
-      name: 'Black & Yellow',
-      id: 'by-theme'
+      name: 'True Black',
+      id: 'true-black-theme'
+    },
+    {
+      name: 'Dark lime',
+      id: 'dl-theme'
     }
   ]
   getThemes(): string {

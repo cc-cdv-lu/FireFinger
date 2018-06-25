@@ -51,13 +51,13 @@ $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
 }
 /*
 *
-*  DARK THEME
+*  Blue and Yellow
 *
 */
 $by-primary: mat-palette($mat-blue-grey); // Dark theme
 $by-accent: mat-palette($mat-amber, A200, A100, A400);
 $by-warn: mat-palette($mat-deep-orange);
-$by-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+$by-theme: mat-dark-theme($by-primary, $by-accent, $by-warn);
 
 .by-theme {
   @include angular-material-theme($by-theme);
@@ -67,5 +67,45 @@ $by-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
   .highlight {
     color: mat-color($by-accent, A400) !important;
+  }
+}
+/*
+*
+*  TRUE BLACK
+*
+*/
+$true-black-primary: mat-palette($mat-grey); // Dark theme
+$true-black-accent: mat-palette($mat-grey, A200, A100, A400);
+$true-black-warn: mat-palette($mat-deep-purple);
+$true-black-theme: mat-dark-theme($true-black-primary, $true-black-accent, $true-black-warn);
+
+.true-black-theme {
+  @include angular-material-theme($true-black-theme);
+  background-color: black;
+  border-color: mat-color($true-black-accent, A400);
+  color: mat-color($true-black-accent, A400) !important;
+
+  .highlight {
+    color: white !important;
+  }
+}
+/*
+*
+*  Dark lime
+*
+*/
+$dl-primary: mat-palette($mat-teal, 900); // Dark theme
+$dl-accent: mat-palette($mat-lime, A200, A100, A400);
+$dl-warn: mat-palette($mat-green);
+$dl-theme: mat-dark-theme($dl-primary, $dl-accent, $dl-warn);
+
+.dl-theme {
+  @include angular-material-theme($dl-theme);
+  background-color: mat-color($dl-primary);
+  border-color: mat-color($dl-accent, A400);
+  color: mat-color($dl-primary, 100) !important;
+
+  .highlight {
+    color: mat-color($dl-accent, A400) !important;
   }
 }
