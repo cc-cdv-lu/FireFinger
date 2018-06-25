@@ -2,8 +2,10 @@
 
 **wip** this needs a big update...
 
-## Instructions  
+## Instructions
 (TODO)
+
+Custom dictations can be put into **%appdata%/FireFinger/docs** */subfolder/example.txt*  
 
 ## Technical
 Uses node.js 10.3.0 and npm 6.xxx
