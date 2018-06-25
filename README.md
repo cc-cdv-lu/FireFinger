@@ -1,6 +1,9 @@
 # FireFinger
 
-**wip** concept
+**wip** this needs a big update...
+
+## Instructions  
+(TODO)
 
 ## Technical
 Uses node.js 10.3.0 and npm 6.xxx
