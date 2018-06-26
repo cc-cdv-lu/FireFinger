@@ -39,7 +39,7 @@ export class StyleService {
     return c;
   }
   set warning_flash(v: boolean) {
-    if (!v) return;
+    if (v == null || v == undefined) return;
     this.electron.config.set(WARNING_FLASH, v);
   }
 
