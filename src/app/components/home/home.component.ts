@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.componentCssClass = this.style.theme;
     this.style.font = this.style.font;
-
   }
 
 

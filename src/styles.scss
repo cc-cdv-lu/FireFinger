@@ -1,4 +1,5 @@
 /* Application wide - via x rem adjustable sizes */
+
 body,
 html {
   margin: 0;
@@ -47,12 +48,12 @@ html {
     line-height: 4.5rem !important;
   }
 
-  mat-slide-toggl,
+  mat-slide-toggle,
   mat-slide-toggle-bar,
   mat-slide-toggle-input,
   mat-slide-toggle-thumb,
   mat-slide-toggle-thumb-container {
-    transform: scale(1rem) !important;
+    transform: scale(2rem) !important;
   }
 
   mat-form-field {
@@ -117,6 +118,7 @@ html {
   }
 
   b,
+  mat-list-item,
   p,
   span {
     font-size: 2rem !important;

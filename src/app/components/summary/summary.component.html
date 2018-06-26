@@ -1,4 +1,4 @@
-<div class="container" *ngIf="session_stats"  [ngClass]="style.theme">
+<div class="container" *ngIf="session_stats" [ngClass]="style.theme">
   <div class="center">
     <mat-card class="card" [style.backgroundColor]="didWin() ? 'green' : 'red'" [style.color]="'white'">
       <mat-card-title>
@@ -14,17 +14,14 @@
         {{'summary.mistakesperkey' | translate}}
       </mat-card-title>
       <mat-card-content>
-        <mat-list>
-          <mat-list-item>
             <b>{{'summary.totalmistakes' | translate }}:</b>
             <p>{{session_stats.mistakesCount}}</p>
-          </mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item *ngFor="let mistake of stats.getTopMistakes(session_stats, 10)">
-            <b>{{mistake?.key}}:</b>
-            <p>{{mistake?.count}}</p>
-          </mat-list-item>
-        </mat-list>
+          <mat-grid-list cols="5"  [rowHeight]="'2.5rem'">
+            <mat-grid-tile *ngFor="let mistake of stats.getTopMistakes(session_stats, 10)">
+              <b>{{mistake?.key}}:</b><p>{{mistake?.count}}</p>
+            </mat-grid-tile>
+          </mat-grid-list>
       </mat-card-content>
     </mat-card>
 
