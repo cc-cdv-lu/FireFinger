@@ -70,7 +70,7 @@ export class SessionService {
 
 
     //Default case
-    if (pressedKey == this.getCurrentChar())
+    if (pressedKey == this.getCurrentChar() || pressedKey == 'Pause')
       return this.nextTextIndex()
     // Special cases
     if (pressedKey == 'Enter' && this.getCurrentChar() == '\n')

@@ -38,6 +38,7 @@ export class SettingsComponent implements OnInit {
   Math = Math;
   ngOnInit() {
     this.lang = this.translate.currentLang;
+    this.style.font = this.style.font;
   }
 
   getFormat(n: number) {

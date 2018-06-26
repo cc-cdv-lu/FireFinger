@@ -31,6 +31,7 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit() {
     this.loadData();
+    this.style.font = this.style.font;
   }
 
   loadData() {

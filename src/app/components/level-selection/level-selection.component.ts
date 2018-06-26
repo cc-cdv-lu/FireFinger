@@ -14,6 +14,7 @@ export class LevelSelectionComponent implements OnInit {
   constructor(public lesson: LessonService, public session: SessionService, public router: Router, public style: StyleService) { }
   allLessons = this.lesson.lessons;
   ngOnInit() {
+    this.style.font = this.style.font;
   }
 
   goHome() {
