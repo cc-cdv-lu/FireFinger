@@ -1,6 +1,8 @@
 {
   "general": {
     "closeapp": "X",
+    "enter": "Enter",
+    "login": "Login",
     "typingspeed": "Typing speed"
   },
   "keys": {
@@ -15,7 +17,7 @@
     "typespeed": "Typespeed"
   },
   "nav": {
-    "home": "Home",
+    "home": "Start",
     "levels": "Chapters",
     "login": "Login",
     "settings": "Settings",

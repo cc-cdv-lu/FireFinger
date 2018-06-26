@@ -1,6 +1,8 @@
 {
   "general": {
     "closeapp": "X",
+    "enter": "Entrer",
+    "login": "S'identifier",
     "typingspeed": "Vitesse de frappe"
   },
   "keys": {
@@ -15,7 +17,7 @@
     "typespeed": "Vitesse de tappage"
   },
   "nav": {
-    "home": "Accueil",
+    "home": "Démarrer",
     "levels": "Chapitre",
     "login": "S'identifier",
     "settings": "Paramètres",

@@ -1,7 +1,10 @@
 <mat-toolbar [ngClass]="style.theme">
   <mat-toolbar-row>
     <div class="fill-remaining-space"></div>
-    <a mat-raised-button color="primary" [style.margin]="'0.5rem'" [routerLink]="nav.link" *ngFor="let nav of routerLinks">{{nav.name | async}}</a>
+    <a mat-raised-button color="primary" [ngClass]="this.router.url === nav.link ? 'highlight' : ''" [style.margin]="'0.5rem'" [routerLink]="nav.link" *ngFor="let nav of routerLinks">
+      <mat-icon>{{nav.icon}}</mat-icon>
+      {{nav.name | async}}
+    </a>
     <div class="fill-remaining-space"></div>
     <button mat-raised-button color="warn" (click)="closeApp();">
         <mat-icon>close</mat-icon>

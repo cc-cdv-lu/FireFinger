@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
     else {
       this.inputField = lastUser.name
     }
+
+    this.style.font = this.style.font;
   }
   ngOnInit() {
     this.loginField.nativeElement.focus();

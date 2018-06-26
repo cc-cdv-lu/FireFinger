@@ -21,7 +21,7 @@ html {
   nav {
     font-size: 3rem !important;
     line-height: 3rem !important;
-    height: 4rem !important;
+    height: 3.5rem !important;
   }
 
   h1 {
@@ -113,7 +113,7 @@ html {
     justify-content: center;
 
     mat-icon {
-      @include mat-icon-size(3rem);
+      @include mat-icon-size(2.5rem);
     }
   }
 

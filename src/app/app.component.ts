@@ -1,4 +1,5 @@
 import { Component, HostBinding, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 import { ElectronService } from './providers/electron.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AppConfig } from '../environments/environment';
@@ -24,7 +25,8 @@ export class AppComponent {
   }
   routerLinks;
   constructor(public electronService: ElectronService,
-    private translate: TranslateService, public overlayContainer: OverlayContainer, public style: StyleService, public settings: SettingsComponent, private electron: ElectronService) {
+    private translate: TranslateService, public overlayContainer: OverlayContainer, public style: StyleService,
+    public settings: SettingsComponent, private electron: ElectronService, public router: Router) {
 
     this.overlayContainer.getContainerElement().classList.add(this.style.getThemes());
 
@@ -49,19 +51,23 @@ export class AppComponent {
     this.routerLinks = [
       {
         name: this.translate.get('nav.home'),
-        link: '/home'
+        link: '/home',
+        icon: 'home'
       },
       {
         name: this.translate.get('nav.settings'),
-        link: '/settings'
+        link: '/settings',
+        icon: 'settings'
       },
       {
         name: this.translate.get('nav.levels'),
-        link: '/levels'
+        link: '/levels',
+        icon: 'bookmarks'
       },
       {
         name: this.translate.get('nav.login'),
-        link: '/login'
+        link: '/login',
+        icon: 'person'
       }
     ]
   }

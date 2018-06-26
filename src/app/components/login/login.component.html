@@ -1,7 +1,7 @@
 <div class="container"  [ngClass]="style.theme">
   <mat-card>
     <mat-card-title>
-      <h2 class="hightlight">Login</h2>
+      <h2 class="highlight">{{'general.login'|translate}}</h2>
     </mat-card-title>
     <mat-card-content>
       <div class="left">
@@ -10,7 +10,7 @@
         </mat-form-field>
       </div>
       <div class="right">
-        <button mat-raised-button (click)="onConfirm()" color="primary">Confirm</button>
+        <button mat-raised-button (click)="onConfirm()" color="primary">{{'general.enter'|translate}}</button>
       </div>
     </mat-card-content>
   </mat-card>

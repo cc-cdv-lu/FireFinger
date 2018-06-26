@@ -1,6 +1,8 @@
 {
   "general": {
     "closeapp": "X",
+    "enter": "Eingabe",
+    "login": "Anmeldung",
     "typingspeed": "Tippgeschwindigkeit"
   },
   "keys": {
@@ -15,7 +17,7 @@
     "typespeed": "Tippgeschwindigkeit"
   },
   "nav": {
-    "home": "Home",
+    "home": "Start",
     "levels": "Kapitel",
     "login": "Anmeldung",
     "settings": "Einstellungen",
