@@ -143,58 +143,6 @@
       </section>
     </mat-expansion-panel>
 
-    <mat-expansion-panel *ngIf="user.loggedInUser">
-      <mat-expansion-panel-header [collapsedHeight]="'4rem'" [expandedHeight]="'4rem'">
-        <mat-panel-title>
-          {{'settings.user.title' | translate}}
-        </mat-panel-title>
-        <!--
-        <mat-panel-description  [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.color]="style.activeColorScheme.prev">
-          {{'settings.user.description' | translate}}
-        </mat-panel-description>
-      -->
-      </mat-expansion-panel-header>
 
-      <section class="section">
-        <h4>{{'settings.user.stats.name' | translate}}</h4>
-        <span>{{user.loggedInUser.name}}</span>
-      </section>
-
-      <mat-divider></mat-divider>
-      <section class="section">
-        <h3>{{'settings.user.stats.title' | translate}}</h3>
-
-        <h4 [style.font-size]="'4rem'">{{'settings.user.stats.laststats' | translate}}</h4>
-        <b>{{'general.typingspeed' | translate}}:</b>
-        <p>{{getFormat(user.loggedInUser?.lastSessionStats.typeSpeed)}}</p>
-        <b>{{'settings.user.stats.mistakes' | translate}}:</b>
-        <p>{{user.loggedInUser?.lastSessionStats.mistakesCount}} ({{getFormat(user.loggedInUser.lastSessionStats.mistakePercentage)}} %)</p>
-
-        <h5>{{'settings.user.stats.mostmistakes' | translate}}</h5>
-        <mat-grid-list cols="10" [rowHeight]="'2.5rem'">
-          <mat-grid-tile *ngFor="let mistake of stats?.getTopMistakes(user.loggedInUser?.lastSessionStats, 10)">
-            <b>{{mistake?.key}}:</b>
-            <p>{{mistake?.count}}</p>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </section>
-
-      <mat-divider></mat-divider>
-      <section class="section">
-        <h4>{{'settings.user.stats.overallstats' | translate}}</h4>
-        <b>{{'general.typingspeed' | translate}}:</b>
-        <p>{{getFormat(user.loggedInUser.overallStats.typeSpeed)}}</p>
-        <b>{{'settings.user.stats.mistakes' | translate}}:</b>
-        <p>{{user.loggedInUser.overallStats.mistakesCount}} ({{getFormat(user.loggedInUser.overallStats.mistakePercentage)}} %)</p>
-
-        <h5>{{'settings.user.stats.mostmistakes' | translate}}:</h5>
-        <mat-grid-list cols="10" [rowHeight]="'2.5rem'">
-          <mat-grid-tile *ngFor="let mistake of stats?.getTopMistakes(user.loggedInUser.overallStats,10)">
-            <b>{{mistake?.key}}:</b>
-            <p>{{mistake?.count}}</p>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </section>
-    </mat-expansion-panel>
   </mat-accordion>
 </div>

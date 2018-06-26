@@ -65,9 +65,9 @@ export class StatisticsService {
   getTopMistakes(stats: Statistics, amount: number) {
     if (!stats.mistakeKeys) return [];
     let sortedArray = stats.mistakeKeys.sort((a, b) => {
-      let x = a.count; let y = b.count;
-      return ((x < y) ? -1 : ((x > y) ? 0 : 1));
+      return b.count - a.count;
     });
+    console.log("Sortedarray", sortedArray);
     let output = [];
     for (let i = 0; i < amount; i++) {
       if (sortedArray[i])
@@ -78,8 +78,6 @@ export class StatisticsService {
 
 
   }
-
-
 }
 
 export class Statistics {

@@ -41,11 +41,6 @@ export class SettingsComponent implements OnInit {
     this.style.font = this.style.font;
   }
 
-  getFormat(n: number) {
-    if (!n) return ""
-    return parseFloat(n.toFixed(2))
-  }
-
   onVoiceChange() {
     this.reader.loadVoice(this.reader.config.voice);
   }
