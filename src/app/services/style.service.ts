@@ -28,7 +28,7 @@ export class StyleService {
     return f;
   }
   set font(v: number) {
-    if (!v) return;
+    if (!v && !isNaN(v)) return;
     this.electron.config.set(FONT_KEY, v);
     document.documentElement.style.fontSize = v + 'px';
   }
