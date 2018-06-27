@@ -1,5 +1,4 @@
 /* Application wide - via x rem adjustable sizes */
-
 body,
 html {
   margin: 0;
@@ -13,6 +12,11 @@ html {
   .container {
     width: 100%;
     height: 95%;
+  }
+
+  mat-slide-toggle,
+  mat-slider {
+    zoom: 6;
   }
 
   a,
@@ -46,14 +50,6 @@ html {
   mat-panel-title {
     font-size: 4rem !important;
     line-height: 4.5rem !important;
-  }
-
-  mat-slide-toggle,
-  mat-slide-toggle-bar,
-  mat-slide-toggle-input,
-  mat-slide-toggle-thumb,
-  mat-slide-toggle-thumb-container {
-    transform: scale(2rem) !important;
   }
 
   mat-form-field {
