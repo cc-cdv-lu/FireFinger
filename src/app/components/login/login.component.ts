@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   inputField: string;
   @HostBinding('class') componentCssClass;
 
-  constructor(private electron: ElectronService, private user: UserService, private router: Router,
+  constructor(private electron: ElectronService, public user: UserService, private router: Router,
     public style: StyleService, public stats: StatisticsService) {
     let lastUser = this.electron.config.get("LAST_LOGIN");
     if (!lastUser)
