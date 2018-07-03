@@ -9,8 +9,8 @@ export class StatisticsService {
 
   private iLastTime = 0;
   private iTime = 0;
-  private iTotal = 0;
-  private iKeys = 0;
+  private elapsed_time_in_ms = 0;
+  private pressed_keys_count = 0;
 
   currentStats: Statistics = new Statistics();
 
@@ -21,9 +21,9 @@ export class StatisticsService {
     this.iTime = new Date().getTime();
 
     if (this.iLastTime != 0) {
-      this.iKeys++;
-      this.iTotal += this.iTime - this.iLastTime;
-      this.currentStats.typeSpeed = Math.round(this.iKeys / this.iTotal * 6000);
+      this.pressed_keys_count++;
+      this.elapsed_time_in_ms += this.iTime - this.iLastTime;
+      this.currentStats.typeSpeed = Math.round(this.pressed_keys_count / this.elapsed_time_in_ms * 60000);  //keys pressed per minute
     }
 
     this.iLastTime = this.iTime;
@@ -32,8 +32,8 @@ export class StatisticsService {
   reset() {
     this.iLastTime = 0;
     this.iTime = 0;
-    this.iTotal = 0;
-    this.iKeys = 0;
+    this.elapsed_time_in_ms = 0;
+    this.pressed_keys_count = 0;
 
     this.wpm = 0;
 
