@@ -1,0 +1,10 @@
+﻿{
+	"name": "Kapitel 15b",
+	"intro": "xxxxxxxxxxxx",
+	"type": 0,
+	"characters": "aAsSdDfF jJkKlLöÖgGhHeEiI\n,rRuUwWoO.qQpPtTzZvVmMbBnNcC;xX:yY-_äÄüÜ",
+	"comments": "",
+	"amount": 100,
+	"newCharacters": "äÄüÜ"
+}
+############################

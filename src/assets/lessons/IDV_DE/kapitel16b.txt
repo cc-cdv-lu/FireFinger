@@ -1,0 +1,10 @@
+﻿{
+	"name": "Kapitel 16b",
+	"intro": "xxxxxxxxxxxx",
+	"type": 0,
+	"characters": "aAsSdDfF jJkKlLöÖgGhHeEiI\n,rRuUwWoO.qQpPtTzZvVmMbBnNcC;xX:yY-_äÄüÜ1234567890",
+	"comments": "",
+	"amount": 100,
+	"newCharacters": "1234567890"
+}
+############################

@@ -14,7 +14,6 @@ export class StatisticsService {
 
   currentStats: Statistics = new Statistics();
 
-  //* TODO this is not working correctly CPM should be much higher *//
   //* Possibly also log other stats such as: per character, how long does it take the user to type the letter, from when it is displayed on the screen //
   wpm = 0;
   checkSpeed() {
@@ -76,8 +75,6 @@ export class StatisticsService {
     }
 
     return output;
-
-
   }
 }
 

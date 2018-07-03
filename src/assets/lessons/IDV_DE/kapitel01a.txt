@@ -1,0 +1,10 @@
+﻿{
+	"name": "Kapitel 01a - Wiederholung\nÜbungen zur Basis",
+	"intro": "xxxxxxxxxxxx",
+	"type": 0,
+	"characters": "asdf jklö",
+	"newCharacters": "asdf jklö",
+	"comments": "asdf jklö",
+	"amount": 100
+}
+############################

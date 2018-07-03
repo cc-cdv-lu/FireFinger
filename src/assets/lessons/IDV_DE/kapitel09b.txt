@@ -1,0 +1,10 @@
+﻿{
+	"name": "Kapitel 09b",
+	"intro": "xxxxxxxxxxxx",
+	"type": 0,
+	"characters": "aAsSdDfF jJkKlLöÖgGhHeEiI\n,rRuUwWoO.qQpPtTzZ",
+	"comments": "",
+	"amount": 100,
+	"newCharacters": "tTzZ"
+}
+############################
