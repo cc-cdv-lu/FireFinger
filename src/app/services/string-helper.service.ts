@@ -12,8 +12,6 @@ export class StringHelperService {
 
   constructor() { }
 
-
-
   getCurrentChar(input, index) {
     if (!input) return "";
     return input[index];
@@ -42,7 +40,7 @@ export class StringHelperService {
     let output = "";
     if (str[pos] == "\n" || str[pos] == " ") return output;
 
-    for (let i = pos - 1; i > 0; i--) {
+    for (let i = pos - 1; i >= 0; i--) {
       if (str[i] != "\n" && str[i] != " ")
         output = str[i] + output;
       else
@@ -64,13 +62,12 @@ export class StringHelperService {
     return output;
   }
 
-  // TODO this could be much cleaner
   getBeginningOfLine(str, pos) {
-    let output = str[pos - 1];
-    if (str[pos - 1] == "\n") return output;
+    if (str[pos - 1] == "\n") return str[pos - 1];
     if (str[pos] == "\n") return this.getBeginningOfLine(str, pos - 1) + str[pos - 1];
 
-    for (let i = pos - 2; i > 0; i--) {
+    let output = "";
+    for (let i = pos - 1; i >= 0; i--) {
       if (str[i] != "\n") {
         output = str[i] + output;
       }
