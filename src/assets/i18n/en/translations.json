@@ -101,6 +101,7 @@
   },
   "summary": {
     "backbutton": "Back",
+    "continuebutton": "Continue",
     "mistakesperkey": "Error rate per letter",
     "result": {
       "fail": "Awww! Better luck next time!",

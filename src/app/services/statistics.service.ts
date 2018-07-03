@@ -69,7 +69,6 @@ export class StatisticsService {
     let sortedArray = stats.mistakeKeys.sort((a, b) => {
       return b.count - a.count;
     });
-    console.log("Sortedarray", sortedArray);
     let output = [];
     for (let i = 0; i < amount; i++) {
       if (sortedArray[i])

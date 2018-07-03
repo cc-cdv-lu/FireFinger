@@ -101,6 +101,7 @@
   },
   "summary": {
     "backbutton": "Zurück",
+    "continuebutton": "Weiter",
     "mistakesperkey": "Fehlerhäufigkeit pro Buchstabe",
     "result": {
       "fail": "Awww! Viel Glück beim nächsten Mal!",

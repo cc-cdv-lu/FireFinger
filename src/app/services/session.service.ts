@@ -37,7 +37,13 @@ export class SessionService {
     private user: UserService, private electron: ElectronService, private sound: SoundEffectService,
     private stringHelper: StringHelperService, public reader: ReaderService) { }
 
-  ignoreKeys = ["ContextMenu", "CapsLock", "Tab", "Insert", "Home", "PageUp", "PageDown", "Delete", "End", "Backspace", "Shift", "Control", "Alt", "AltGraph", "Meta", "Dead", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12"];
+  ignoreKeys = [
+    "ContextMenu", "CapsLock", "Tab", "Insert", "Home",
+    "PageUp", "PageDown", "Delete", "End", "Backspace",
+    "Shift", "Control", "Alt", "AltGraph", "Meta", "Dead",
+    "F1", "F2", "F3", "F4", "F5", "F6", "F7",
+    "F8", "F9", "F10", "F11", "F12"
+  ];
 
   shouldIgnore(key: string): boolean {
     /* If pressed key is part of the list, ignore it (return true)*/
@@ -50,7 +56,7 @@ export class SessionService {
     if (!this.isSessionLoaded) return console.log("No session loaded...");
 
     // What should happen when level is over
-    if (this.getIndex() >= this.getText().length) {
+    if (this.getIndex() >= this.getText().length - 1) {
       return this.onEndOfChapter(event);
     }
 

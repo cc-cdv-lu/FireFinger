@@ -14,14 +14,15 @@
         {{'summary.mistakesperkey' | translate}}
       </mat-card-title>
       <mat-card-content>
-            <b>{{'summary.totalmistakes' | translate }}:</b>
-            <p>{{session_stats.mistakesCount}}</p>
-          <mat-divider></mat-divider>
-          <mat-grid-list cols="5"  [rowHeight]="'2.5rem'">
-            <mat-grid-tile *ngFor="let mistake of stats.getTopMistakes(session_stats, 10)">
-              <b>{{mistake?.key}}:</b><p>{{mistake?.count}}</p>
-            </mat-grid-tile>
-          </mat-grid-list>
+        <b>{{'summary.totalmistakes' | translate }}:</b>
+        <p>{{session_stats.mistakesCount}}</p>
+        <mat-divider></mat-divider>
+        <mat-grid-list cols="5" [rowHeight]="'2.5rem'">
+          <mat-grid-tile *ngFor="let mistake of stats.getTopMistakes(session_stats, 10)">
+            <b>{{mistake?.key}}:</b>
+            <p>{{mistake?.count}}</p>
+          </mat-grid-tile>
+        </mat-grid-list>
       </mat-card-content>
     </mat-card>
 
@@ -35,7 +36,12 @@
     </mat-card>
 
     <mat-card class="card">
-      <nav><a mat-raised-button color="primary" routerLink="/home">{{'summary.backbutton' | translate}}</a></nav>
+      <nav>
+        <a mat-raised-button color="primary" routerLink="/home">
+          <p *ngIf="!didWin()">{{'summary.backbutton' | translate}}</p>
+          <p *ngIf="didWin()">{{'summary.continuebutton' | translate}}</p>
+        </a>
+      </nav>
     </mat-card>
   </div>
 
