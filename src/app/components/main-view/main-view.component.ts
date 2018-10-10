@@ -62,6 +62,10 @@ export class MainViewComponent implements OnInit {
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.ctrlKey) {
+      console.log('Ctrl...');
+      if (event.key === 'ArrowUp') { return this.style.increaseFont(); }
+      if (event.key === 'ArrowDown') { return this.style.decreaseFont(); }
+      console.log('Ctrl...');
       return;
     }
     /*
