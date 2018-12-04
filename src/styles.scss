@@ -16,7 +16,7 @@ html {
 
   mat-slide-toggle,
   mat-slider {
-    zoom: 6;
+    zoom: 1;
   }
 
   a,
@@ -48,8 +48,8 @@ html {
   mat-card-title,
   mat-expansion-panel-header,
   mat-panel-title {
-    font-size: 4rem !important;
-    line-height: 4.5rem !important;
+    font-size: 3rem !important;
+    line-height: 3.5rem !important;
   }
 
   mat-form-field {
@@ -58,8 +58,8 @@ html {
   }
 
   .mat-select-content {
-    line-height: 3rem !important;
-    font-size: 2rem !important;
+    line-height: 2rem !important;
+    font-size: 1rem !important;
   }
 
   .mat-select-panel {

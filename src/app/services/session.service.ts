@@ -87,6 +87,7 @@ export class SessionService {
   }
 
   handleKeyEvent(event: KeyboardEvent) {
+
     if (!this.isSessionLoaded) {
       return console.log('No session loaded...');
     }
@@ -103,6 +104,7 @@ export class SessionService {
       this.getIndex()
     );
     console.log('Expected vs pressed:', pressedKey, expectedKey);
+    console.log('Key Event:', event);
     if (pressedKey === 'Escape') {
       return this.reset();
     }
@@ -137,6 +139,11 @@ export class SessionService {
 
     if (this.getCurrentChar() === '�') {
       return this.nextTextIndex();
+    }
+
+    // Ignore special cases such as user trying to increase font size or typing special characters
+    if (event.ctrlKey) {
+      return;
     }
 
     // If wrong letter was entered

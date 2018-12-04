@@ -1,21 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UserService } from '../../services/user.service';
-import { StatisticsService, Statistics } from '../../services/statistics.service';
-import { SessionService, GAME_STATE } from '../../services/session.service'
+import {
+  StatisticsService,
+  Statistics,
+} from '../../services/statistics.service';
+import { SessionService, GAME_STATE } from '../../services/session.service';
 import { StyleService } from '../../services/style.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
-  styleUrls: ['./summary.component.scss']
+  styleUrls: ['./summary.component.scss'],
 })
 export class SummaryComponent implements OnInit {
   session_stats: Statistics;
 
-  constructor(private user: UserService, private stats: StatisticsService, private session: SessionService,
-    public translate: TranslateService, public style: StyleService) { }
+  constructor(
+    private user: UserService,
+    private stats: StatisticsService,
+    private session: SessionService,
+    public translate: TranslateService,
+    public style: StyleService
+  ) {}
   /*
     Needed data:
       Chapter that has just been solved
@@ -26,7 +34,7 @@ export class SummaryComponent implements OnInit {
 
   */
   didWin(): boolean {
-    return this.session.gameState == GAME_STATE.SUCCESS
+    return this.session.gameState === GAME_STATE.SUCCESS;
   }
 
   ngOnInit() {
@@ -35,18 +43,18 @@ export class SummaryComponent implements OnInit {
   }
 
   loadData() {
-    if (!this.user.loggedInUser) return;
+    if (!this.user.loggedInUser) {
+      return;
+    }
 
     this.session_stats = this.user.loggedInUser.lastSessionStats;
   }
 
   getResultText() {
     if (this.didWin()) {
-      return this.translate.instant('summary.result.win')
-    }
-    else {
-      return this.translate.instant('summary.result.fail')
+      return this.translate.instant('summary.result.win');
+    } else {
+      return this.translate.instant('summary.result.fail');
     }
   }
-
 }

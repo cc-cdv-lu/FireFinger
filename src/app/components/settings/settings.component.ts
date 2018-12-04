@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { LessonService } from '../../services/lesson.service';
 import { SessionService } from '../../services/session.service';
 import { StyleService } from '../../services/style.service';
-import { User, UserService } from '../../services/user.service'
-import { StatisticsService } from '../../services/statistics.service'
+import { User, UserService } from '../../services/user.service';
+import { StatisticsService } from '../../services/statistics.service';
 import { ReaderService } from '../../services/reader.service';
 
 import { ElectronService } from '../../providers/electron.service';
@@ -13,28 +13,36 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss']
+  styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent implements OnInit {
   langs = [
     {
       id: 'de',
-      description: this.translate.instant('settings.lang.de')
+      description: this.translate.instant('settings.lang.de'),
     },
     {
       id: 'fr',
-      description: this.translate.instant('settings.lang.fr')
+      description: this.translate.instant('settings.lang.fr'),
     },
     {
       id: 'en',
-      description: this.translate.instant('settings.lang.en')
-    }
-  ]
+      description: this.translate.instant('settings.lang.en'),
+    },
+  ];
   lang;
 
   allLessons = this.lessons.lessons;
-  constructor(public lessons: LessonService, public session: SessionService, public style: StyleService, public user: UserService,
-    public stats: StatisticsService, public reader: ReaderService, public translate: TranslateService, private electron: ElectronService) { }
+  constructor(
+    public lessons: LessonService,
+    public session: SessionService,
+    public style: StyleService,
+    public user: UserService,
+    public stats: StatisticsService,
+    public reader: ReaderService,
+    public translate: TranslateService,
+    private electron: ElectronService
+  ) {}
   Math = Math;
   ngOnInit() {
     this.lang = this.translate.currentLang;
@@ -46,17 +54,14 @@ export class SettingsComponent implements OnInit {
   }
 
   readTest() {
-    this.reader.play(this.reader.config.test, 2)
+    this.reader.play(this.reader.config.test, 2);
   }
 
   onLangChange() {
     this.translate.use(this.lang);
-    this.electron.config.set("LANG", this.lang)
+    this.electron.config.set('LANG', this.lang);
   }
   changeTheme(theme) {
     this.style.theme = theme;
   }
-
-
-
 }
