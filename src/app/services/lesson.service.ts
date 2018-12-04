@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as WordExtractor from 'word-extractor';
-import { ElectronService } from '../providers/electron.service'
+import { ElectronService } from '../providers/electron.service';
 
 export class Lesson {
   name: string;
@@ -13,7 +12,7 @@ export class Chapter {
   type: ChapterType;
   characters: string;
   newCharacters: string;
-  amount: number
+  amount: number;
 }
 export enum ChapterType {
   CHAR, WORD, DICATION
@@ -32,11 +31,10 @@ export class LessonService {
     this.loadAllDirs();
 
     try {
-      //TODO find a way to import this in production
+      // TODO find a way to import this in production
       this.docsURL = 'src/assets/lessons/';
       this.loadAllDirs();
-    }
-    catch (err) { console.log("Did not work...", err) }
+    } catch (err) { console.log('Did not work...', err); }
   }
 
 
@@ -45,18 +43,19 @@ export class LessonService {
       this.firstLaunch();
     }
 
-    let docsDir = this.electron.fs.readdirSync(this.docsURL);
+    const docsDir = this.electron.fs.readdirSync(this.docsURL);
 
-    if (!docsDir) return console.warn("This url does not exist:", this.docsURL)
-    console.log("Loading lessons from folder:", this.docsURL);
-    for (let folder of docsDir) {
-      if (folder.indexOf(".") == -1)
+    if (!docsDir) { return console.warn('This url does not exist:', this.docsURL); }
+    console.log('Loading lessons from folder:', this.docsURL);
+    for (const folder of docsDir) {
+      if (folder.indexOf('.') === -1) {
         this.loadFolder(this.docsURL, folder);
+      }
     }
   }
 
   openDocsFolderInExplorer() {
-    this.electron.shell.openExternal(this.appDataURL)
+    this.electron.shell.openExternal(this.appDataURL);
   }
 
   firstLaunch() {
@@ -64,16 +63,15 @@ export class LessonService {
       this.electron.fs.mkdirSync(this.docsURL);
     }
 
-    let assetsURL = "";
+    let assetsURL = '';
     if (this.electron.isDev()) {
       assetsURL = this.electron.path.join(this.electron.app.getAppPath(), 'src/assets/lessons');
-    }
-    else {
+    } else {
       this.createExampleFolder();
     }
 
     // If user has not yet had any files in their folder, copy the example files to their folder
-    this.electron.fs.copySync(assetsURL, this.docsURL)
+    this.electron.fs.copySync(assetsURL, this.docsURL);
 
 
 
@@ -81,43 +79,43 @@ export class LessonService {
   }
 
   loadFolder(path: string, folderName: string) {
-    let url = this.electron.path.join(path, folderName);
-    let dir = this.electron.fs.readdirSync(url);
-    let lesson = {
+    const url = this.electron.path.join(path, folderName);
+    const dir = this.electron.fs.readdirSync(url);
+    const lesson = {
       name: folderName,
       chapters: new Array<Chapter>(),
-      lang: 'de'              //read from meta data
-    }
-    for (let file of dir) {
-      let fileURL = this.electron.path.join(url, file);
-      let newChapter: Chapter = this.loadFromFile(fileURL);
+      lang: 'de'              // read from meta data
+    };
+    for (const file of dir) {
+      const fileURL = this.electron.path.join(url, file);
+      const newChapter: Chapter = this.loadFromFile(fileURL);
 
-      lesson.chapters.push(newChapter)
+      lesson.chapters.push(newChapter);
     }
     this.lessons.push(lesson);
   }
 
   loadFromFile(url: string): Chapter {
-    let fileEnding = this.electron.path.extname(url);
-    let filename = this.electron.path.basename(url);
+    const fileEnding = this.electron.path.extname(url);
+    const filename = this.electron.path.basename(url);
 
-    let regexp = /#{5,}/;
-    let fileContent: string = "";
+    const regexp = /#{5,}/;
+    let fileContent = '';
 
     switch (fileEnding) {
-      case ".doc": case ".docx": fileContent = this.getDocFileContents(url); break;
-      case ".txt": fileContent = this.getTXTFileContents(url); break;
-      default: console.log("Cannot get contents from this file:", url); break;
+      case '.doc': case '.docx': fileContent = this.getDocFileContents(url); break;
+      case '.txt': fileContent = this.getTXTFileContents(url); break;
+      default: console.log('Cannot get contents from this file:', url); break;
     }
 
     /* Parse content */
 
-    let output: Chapter = {
+    const output: Chapter = {
       name: filename, // Try to get it from name field
       type: -1,
       amount: -1,
-      characters: "",
-      newCharacters: "",
+      characters: '',
+      newCharacters: '',
       content: ''
     };
 
@@ -130,26 +128,25 @@ export class LessonService {
       output.type = ChapterType.DICATION;
 
       return output;
-    }
-    else {
-      let split = fileContent.split(regexp);
+    } else {
+      const split = fileContent.split(regexp);
 
-      let jsonString = split[0].trim();
-      let data = JSON.parse(jsonString);
+      const jsonString = split[0].trim();
+      const data = JSON.parse(jsonString);
 
       output.content = split[1];
       output.characters = this.getCharsOfText(output.content);
-      if (data.type != undefined) output.type = data.type;
-      if (data.name != undefined) output.name = data.name;
-      if (data.amount != undefined) output.amount = data.amount
-      if (data.characters != undefined) output.characters = data.characters;
-      if (data.newCharacters != undefined) output.newCharacters = data.newCharacters;
+      if (data.type !== undefined) { output.type = data.type; }
+      if (data.name !== undefined) { output.name = data.name; }
+      if (data.amount !== undefined) { output.amount = data.amount; }
+      if (data.characters !== undefined) { output.characters = data.characters; }
+      if (data.newCharacters !== undefined) { output.newCharacters = data.newCharacters; }
 
       switch (output.type) {
         case ChapterType.CHAR: this.generateCharLesson(output); break;
         case ChapterType.WORD: this.generateWordLesson(output); break;
         default: {
-          console.error("Something smells fucky with the type of this...", output);
+          console.error('Something smells fucky with the type of this...', output);
           break;
         }
       }
@@ -159,12 +156,12 @@ export class LessonService {
   }
 
   getCharsOfText(text: string): string {
-    let data = {};
-    for (let c of text) {
-      data[c] = 'present'
+    const data = {};
+    for (const c of text) {
+      data[c] = 'present';
     }
-    let output = "";
-    for (let c of Object.keys(data)) {
+    let output = '';
+    for (const c of Object.keys(data)) {
       output += c;
     }
     return output;
@@ -176,15 +173,15 @@ export class LessonService {
     // chapter.newCharacters  -> favor new characters
 
     // Try to fill half of output with new characters
-    let output = "";
-    if (!chapter.amount || !chapter.characters || !chapter.newCharacters) return;
+    let output = '';
+    if (!chapter.amount || !chapter.characters || !chapter.newCharacters) { return; }
     for (let i = 0; i < chapter.amount / 2; i++) {
-      output += this.getRandom(chapter.newCharacters.split(""));
+      output += this.getRandom(chapter.newCharacters.split(''));
     }
 
     // Fill the rest with the old characters
     for (let i = output.length; i < chapter.amount; i++) {
-      output += this.getRandom(chapter.characters.split(""))
+      output += this.getRandom(chapter.characters.split(''));
     }
 
     // copy by reference: simply edit chapter file - no return needed
@@ -196,8 +193,8 @@ export class LessonService {
   }
 
   getDocFileContents(url: string): string {
-    let file = this.electron.fs.readFileSync(url, 'utf8');
-    //TODO not implemented
+    const file = this.electron.fs.readFileSync(url, 'utf8');
+    // TODO not implemented
     /*
     var extractor = new WordExtractor();
     var extracted = extractor.extract(url);
@@ -217,10 +214,10 @@ export class LessonService {
   }
 
   createExampleFolder() {
-    let url = this.electron.path.join(this.docsURL, 'example-folder');
+    const url = this.electron.path.join(this.docsURL, 'example-folder');
     for (let i = 0; i < 5; i++) {
-      let content = "Dies ist Beispieltext Nummer " + i;
-      let filename = "beispieltext" + i + ".txt";
+      const content = 'Dies ist Beispieltext Nummer ' + i;
+      const filename = 'beispieltext' + i + '.txt';
       this.writeTextFileToFolder(content, filename, url);
     }
   }
@@ -229,24 +226,24 @@ export class LessonService {
     if (!this.electron.fs.existsSync(location)) {
       this.electron.fs.mkdirSync(location);
     }
-    let path = this.electron.path.join(location, filename);
+    const path = this.electron.path.join(location, filename);
     this.electron.fs.writeFile(path, content, (err) => {
-      if (err) throw console.warn("The was an issue writing this file:", err)
-      console.log("The file was save successfully: ", path)
+      if (err) { throw console.warn('The was an issue writing this file:', err); }
+      console.log('The file was save successfully: ', path);
     });
   }
 
   shuffleString(s: string): string {
-    var a = s.split(""),
+    const a = s.split(''),
       n = a.length;
 
-    for (var i = n - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var tmp = a[i];
+    for (let i = n - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = a[i];
       a[i] = a[j];
       a[j] = tmp;
     }
-    return a.join("");
+    return a.join('');
   }
 
   /**
@@ -254,21 +251,21 @@ export class LessonService {
  * @param {Array} a items An array containing the items.
  */
   shuffle(input_array) {
-    let a = input_array.slice();
-    if (!a) return console.error("Array is undefined!");
+    const a = input_array.slice();
+    if (!a) { return console.error('Array is undefined!'); }
     for (let i = a.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [a[i], a[j]] = [a[j], a[i]];
     }
-    return a.slice(); //little hack to allow copy by value
+    return a.slice(); // little hack to allow copy by value
   }
 
   getRandom(array) {
     if (array.length <= 0 || !array) {
-      console.error("This is not a good array...")
+      console.error('This is not a good array...');
       return null;
     }
-    let index = Math.floor(Math.random() * array.length);
+    const index = Math.floor(Math.random() * array.length);
     return array[index];
   }
 }

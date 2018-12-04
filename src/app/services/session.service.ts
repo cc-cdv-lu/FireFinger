@@ -83,10 +83,7 @@ export class SessionService {
   shouldIgnore(key: string): boolean {
     /* If pressed key is part of the list, ignore it (return true)*/
     /* If it is not part of the list (indexOf = -1), true false */
-    if (this.ignoreKeys.indexOf(key) === -1) {
-      return false;
-    }
-    return true;
+    return this.ignoreKeys.includes(key);
   }
 
   handleKeyEvent(event: KeyboardEvent) {
@@ -95,7 +92,7 @@ export class SessionService {
     }
 
     // What should happen when level is over
-    if (this.getIndex() >= this.getText().length - 1) {
+    if (this.getIndex() >= this.getText().length) {
       return this.onEndOfChapter(event);
     }
 
@@ -105,6 +102,7 @@ export class SessionService {
       this.getText(),
       this.getIndex()
     );
+    console.log('Expected vs pressed:', pressedKey, expectedKey);
     if (pressedKey === 'Escape') {
       return this.reset();
     }

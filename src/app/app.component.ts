@@ -1,4 +1,4 @@
-import { Component, HostBinding, HostListener } from '@angular/core';
+import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ElectronService } from './providers/electron.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -6,44 +6,59 @@ import { AppConfig } from '../environments/environment';
 
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { StyleService } from './services/style.service';
-import { SettingsComponent } from './components/settings/settings.component'
+import { SettingsComponent } from './components/settings/settings.component';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-
+export class AppComponent implements OnInit {
+  routerLinks;
 
   @HostBinding('class') componentCssClass;
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    if (event.keyCode == 107 && event.ctrlKey) return this.style.increaseFont();
-    if (event.keyCode == 109 && event.ctrlKey) return this.style.decreaseFont();
-
+    if (event.ctrlKey) {
+      if (event.key === 'ArrowUp' || event.key === '+') {
+        return this.style.increaseFont();
+      }
+      if (event.key === 'ArrowDown' || event.key === '-') {
+        return this.style.decreaseFont();
+      }
+    }
   }
-  routerLinks;
-  constructor(public electronService: ElectronService,
-    private translate: TranslateService, public overlayContainer: OverlayContainer, public style: StyleService,
-    public settings: SettingsComponent, private electron: ElectronService, public router: Router) {
-
-    this.overlayContainer.getContainerElement().classList.add(this.style.getThemes());
+  constructor(
+    public electronService: ElectronService,
+    private translate: TranslateService,
+    public overlayContainer: OverlayContainer,
+    public style: StyleService,
+    public settings: SettingsComponent,
+    private electron: ElectronService,
+    public router: Router,
+    public user: UserService
+  ) {
+    this.overlayContainer
+      .getContainerElement()
+      .classList.add(this.style.getThemes());
 
     translate.addLangs(['de', 'fr', 'en']);
 
-    let lang = this.electronService.config.get("LANG");
-    if (!lang) lang = 'de';
+    let lang = this.electronService.config.get('LANG');
+    if (!lang) {
+      lang = 'de';
+    }
 
     translate.setDefaultLang(lang);
     translate.use(lang);
 
-    //console.log('AppConfig', AppConfig);
+    // console.log('AppConfig', AppConfig);
 
     if (electronService.isElectron()) {
       console.log('Mode electron');
-      //console.log('Electron ipcRenderer', electronService.ipcRenderer);
-      //console.log('NodeJS childProcess', electronService.childProcess);
+      // console.log('Electron ipcRenderer', electronService.ipcRenderer);
+      // console.log('NodeJS childProcess', electronService.childProcess);
     } else {
       console.log('Mode web');
     }
@@ -69,10 +84,15 @@ export class AppComponent {
         link: '/login',
         icon: 'person'
       }
-    ]
+    ];
+
+    this.user.userChanged.subscribe((username) => {
+      const namePromise = new Promise((resolve, reject) => {
+        resolve(username);
+      });
+      this.routerLinks[3].name = username ? namePromise : this.translate.get('nav.login');
+    });
   }
-
-
 
   ngOnInit() {
     // immediately maximize window after component initalization
@@ -85,18 +105,18 @@ export class AppComponent {
   /* DEBUG stuff */
 
   blurAllButtons() {
-    let buttons = document.getElementsByTagName('button');
+    const buttons = document.getElementsByTagName('button');
     for (let i = 0; i < buttons.length; i++) {
-      buttons.item(i).blur()
+      buttons.item(i).blur();
     }
   }
 
-
   closeApp() {
-    console.warn("Shutting game down...");
-    if (this.electron.window)
+    console.warn('Shutting game down...');
+    if (this.electron.window) {
       this.electron.window.close();
-    else
+    } else {
       window.close();
+    }
   }
 }

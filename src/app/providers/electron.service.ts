@@ -39,7 +39,7 @@ export class ElectronService {
       this.window = window.require('electron').remote.getCurrentWindow();
       const ConfigClass = window.require('electron-store');
       this.config = new ConfigClass();
-      console.log("Config location: ", this.config)
+      console.log('Config location: ', this.config)
 
 
       this.app = this.remote.app;

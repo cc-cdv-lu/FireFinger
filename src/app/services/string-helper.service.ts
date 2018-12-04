@@ -13,76 +13,76 @@ export class StringHelperService {
   constructor() { }
 
   getCurrentChar(input, index) {
-    if (!input) return "";
+    if (!input) { return ''; }
     return input[index];
   }
 
   getPrevSegment(input, index, view: VIEW) {
-    if (!input) return "";
+    if (!input) { return ''; }
     switch (view) {
-      case VIEW.CHAR: return "";
+      case VIEW.CHAR: return '';
       case VIEW.WORD: return this.getBeginningOfWord(input, index);
       case VIEW.LINE: return this.getBeginningOfLine(input, index);
     }
-    return "";
+    return '';
   }
 
   getNextSegment(input, index, view: VIEW) {
-    if (!input) return "";
+    if (!input) { return ''; }
     switch (view) {
-      case VIEW.CHAR: return "";
+      case VIEW.CHAR: return '';
       case VIEW.WORD: return this.getRestOfWord(input, index);
       case VIEW.LINE: return this.getRestOfLine(input, index);
     }
   }
 
   getBeginningOfWord(str, pos) {
-    let output = "";
-    if (str[pos] == "\n" || str[pos] == " ") return output;
+    let output = '';
+    if (str[pos] === '\n' || str[pos] === ' ') { return output; }
 
     for (let i = pos - 1; i >= 0; i--) {
-      if (str[i] != "\n" && str[i] != " ")
+      if (str[i] !== '\n' && str[i] !== ' ') {
         output = str[i] + output;
-      else
-        return output
+      } else {
+        return output;
+      }
     }
     return output;
   }
 
   getRestOfWord(str, pos) {
-    let output = "";
-    if (str[pos] == "\n" || str[pos] == " ") return output;
+    let output = '';
+    if (str[pos] === '\n' || str[pos] === ' ') { return output; }
 
     for (let i = pos + 1; i < str.length; i++) {
-      if (str[i] != "\n" && str[i] != " ")
+      if (str[i] !== '\n' && str[i] !== ' ') {
         output += str[i];
-      else
-        return output
+      } else {
+        return output;
+      }
     }
     return output;
   }
 
   getBeginningOfLine(str, pos) {
-    if (str[pos - 1] == "\n") return str[pos - 1];
-    if (str[pos] == "\n") return this.getBeginningOfLine(str, pos - 1) + str[pos - 1];
+    if (str[pos - 1] === '\n') { return str[pos - 1]; }
+    if (str[pos] === '\n') { return this.getBeginningOfLine(str, pos - 1) + str[pos - 1]; }
 
-    let output = "";
+    let output = '';
     for (let i = pos - 1; i >= 0; i--) {
-      if (str[i] != "\n") {
+      if (str[i] !== '\n') {
         output = str[i] + output;
-      }
-      else return output;
+      } else { return output; }
     }
 
     return output;
   }
 
   getRestOfLine(str, pos) {
-    let output = "";
-    if (str[pos] == "\n") return output;
+    let output = '';
+    if (str[pos] === '\n') { return output; }
     for (let i = pos + 1; i < str.length; i++) {
-      if (str[i] != "\n") output += str[i];
-      else return output;
+      if (str[i] !== '\n') { output += str[i]; } else { return output; }
     }
     return output;
   }
@@ -95,7 +95,7 @@ export class StringHelperService {
     pos = Number(pos) >>> 0;
 
     // Search for the word's beginning and end.
-    var left = str.slice(0, pos + 1).search(/\S+$/),
+    const left = str.slice(0, pos + 1).search(/\S+$/),
       right = str.slice(pos).search(/\s/);
 
     // The last word in the string is a special case.

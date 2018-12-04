@@ -61,18 +61,6 @@ export class MainViewComponent implements OnInit {
   activateDebug = false;
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    if (event.ctrlKey) {
-      console.log('Ctrl...');
-      if (event.key === 'ArrowUp') { return this.style.increaseFont(); }
-      if (event.key === 'ArrowDown') { return this.style.decreaseFont(); }
-      console.log('Ctrl...');
-      return;
-    }
-    /*
-    if (event.keyCode == 107 && event.ctrlKey) return this.style.increaseFont();
-    if (event.keyCode == 109 && event.ctrlKey) return this.style.decreaseFont();
-    if (event.keyCode == 68 && event.ctrlKey && event.altKey) return this.activateDebug = !this.activateDebug;
-    */
     this.blurAllButtons();
     if (this.areSettingsOpen) {
       return;
@@ -96,9 +84,13 @@ export class MainViewComponent implements OnInit {
 
   getWarningText() {
     let output = '';
-    if (!this.session) { return output; }
+    if (!this.session) {
+      return output;
+    }
     const c: string = this.session.getCurrentChar();
-    if (!c) { return output; }
+    if (!c) {
+      return output;
+    }
     switch (c) {
       case '\n':
         return this.translate.instant('keys.enter');
@@ -117,17 +109,27 @@ export class MainViewComponent implements OnInit {
 
     // Check if the letter is uppercase
     if (c.toLowerCase() !== c) {
-      if (output !== '') { output += '\n'; }
+      if (output !== '') {
+        output += '\n';
+      }
       output += this.translate.instant('keys.uppercase');
     }
     return output;
   }
 
   attemptHighlight(char: string) {
-    if (!char) { return; }
-    if (char.length > 1) { return ''; }
-    if (char === ' ') { return '_'; }
-    if (char === '\n') { return '↲'; }
+    if (!char) {
+      return;
+    }
+    if (char.length > 1) {
+      return '';
+    }
+    if (char === ' ') {
+      return '_';
+    }
+    if (char === '\n') {
+      return '↲';
+    }
     return char;
   }
 
@@ -143,7 +145,9 @@ export class MainViewComponent implements OnInit {
   }
 
   openSettings() {
-    if (this.areSettingsOpen) { return; }
+    if (this.areSettingsOpen) {
+      return;
+    }
     this.areSettingsOpen = true;
     const dialogRef = this.dialog.open(SettingsComponent, {
       height: '80%',

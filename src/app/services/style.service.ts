@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ElectronService } from '../providers/electron.service';
 
-const FONT_KEY = "FONT";
-const THEME_KEY = "THEME";
-const WARNING_FLASH = "WARNING_FLASH"
+const FONT_KEY = 'FONT';
+const THEME_KEY = 'THEME';
+const WARNING_FLASH = 'WARNING_FLASH';
 
 @Injectable({
   providedIn: 'root'
@@ -23,33 +23,33 @@ export class StyleService {
   }
 
   get font() {
-    let f = this.electron.config.get(FONT_KEY)
-    if (!f) f = 20;
+    let f = this.electron.config.get(FONT_KEY);
+    if (!f) { f = 20; }
     return f;
   }
   set font(v: number) {
-    if (!v && !isNaN(v)) return;
+    if (!v && !isNaN(v)) { return; }
     this.electron.config.set(FONT_KEY, v);
     document.documentElement.style.fontSize = v + 'px';
   }
 
   get warning_flash() {
     let c = this.electron.config.get(WARNING_FLASH);
-    if (!c) c = false;
+    if (!c) { c = false; }
     return c;
   }
   set warning_flash(v: boolean) {
-    if (v == null || v == undefined) return;
+    if (v == null || v === undefined) { return; }
     this.electron.config.set(WARNING_FLASH, v);
   }
 
   get theme() {
     let t = this.electron.config.get(THEME_KEY);
-    if (!t) t = "default-theme";
+    if (!t) { t = 'default-theme'; }
     return t;
   }
   set theme(t: string) {
-    if (!t) return;
+    if (!t) { return; }
     this.electron.config.set(THEME_KEY, t);
   }
 
@@ -79,10 +79,10 @@ export class StyleService {
       name: 'Dark lime',
       id: 'dl-theme'
     }
-  ]
+  ];
   getThemes(): string {
-    let output = "";
-    for (let theme of this.themes) {
+    let output = '';
+    for (const theme of this.themes) {
       output += (theme.id);
     }
     return output;
