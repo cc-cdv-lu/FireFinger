@@ -15,11 +15,13 @@ export class Chapter {
   amount: number;
 }
 export enum ChapterType {
-  CHAR, WORD, DICATION
+  CHAR,
+  WORD,
+  DICATION,
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LessonService {
   appDataURL: string;
@@ -30,13 +32,14 @@ export class LessonService {
     this.docsURL = this.electron.path.join(this.appDataURL, 'docs');
     this.loadAllDirs();
 
+    /*
     try {
       // TODO find a way to import this in production
       this.docsURL = 'src/assets/lessons/';
       this.loadAllDirs();
     } catch (err) { console.log('Did not work...', err); }
+    */
   }
-
 
   loadAllDirs() {
     if (!this.electron.fs.existsSync(this.docsURL)) {
@@ -45,17 +48,26 @@ export class LessonService {
 
     const docsDir = this.electron.fs.readdirSync(this.docsURL);
 
-    if (!docsDir) { return console.warn('This url does not exist:', this.docsURL); }
+    if (!docsDir) {
+      console.warn('This url does not exist:', this.docsURL);
+      return null;
+    }
     console.log('Loading lessons from folder:', this.docsURL);
     for (const folder of docsDir) {
       if (folder.indexOf('.') === -1) {
         this.loadFolder(this.docsURL, folder);
       }
     }
+    return this.lessons;
+  }
+
+  reload() {
+    this.lessons = [];
+    return this.loadAllDirs();
   }
 
   openDocsFolderInExplorer() {
-    this.electron.shell.openExternal(this.appDataURL);
+    this.electron.shell.openExternal(this.appDataURL + '/docs');
   }
 
   firstLaunch() {
@@ -65,15 +77,16 @@ export class LessonService {
 
     let assetsURL = '';
     if (this.electron.isDev()) {
-      assetsURL = this.electron.path.join(this.electron.app.getAppPath(), 'src/assets/lessons');
+      assetsURL = this.electron.path.join(
+        this.electron.app.getAppPath(),
+        'src/assets/lessons'
+      );
     } else {
       this.createExampleFolder();
     }
 
     // If user has not yet had any files in their folder, copy the example files to their folder
     this.electron.fs.copySync(assetsURL, this.docsURL);
-
-
 
     this.openDocsFolderInExplorer();
   }
@@ -84,9 +97,12 @@ export class LessonService {
     const lesson = {
       name: folderName,
       chapters: new Array<Chapter>(),
-      lang: 'de'              // read from meta data
+      lang: 'de', // read from meta data
     };
     for (const file of dir) {
+      if (file[0] === '.') {
+        continue;
+      }
       const fileURL = this.electron.path.join(url, file);
       const newChapter: Chapter = this.loadFromFile(fileURL);
 
@@ -103,9 +119,16 @@ export class LessonService {
     let fileContent = '';
 
     switch (fileEnding) {
-      case '.doc': case '.docx': fileContent = this.getDocFileContents(url); break;
-      case '.txt': fileContent = this.getTXTFileContents(url); break;
-      default: console.log('Cannot get contents from this file:', url); break;
+      case '.doc':
+      case '.docx':
+        fileContent = this.getDocFileContents(url);
+        break;
+      case '.txt':
+        fileContent = this.getTXTFileContents(url);
+        break;
+      default:
+        console.log('Cannot get contents from this file:', url);
+        break;
     }
 
     /* Parse content */
@@ -116,7 +139,7 @@ export class LessonService {
       amount: -1,
       characters: '',
       newCharacters: '',
-      content: ''
+      content: '',
     };
 
     /* IF IT'S A DICTATION LESSON */
@@ -136,17 +159,34 @@ export class LessonService {
 
       output.content = split[1];
       output.characters = this.getCharsOfText(output.content);
-      if (data.type !== undefined) { output.type = data.type; }
-      if (data.name !== undefined) { output.name = data.name; }
-      if (data.amount !== undefined) { output.amount = data.amount; }
-      if (data.characters !== undefined) { output.characters = data.characters; }
-      if (data.newCharacters !== undefined) { output.newCharacters = data.newCharacters; }
+      if (data.type !== undefined) {
+        output.type = data.type;
+      }
+      if (data.name !== undefined) {
+        output.name = data.name;
+      }
+      if (data.amount !== undefined) {
+        output.amount = data.amount;
+      }
+      if (data.characters !== undefined) {
+        output.characters = data.characters;
+      }
+      if (data.newCharacters !== undefined) {
+        output.newCharacters = data.newCharacters;
+      }
 
       switch (output.type) {
-        case ChapterType.CHAR: this.generateCharLesson(output); break;
-        case ChapterType.WORD: this.generateWordLesson(output); break;
+        case ChapterType.CHAR:
+          this.generateCharLesson(output);
+          break;
+        case ChapterType.WORD:
+          this.generateWordLesson(output);
+          break;
         default: {
-          console.error('Something smells fucky with the type of this...', output);
+          console.error(
+            'Something smells fucky with the type of this...',
+            output
+          );
           break;
         }
       }
@@ -174,7 +214,9 @@ export class LessonService {
 
     // Try to fill half of output with new characters
     let output = '';
-    if (!chapter.amount || !chapter.characters || !chapter.newCharacters) { return; }
+    if (!chapter.amount || !chapter.characters || !chapter.newCharacters) {
+      return;
+    }
     for (let i = 0; i < chapter.amount / 2; i++) {
       output += this.getRandom(chapter.newCharacters.split(''));
     }
@@ -188,9 +230,7 @@ export class LessonService {
     chapter.content = this.shuffleString(output);
   }
 
-  generateWordLesson(chapter: Chapter) {
-
-  }
+  generateWordLesson(chapter: Chapter) {}
 
   getDocFileContents(url: string): string {
     const file = this.electron.fs.readFileSync(url, 'utf8');
@@ -227,8 +267,10 @@ export class LessonService {
       this.electron.fs.mkdirSync(location);
     }
     const path = this.electron.path.join(location, filename);
-    this.electron.fs.writeFile(path, content, (err) => {
-      if (err) { throw console.warn('The was an issue writing this file:', err); }
+    this.electron.fs.writeFile(path, content, err => {
+      if (err) {
+        throw console.warn('The was an issue writing this file:', err);
+      }
       console.log('The file was save successfully: ', path);
     });
   }
@@ -247,12 +289,14 @@ export class LessonService {
   }
 
   /**
- * Shuffles array in place. ES6 version
- * @param {Array} a items An array containing the items.
- */
+   * Shuffles array in place. ES6 version
+   * @param {Array} a items An array containing the items.
+   */
   shuffle(input_array) {
     const a = input_array.slice();
-    if (!a) { return console.error('Array is undefined!'); }
+    if (!a) {
+      return console.error('Array is undefined!');
+    }
     for (let i = a.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [a[i], a[j]] = [a[j], a[i]];

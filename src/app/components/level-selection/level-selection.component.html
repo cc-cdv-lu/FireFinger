@@ -1,34 +1,66 @@
-<!--<mat-toolbar  [ngClass]="style.theme">
-  <mat-toolbar-row>
-    <button mat-icon-button color="accent" (click)="goHome();">
-        <mat-icon>keyboard_arrow_left</mat-icon>
+<!--
+  <mat-toolbar  [ngClass]="style.theme">
+    <mat-toolbar-row>
+      <button mat-icon-button color="accent" (click)="goHome();">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+      <div class="fill-remaining-space"></div>
+      <h3>Chapter selection</h3>
+    </mat-toolbar-row>
+  </mat-toolbar>
+-->
+<div class="container" [ngClass]="style.theme">
+  <mat-grid-list cols="2" rowHeight="4rem">
+    <mat-grid-tile>
+      <button mat-raised-button color="accent" (click)="reloadChapters()">
+        <mat-icon>replay</mat-icon>
+        {{ getChapterCount() }} {{ 'general.chaptersLoaded' | translate }}
       </button>
-    <div class="fill-remaining-space"></div>
-    <h3>Chapter selection</h3>
-  </mat-toolbar-row>
-</mat-toolbar>-->
-<div class="container"  [ngClass]="style.theme">
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="lesson.openDocsFolderInExplorer()"
+      >
+        <mat-icon>folder</mat-icon>
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+
   <mat-expansion-panel *ngFor="let set of allLessons">
-    <mat-expansion-panel-header [collapsedHeight]="'6rem'" [expandedHeight]="'6rem'">
-      <mat-panel-title>
-        {{set.name}}
-      </mat-panel-title>
+    <mat-expansion-panel-header
+      [collapsedHeight]="'6rem'"
+      [expandedHeight]="'6rem'"
+    >
+      <mat-panel-title> {{ set.name }} </mat-panel-title>
       <mat-panel-description>
-        Chapters: {{set.chapters.length}}
+        Chapters: {{ set.chapters.length }}
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <mat-card class="example-card" *ngFor="let chapter of set.chapters; let i = index">
+    <mat-card
+      class="example-card"
+      *ngFor="let chapter of set.chapters; let i = index"
+    >
       <mat-card-header>
-        <mat-card-title colspan="2">{{chapter.name}}</mat-card-title>
-        <mat-card-subtitle *ngIf="chapter.newCharacters">{{chapter.newCharacters}}</mat-card-subtitle>
+        <mat-card-title colspan="2">{{ chapter.name }}</mat-card-title>
+        <mat-card-subtitle *ngIf="chapter.newCharacters">{{
+          chapter.newCharacters
+        }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <span *ngIf="chapter.intro">Intro: {{chapter.intro}}</span>
-        <span> Letter count: {{chapter.content.length}}</span>
+        <span *ngIf="chapter.intro">Intro: {{ chapter.intro }}</span>
+        <span> Letter count: {{ chapter.content.length }}</span>
         <!-- put length instead -->
         <mat-card-actions>
-          <button mat-raised-button color="accent" (click)="session.loadSession(set, i); goHome()">Start</button>
+          <button
+            mat-raised-button
+            color="accent"
+            (click)="session.loadSession(set, i); goHome()"
+          >
+            Start
+          </button>
         </mat-card-actions>
       </mat-card-content>
     </mat-card>

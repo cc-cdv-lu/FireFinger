@@ -1,5 +1,6 @@
 {
   "general": {
+    "chaptersLoaded": "chapitre(s)",
     "closeapp": "X",
     "enter": "Entrer",
     "login": "S'identifier",

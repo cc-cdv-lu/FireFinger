@@ -103,8 +103,8 @@ export class SessionService {
       this.getText(),
       this.getIndex()
     );
-    console.log('Expected vs pressed:', pressedKey, expectedKey);
-    console.log('Key Event:', event);
+    // console.log('Expected vs pressed:', pressedKey, expectedKey);
+    // console.log('Key Event:', event);
     if (pressedKey === 'Escape') {
       return this.reset();
     }

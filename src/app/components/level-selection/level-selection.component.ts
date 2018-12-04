@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 
 import { LessonService } from '../../services/lesson.service';
 import { SessionService } from '../../services/session.service';
@@ -19,6 +19,18 @@ export class LevelSelectionComponent implements OnInit {
 
   goHome() {
     this.router.navigateByUrl('/');
+  }
+
+  reloadChapters() {
+    this.allLessons = this.lesson.reload();
+  }
+
+  getChapterCount() {
+    let count = 0;
+    for (const lesson of this.allLessons) {
+      count += lesson.chapters.length;
+    }
+    return count;
   }
 
 }
