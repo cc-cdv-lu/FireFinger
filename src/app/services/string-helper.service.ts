@@ -92,6 +92,7 @@ export class StringHelperService {
 
     // Perform type conversions.
     str = String(str);
+    // tslint:disable-next-line:no-bitwise
     pos = Number(pos) >>> 0;
 
     // Search for the word's beginning and end.
