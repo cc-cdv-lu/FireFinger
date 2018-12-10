@@ -83,7 +83,7 @@ export class ReaderService {
     },
     {
       id: 'm7',
-      description: 'Male m7',
+      description: 'Male 7',
     },
     {
       id: 'croak',

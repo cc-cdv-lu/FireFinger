@@ -1,4 +1,4 @@
-@import "mixins";
+@import 'mixins';
 
 /* Application wide - via x rem adjustable sizes */
 body,
@@ -16,11 +16,9 @@ html {
     height: 95%;
   }
 
-  /*
-  mat-slide-toggle,
-  mat-slider {
-    zoom: 1;
-  }*/
+  mat-slide-toggle {
+    zoom: 10rem;
+  }
 
   a,
   button,
@@ -66,7 +64,7 @@ html {
   }
 
   .mat-select-panel {
-    height: 50% !important;
+    overflow: visible !important;
   }
 
   mat-progress-bar {
@@ -114,7 +112,7 @@ html {
       @include mat-icon-size(7.5rem);
     }
 
-       mat-icon.huge {
+    mat-icon.huge {
       @include mat-icon-size(25rem);
     }
   }

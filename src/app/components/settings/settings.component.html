@@ -36,7 +36,7 @@
 
       <section class="section">
         <h4>{{ 'settings.style.errorwarning' | translate }}</h4>
-        <mat-slide-toggle [(ngModel)]="this.style.warning_flash">
+        <mat-slide-toggle color="warn" [(ngModel)]="this.style.warning_flash">
           {{ 'settings.style.errorwarning' | translate }}
         </mat-slide-toggle>
       </section>
@@ -144,7 +144,7 @@
 
       <section class="section">
         <h4>{{ 'settings.voice.variant' | translate }}</h4>
-        <mat-form-field appearance="outline">
+        <mat-form-field >
           <mat-select
             placeholder="Speaking voice"
             [(value)]="reader.config.options.variant"
