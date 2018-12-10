@@ -58,31 +58,5 @@
         </mat-grid-list>
       </mat-card-content>
     </mat-card>
-    <!--
-      --mat-card
-        class="chapterCard"
-        *ngFor="let chapter of set.chapters; let i = index"
-      >
-        <mat-card-header>
-          <mat-card-title colspan="2">{{ chapter.name }}</mat-card-title>
-          <mat-card-subtitle *ngIf="chapter.newCharacters">{{
-            chapter.newCharacters
-          }}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <span *ngIf="chapter.intro">Intro: {{ chapter.intro }}</span>
-          <span> Letter count: {{ chapter.content.length }}</span>
-          <mat-card-actions>
-            <button
-              mat-raised-button
-              color="accent"
-              (click)="session.loadSession(set, i); goHome()"
-            >
-              Start
-            </button>
-          </mat-card-actions>
-        </mat-card-content>
-      </mat-card
-    -->
   </mat-expansion-panel>
 </div>
