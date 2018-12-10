@@ -26,7 +26,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/themes.scss"
+              "src/themes.scss",
+              "src/mixins.scss"
             ],
             "scripts": []
           },
@@ -93,7 +94,8 @@
             "scripts": [],
             "styles": [
               "src/styles.scss",
-              "src/themes.scss"
+              "src/themes.scss",
+              "src/mixins.scss"
             ],
             "assets": [
               "src/assets",

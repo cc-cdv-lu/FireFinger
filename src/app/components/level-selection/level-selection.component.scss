@@ -1,3 +1,7 @@
+.chapterCard {
+  padding: 0 15vw 0 5vw;
+}
+
 .titleBar {
   position: relative;
   width: 100%;
@@ -5,6 +9,11 @@
   h1 {
     text-align: center;
   }
+}
+
+.playTile {
+  border: 5px solid white;
+  border-radius: 100px;
 }
 
 mat-expansion-panel {

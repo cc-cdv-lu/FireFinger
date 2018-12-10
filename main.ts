@@ -34,8 +34,8 @@ function createWindow() {
     win.webContents.closeDevTools();
   }
 
-  //TODO remove on last build
-  //win.webContents.openDevTools();
+  // TODO remove on last build
+  // win.webContents.openDevTools();
 
   // Emitted when the window is closed.
   win.on('closed', () => {

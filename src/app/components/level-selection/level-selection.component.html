@@ -28,30 +28,61 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <mat-card
-      class="example-card"
-      *ngFor="let chapter of set.chapters; let i = index"
-    >
-      <mat-card-header>
-        <mat-card-title colspan="2">{{ chapter.name }}</mat-card-title>
-        <mat-card-subtitle *ngIf="chapter.newCharacters">{{
-          chapter.newCharacters
-        }}</mat-card-subtitle>
-      </mat-card-header>
+    <mat-card *ngFor="let chapter of set.chapters; let i = index">
       <mat-card-content>
-        <span *ngIf="chapter.intro">Intro: {{ chapter.intro }}</span>
-        <span> Letter count: {{ chapter.content.length }}</span>
-        <!-- put length instead -->
-        <mat-card-actions>
-          <button
-            mat-raised-button
-            color="accent"
-            (click)="session.loadSession(set, i); goHome()"
+        <mat-grid-list cols="10" gutterSize="1rem" rowHeight="7.5rem" >
+          <mat-grid-tile colspan="3" rowspan="3" class="playTile">
+            <button
+              mat-icon-button
+              color="accent"
+              (click)="session.loadSession(set, i); goHome()"
+            >
+              <mat-icon class="huge">play_arrow</mat-icon>
+            </button>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="7">
+            <h3>
+              {{ chapter.name }}</h3>
+            </mat-grid-tile>
+          <mat-grid-tile colspan="7">
+            <h4 *ngIf="chapter.newCharacters">{{ chapter.newCharacters }}</h4>
+          </mat-grid-tile>
+          <!--
+            mat-grid-tile *ngIf="chapter.intro && chapter.intro.length > 0" colspan="7">
+              <p>Intro: {{ chapter.intro }}</p>
+            </mat-grid-tile
+          -->
+          <mat-grid-tile colspan="7">
+            <p>Letter count: {{ chapter.content.length }}</p></mat-grid-tile
           >
-            Start
-          </button>
-        </mat-card-actions>
+        </mat-grid-list>
       </mat-card-content>
     </mat-card>
+    <!--
+      --mat-card
+        class="chapterCard"
+        *ngFor="let chapter of set.chapters; let i = index"
+      >
+        <mat-card-header>
+          <mat-card-title colspan="2">{{ chapter.name }}</mat-card-title>
+          <mat-card-subtitle *ngIf="chapter.newCharacters">{{
+            chapter.newCharacters
+          }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <span *ngIf="chapter.intro">Intro: {{ chapter.intro }}</span>
+          <span> Letter count: {{ chapter.content.length }}</span>
+          <mat-card-actions>
+            <button
+              mat-raised-button
+              color="accent"
+              (click)="session.loadSession(set, i); goHome()"
+            >
+              Start
+            </button>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card
+    -->
   </mat-expansion-panel>
 </div>

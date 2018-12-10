@@ -1,0 +1,6 @@
+  @mixin mat-icon-size($size: 1rem) {
+    font-size: $size !important;
+    height: $size !important;
+    width: $size !important;
+    margin: 0;
+  }
