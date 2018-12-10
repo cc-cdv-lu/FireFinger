@@ -15,12 +15,18 @@ main-view {
   min-height: 20%;
 
   mat-toolbar {
-  position: absolute;
-  bottom: 0;
+    position: absolute;
+    bottom: 0;
     mat-toolbar-row {
       p {
         margin-top: 0px;
         margin-bottom: 0px;
+      }
+
+      .currentChapter {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       mat-progress-bar {

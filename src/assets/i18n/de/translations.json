@@ -34,7 +34,7 @@
         "title": "Unterrichtsdateien"
       },
       "lang": {
-        "description": "Wählen Sie die Sprache der Schnittstelle. Um die Sprache der Lesestimme zu ändern, wechseln Sie zu den Spracheinstellungen.",
+        "description": "Wählen Sie die Sprache des Programms. Um die Sprache der Lesestimme zu ändern, wechseln Sie zu den Spracheinstellungen.",
         "title": "Spracheinstellungen"
       },
       "title": "Anwendung"
@@ -80,7 +80,8 @@
           "title": "Amplitude"
         },
         "capitals": {
-          "description": "Ein Klick Geräusch ist zu hören, wenn das Wort mit Großbuchstaben beginnt\n<br>\n           <b>1:</b> Verwenden Sie einen Klick-Sound, um anzuzeigen, wenn ein Wort mit einem Großbuchstaben beginnt, oder Doppel-Klick, wenn das Wort nur Großbuchstaben enthält.\n<br>\n           <b>2:</b> Mit dem Wort \"Großbuchstabe\" werden großgeschriebene Wörter angekündigt\n<br>\n           <b>Andere Werte:</b> Erhöht die Tonhöhe für Wörter, die mit einem Großbuchstaben beginnen. Je größer der Wert, desto größer die Tonhöhenzunahme. (zB .: 20)",
+          "description": "(Siehe unten)",
+          "longDescription": "Ein Klick Geräusch ist zu hören, wenn das Wort mit Großbuchstaben beginnt\n<br>\n           <b>1:</b> Verwenden Sie einen Klick-Sound, um anzuzeigen, wenn ein Wort mit einem Großbuchstaben beginnt, oder Doppel-Klick, wenn das Wort nur Großbuchstaben enthält.\n<br>\n           <b>2:</b> Mit dem Wort \"Großbuchstabe\" werden großgeschriebene Wörter angekündigt\n<br>\n           <b>Andere Werte:</b> Erhöht die Tonhöhe für Wörter, die mit einem Großbuchstaben beginnen. Je größer der Wert, desto größer die Tonhöhenzunahme. (zB .: 20)",
           "title": "Großbuchstaben"
         },
         "pitch": {

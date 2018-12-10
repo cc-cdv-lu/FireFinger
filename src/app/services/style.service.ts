@@ -6,12 +6,38 @@ const THEME_KEY = 'THEME';
 const WARNING_FLASH = 'WARNING_FLASH';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StyleService {
+  constructor(private electron: ElectronService) {}
 
-  constructor(private electron: ElectronService) {
-  }
+  themes = [
+    /*
+    {
+      name: 'Dark',
+      id: 'dark-theme'
+    },
+    {
+      name: 'Default',
+      id: 'default-theme'
+    },*/
+    {
+      name: 'Light',
+      id: 'light-theme',
+    },
+    {
+      name: 'Blue & Yellow',
+      id: 'by-theme',
+    },
+    {
+      name: 'True Black',
+      id: 'true-black-theme',
+    },
+    {
+      name: 'Dark lime',
+      id: 'dl-theme',
+    },
+  ];
 
   /* APPLICATION WIDE STYLE ADJUSTMENTS */
   increaseFont() {
@@ -24,66 +50,51 @@ export class StyleService {
 
   get font() {
     let f = this.electron.config.get(FONT_KEY);
-    if (!f) { f = 20; }
+    if (!f) {
+      f = 20;
+    }
     return f;
   }
   set font(v: number) {
-    if (!v && !isNaN(v)) { return; }
+    if (!v && !isNaN(v)) {
+      return;
+    }
     this.electron.config.set(FONT_KEY, v);
     document.documentElement.style.fontSize = v + 'px';
   }
 
   get warning_flash() {
     let c = this.electron.config.get(WARNING_FLASH);
-    if (!c) { c = false; }
+    if (!c) {
+      c = false;
+    }
     return c;
   }
   set warning_flash(v: boolean) {
-    if (v == null || v === undefined) { return; }
+    if (v == null || v === undefined) {
+      return;
+    }
     this.electron.config.set(WARNING_FLASH, v);
   }
 
   get theme() {
     let t = this.electron.config.get(THEME_KEY);
-    if (!t) { t = 'default-theme'; }
+    if (!t) {
+      t = 'default-theme';
+    }
     return t;
   }
   set theme(t: string) {
-    if (!t) { return; }
+    if (!t) {
+      return;
+    }
     this.electron.config.set(THEME_KEY, t);
   }
 
-
-  themes = [
-    /*{
-      name: 'Light',
-      id: 'light-theme'
-    },
-    {
-      name: 'Dark',
-      id: 'dark-theme'
-    },
-    {
-      name: 'Default',
-      id: 'default-theme'
-    },*/
-    {
-      name: 'Blue & Yellow',
-      id: 'by-theme'
-    },
-    {
-      name: 'True Black',
-      id: 'true-black-theme'
-    },
-    {
-      name: 'Dark lime',
-      id: 'dl-theme'
-    }
-  ];
   getThemes(): string {
     let output = '';
     for (const theme of this.themes) {
-      output += (theme.id);
+      output += theme.id;
     }
     return output;
   }

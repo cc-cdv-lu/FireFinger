@@ -2,6 +2,10 @@ mat-slider {
   width: 80%;
 }
 
+.section {
+  padding: 0 15vw 0 5vw;
+}
+
 .titleBar {
   position: relative;
   width: 100%;
@@ -34,5 +38,12 @@ form {
     display: inline;
     line-height: 3rem;
     font-size: 3rem !important;
+  }
+}
+
+.voiceSettings {
+  .mat-grid-tile .mat-figure {
+    justify-content: flex-start !important ;
+    align-items: flex-start !important;
   }
 }

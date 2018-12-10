@@ -1,11 +1,11 @@
-import { Injectable, HostListener } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ElectronService } from '../providers/electron.service';
 
-import { StatisticsService, Statistics } from './statistics.service';
-import { LessonService, Lesson, Chapter } from './lesson.service';
-import { UserService, User } from './user.service';
+import { StatisticsService } from './statistics.service';
+import { Lesson, Chapter } from './lesson.service';
+import { UserService } from './user.service';
 import { StringHelperService } from './string-helper.service';
 import { ReaderService } from './reader.service';
 import { SoundEffectService, SOUNDS } from './sound-effect.service';
@@ -40,7 +40,6 @@ export class SessionService {
 
   constructor(
     private stats: StatisticsService,
-    private lesson: LessonService,
     private router: Router,
     private user: UserService,
     private electron: ElectronService,

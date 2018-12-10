@@ -80,7 +80,8 @@
           "title": "Amplitude"
         },
         "capitals": {
-          "description": "Emit un son 'click' si le mot commence par majuscule \n\n           <b>1:</b> Utilisez un son de clic pour indiquer quand un mot commence avec une lettre majuscule, ou double-cliquez si le mot est tout en majuscules.\n<br>\n           <b>2:</b> Prononce le mot \"capital\" avant un mot qui commence par une lettre majuscule.\n<br>\n           <b>Autres valeurs:</b> Augmente la hauteur du ton des mots commençant par une lettre majuscule. Plus la valeur est grande, plus l'augmentation de la hauteur du ton est importante. (ex .: 20)",
+          "description": "(Description en bas)",
+          "longDescription": "Emit un son 'click' si le mot commence par majuscule \n\n           <b>1:</b> Utilisez un son de clic pour indiquer quand un mot commence avec une lettre majuscule, ou double-cliquez si le mot est tout en majuscules.\n<br>\n           <b>2:</b> Prononce le mot \"capital\" avant un mot qui commence par une lettre majuscule.\n<br>\n           <b>Autres valeurs:</b> Augmente la hauteur du ton des mots commençant par une lettre majuscule. Plus la valeur est grande, plus l'augmentation de la hauteur du ton est importante. (ex .: 20)",
           "title": "Lettre majuscule"
         },
         "pitch": {

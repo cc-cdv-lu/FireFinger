@@ -20,7 +20,7 @@ All notable changes to this project will be documented in this file.
     - Fixed issue where footer and header would get distorted at very high/low zooms
     - Fixed certain special characters not being recognized
     - Fixed issues that occured with lower resolution screens (e.g. laptops)
-    - Fixed settings screen text and buttons (sliders still broken)
+    - Fixed settings screen text and buttons (also removed sliders)
     - Many more minor improvements and fixes...
 
 ### [0.7.0] First alpha release

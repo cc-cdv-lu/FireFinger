@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { LessonService } from '../../services/lesson.service';
 import { SessionService } from '../../services/session.service';
 import { StyleService } from '../../services/style.service';
-import { User, UserService } from '../../services/user.service';
+import { UserService } from '../../services/user.service';
 import { StatisticsService } from '../../services/statistics.service';
 import { ReaderService } from '../../services/reader.service';
 
@@ -44,9 +44,47 @@ export class SettingsComponent implements OnInit {
     private electron: ElectronService
   ) {}
   Math = Math;
+
+  voiceSettings = [
+    {
+      translate_key: 'settings.voice.other.amplitude',
+      value_key: 'amplitude',
+      min: 50,
+      max: 200,
+    },
+    {
+      translate_key: 'settings.voice.other.pitch',
+      value_key: 'pitch',
+      min: 50,
+      max: 200,
+    },
+    {
+      translate_key: 'settings.voice.other.speed',
+      value_key: 'speed',
+      min: 50,
+      max: 400,
+    },
+    {
+      translate_key: 'settings.voice.other.volume',
+      value_key: 'volume',
+      min: 0.0,
+      max: 1.0,
+    },
+    {
+      translate_key: 'settings.voice.other.capitals',
+      value_key: 'capitals',
+      min: 0.0,
+      max: 30.0,
+    },
+  ];
+
   ngOnInit() {
     this.lang = this.translate.currentLang;
     this.style.font = this.style.font;
+  }
+
+  onChange(event, value_key) {
+    console.log('event:', event);
   }
 
   onVoiceChange() {

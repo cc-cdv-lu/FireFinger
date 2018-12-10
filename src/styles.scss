@@ -14,10 +14,11 @@ html {
     height: 95%;
   }
 
+  /*
   mat-slide-toggle,
   mat-slider {
     zoom: 1;
-  }
+  }*/
 
   a,
   button,
@@ -34,22 +35,22 @@ html {
   }
 
   h2 {
-    font-size: 6rem !important;
-    line-height: 6rem !important;
+    font-size: 4rem !important;
+    line-height: 4rem !important;
   }
 
-  h3 {
-    font-size: 5rem !important;
-    line-height: 5rem !important;
-  }
-
-  h4,
+  h3,
   input,
   mat-card-title,
   mat-expansion-panel-header,
   mat-panel-title {
     font-size: 3rem !important;
-    line-height: 3.5rem !important;
+    line-height: 3rem !important;
+  }
+
+  h4 {
+    font-size: 2rem !important;
+    line-height: 2rem !important;
   }
 
   mat-form-field {
@@ -58,7 +59,7 @@ html {
   }
 
   .mat-select-content {
-    line-height: 2rem !important;
+    line-height: 1.5rem !important;
     font-size: 1rem !important;
   }
 
@@ -78,8 +79,8 @@ html {
   h5,
   mat-card-subtitle,
   mat-panel-description {
-    font-size: 3rem !important;
-    line-height: 3rem !important;
+    font-size: 2rem !important;
+    line-height: 2rem !important;
   }
 
   mat-nav-list {
@@ -142,6 +143,6 @@ html {
 
 * {
   /*Replace with your custom font*/
-  font-family: Verdana , sans-serif;
+  font-family: Verdana, sans-serif;
   /*Add the !important to overwrite all elements*/
 }

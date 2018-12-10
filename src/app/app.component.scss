@@ -4,4 +4,9 @@
   max-height: 8rem;
   min-height: 5%;
   z-index: 100;
+  a {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

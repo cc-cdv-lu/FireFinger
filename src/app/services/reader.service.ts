@@ -5,109 +5,110 @@ import * as MeSpeak from 'mespeak';
 const READER_CONFIG_KEY = 'READER_CONFIG';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ReaderService {
+  private speak_reset_counter = 0;
   voices = [
     {
       description: 'English',
-      url: 'mespeak/voices/en/en.json'
+      url: 'mespeak/voices/en/en.json',
     },
     {
       description: 'German',
-      url: 'mespeak/voices/de.json'
+      url: 'mespeak/voices/de.json',
     },
     {
       description: 'French',
-      url: 'mespeak/voices/fr.json'
+      url: 'mespeak/voices/fr.json',
     },
     {
       description: 'Portugees',
-      url: 'mespeak/voices/pt.json'
+      url: 'mespeak/voices/pt.json',
     },
     {
       description: 'Spanish',
-      url: 'mespeak/voices/es.json'
+      url: 'mespeak/voices/es.json',
     },
     {
       description: 'Italian',
-      url: 'mespeak/voices/it.json'
-    }
+      url: 'mespeak/voices/it.json',
+    },
   ];
 
   variants = [
     {
       id: 'f1',
-      description: 'Female 1'
+      description: 'Female 1',
     },
     {
       id: 'f2',
-      description: 'Female 2'
+      description: 'Female 2',
     },
     {
       id: 'f3',
-      description: 'Female 3'
+      description: 'Female 3',
     },
     {
       id: 'f4',
-      description: 'Female 4'
+      description: 'Female 4',
     },
     {
       id: 'f5',
-      description: 'Female 5'
+      description: 'Female 5',
     },
     {
       id: 'm1',
-      description: 'Male 1'
+      description: 'Male 1',
     },
     {
       id: 'm2',
-      description: 'Male 2'
+      description: 'Male 2',
     },
     {
       id: 'm3',
-      description: 'Male 3'
+      description: 'Male 3',
     },
     {
       id: 'm4',
-      description: 'Male 4'
+      description: 'Male 4',
     },
     {
       id: 'm5',
-      description: 'Male 5'
+      description: 'Male 5',
     },
     {
       id: 'm6',
-      description: 'Male 6'
+      description: 'Male 6',
     },
     {
       id: 'm7',
-      description: 'Male m7'
+      description: 'Male m7',
     },
     {
       id: 'croak',
-      description: 'Croak'
+      description: 'Croak',
     },
     {
       id: 'klatt',
-      description: 'klatt'
+      description: 'klatt',
     },
     {
       id: 'klatt2',
-      description: 'klatt2'
+      description: 'klatt2',
     },
     {
       id: 'klatt3',
-      description: 'klatt3'
+      description: 'klatt3',
     },
     {
       id: 'whisper',
-      description: 'Whisper'
+      description: 'Whisper',
     },
     {
       id: 'whisperf',
-      description: 'Whisperf'
-    }
+      description: 'Whisperf',
+    },
   ];
 
   private meSpeak: MeSpeak;
@@ -124,8 +125,8 @@ export class ReaderService {
       volume: 1,
       punct: true,
       capitals: 1,
-      variant: this.variants[2].id
-    }
+      variant: this.variants[2].id,
+    },
   };
 
   constructor(private electron: ElectronService) {
@@ -205,14 +206,13 @@ export class ReaderService {
     }
   }
 
-  counter = 0;
   private speak(str: string) {
-    this.counter++;
+    this.speak_reset_counter++;
     // console.log("Current counter:" + this.counter);
 
-    if (this.counter > 70) {
+    if (this.speak_reset_counter > 70) {
       this.meSpeak.recoverFromFSError('Preamptive reset...');
-      this.counter = 0;
+      this.speak_reset_counter = 0;
     }
 
     if (!this.meSpeak.canPlay()) {
@@ -222,7 +222,7 @@ export class ReaderService {
       this.meSpeak.speak(str, this.config.options);
     } catch (err) {
       this.meSpeak.recoverFromFSError(
-        '[' + this.counter + '] Trying to read: ' + str
+        '[' + this.speak_reset_counter + '] Trying to read: ' + str
       );
       console.error('Unexpected error while trying to play character: ', err);
     }
@@ -233,6 +233,7 @@ export class ReaderService {
   }
 
   save() {
+    console.log('Saving config...', this.config);
     this.electron.config.set(READER_CONFIG_KEY, this.config);
   }
 

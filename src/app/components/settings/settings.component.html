@@ -1,29 +1,32 @@
 <div class="container" [ngClass]="style.theme">
-  <!--<mat-toolbar>
-    <span class="fill-remaining-space"></span>
-    <h3>Settings</h3>
-    <span class="fill-remaining-space"></span>
-  </mat-toolbar>-->
-
+  <button mat-raised-button color="accent" (click)="reader.save()">
+    <mat-icon>save</mat-icon>
+    {{ 'settings.voice.control.save' | translate }}
+  </button>
 
   <mat-accordion>
-
     <mat-expansion-panel>
-      <mat-expansion-panel-header [collapsedHeight]="'5rem'" [expandedHeight]="'5rem'">
+      <mat-expansion-panel-header
+        [collapsedHeight]="'5rem'"
+        [expandedHeight]="'8rem'"
+      >
         <mat-panel-title>
-          {{'settings.style.title' | translate}}
+          {{ 'settings.style.title' | translate }}
         </mat-panel-title>
-        <!--
-        <mat-panel-description  [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.color]="style.activeColorScheme.prev">
-          {{'settings.style.description' | translate}}
-        </mat-panel-description>
-      -->
       </mat-expansion-panel-header>
 
       <section class="section">
-        <mat-grid-list cols=4 rowHeight="4rem">
+        <h4>Change theme. May need reload</h4>
+        <mat-grid-list cols="4" rowHeight="4rem">
           <mat-grid-tile *ngFor="let theme of style.themes">
-            <button mat-raised-button color="primary" (click)="changeTheme(theme.id)">{{theme.name}}</button>
+            <button
+              mat-raised-button
+              color="primary"
+              [ngClass]="theme.id === style.theme ? 'highlight' : ''"
+              (click)="changeTheme(theme.id)"
+            >
+              {{ theme.name }}
+            </button>
           </mat-grid-tile>
         </mat-grid-list>
         <div class="preview">
@@ -32,41 +35,77 @@
       </section>
 
       <section class="section">
-        <h4>{{'settings.style.errorwarning' | translate}}</h4>
-        <mat-slide-toggle [(ngModel)]="this.style.warning_flash">{{'settings.style.errorwarning' | translate}}</mat-slide-toggle>
+        <h4>{{ 'settings.style.errorwarning' | translate }}</h4>
+        <mat-slide-toggle [(ngModel)]="this.style.warning_flash">
+          {{ 'settings.style.errorwarning' | translate }}
+        </mat-slide-toggle>
       </section>
 
       <section class="section">
-        <h4>{{'settings.style.fontsize' | translate}}</h4>
-        <mat-slider thumbLabel tickInterval="1" [(ngModel)]="style.font" min="1" max="100" step="1"></mat-slider>
+        <h4>{{ 'settings.style.fontsize' | translate }}</h4>
+
+        <mat-grid-list cols="9" class="voiceSettings">
+            <mat-grid-tile colspan="2">
+              <h5>{{ 'settings.style.fontsize' | translate }}</h5>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="4">
+              <p></p>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <input
+                matInput
+                [(ngModel)]="style.font"
+                type="number"
+                min="1"
+                max="150"
+                (change)="onChange($event, value_key)"
+              />
+            </mat-grid-tile>
+            <mat-grid-tile  colspan="2">
+              <b> (1 - 150)</b>
+            </mat-grid-tile>
+        </mat-grid-list>
       </section>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
-      <mat-expansion-panel-header [collapsedHeight]="'5rem'" [expandedHeight]="'5rem'">
+      <mat-expansion-panel-header
+        [collapsedHeight]="'5rem'"
+        [expandedHeight]="'8rem'"
+      >
         <mat-panel-title>
-          {{'settings.application.title' | translate}}
+          {{ 'settings.application.title' | translate }}
         </mat-panel-title>
         <!--
-        <mat-panel-description  [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.color]="style.activeColorScheme.prev">
-          {{'settings.application.description' | translate}}
-        </mat-panel-description>
-      -->
+          <mat-panel-description  [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.color]="style.activeColorScheme.prev">
+            {{'settings.application.description' | translate}}
+          </mat-panel-description>
+        -->
       </mat-expansion-panel-header>
 
-
       <section class="section">
-        <h4>{{'settings.application.files.title' | translate}}</h4>
-        <p>{{'settings.application.files.description' | translate}}</p>
-        <button mat-raised-button color="primary" (click)="lessons.openDocsFolderInExplorer()">{{'settings.application.files.button' | translate}}</button>
+        <h4>{{ 'settings.application.files.title' | translate }}</h4>
+        <p>{{ 'settings.application.files.description' | translate }}</p>
+        <button
+          mat-raised-button
+          color="accent"
+          (click)="lessons.openDocsFolderInExplorer()"
+        >
+          <mat-icon>folder</mat-icon>
+          {{ 'settings.application.files.button' | translate }}
+        </button>
       </section>
 
       <section class="section">
-        <h4>{{'settings.application.lang.title' | translate}}</h4>
-        <p>{{'settings.application.lang.description' | translate}}</p>
+        <h4>{{ 'settings.application.lang.title' | translate }}</h4>
+        <p>{{ 'settings.application.lang.description' | translate }}</p>
 
         <mat-form-field>
-          <mat-select placeholder="Language" [(value)]="lang" (selectionChange)="onLangChange()">
+          <mat-select
+            placeholder="Language"
+            [(value)]="lang"
+            (selectionChange)="onLangChange()"
+          >
             <mat-option *ngFor="let l of langs" [value]="l.id">
               {{ l.description }}
             </mat-option>
@@ -76,73 +115,94 @@
     </mat-expansion-panel>
 
     <mat-expansion-panel>
-      <mat-expansion-panel-header [collapsedHeight]="'5rem'" [expandedHeight]="'5rem'">
+      <mat-expansion-panel-header
+        [collapsedHeight]="'5rem'"
+        [expandedHeight]="'8rem'"
+      >
         <mat-panel-title>
-          {{'settings.voice.title' | translate}}
+          {{ 'settings.voice.title' | translate }}
         </mat-panel-title>
         <!--
-        <mat-panel-description  [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.color]="style.activeColorScheme.prev">
-          {{'settings.voice.description' | translate}}
-        </mat-panel-description>
-      -->
+          <mat-panel-description  [style.font-size]="style.getFontSize(SIZE.SMALLER)" [style.color]="style.activeColorScheme.prev">
+            {{'settings.voice.description' | translate}}
+          </mat-panel-description>
+        -->
       </mat-expansion-panel-header>
 
+      <section class="section">
+        <h4>{{ 'settings.voice.control.title' | translate }}</h4>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Enter test phrase"
+            [(ngModel)]="reader.config.test"
+            [ngModelOptions]="{ standalone: true }"
+          />
+          <button mat-raised-button color="primary" (click)="readTest()">
+            {{ 'settings.voice.control.test' | translate }}
+          </button>
+        </mat-form-field>
+      </section>
+
+      <mat-divider></mat-divider>
 
       <section class="section">
-
-        <button mat-raised-button color="primary" (click)="reader.save()">{{'settings.voice.control.save' | translate}}</button>
-        <h4>{{'settings.voice.control.title' | translate}}</h4>
+        <h4>{{ 'settings.voice.variant' | translate }}</h4>
         <mat-form-field>
-          <input matInput placeholder="Enter test phrase" [(ngModel)]="reader.config.test" [ngModelOptions]="{standalone: true}">
-          <button mat-raised-button color="primary" (click)="readTest()">{{'settings.voice.control.test' | translate}}</button>
-        </mat-form-field>
-
-
-
-
-        <h4>{{'settings.voice.variant' | translate}}</h4>
-        <mat-form-field>
-          <mat-select placeholder="Speaking voice" [(value)]="reader.config.options.variant">
-            <mat-option *ngFor="let variant of reader.variants" [value]="variant.id">
+          <mat-select
+            placeholder="Speaking voice"
+            [(value)]="reader.config.options.variant"
+          >
+            <mat-option
+              *ngFor="let variant of reader.variants"
+              [value]="variant.id"
+            >
               {{ variant.description }}
             </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <mat-select placeholder="Speaking language" [(value)]="reader.config.voice" (selectionChange)="onVoiceChange()">
+          <mat-select
+            placeholder="Speaking language"
+            [(value)]="reader.config.voice"
+            (selectionChange)="onVoiceChange()"
+          >
             <mat-option *ngFor="let voice of reader.voices" [value]="voice.url">
               {{ voice.description }}
             </mat-option>
           </mat-select>
         </mat-form-field>
+      </section>
 
       <mat-divider></mat-divider>
-
-
-        <h5>{{'settings.voice.other.amplitude.title' | translate}}</h5>
-        <p>{{'settings.voice.other.amplitude.description' | translate}}</p>
-        <mat-slider thumbLabel tickInterval="1" [(ngModel)]="reader.config.options.amplitude" min="50" max="200" step="1"></mat-slider>
-
-        <h5>{{'settings.voice.other.pitch.title' | translate}}</h5>
-        <p>{{'settings.voice.other.pitch.description' | translate}}</p>
-        <mat-slider thumbLabel tickInterval="1" [(ngModel)]="reader.config.options.pitch" min="50" max="200" step="1"></mat-slider>
-
-        <h5>{{'settings.voice.other.speed.title' | translate}}</h5>
-        <p>{{'settings.voice.other.speed.description' | translate}}</p>
-        <mat-slider thumbLabel tickInterval="1" [(ngModel)]="reader.config.options.speed" min="50" max="400" step="1"></mat-slider>
-
-        <h5>{{'settings.voice.other.volume.title' | translate}}</h5>
-        <p>{{'settings.voice.other.volume.description' | translate}}</p>
-        <mat-slider thumbLabel tickInterval="1" [(ngModel)]="reader.config.options.volume" min="0" max="1" step="0.1"></mat-slider>
-
-        <h5>{{'settings.voice.other.capitals.title' | translate}}</h5>
-        <p innerHTML="{{'settings.voice.other.capitals.description' | translate}}"></p>
-        <mat-slider thumbLabel tickInterval="1" [(ngModel)]="reader.config.options.capitals" min="0" max="30" step="1"></mat-slider>
-
-
+      <section class="section">
+        <mat-grid-list cols="8" class="voiceSettings">
+          <div *ngFor="let s of voiceSettings">
+            <mat-grid-tile colspan="2">
+              <h5>{{ s.translate_key + '.title' | translate }}</h5>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="4">
+              <p>{{ s.translate_key + '.description' | translate }}</p>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <input
+                matInput
+                [(ngModel)]="reader.config.options[s.value_key]"
+                type="number"
+                [min]="s.min"
+                [max]="max"
+                (change)="onChange($event, value_key)"
+              />
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <b> ({{ s.min }} - {{ s.max }})</b>
+            </mat-grid-tile>
+          </div>
+        </mat-grid-list>
+        <p
+          innerHTML="{{'settings.voice.other.capitals.longDescription' | translate}}"
+        ></p>
       </section>
     </mat-expansion-panel>
-
-
   </mat-accordion>
 </div>
