@@ -30,20 +30,8 @@ export class SettingsComponent implements OnInit {
       description: this.translate.instant('settings.lang.en'),
     },
   ];
-  lang;
 
-  allLessons = this.lessons.lessons;
-  constructor(
-    public lessons: LessonService,
-    public session: SessionService,
-    public style: StyleService,
-    public user: UserService,
-    public stats: StatisticsService,
-    public reader: ReaderService,
-    public translate: TranslateService,
-    private electron: ElectronService
-  ) {}
-  Math = Math;
+  lang;
 
   voiceSettings = [
     {
@@ -78,13 +66,23 @@ export class SettingsComponent implements OnInit {
     },
   ];
 
+  allLessons = this.lessons.lessons;
+  Math = Math;
+
+  constructor(
+    public lessons: LessonService,
+    public session: SessionService,
+    public style: StyleService,
+    public user: UserService,
+    public stats: StatisticsService,
+    public reader: ReaderService,
+    public translate: TranslateService,
+    private electron: ElectronService
+  ) {}
+
   ngOnInit() {
     this.lang = this.translate.currentLang;
     this.style.font = this.style.font;
-  }
-
-  onChange(event, value_key) {
-    console.log('event:', event);
   }
 
   onVoiceChange() {

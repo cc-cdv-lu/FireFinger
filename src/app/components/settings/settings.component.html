@@ -45,25 +45,21 @@
         <h4>{{ 'settings.style.fontsize' | translate }}</h4>
 
         <mat-grid-list cols="9" class="voiceSettings">
-            <mat-grid-tile colspan="2">
-              <h5>{{ 'settings.style.fontsize' | translate }}</h5>
-            </mat-grid-tile>
-            <mat-grid-tile colspan="4">
-              <p></p>
-            </mat-grid-tile>
-            <mat-grid-tile>
-              <input
-                matInput
-                [(ngModel)]="style.font"
-                type="number"
-                min="1"
-                max="150"
-                (change)="onChange($event, value_key)"
-              />
-            </mat-grid-tile>
-            <mat-grid-tile  colspan="2">
-              <b> (1 - 150)</b>
-            </mat-grid-tile>
+          <mat-grid-tile colspan="2">
+            <h5>{{ 'settings.style.fontsize' | translate }}</h5>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="4"> <p></p> </mat-grid-tile>
+          <mat-grid-tile>
+            <input
+              matInput
+              [(ngModel)]="style.font"
+              type="number"
+              min="1"
+              max="150"
+              (change)="onChange($event, value_key)"
+            />
+          </mat-grid-tile>
+          <mat-grid-tile colspan="2"> <b> (1 - 150)</b> </mat-grid-tile>
         </mat-grid-list>
       </section>
     </mat-expansion-panel>
@@ -148,7 +144,7 @@
 
       <section class="section">
         <h4>{{ 'settings.voice.variant' | translate }}</h4>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-select
             placeholder="Speaking voice"
             [(value)]="reader.config.options.variant"
@@ -161,7 +157,8 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field>
+
+        <mat-form-field appearance="outline">
           <mat-select
             placeholder="Speaking language"
             [(value)]="reader.config.voice"
@@ -176,23 +173,22 @@
 
       <mat-divider></mat-divider>
       <section class="section">
-        <mat-grid-list cols="8" class="voiceSettings">
+        <mat-grid-list cols="8" class="voiceSettings" gutterSize="100">
           <div *ngFor="let s of voiceSettings">
             <mat-grid-tile colspan="2">
               <h5>{{ s.translate_key + '.title' | translate }}</h5>
             </mat-grid-tile>
-            <mat-grid-tile colspan="4">
+            <mat-grid-tile colspan="3">
               <p>{{ s.translate_key + '.description' | translate }}</p>
             </mat-grid-tile>
-            <mat-grid-tile>
-              <input
-                matInput
-                [(ngModel)]="reader.config.options[s.value_key]"
-                type="number"
-                [min]="s.min"
-                [max]="max"
-                (change)="onChange($event, value_key)"
-              />
+            <mat-grid-tile colspan="2">
+                <input
+                  matInput
+                  [(ngModel)]="reader.config.options[s.value_key]"
+                  type="number"
+                  [min]="s.min"
+                  [max]="s.max"
+                />
             </mat-grid-tile>
             <mat-grid-tile>
               <b> ({{ s.min }} - {{ s.max }})</b>
