@@ -1,4 +1,4 @@
-<mat-toolbar [ngClass]="style.theme">
+<mat-toolbar class="toolbar" [ngClass]="style.theme">
   <mat-toolbar-row>
     <div class="fill-remaining-space"></div>
     <a mat-raised-button color="primary" [ngClass]="this.router.url === nav.link ? 'highlight' : ''" [style.margin]="'0.5rem'" [routerLink]="nav.link" *ngFor="let nav of routerLinks">

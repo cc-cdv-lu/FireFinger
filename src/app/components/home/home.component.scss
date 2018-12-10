@@ -7,14 +7,26 @@ main-view {
   transform: translate(-50%, -50%);
 }
 
-mat-progress-bar {
-  max-width: 100%;
-  height: 50%;
-}
-
 .footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
   max-height: 8rem;
+  min-height: 20%;
+
+  mat-toolbar {
+  position: absolute;
+  bottom: 0;
+    mat-toolbar-row {
+      p {
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+
+      mat-progress-bar {
+        max-width: 100%;
+        height: 50%;
+      }
+    }
+  }
 }
