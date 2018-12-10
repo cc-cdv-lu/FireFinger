@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ElectronService } from '../providers/electron.service';
+import { StringHelperService } from './string-helper.service';
 
 export class Lesson {
   name: string;
@@ -24,12 +25,16 @@ export enum ChapterType {
   providedIn: 'root',
 })
 export class LessonService {
-  appDataURL: string;
-  docsURL: string;
+  appDataURL: string; // ..../Username/Documents
+  firefingerURL: string; // ..../Username/Documents/FireFinger
   lessons: Array<Lesson> = [];
-  constructor(private electron: ElectronService) {
+  constructor(
+    private electron: ElectronService,
+    private stringhelper: StringHelperService
+  ) {
+    // this.documentsURL = this.electron.app.getPath('documents');
     this.appDataURL = this.electron.app.getPath('userData');
-    this.docsURL = this.electron.path.join(this.appDataURL, 'docs');
+    this.firefingerURL = this.electron.path.join(this.appDataURL, 'docs');
     this.loadAllDirs();
 
     /*
@@ -41,27 +46,27 @@ export class LessonService {
     */
   }
 
-  loadAllDirs() {
-    if (!this.electron.fs.existsSync(this.docsURL)) {
+  loadAllDirs(): Array<Lesson> {
+    if (!this.electron.fs.existsSync(this.firefingerURL)) {
       this.firstLaunch();
     }
 
-    const docsDir = this.electron.fs.readdirSync(this.docsURL);
+    const docsDir = this.electron.fs.readdirSync(this.firefingerURL);
 
     if (!docsDir) {
-      console.warn('This url does not exist:', this.docsURL);
+      console.warn('This url does not exist:', this.firefingerURL);
       return null;
     }
-    console.log('Loading lessons from folder:', this.docsURL);
+    console.log('Loading lessons from folder:', this.firefingerURL);
     for (const folder of docsDir) {
       if (folder.indexOf('.') === -1) {
-        this.loadFolder(this.docsURL, folder);
+        this.loadFolder(this.firefingerURL, folder);
       }
     }
     return this.lessons;
   }
 
-  reload() {
+  reload(): Array<Lesson> {
     this.lessons = [];
     return this.loadAllDirs();
   }
@@ -71,8 +76,8 @@ export class LessonService {
   }
 
   firstLaunch() {
-    if (!this.electron.fs.existsSync(this.docsURL)) {
-      this.electron.fs.mkdirSync(this.docsURL);
+    if (!this.electron.fs.existsSync(this.firefingerURL)) {
+      this.electron.fs.mkdirSync(this.firefingerURL);
     }
 
     let assetsURL = '';
@@ -86,7 +91,7 @@ export class LessonService {
     }
 
     // If user has not yet had any files in their folder, copy the example files to their folder
-    this.electron.fs.copySync(assetsURL, this.docsURL);
+    this.electron.fs.copySync(assetsURL, this.firefingerURL);
 
     this.openDocsFolderInExplorer();
   }
@@ -131,7 +136,11 @@ export class LessonService {
         break;
     }
 
-    /* Parse content */
+    /*
+     *
+     *     Parse content
+     *
+     */
 
     const output: Chapter = {
       name: filename, // Try to get it from name field
@@ -227,7 +236,7 @@ export class LessonService {
     }
 
     // copy by reference: simply edit chapter file - no return needed
-    chapter.content = this.shuffleString(output);
+    chapter.content = this.stringhelper.shuffleString(output);
   }
 
   generateWordLesson(chapter: Chapter) {}
@@ -254,7 +263,7 @@ export class LessonService {
   }
 
   createExampleFolder() {
-    const url = this.electron.path.join(this.docsURL, 'example-folder');
+    const url = this.electron.path.join(this.firefingerURL, 'example-folder');
     for (let i = 0; i < 5; i++) {
       const content = 'Dies ist Beispieltext Nummer ' + i;
       const filename = 'beispieltext' + i + '.txt';
@@ -273,19 +282,6 @@ export class LessonService {
       }
       console.log('The file was save successfully: ', path);
     });
-  }
-
-  shuffleString(s: string): string {
-    const a = s.split(''),
-      n = a.length;
-
-    for (let i = n - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      const tmp = a[i];
-      a[i] = a[j];
-      a[j] = tmp;
-    }
-    return a.join('');
   }
 
   /**
