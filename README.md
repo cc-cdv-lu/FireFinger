@@ -10,7 +10,7 @@ Custom dictations can be put into **%appdata%/FireFinger/docs** */subfolder/exam
 ## Changelog
 All notable changes to this project will be documented in this file.
 
-### [0.8.0] Second alpha release
+### [0.9.0] Second alpha release
 - Features:
     - Added Ctrl+Up/Down for zooming
     - Added reload chapters button to the chapter selection screen
@@ -18,9 +18,11 @@ All notable changes to this project will be documented in this file.
 - Fixes:
     - Increased upper and lower zoom bounds
     - Fixed issue where footer and header would get distorted at very high/low zooms
-    - Fixed certain special characters not being recognized
+    - Fixed certain special characters not being recognized (e.g. €, &, %, ...)
     - Fixed issues that occured with lower resolution screens (e.g. laptops)
     - Fixed settings screen text and buttons (also removed sliders)
+    - Fixed display content scrolling up and down in the fixed view
+    - Fixed missing localization
     - Many more minor improvements and fixes...
 
 ### [0.7.0] First alpha release

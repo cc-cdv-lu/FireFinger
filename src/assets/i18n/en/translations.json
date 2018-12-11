@@ -52,7 +52,9 @@
       "colorscheme": "Change color scheme",
       "description": "Adjust colors and font size",
       "errorwarning": "Flash screen red when user mistyped letter",
+      "fontshortcut": "Can also be changed via Ctrl + (+) or Ctrl + (arrow up).",
       "fontsize": "Font size",
+      "theme": "Theme",
       "title": "Style"
     },
     "user": {
@@ -69,9 +71,10 @@
     },
     "voice": {
       "control": {
-        "save": "Save voice settings",
+        "save": "Save settings",
         "test": "Test voice settings",
-        "title": "Contro"
+        "testphrase": "Enter test phrase:",
+        "title": "Control"
       },
       "description": "All settings related to the reading voice",
       "other": {

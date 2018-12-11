@@ -52,7 +52,9 @@
       "colorscheme": "Ändern Sie das Farbschema",
       "description": "Passen Sie Farben und Schriftgröße an",
       "errorwarning": "Rot blinken, wenn Benutzer sich vertippt",
+      "fontshortcut": "Kann auch über Ctrl + (+) oder Ctrl + (Pfeil oben) geändert werden.",
       "fontsize": "Schriftgröße",
+      "theme": "Darstellung",
       "title": "Stil"
     },
     "user": {
@@ -69,8 +71,9 @@
     },
     "voice": {
       "control": {
-        "save": "Spracheinstellungen speichern",
+        "save": "Einstellungen speichern",
         "test": "Spracheinstellungen testen",
+        "testphrase": "Beispiel Satz angeben:",
         "title": "Kontrolle"
       },
       "description": "Alle Einstellungen beziehen sich auf die Lesestimme",

@@ -16,7 +16,7 @@
       </mat-expansion-panel-header>
 
       <section class="section">
-        <h4>Theme/Darstellung</h4>
+        <h4>{{'settings.style.theme' | translate }}</h4>
         <mat-grid-list cols="4" rowHeight="4rem">
           <mat-grid-tile *ngFor="let theme of style.themes">
             <button
@@ -64,7 +64,7 @@
           </mat-grid-tile>
           <mat-grid-tile colspan="2"> <b> (1 - 150)</b> </mat-grid-tile>
           <mat-grid-tile colspan="9">
-            <p>Kann auch über Ctrl+(+) oder Ctrl+(Pfeil oben) geändert werden.</p>
+            <p>{{'settings.style.fontshortcut'|translate}}</p>
           </mat-grid-tile>
         </mat-grid-list>
       </section>
@@ -136,7 +136,7 @@
         <mat-form-field>
           <input
             matInput
-            placeholder="Enter test phrase"
+            placeholder="{{'settings.voice.control.testphrase'|translate}}"
             [(ngModel)]="reader.config.test"
             [ngModelOptions]="{ standalone: true }"
           />
