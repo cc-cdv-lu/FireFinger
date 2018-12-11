@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LessonService } from '../../services/lesson.service';
 import { SessionService } from '../../services/session.service';
 import { StyleService } from '../../services/style.service';
+import { FileService } from '../../services/file.service';
 
 @Component({
   selector: 'level-selection',
@@ -16,7 +17,8 @@ export class LevelSelectionComponent implements OnInit {
     public lesson: LessonService,
     public session: SessionService,
     public router: Router,
-    public style: StyleService
+    public style: StyleService,
+    public file: FileService
   ) {}
   allLessons = this.lesson.lessons;
   ngOnInit() {

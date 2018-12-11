@@ -10,6 +10,7 @@ import { ReaderService } from '../../services/reader.service';
 import { ElectronService } from '../../providers/electron.service';
 
 import { TranslateService } from '@ngx-translate/core';
+import { FileService } from '../../services/file.service';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -77,7 +78,8 @@ export class SettingsComponent implements OnInit {
     public stats: StatisticsService,
     public reader: ReaderService,
     public translate: TranslateService,
-    private electron: ElectronService
+    private electron: ElectronService,
+    public file: FileService
   ) {}
 
   ngOnInit() {
