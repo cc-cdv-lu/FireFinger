@@ -47,7 +47,7 @@ export class ElectronService {
       this.path = window.require('path');
     }
 
-    let app = window.require('electron').remote.app;
+    // let app = window.require('electron').remote.app;
   }
 
   isElectron = () => {

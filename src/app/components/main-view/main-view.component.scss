@@ -1,8 +1,8 @@
 .container {
-  height: 100vh;
-    display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
+
   .viewContainer {
     .textTile {
       border-bottom: 5px solid gray;
