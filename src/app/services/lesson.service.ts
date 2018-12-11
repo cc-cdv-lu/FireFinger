@@ -143,7 +143,7 @@ export class LessonService {
      */
 
     const output: Chapter = {
-      name: filename, // Try to get it from name field
+      name: filename.replace(fileEnding, ''), // Try to get it from name field
       type: -1,
       amount: -1,
       characters: '',
@@ -168,21 +168,12 @@ export class LessonService {
 
       output.content = split[1];
       output.characters = this.getCharsOfText(output.content);
-      if (data.type !== undefined) {
-        output.type = data.type;
-      }
-      if (data.name !== undefined) {
-        output.name = data.name;
-      }
-      if (data.amount !== undefined) {
-        output.amount = data.amount;
-      }
-      if (data.characters !== undefined) {
-        output.characters = data.characters;
-      }
-      if (data.newCharacters !== undefined) {
-        output.newCharacters = data.newCharacters;
-      }
+
+      output.type = data.type ? data.type : ChapterType.CHAR;
+      output.name = data.name ? data.name : '';
+      output.amount = data.amount ? data.amount : -1;
+      output.characters = data.characters ? data.characters : '';
+      output.newCharacters = data.newCharacters ? data.newCharacters : '';
 
       switch (output.type) {
         case ChapterType.CHAR:

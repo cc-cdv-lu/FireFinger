@@ -7,6 +7,26 @@
 
 Custom dictations can be put into **%appdata%/FireFinger/docs** */subfolder/example.txt*  
 
+### First time use
+
+* Open FireFinger
+* Go to chapters
+* Click the folder icon
+* Copy the premade courses to that folder
+* Back in FireFinger reload using the reload button
+* Login
+* Done
+
+
+### Shortcuts
+
+* **Insert**: Skip this char  
+* **Ctrl + UP**  *OR*  **Ctrl + (+)** : Zoom-in  
+* **Ctrl + DOWN**   *OR*  **Ctrl + (+)** : Zoom-out  
+* **Down** : Repeat this letter  
+* **Right**: Repeat this word  
+
+
 ## Changelog
 All notable changes to this project will be documented in this file.
 

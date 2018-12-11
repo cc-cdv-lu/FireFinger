@@ -15,11 +15,11 @@ const LAST_SESSION_KEY = 'LAST_SESSION';
 export const enum GAME_STATE {
   PLAYING,
   SUCCESS,
-  FAILURE
+  FAILURE,
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SessionService {
   // TODO add this to settings
@@ -76,8 +76,10 @@ export class SessionService {
     'F9',
     'F10',
     'F11',
-    'F12'
+    'F12',
   ];
+
+  impossibleKeys = ['´', '`', 'ß'];
 
   shouldIgnore(key: string): boolean {
     /* If pressed key is part of the list, ignore it (return true)*/
@@ -85,8 +87,12 @@ export class SessionService {
     return this.ignoreKeys.includes(key);
   }
 
-  handleKeyEvent(event: KeyboardEvent) {
+  isImpossible(key: string) {
+    // These are chars that require some buggy key combinations that are not recognized at the moment
+    return this.impossibleKeys.includes(key);
+  }
 
+  handleKeyEvent(event: KeyboardEvent) {
     if (!this.isSessionLoaded) {
       return console.log('No session loaded...');
     }
@@ -128,7 +134,11 @@ export class SessionService {
     }
 
     // Default case
-    if (pressedKey === this.getCurrentChar() || pressedKey === 'Pause') {
+    if (
+      pressedKey === this.getCurrentChar() ||
+      pressedKey === 'Pause' ||
+      this.isImpossible(expectedKey)
+    ) {
       return this.nextTextIndex();
     }
     // Special cases
@@ -256,7 +266,7 @@ export class SessionService {
     const session = {
       lesson: this.currentLesson,
       chapter: this.currentChapter,
-      index: this.currentIndex
+      index: this.currentIndex,
     };
     this.electron.config.set(LAST_SESSION_KEY, session);
   }
