@@ -36,12 +36,12 @@
 
       <section class="section">
         <mat-grid-list cols="10">
+          <mat-grid-tile colspan="9" (click)="style.warning_flash = !style.warning_flash">
+            <p>{{ 'settings.style.errorwarning' | translate }}</p>
+          </mat-grid-tile>
           <mat-grid-tile colspan="1">
             <mat-slide-toggle color="warn" [(ngModel)]="style.warning_flash">
             </mat-slide-toggle>
-          </mat-grid-tile>
-          <mat-grid-tile colspan="9" (click)="style.warning_flash = !style.warning_flash">
-            <p>{{ 'settings.style.errorwarning' | translate }}</p>
           </mat-grid-tile>
         </mat-grid-list>
       </section>
@@ -102,7 +102,7 @@
         <h4>{{ 'settings.application.lang.title' | translate }}</h4>
         <p>{{ 'settings.application.lang.description' | translate }}</p>
 
-        <mat-form-field>
+        <mat-form-field class="langselect">
           <mat-select
             placeholder="Language"
             [(value)]="lang"
