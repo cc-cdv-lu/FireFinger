@@ -16,7 +16,7 @@
       </mat-expansion-panel-header>
 
       <section class="section">
-        <h4>Change theme. May need reload</h4>
+        <h4>Theme/Darstellung</h4>
         <mat-grid-list cols="4" rowHeight="4rem">
           <mat-grid-tile *ngFor="let theme of style.themes">
             <button
@@ -35,15 +35,18 @@
       </section>
 
       <section class="section">
-        <h4>{{ 'settings.style.errorwarning' | translate }}</h4>
-        <mat-slide-toggle color="warn" [(ngModel)]="this.style.warning_flash">
-          {{ 'settings.style.errorwarning' | translate }}
-        </mat-slide-toggle>
+        <mat-grid-list cols="10">
+          <mat-grid-tile colspan="1">
+            <mat-slide-toggle color="warn" [(ngModel)]="style.warning_flash">
+            </mat-slide-toggle>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="9" (click)="style.warning_flash = !style.warning_flash">
+            <p>{{ 'settings.style.errorwarning' | translate }}</p>
+          </mat-grid-tile>
+        </mat-grid-list>
       </section>
 
       <section class="section">
-        <h4>{{ 'settings.style.fontsize' | translate }}</h4>
-
         <mat-grid-list cols="9" class="voiceSettings">
           <mat-grid-tile colspan="2">
             <h5>{{ 'settings.style.fontsize' | translate }}</h5>
@@ -60,6 +63,9 @@
             />
           </mat-grid-tile>
           <mat-grid-tile colspan="2"> <b> (1 - 150)</b> </mat-grid-tile>
+          <mat-grid-tile colspan="9">
+            <p>Kann auch über Ctrl+(+) oder Ctrl+(Pfeil oben) geändert werden.</p>
+          </mat-grid-tile>
         </mat-grid-list>
       </section>
     </mat-expansion-panel>

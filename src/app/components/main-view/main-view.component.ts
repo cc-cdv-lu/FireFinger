@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 import { ElectronService } from '../../providers/electron.service';
 import { MatDialog } from '@angular/material';
@@ -22,9 +22,10 @@ enum VIEW {
   // tslint:disable-next-line:component-selector
   selector: 'main-view',
   templateUrl: './main-view.component.html',
-  styleUrls: ['./main-view.component.scss']
+  styleUrls: ['./main-view.component.scss'],
 })
 export class MainViewComponent implements OnInit {
+  @HostBinding('class') componentCssClass;
   VIEW = VIEW;
   // view: VIEW = VIEW.LINE;
   warningText = '';
@@ -82,6 +83,12 @@ export class MainViewComponent implements OnInit {
     return this.attemptHighlight(this.session.getCurrentChar());
   }
 
+
+  shouldFlash() {
+    return (this.session.last_wrong_char !== '' && this.style.warning_flash);
+  }
+
+
   getWarningText() {
     let output = '';
     if (!this.session) {
@@ -96,7 +103,7 @@ export class MainViewComponent implements OnInit {
         return this.translate.instant('keys.enter');
       case ' ':
         return this.translate.instant('keys.space');
-      case '\'':
+      case "'":
         return this.translate.instant('keys.apostrophe');
       case 'ä':
       case 'Ä':
@@ -153,8 +160,8 @@ export class MainViewComponent implements OnInit {
       height: '80%',
       width: '55%',
       data: {
-        electron_service: this.electron
-      }
+        electron_service: this.electron,
+      },
     });
     dialogRef.beforeClose().subscribe(() => {
       this.areSettingsOpen = false;

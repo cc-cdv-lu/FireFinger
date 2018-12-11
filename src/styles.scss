@@ -16,8 +16,8 @@ html {
     height: 95%;
   }
 
-  mat-slide-toggle {
-    zoom: 10rem;
+  mat-slide-toggle, mat-checked, mat-slide-toggle-thumb-container {
+    zoom: 5 !important;
   }
 
   a,
@@ -40,7 +40,6 @@ html {
   }
 
   h3,
-  input,
   mat-card-title,
   mat-expansion-panel-header,
   mat-panel-title {
@@ -48,7 +47,8 @@ html {
     line-height: 3rem !important;
   }
 
-  h4 {
+  h4,
+  input {
     font-size: 2rem !important;
     line-height: 2rem !important;
   }

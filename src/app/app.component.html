@@ -1,14 +1,23 @@
-<mat-toolbar class="toolbar" [ngClass]="style.theme">
-  <mat-toolbar-row>
-    <div class="fill-remaining-space"></div>
-    <a mat-raised-button color="primary" [ngClass]="this.router.url === nav.link ? 'highlight' : ''" [style.margin]="'0.5rem'" [routerLink]="nav.link" *ngFor="let nav of routerLinks">
-      <mat-icon>{{nav.icon}}</mat-icon>
-      {{nav.name | async}}
-    </a>
-    <div class="fill-remaining-space"></div>
-    <button mat-raised-button color="warn" (click)="closeApp();">
+<div class="appContainer" [ngClass]="style.theme">
+  <mat-toolbar class="toolbar" [ngClass]="style.theme">
+    <mat-toolbar-row>
+      <div class="fill-remaining-space"></div>
+      <a
+        mat-raised-button
+        color="primary"
+        [ngClass]="this.router.url === nav.link ? 'highlight' : ''"
+        [style.margin]="'0.5rem'"
+        [routerLink]="nav.link"
+        *ngFor="let nav of routerLinks"
+      >
+        <mat-icon>{{ nav.icon }}</mat-icon>
+        {{ nav.name | async }}
+      </a>
+      <div class="fill-remaining-space"></div>
+      <button mat-raised-button color="warn" (click)="closeApp()">
         <mat-icon>close</mat-icon>
       </button>
-  </mat-toolbar-row>
-</mat-toolbar>
-<router-outlet [ngClass]="style.theme"></router-outlet>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <router-outlet  [ngClass]="style.theme" class="view"></router-outlet>
+</div>

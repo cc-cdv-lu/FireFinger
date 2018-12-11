@@ -28,9 +28,4 @@ export class HomeComponent implements OnInit {
     return parseFloat(progress + '').toFixed(2);
   }
 
-  shouldFlash() {
-    return (this.session.last_wrong_char !== '' && this.style.warning_flash);
-  }
-
-
 }
