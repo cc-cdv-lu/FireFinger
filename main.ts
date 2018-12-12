@@ -24,18 +24,15 @@ function createWindow() {
       electron: require(`${__dirname}/node_modules/electron`)
     });
     win.loadURL('http://localhost:4200');
-    win.webContents.openDevTools();
   } else {
     win.loadURL(url.format({
       pathname: path.join(__dirname, 'dist/index.html'),
       protocol: 'file:',
       slashes: true
     }));
-    win.webContents.closeDevTools();
   }
 
-  // TODO remove on last build
-  // win.webContents.openDevTools();
+  win.webContents.openDevTools();
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -44,6 +41,7 @@ function createWindow() {
     // when you should delete the corresponding element.
     win = null;
   });
+
 }
 
 try {
