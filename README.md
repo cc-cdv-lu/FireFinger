@@ -3,7 +3,12 @@
 **wip** this needs a big update...
 
 ## Instructions
-(TODO)
+
+
+* Select chapter
+* Login
+* Adjust settings
+* Play
 
 Custom dictations can be put into **%appdata%/FireFinger/docs** */subfolder/example.txt*  
 
@@ -32,9 +37,10 @@ All notable changes to this project will be documented in this file.
 
 ### [0.9.0] Second alpha release
 - Features:
-    - Added Ctrl+Up/Down for zooming
+    - Added Ctrl+Up/Down for zooming (useful for laptops)
     - Added reload chapters button to the chapter selection screen
     - The username will now be displayed on the login button, if someone is logged in
+    - New icon featuring CDV logo
 - Fixes:
     - Increased upper and lower zoom bounds
     - Fixed issue where footer and header would get distorted at very high/low zooms
@@ -53,6 +59,10 @@ All notable changes to this project will be documented in this file.
     - Fixed first letter of setence and words dissappearing from prev section
 
  ### [<0.7.0] Testing
+
+ ## Known Issues
+
+ - When launching for the very first time, they screen may stay white. Please close the windows with the X button in the top right corner and launch FireFinger again.
 
 ## Technical
 Uses node.js 10.3.0 and npm 6.xxx
