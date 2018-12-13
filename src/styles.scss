@@ -1,4 +1,11 @@
+// Import mixins
 @import 'mixins';
+
+// Import material icons
+$material-icons-font-path: '~material-icons/iconfont/';
+@import '~material-icons/iconfont/material-icons.scss';
+
+
 
 /* Application wide - via x rem adjustable sizes */
 body,

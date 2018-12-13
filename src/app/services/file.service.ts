@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ElectronService } from '../providers/electron.service';
 import { StringHelperService } from './string-helper.service';
 
-import { Chapter, Lesson, ChapterType } from './lesson.service';
+import { Chapter, Lesson, ChapterType } from './type.service';
 
 @Injectable({
   providedIn: 'root',
