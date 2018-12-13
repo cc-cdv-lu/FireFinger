@@ -42,6 +42,7 @@ All notable changes to this project will be documented in this file.
     - The username will now be displayed on the login button, if someone is logged in
     - New icon featuring CDV logo
     - A predefined set of chapters will now be copied to the userdata folder upon first launch
+    - The end of a text is now marked with a checkmark ✓
 - Fixes:
     - Increased upper and lower zoom bounds
     - Fixed issue where footer and header would get distorted at very high/low zooms
