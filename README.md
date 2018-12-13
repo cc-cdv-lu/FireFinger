@@ -41,6 +41,7 @@ All notable changes to this project will be documented in this file.
     - Added reload chapters button to the chapter selection screen
     - The username will now be displayed on the login button, if someone is logged in
     - New icon featuring CDV logo
+    - A predefined set of chapters will now be copied to the userdata folder upon first launch
 - Fixes:
     - Increased upper and lower zoom bounds
     - Fixed issue where footer and header would get distorted at very high/low zooms
@@ -49,6 +50,7 @@ All notable changes to this project will be documented in this file.
     - Fixed settings screen text and buttons (also removed sliders)
     - Fixed display content scrolling up and down in the fixed view
     - Fixed missing localization
+    - Fixed white screen on first launch
     - Many more minor improvements and fixes...
 
 ### [0.7.0] First alpha release

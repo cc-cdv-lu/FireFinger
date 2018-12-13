@@ -20,49 +20,60 @@ export class FileService {
     this.firefingerURL = this.electron.path.join(this.appDataURL, 'docs');
   }
 
-  loadAllDirs(): Array<Lesson> {
+  loadDir(dirURL: string): Array<Lesson> {
     const output = [];
 
-    if (!this.electron.fs.existsSync(this.firefingerURL)) {
-      this.firstLaunch();
+    if (!this.electron.fs.existsSync(dirURL)) {
+      console.log('dirURL:', dirURL);
+      this.firstLaunch(dirURL);
     }
 
-    const docsDir = this.electron.fs.readdirSync(this.firefingerURL);
+    const docsDir = this.electron.fs.readdirSync(dirURL);
 
     if (!docsDir) {
-      console.warn('This url does not exist:', this.firefingerURL);
+      console.warn('This url does not exist:', dirURL);
       return null;
     }
-    console.log('Loading lessons from folder:', this.firefingerURL);
+    console.log('Loading lessons from folder:', dirURL);
     for (const folder of docsDir) {
       if (folder.indexOf('.') === -1) {
-        this.loadFolder(output, this.firefingerURL, folder);
+        this.loadFolder(output, dirURL, folder);
       }
     }
+    console.log('Loaded the following data:', output);
+    return output;
+  }
+
+  loadAllDirs(): Array<Lesson> {
+    const output =  [... this.loadDir(this.firefingerURL)];
     return output;
   }
 
   openDocsFolderInExplorer() {
-    this.electron.shell.openExternal(this.appDataURL + '/docs');
+    this.electron.shell.openExternal(this.firefingerURL);
   }
 
-  firstLaunch() {
-    if (!this.electron.fs.existsSync(this.firefingerURL)) {
-      this.electron.fs.mkdirSync(this.firefingerURL);
+  firstLaunch(dirURL: string) {
+    if (!this.electron.fs.existsSync(dirURL)) {
+      this.electron.fs.mkdirSync(dirURL);
     }
 
     let assetsURL = '';
     if (this.electron.isDev()) {
       assetsURL = this.electron.path.join(
         this.electron.app.getAppPath(),
-        'src/assets/lessons'
+        'src/assets/docs'
       );
     } else {
-      this.createExampleFolder();
+      assetsURL = this.electron.path.join(
+        this.electron.app.getAppPath(),
+        'dist/assets/docs'
+      );
+      // this.createExampleFolder();
     }
 
     // If user has not yet had any files in their folder, copy the example files to their folder
-    this.electron.fs.copySync(assetsURL, this.firefingerURL);
+    this.electron.fs.copySync(assetsURL, dirURL);
 
     this.openDocsFolderInExplorer();
   }

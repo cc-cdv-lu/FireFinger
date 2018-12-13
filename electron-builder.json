@@ -1,5 +1,5 @@
 {
-  "productName": "angular-electron",
+  "productName": "FireFinger",
   "directories": {
     "output": "release/"
   },
@@ -20,19 +20,19 @@
         "!tslint.json"
     ],
   "win": {
-    "icon": "dist",
+    "icon": "icon.png",
     "target": [
       "portable"
     ]
   },
   "mac": {
-    "icon": "dist",
+    "icon": "icon.png",
     "target": [
       "dmg"
     ]
   },
   "linux": {
-    "icon": "dist",
+    "icon": "icon.png",
     "target": [
       "AppImage"
     ]
