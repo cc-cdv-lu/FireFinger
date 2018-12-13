@@ -80,7 +80,9 @@ export class MainViewComponent implements OnInit {
   }
 
   getCurrent() {
-    return this.attemptHighlight(this.session.getCurrentChar());
+    const char = this.attemptHighlight(this.session.getCurrentChar());
+
+    return char;
   }
 
 
@@ -125,6 +127,10 @@ export class MainViewComponent implements OnInit {
   }
 
   attemptHighlight(char: string) {
+    // reached end of chapter
+    if (char === undefined) {
+      return '✓';
+    }
     if (!char) {
       return;
     }
@@ -134,6 +140,7 @@ export class MainViewComponent implements OnInit {
     if (char === ' ') {
       return '_';
     }
+    // reached end of line
     if (char === '\n') {
       return '↲';
     }
