@@ -32,7 +32,7 @@
       "files": {
         "button": "Ouvrir le dossier dans l' Explorateur de fichiers",
         "description": "Chaque texte doit être placé dans un dossier avec le nom de la leçon. Voir exemple de leçon avec des exemples de textes comme modèle.",
-        "override": "(Re) créer les fichiers de cours de défaut",
+        "override": "(Re) créer les fichiers du cours de défaut",
         "title": "Fichiers de leçon"
       },
       "lang": {

@@ -10,10 +10,8 @@ import * as path from 'path';
 import * as Config from 'electron-store';
 import BrowserWindow = Electron.BrowserWindow;
 
-
 @Injectable()
 export class ElectronService {
-
   ipcRenderer: typeof ipcRenderer;
   webFrame: typeof webFrame;
   remote: typeof remote;
@@ -39,23 +37,23 @@ export class ElectronService {
       this.window = window.require('electron').remote.getCurrentWindow();
       const ConfigClass = window.require('electron-store');
       this.config = new ConfigClass();
-      console.log('Config location: ', this.config)
-
+      console.log('Config location: ', this.config);
 
       this.app = this.remote.app;
       this.shell = this.remote.shell;
       this.path = window.require('path');
     }
 
-    // let app = window.require('electron').remote.app;
+    if (this.isDev()) {
+      this.window.webContents.openDevTools();
+    }
   }
 
   isElectron = () => {
     return window && window.process && window.process.type;
-  }
+  };
 
   isDev() {
     return process.mainModule.filename.indexOf('app.asar') === -1;
   }
-
 }
