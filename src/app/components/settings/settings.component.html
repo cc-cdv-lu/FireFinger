@@ -16,7 +16,7 @@
       </mat-expansion-panel-header>
 
       <section class="section">
-        <h4>{{'settings.style.theme' | translate }}</h4>
+        <h4>{{ 'settings.style.theme' | translate }}</h4>
         <mat-grid-list cols="4" rowHeight="4rem">
           <mat-grid-tile *ngFor="let theme of style.themes">
             <button
@@ -36,7 +36,10 @@
 
       <section class="section">
         <mat-grid-list cols="10">
-          <mat-grid-tile colspan="9" (click)="style.warning_flash = !style.warning_flash">
+          <mat-grid-tile
+            colspan="9"
+            (click)="style.warning_flash = !style.warning_flash"
+          >
             <p>{{ 'settings.style.errorwarning' | translate }}</p>
           </mat-grid-tile>
           <mat-grid-tile colspan="1">
@@ -59,12 +62,11 @@
               type="number"
               min="1"
               max="150"
-              
             />
           </mat-grid-tile>
           <mat-grid-tile colspan="2"> <b> (1 - 150)</b> </mat-grid-tile>
           <mat-grid-tile colspan="9">
-            <p>{{'settings.style.fontshortcut'|translate}}</p>
+            <p>{{ 'settings.style.fontshortcut' | translate }}</p>
           </mat-grid-tile>
         </mat-grid-list>
       </section>
@@ -95,6 +97,14 @@
         >
           <mat-icon>folder</mat-icon>
           {{ 'settings.application.files.button' | translate }}
+        </button>
+        <button
+          mat-raised-button
+          color="accent"
+          (click)="file.overrideDocsFolder()"
+        >
+          <mat-icon>create_new_folder</mat-icon>
+          {{ 'settings.application.files.override' | translate }}
         </button>
       </section>
 
@@ -150,7 +160,7 @@
 
       <section class="section">
         <h4>{{ 'settings.voice.variant' | translate }}</h4>
-        <mat-form-field >
+        <mat-form-field>
           <mat-select
             placeholder="Speaking voice"
             [(value)]="reader.config.options.variant"
@@ -188,13 +198,13 @@
               <p>{{ s.translate_key + '.description' | translate }}</p>
             </mat-grid-tile>
             <mat-grid-tile colspan="2">
-                <input
-                  matInput
-                  [(ngModel)]="reader.config.options[s.value_key]"
-                  type="number"
-                  [min]="s.min"
-                  [max]="s.max"
-                />
+              <input
+                matInput
+                [(ngModel)]="reader.config.options[s.value_key]"
+                type="number"
+                [min]="s.min"
+                [max]="s.max"
+              />
             </mat-grid-tile>
             <mat-grid-tile>
               <b> ({{ s.min }} - {{ s.max }})</b>

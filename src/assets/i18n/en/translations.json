@@ -32,6 +32,7 @@
       "files": {
         "button": "Open folder in Explorer",
         "description": "Each text needs to be put into a folder with the name of the lesson. See example lesson with example texts as template.",
+        "override": "(Re)-create default lesson files",
         "title": "Lesson files"
       },
       "lang": {

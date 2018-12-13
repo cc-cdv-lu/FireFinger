@@ -25,7 +25,7 @@ export class FileService {
 
     if (!this.electron.fs.existsSync(dirURL)) {
       console.log('dirURL:', dirURL);
-      this.firstLaunch(dirURL);
+      this.createDefaultFolder(dirURL);
     }
 
     const docsDir = this.electron.fs.readdirSync(dirURL);
@@ -53,7 +53,11 @@ export class FileService {
     this.electron.shell.openExternal(this.firefingerURL);
   }
 
-  firstLaunch(dirURL: string) {
+  overrideDocsFolder() {
+    this.createDefaultFolder(this.firefingerURL);
+  }
+
+  createDefaultFolder(dirURL: string) {
     if (!this.electron.fs.existsSync(dirURL)) {
       this.electron.fs.mkdirSync(dirURL);
     }
@@ -74,8 +78,6 @@ export class FileService {
 
     // If user has not yet had any files in their folder, copy the example files to their folder
     this.electron.fs.copySync(assetsURL, dirURL);
-
-    this.openDocsFolderInExplorer();
   }
 
   loadFolder(destination, path: string, folderName: string) {
