@@ -181,7 +181,7 @@ export class ReaderService {
 
     // Check if letter is uppercase
     if (str !== str.toLowerCase()) {
-      return this.speak('Großes ' + str);
+      return this.speak(this.translate.instant('special.major') + ' ' + str);
     }
 
     str = this.filterSpecialChars(str);
@@ -208,12 +208,14 @@ export class ReaderService {
   }
 
   private speak(str: string) {
+    /*
     this.speak_reset_counter++;
 
     if (this.speak_reset_counter > 70) {
       this.meSpeak.recoverFromFSError('Preamptive reset...');
       this.speak_reset_counter = 0;
     }
+    */
 
     if (!this.meSpeak.canPlay()) {
       return console.error('Cannot play at the moment...');
@@ -221,9 +223,11 @@ export class ReaderService {
     try {
       this.meSpeak.speak(str, this.config.options);
     } catch (err) {
+      /*
       this.meSpeak.recoverFromFSError(
         '[' + this.speak_reset_counter + '] Trying to read: ' + str
       );
+      */
       console.error('Unexpected error while trying to play character: ', err);
     }
   }

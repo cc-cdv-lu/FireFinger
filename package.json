@@ -44,7 +44,7 @@
     "electron-store": "^2.0.0",
     "fs-extra": "^6.0.1",
     "material-icons": "^0.2.3",
-    "mespeak": "^2.0.2",
+    "mespeak": "git+https://github.com/f-w/mespeak.git",
     "word-extractor": "^0.1.4"
   },
   "devDependencies": {
