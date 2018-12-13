@@ -80,7 +80,8 @@ export class StyleService {
   get theme() {
     let t = this.electron.config.get(THEME_KEY);
     if (!t) {
-      t = 'default-theme';
+      t = 'by-theme';
+      this.theme = t;
     }
     return t;
   }

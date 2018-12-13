@@ -105,6 +105,13 @@
       "variant": "Sprachvariante"
     }
   },
+  "special": {
+    "and": "undzeichen",
+    "dash": "bindestrich",
+    "enter": "eingabe",
+    "euro": "eurozeichen",
+    "space": "leerzeichen"
+  },
   "summary": {
     "backbutton": "Zurück",
     "continuebutton": "Weiter",

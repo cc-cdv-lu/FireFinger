@@ -105,6 +105,13 @@
       "variant": "Variante vocale"
     }
   },
+  "special": {
+    "and": "signe et",
+    "dash": "tirret",
+    "enter": "a la ligne",
+    "euro": "signe d'euro",
+    "space": "espace"
+  },
   "summary": {
     "backbutton": "Retour",
     "continuebutton": "Continuer",

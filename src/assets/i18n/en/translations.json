@@ -105,6 +105,13 @@
       "variant": "Voice variant"
     }
   },
+  "special": {
+    "and": "ampersand",
+    "dash": "dash sign",
+    "enter": "enter",
+    "euro": "euro sign",
+    "space": "space"
+  },
   "summary": {
     "backbutton": "Back",
     "continuebutton": "Continue",

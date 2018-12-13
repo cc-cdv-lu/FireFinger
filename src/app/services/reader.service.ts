@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ElectronService } from '../providers/electron.service';
 import * as MeSpeak from 'mespeak';
+import { TranslateService } from '@ngx-translate/core';
 
 const READER_CONFIG_KEY = 'READER_CONFIG';
 
@@ -114,7 +115,7 @@ export class ReaderService {
   private meSpeak: MeSpeak;
 
   config = {
-    voice: this.voices[0].url,
+    voice: this.voices[1].url,
     test: 'Das ist ein Test!',
     options: {
       amplitude: 100,
@@ -129,7 +130,7 @@ export class ReaderService {
     },
   };
 
-  constructor(private electron: ElectronService) {
+  constructor(private electron: ElectronService, private translate: TranslateService) {
     // Restore options from last session if available
     this.restore();
 
@@ -191,15 +192,15 @@ export class ReaderService {
   filterSpecialChars(c: string): string {
     switch (c) {
       case '\n':
-        return 'eingabe';
+        return this.translate.instant('special.enter');
       case ' ':
-        return 'leerzeichen';
+        return this.translate.instant('special.space');
       case '&':
-        return 'undzeichen';
+        return this.translate.instant('special.and');
       case '€':
-        return 'euro zeichen';
+        return this.translate.instant('special.euro');
       case '-':
-        return 'bindestrich';
+        return this.translate.instant('special.dash');
       default: {
         return c;
       }
@@ -208,7 +209,6 @@ export class ReaderService {
 
   private speak(str: string) {
     this.speak_reset_counter++;
-    // console.log("Current counter:" + this.counter);
 
     if (this.speak_reset_counter > 70) {
       this.meSpeak.recoverFromFSError('Preamptive reset...');
