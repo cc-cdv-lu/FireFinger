@@ -192,7 +192,7 @@
 
       <mat-divider></mat-divider>
       <section class="section">
-        <mat-grid-list cols="8" class="voiceSettings" gutterSize="100">
+        <mat-grid-list cols="9" class="voiceSettings" gutterSize="25">
           <div *ngFor="let s of voiceSettings">
             <mat-grid-tile colspan="2">
               <h5>{{ s.translate_key + '.title' | translate }}</h5>
@@ -209,8 +209,8 @@
                 [max]="s.max"
               />
             </mat-grid-tile>
-            <mat-grid-tile>
-              <b> ({{ s.min }} - {{ s.max }})</b>
+            <mat-grid-tile colspan="2">
+              <b>{{ s.min }}-{{ s.max }}</b>
             </mat-grid-tile>
           </div>
         </mat-grid-list>
