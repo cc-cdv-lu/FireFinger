@@ -37,11 +37,13 @@
     "e2e": "npm run postinstall:web && ng e2e"
   },
   "dependencies": {
-    "@angular/animations": "^6.0.3",
+    "@angular/animations": "^6.1.10",
     "@angular/cdk": "^6.2.1",
     "@angular/material": "^6.2.1",
+    "@types/fs-extra": "^5.0.4",
     "electron-store": "^2.0.0",
     "fs-extra": "^6.0.1",
+    "material-icons": "^0.2.3",
     "mespeak": "^2.0.2",
     "word-extractor": "^0.1.4"
   },

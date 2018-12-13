@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ElectronService } from '../providers/electron.service';
 
 import { StatisticsService } from './statistics.service';
-import { Lesson, Chapter } from './lesson.service';
+import { Lesson, Chapter } from './type.service';
 import { UserService } from './user.service';
 import { StringHelperService } from './string-helper.service';
 import { ReaderService } from './reader.service';
