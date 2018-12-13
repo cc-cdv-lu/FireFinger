@@ -83,6 +83,23 @@
       </mat-expansion-panel-header>
 
       <section class="section">
+        <h4>{{ 'settings.application.lang.title' | translate }}</h4>
+        <p>{{ 'settings.application.lang.description' | translate }}</p>
+
+        <mat-form-field>
+          <mat-select
+            placeholder="Language"
+            [(value)]="lang"
+            (selectionChange)="onLangChange()"
+          >
+            <mat-option *ngFor="let l of langs" [value]="l.id">
+              {{ l.description }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </section>
+
+      <section class="section">
         <h4>{{ 'settings.application.files.title' | translate }}</h4>
         <p>{{ 'settings.application.files.description' | translate }}</p>
         <button
@@ -104,20 +121,16 @@
       </section>
 
       <section class="section">
-        <h4>{{ 'settings.application.lang.title' | translate }}</h4>
-        <p>{{ 'settings.application.lang.description' | translate }}</p>
-
-        <mat-form-field>
-          <mat-select
-            placeholder="Language"
-            [(value)]="lang"
-            (selectionChange)="onLangChange()"
-          >
-            <mat-option *ngFor="let l of langs" [value]="l.id">
-              {{ l.description }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <h4>Developper</h4>
+        <p>No touchy</p>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="electron.openDevTools()"
+        >
+          <mat-icon>developer_mode</mat-icon>
+          Developper Tools
+        </button>
       </section>
     </mat-expansion-panel>
 
@@ -129,7 +142,6 @@
         <mat-panel-title>
           {{ 'settings.voice.title' | translate }}
         </mat-panel-title>
-
       </mat-expansion-panel-header>
 
       <section class="section">
@@ -208,4 +220,56 @@
       </section>
     </mat-expansion-panel>
   </mat-accordion>
+  <mat-card class="infoBox">
+    <mat-card-header>
+      <mat-card-title>
+        <img mat-card-avatar src="assets/img/icon.png" /> FireFinger v1.0.0
+      </mat-card-title>
+      <mat-card-subtitle>
+        <p>
+          If you have any issues, questions or inquiries contact us via:
+        </p>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-grid-list cols="10">
+        <mat-grid-tile colspan="1">
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+          <a mat-raised-button href="mailto:julien.hoffmann@cc-cdv.lu?subject=FireFinger&body=Hello, I am contacting you about FireFinger because...">
+            <mat-icon>mail</mat-icon>
+            Mail
+          </a>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+          <a mat-raised-button href="http://cc-cdv.lu">
+            <mat-icon>web</mat-icon>
+            Webpage
+          </a>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+          <a mat-raised-button href="tel:+352 45 43 06 - 1">
+            <mat-icon>phone</mat-icon>
+            Call
+          </a>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+          <a mat-raised-button href="tel:+352 45 43 06 - 700">
+            <mat-icon>message</mat-icon>
+            Fax
+          </a>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1">
+        </mat-grid-tile>
+        <mat-grid-tile colspan="7">
+          Developped by Centre pour le développement des compétences relatives à
+          la vue
+        </mat-grid-tile>
+        <mat-grid-tile colspan="3">
+          <img mat-card-image class="cdv" src="assets/img/cdv.png" />
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+    <mat-card-footer> </mat-card-footer>
+  </mat-card>
 </div>

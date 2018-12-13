@@ -50,7 +50,7 @@ export class FileService {
   }
 
   openDocsFolderInExplorer() {
-    this.electron.shell.openExternal(this.firefingerURL);
+    this.electron.shell.openExternal(this.firefingerURL, {activate: true});
   }
 
   overrideDocsFolder() {

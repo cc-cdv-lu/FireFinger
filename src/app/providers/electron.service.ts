@@ -45,15 +45,19 @@ export class ElectronService {
     }
 
     if (this.isDev()) {
-      this.window.webContents.openDevTools();
+      this.openDevTools();
     }
   }
 
   isElectron = () => {
     return window && window.process && window.process.type;
-  };
+  }
 
   isDev() {
     return process.mainModule.filename.indexOf('app.asar') === -1;
+  }
+
+  openDevTools() {
+    this.window.webContents.openDevTools();
   }
 }
