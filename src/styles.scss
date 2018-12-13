@@ -35,7 +35,8 @@ html {
   }
 
   mat-slide-toggle, mat-checked, mat-slide-toggle-thumb-container {
-    zoom: 10 !important;
+    zoom: 2 !important;
+    width: 100% !important;
   }
 
   a,
