@@ -51,7 +51,8 @@ export class FileService {
 
   openDocsFolderInExplorer() {
     console.log('Trying to open folder', this.firefingerURL);
-    this.electron.shell.openExternal(this.firefingerURL, {activate: true}, () => console.log('Success!'));
+    // this.electron.shell.openExternal(this.firefingerURL, {activate: true}, () => console.log('Success!'));
+    this.electron.shell.openItem(this.firefingerURL);
   }
 
   overrideDocsFolder() {
