@@ -16,7 +16,8 @@ function createWindow() {
     x: 0,
     y: 0,
     width: size.width,
-    height: size.height
+    height: size.height,
+    icon: path.join(__dirname, 'assets/icons/png/64x64.png')
   });
 
   if (serve) {
