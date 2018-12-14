@@ -35,7 +35,7 @@ Custom dictations can be put into **%appdata%/FireFinger/docs** */subfolder/exam
 ## Changelog
 All notable changes to this project will be documented in this file.
 
-### [0.9.0] Second alpha release
+### [1.0.0] First major release
 - Features:
     - Added Ctrl+Up/Down for zooming (useful for laptops)
     - Added reload chapters button to the chapter selection screen
@@ -43,6 +43,9 @@ All notable changes to this project will be documented in this file.
     - New icon featuring CDV logo
     - A predefined set of chapters will now be copied to the userdata folder upon first launch
     - The end of a text is now marked with a checkmark ✓
+    - Added support for MacOS
+    - Repolished the whole layout
+    - Added info/contact box to settings
 - Fixes:
     - Increased upper and lower zoom bounds
     - Fixed issue where footer and header would get distorted at very high/low zooms
@@ -54,18 +57,14 @@ All notable changes to this project will be documented in this file.
     - Fixed white screen on first launch
     - Many more minor improvements and fixes...
 
-### [0.7.0] First alpha release
+### [0.7.0] Alpha release
 - Most vital features are present in this release
 -  Fixes:
     - Improved accuracy of stats calculation
     - Slightly improved end of level screen - still needs some work
     - Fixed first letter of setence and words dissappearing from prev section
 
- ### [<0.7.0] Testing
-
- ## Known Issues
-
- - When launching for the very first time, they screen may stay white. Please close the windows with the X button in the top right corner and launch FireFinger again.
+### [<0.7.0] Testing
 
 ## Technical
 Uses node.js 10.3.0 and npm 6.xxx
