@@ -27,7 +27,7 @@ Custom dictations can be put into **%appdata%/FireFinger/docs** */subfolder/exam
 
 * **Insert**: Skip this char  
 * **Ctrl + UP**  *OR*  **Ctrl + (+)** : Zoom-in  
-* **Ctrl + DOWN**   *OR*  **Ctrl + (+)** : Zoom-out  
+* **Ctrl + DOWN**   *OR*  **Ctrl + (-)** : Zoom-out  
 * **Down** : Repeat this letter  
 * **Right**: Repeat this word  
 
