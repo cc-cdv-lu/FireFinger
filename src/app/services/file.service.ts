@@ -50,8 +50,6 @@ export class FileService {
   }
 
   openDocsFolderInExplorer() {
-    console.log('Trying to open folder', this.firefingerURL);
-    // this.electron.shell.openExternal(this.firefingerURL, {activate: true}, () => console.log('Success!'));
     this.electron.shell.openItem(this.firefingerURL);
   }
 
@@ -75,7 +73,6 @@ export class FileService {
         this.electron.app.getAppPath(),
         'dist/assets/docs'
       );
-      // this.createExampleFolder();
     }
 
     // If user has not yet had any files in their folder, copy the example files to their folder
