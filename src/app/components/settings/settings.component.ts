@@ -78,7 +78,7 @@ export class SettingsComponent implements OnInit {
     public stats: StatisticsService,
     public reader: ReaderService,
     public translate: TranslateService,
-    private electron: ElectronService,
+    public electron: ElectronService,
     public file: FileService
   ) {}
 
