@@ -1,8 +1,13 @@
 {
   "productName": "FireFinger",
+  "appID" : "lu.cdv.hoffmann.firefinger",
   "directories": {
     "output": "release/"
   },
+  "package:standalone":
+    "cp build/electronMac.original.js node_modules/electron-builder-lib/out/electron/electronMac.js && CSC_LINK=./build/all-certs.p12 electron-builder",
+"package:app-store":
+    "cp build/electronMac.js node_modules/electron-builder-lib/out/electron/electronMac.js && CSC_LINK=./build/all-certs.p12 electron-builder",
     "files": [
         "**/*",
         "!**/*.ts",
@@ -26,10 +31,21 @@
     ]
   },
   "mac": {
+    "category": "public.app-category.productivity",
+    "entitlements": "build/entitlements.mac.plist",
     "icon": "src/assets/icons/mac/icon.icns",
     "target": [
-      "dmg"
+      "dmg",
+      "pkg",
+      "zip",
+      "mas"
     ]
+  },
+  "mas": {
+    "type": "distribution",
+    "category": "public.app-category.productivity",
+    "entitlements": "build/entitlements.mas.plist",
+    "icon": "src/assets/icons/mac/icon.icns"
   },
   "linux": {
     "icon": "src/assets/icons/png/512x512.png",
