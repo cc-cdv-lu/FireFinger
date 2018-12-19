@@ -7,7 +7,6 @@ const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
 
 function createWindow() {
-
   const electronScreen = screen;
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
 
@@ -17,20 +16,22 @@ function createWindow() {
     y: 0,
     width: size.width,
     height: size.height,
-    icon: path.join(__dirname, 'assets/icons/png/64x64.png')
+    icon: path.join(__dirname, 'assets/icons/png/64x64.png'),
   });
 
   if (serve) {
     require('electron-reload')(__dirname, {
-      electron: require(`${__dirname}/node_modules/electron`)
+      electron: require(`${__dirname}/node_modules/electron`),
     });
     win.loadURL('http://localhost:4200');
   } else {
-    win.loadURL(url.format({
-      pathname: path.join(__dirname, 'dist/index.html'),
-      protocol: 'file:',
-      slashes: true
-    }));
+    win.loadURL(
+      url.format({
+        pathname: path.join(__dirname, 'dist/index.html'),
+        protocol: 'file:',
+        slashes: true,
+      })
+    );
   }
 
   // Emitted when the window is closed.
@@ -40,15 +41,24 @@ function createWindow() {
     // when you should delete the corresponding element.
     win = null;
   });
-
 }
 
 try {
-
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
   app.on('ready', createWindow);
+  app.on('ready', () => {
+    win.webContents.on('crashed', err => {
+      console.error('FireFinger crashed!', err);
+    });
+    win.webContents.on('unresponsive', err => {
+      console.error('FireFinger has become unresponsive!', err);
+    });
+    process.on('uncaughtException', err => {
+      console.error('FireFinger has encounterd an uncaugt exception!', err);
+    });
+  });
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
@@ -66,7 +76,6 @@ try {
       createWindow();
     }
   });
-
 } catch (e) {
   // Catch Error
   // throw e;

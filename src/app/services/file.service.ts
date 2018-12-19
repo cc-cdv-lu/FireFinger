@@ -45,7 +45,7 @@ export class FileService {
   }
 
   loadAllDirs(): Array<Lesson> {
-    const output =  [... this.loadDir(this.firefingerURL)];
+    const output = [...this.loadDir(this.firefingerURL)];
     return output;
   }
 
@@ -76,7 +76,15 @@ export class FileService {
     }
 
     // If user has not yet had any files in their folder, copy the example files to their folder
-    this.electron.fs.copySync(assetsURL, dirURL);
+    try {
+      console.log('Will now copy assets from ' + assetsURL + ' to ' + dirURL);
+      this.electron.fs.copySync(assetsURL, dirURL);
+    } catch (err) {
+      console.warn(
+        'Error while trying to copy assets over to users folder:',
+        err
+      );
+    }
   }
 
   loadFolder(destination, path: string, folderName: string) {

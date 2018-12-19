@@ -96,6 +96,7 @@ export class AppComponent implements OnInit {
     this.electronService.window.setFullScreen(true);
 
     this.componentCssClass = this.style.theme;
+
   }
 
   /* DEBUG stuff */
