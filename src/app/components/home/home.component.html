@@ -5,15 +5,15 @@
   <div class="footer">
     <mat-toolbar>
       <mat-toolbar-row>
-        <span class="fill-remaining-space"></span>
-        <mat-progress-bar mode="determinate" [value]="getProgress()"></mat-progress-bar>
-        <span class="fill-remaining-space"></span>
+        <span aria-hidden="true" class="fill-remaining-space"></span>
+        <mat-progress-bar mode="determinate" [value]="getProgress()"  role="progressbar" [attr.aria-valuenow]="getProgress()" [attr.aria-valuetext]="'general.progressbar|translate'" aria-valuemin="0" aria-valuemax="100"></mat-progress-bar>
+        <span aria-hidden="true" class="fill-remaining-space"></span>
       </mat-toolbar-row>
       <mat-toolbar-row>
         <p>{{'mainView.mistakes' | translate}}: {{stats.currentStats.mistakesCount}} ({{session.getMistakePercentage()}})</p>
-        <span class="fill-remaining-space"></span>
+        <span aria-hidden="true" class="fill-remaining-space"></span>
         <p class="currentChapter">{{session.currentChapter.name}}</p>
-        <span class="fill-remaining-space"></span>
+        <span aria-hidden="true" class="fill-remaining-space"></span>
         <p>{{'mainView.typespeed' | translate}}: {{stats.currentStats.typeSpeed}}</p>
       </mat-toolbar-row>
     </mat-toolbar>

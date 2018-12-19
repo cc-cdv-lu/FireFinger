@@ -1,10 +1,11 @@
 {
   "general": {
     "chaptersLoaded": "chapter(s) loaded",
-    "closeapp": "X",
+    "closeapp": "Close FireFinger",
     "enter": "Enter",
     "lettertask": "Letter exercice",
     "login": "Login",
+    "progressbar": "Progressbar of the chapter",
     "typingspeed": "Typing speed"
   },
   "keys": {

@@ -1,6 +1,6 @@
 <div class="appContainer" [ngClass]="style.theme">
   <mat-toolbar class="toolbar" [ngClass]="style.theme">
-    <mat-toolbar-row>
+    <mat-toolbar-row id="tabPanel" role="tablist">
       <div class="fill-remaining-space"></div>
       <a
         mat-raised-button
@@ -9,13 +9,17 @@
         [style.margin]="'0.5rem'"
         [routerLink]="nav.link"
         *ngFor="let nav of routerLinks"
+        [attr.aria-label]="nav.name | async"
+        role="tab" 
+        aria-controls="tabPanel"
+        [attr.aria-selected]="this.router.url === nav.link"        
       >
-        <mat-icon>{{ nav.icon }}</mat-icon>
+        <mat-icon aria-hidden="true">{{ nav.icon }}</mat-icon>
         {{ nav.name | async }}
       </a>
       <div class="fill-remaining-space"></div>
-      <button mat-raised-button color="warn" (click)="closeApp()">
-        <mat-icon>close</mat-icon>
+      <button mat-raised-button color="warn" (click)="closeApp()" [attr.aria-label]="'general.closeapp'|translate">
+        <mat-icon aria-hidden="true">close</mat-icon>
       </button>
     </mat-toolbar-row>
   </mat-toolbar>

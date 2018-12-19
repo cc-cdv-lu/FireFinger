@@ -1,10 +1,11 @@
 {
   "general": {
     "chaptersLoaded": "Kapitel geladen",
-    "closeapp": "X",
+    "closeapp": "FireFinger schließen",
     "enter": "Eingabe",
     "lettertask": "Buchstaben Übung",
     "login": "Anmeldung",
+    "progressbar": "Fortschrittsbalken des Kapitels",
     "typingspeed": "Tippgeschwindigkeit"
   },
   "keys": {
