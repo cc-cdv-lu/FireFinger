@@ -78,7 +78,7 @@ export class FileService {
     // If user has not yet had any files in their folder, copy the example files to their folder
     try {
       console.log('Will now copy assets from ' + assetsURL + ' to ' + dirURL);
-      this.electron.fs.copySync(assetsURL, dirURL);
+      this.copyFiles(assetsURL, dirURL);
     } catch (err) {
       console.warn(
         'Error while trying to copy assets over to users folder:',
@@ -87,7 +87,29 @@ export class FileService {
     }
   }
 
-  loadFolder(destination, path: string, folderName: string) {
+  copyFiles(fromURL: string, toURL: string) {
+    // Usually you could simply use this:
+    // this.electron.fs.copySync(fromURL, toURL);
+    // But it's broken for MacOS...
+
+    const folderNames = this.electron.fs.readdirSync(fromURL);
+    for (const folderName of folderNames) {
+      const folderPath = this.electron.path.join(fromURL, folderName);
+      const fileNames = this.electron.fs.readdirSync(folderPath);
+      for (const fileName of fileNames) {
+        const destinationPath = this.electron.path.join(
+          toURL,
+          folderName,
+          fileName
+        );
+        const filePath = this.electron.path.join(fromURL, folderName, fileName);
+        const file = this.electron.fs.readFileSync(filePath);
+        this.electron.fs.writeFileSync(destinationPath, file);
+      }
+    }
+  }
+
+  loadFolder(destination: Lesson[], path: string, folderName: string) {
     const url = this.electron.path.join(path, folderName);
     const dir = this.electron.fs.readdirSync(url);
     const lesson = {
@@ -222,7 +244,9 @@ export class FileService {
     chapter.content = this.stringhelper.shuffleString(output);
   }
 
-  generateWordLesson<T>(chapter: T) {}
+  generateWordLesson(chapter: Chapter) {
+    console.warn('Word lessons are currently not supported!');
+  }
 
   getDocFileContents(url: string): string {
     const file = this.electron.fs.readFileSync(url, 'utf8');

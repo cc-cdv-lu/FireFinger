@@ -1,6 +1,6 @@
 {
   "name": "FireFinger",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Dactylo training app build upon Angular/Electron 6",
   "homepage": "http://gitlab.lowvision.lu/it/FireFinger",
   "author": {
@@ -37,15 +37,7 @@
     "e2e": "npm run postinstall:web && ng e2e"
   },
   "dependencies": {
-    "@angular/animations": "^6.1.10",
-    "@angular/cdk": "^6.2.1",
-    "@angular/material": "^6.2.1",
-    "@types/fs-extra": "^5.0.4",
-    "electron-store": "^2.0.0",
-    "fs-extra": "^6.0.1",
-    "material-icons": "^0.2.3",
-    "mespeak": "git+https://github.com/f-w/mespeak.git",
-    "word-extractor": "^0.1.4"
+    "material-icons": "^0.2.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.6.3",
@@ -87,6 +79,14 @@
     "typescript": "2.7.2",
     "wait-on": "2.1.0",
     "webdriver-manager": "12.0.6",
-    "zone.js": "0.8.26"
+    "@angular/animations": "^6.1.10",
+    "@angular/cdk": "^6.2.1",
+    "@angular/material": "^6.2.1",
+    "@types/fs-extra": "^5.0.4",
+    "electron-store": "^2.0.0",
+    "fs-extra": "^6.0.1",
+    "zone.js": "0.8.26",
+    "mespeak": "git+https://github.com/f-w/mespeak.git",
+    "word-extractor": "^0.1.4"
   }
 }
