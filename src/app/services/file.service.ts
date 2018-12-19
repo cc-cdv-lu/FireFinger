@@ -104,6 +104,7 @@ export class FileService {
         );
         const filePath = this.electron.path.join(fromURL, folderName, fileName);
         const file = this.electron.fs.readFileSync(filePath);
+        this.electron.fs.createFileSync(destinationPath);
         this.electron.fs.writeFileSync(destinationPath, file);
       }
     }
