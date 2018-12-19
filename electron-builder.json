@@ -1,9 +1,10 @@
 {
   "productName": "FireFinger",
+  "appId" : "lu.cdv.hoffmann.firefinger",
   "directories": {
     "output": "release/"
   },
-    "files": [
+"files": [
         "**/*",
         "!**/*.ts",
         "!*.code-workspace",
@@ -26,10 +27,21 @@
     ]
   },
   "mac": {
+    "category": "public.app-category.productivity",
+    "entitlements": "build/entitlements.mac.plist",
     "icon": "src/assets/icons/mac/icon.icns",
     "target": [
-      "dmg"
-    ]
+      "dmg",
+      "pkg",
+      "zip",
+      "mas"
+    ],
+    },
+  "mas": {
+    "type": "distribution",
+    "category": "public.app-category.productivity",
+    "entitlements": "build/entitlements.mas.plist",
+    "icon": "src/assets/icons/mac/icon.icns",
   },
   "linux": {
     "icon": "src/assets/icons/png/512x512.png",
