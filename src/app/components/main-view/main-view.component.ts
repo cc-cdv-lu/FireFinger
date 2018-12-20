@@ -11,6 +11,7 @@ import { StatisticsService } from '../../services/statistics.service';
 import { UserService } from '../../services/user.service';
 
 import { TranslateService } from '@ngx-translate/core';
+import { ReaderService } from '../../services/reader.service';
 
 enum VIEW {
   CHAR,
@@ -38,7 +39,8 @@ export class MainViewComponent implements OnInit {
     public stats: StatisticsService,
     private user: UserService,
     private router: Router,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private reader: ReaderService
   ) {
     // TODO - LEVEL selection is triggered before login creation
     const lastLogin = this.electron.config.get('LAST_LOGIN');
@@ -85,6 +87,9 @@ export class MainViewComponent implements OnInit {
     return char;
   }
 
+  getReadingLang() {
+    return this.reader.config.voice_id;
+  }
 
   shouldFlash() {
     return (this.session.last_wrong_char !== '' && this.style.warning_flash);

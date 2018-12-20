@@ -183,7 +183,7 @@
             [(value)]="reader.config.voice"
             (selectionChange)="onVoiceChange()"
           >
-            <mat-option *ngFor="let voice of reader.voices" [value]="voice.url">
+            <mat-option *ngFor="let voice of reader.voices" [value]="voice.url" (click)="reader.config.voice_id = voice.id">
               {{ voice.description }}
             </mat-option>
           </mat-select>

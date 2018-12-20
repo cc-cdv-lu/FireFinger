@@ -14,26 +14,32 @@ export class ReaderService {
     {
       description: 'English',
       url: 'mespeak/voices/en/en.json',
+      id: 'en',
     },
     {
       description: 'German',
       url: 'mespeak/voices/de.json',
+      id: 'de',
     },
     {
       description: 'French',
       url: 'mespeak/voices/fr.json',
+      id: 'fr',
     },
     {
       description: 'Portugees',
       url: 'mespeak/voices/pt.json',
+      id: 'pt',
     },
     {
       description: 'Spanish',
       url: 'mespeak/voices/es.json',
+      id: 'es',
     },
     {
       description: 'Italian',
       url: 'mespeak/voices/it.json',
+      id: 'it',
     },
   ];
 
@@ -116,6 +122,7 @@ export class ReaderService {
 
   config = {
     voice: this.voices[1].url,
+    voice_id: this.voices[1].id,
     test: 'Das ist ein Test!',
     options: {
       amplitude: 100,
@@ -130,7 +137,10 @@ export class ReaderService {
     },
   };
 
-  constructor(private electron: ElectronService, private translate: TranslateService) {
+  constructor(
+    private electron: ElectronService,
+    private translate: TranslateService
+  ) {
     // Restore options from last session if available
     this.restore();
 

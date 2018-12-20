@@ -12,7 +12,7 @@ import { UserService } from './services/user.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   routerLinks;
@@ -53,6 +53,12 @@ export class AppComponent implements OnInit {
     translate.setDefaultLang(lang);
     translate.use(lang);
 
+    document.documentElement.lang = lang;
+
+    translate.onLangChange.subscribe(
+      (data: any) => (document.documentElement.lang = data.lang)
+    );
+
     if (electronService.isElectron()) {
       console.log('Mode electron');
     } else {
@@ -63,30 +69,32 @@ export class AppComponent implements OnInit {
       {
         name: this.translate.get('nav.home'),
         link: '/home',
-        icon: 'home'
+        icon: 'home',
       },
       {
         name: this.translate.get('nav.settings'),
         link: '/settings',
-        icon: 'settings'
+        icon: 'settings',
       },
       {
         name: this.translate.get('nav.levels'),
         link: '/levels',
-        icon: 'bookmarks'
+        icon: 'bookmarks',
       },
       {
         name: this.translate.get('nav.login'),
         link: '/login',
-        icon: 'person'
-      }
+        icon: 'person',
+      },
     ];
 
-    this.user.userChanged.subscribe((username) => {
+    this.user.userChanged.subscribe(username => {
       const namePromise = new Promise((resolve, reject) => {
         resolve(username);
       });
-      this.routerLinks[3].name = username ? namePromise : this.translate.get('nav.login');
+      this.routerLinks[3].name = username
+        ? namePromise
+        : this.translate.get('nav.login');
     });
   }
 
@@ -96,7 +104,6 @@ export class AppComponent implements OnInit {
     this.electronService.window.setFullScreen(true);
 
     this.componentCssClass = this.style.theme;
-
   }
 
   /* DEBUG stuff */
