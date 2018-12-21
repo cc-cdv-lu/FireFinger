@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ElectronService } from '../providers/electron.service';
@@ -11,6 +11,7 @@ import { ReaderService } from './reader.service';
 import { SoundEffectService, SOUNDS } from './sound-effect.service';
 
 const LAST_SESSION_KEY = 'LAST_SESSION';
+const DIFFICULTY_KEY = 'DIFFICULTY';
 
 export const enum GAME_STATE {
   PLAYING,
@@ -22,10 +23,13 @@ export const enum GAME_STATE {
   providedIn: 'root',
 })
 export class SessionService {
-  // TODO add this to settings
-  maxMistakePercentage = 5; // in percentage
-  maxMistakeCount = 50; // as mistakes per session
-  minTypeSpeed = 1; // as characters per seconds? TODO revisit stats for this
+  difficulty = {
+    maxMistakePercentage: 5, // in percentage
+    maxMistakeCount: 50, // as mistakes per session
+    minTypeSpeed: 20, // as characters per seconds? TODO revisit stats for this
+  };
+
+  //
   gameState = GAME_STATE.PLAYING;
 
   isSessionLoaded = false;
@@ -46,7 +50,13 @@ export class SessionService {
     private sound: SoundEffectService,
     private stringHelper: StringHelperService,
     public reader: ReaderService
-  ) {}
+  ) {
+    // TODO set up a event system that should trigger the saving of this
+    const store = this.electron.config.get(DIFFICULTY_KEY);
+    if (store) {
+      this.difficulty = store;
+    }
+  }
 
   ignoreKeys = [
     'ContextMenu',
@@ -179,19 +189,19 @@ export class SessionService {
 
     // Check if fast enough & didn't make to many mistakes
     if (
-      mistakeCount <= this.maxMistakeCount &&
-      mistakePercentage <= this.maxMistakePercentage &&
-      typeSpeed >= this.minTypeSpeed
+      mistakeCount <= this.difficulty.maxMistakeCount &&
+      mistakePercentage <= this.difficulty.maxMistakePercentage &&
+      typeSpeed >= this.difficulty.minTypeSpeed
     ) {
       this.onSuccess();
     } else {
-      if (mistakeCount > this.maxMistakeCount) {
+      if (mistakeCount > this.difficulty.maxMistakeCount) {
         console.log('Too many mistakes');
       }
-      if (mistakePercentage > this.maxMistakePercentage) {
+      if (mistakePercentage > this.difficulty.maxMistakePercentage) {
         console.log('Too high mistake percentage!');
       }
-      if (typeSpeed < this.minTypeSpeed) {
+      if (typeSpeed < this.difficulty.minTypeSpeed) {
         console.log('Too slow!');
       }
       this.onFailure();
@@ -260,6 +270,11 @@ export class SessionService {
 
   getMistakePercentage() {
     return this.getMistakePercentageAsNumber() + '%';
+  }
+
+  saveDifficulty() {
+    this.electron.config.set(DIFFICULTY_KEY, this.difficulty);
+    console.log('Saved difficulty settings:', this.difficulty);
   }
 
   saveSession() {

@@ -30,6 +30,21 @@
   "settings": {
     "application": {
       "description": "Paramètres généraux pour l'ensemble de l'application",
+      "difficulty": {
+        "maxMistakeCount": {
+          "description": "Maximum d'erreurs permis par chapitre",
+          "title": "Max. fautes"
+        },
+        "maxMistakePercentage": {
+          "description": "Pourcentage maximum d'erreurs autorisées",
+          "title": "Max. % de fautes"
+        },
+        "minTypeSpeed": {
+          "description": "Quantité minimale de lettres à taper à la minute",
+          "title": "Vitesse de tappage min."
+        },
+        "title": "Difficulté"
+      },
       "files": {
         "button": "Ouvrir le dossier dans l' Explorateur de fichiers",
         "description": "Chaque texte doit être placé dans un dossier avec le nom de la leçon. Voir exemple de leçon avec des exemples de textes comme modèle.",

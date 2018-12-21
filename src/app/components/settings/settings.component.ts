@@ -8,6 +8,7 @@ import { StatisticsService } from '../../services/statistics.service';
 import { ReaderService } from '../../services/reader.service';
 
 import { ElectronService } from '../../providers/electron.service';
+import { AppConfig } from '../../../environments/environment';
 
 import { TranslateService } from '@ngx-translate/core';
 import { FileService } from '../../services/file.service';
@@ -17,6 +18,7 @@ import { FileService } from '../../services/file.service';
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent implements OnInit {
+  public version: string = AppConfig.VERSION;
   langs = [
     {
       id: 'de',
@@ -67,6 +69,27 @@ export class SettingsComponent implements OnInit {
     },
   ];
 
+  difficultySettings = [
+    {
+      translate_key: 'settings.application.difficulty.maxMistakePercentage',
+      value_key: 'maxMistakePercentage',
+      min: 0,
+      max: 100,
+    },
+    {
+      translate_key: 'settings.application.difficulty.maxMistakeCount',
+      value_key: 'maxMistakeCount',
+      min: 0,
+      max: 250,
+    },
+    {
+      translate_key: 'settings.application.difficulty.minTypeSpeed',
+      value_key: 'minTypeSpeed',
+      min: 0,
+      max: 250,
+    },
+  ];
+
   allLessons = this.lessons.lessons;
   Math = Math;
 
@@ -101,5 +124,10 @@ export class SettingsComponent implements OnInit {
   }
   changeTheme(theme) {
     this.style.theme = theme;
+  }
+
+  saveSettings() {
+    this.session.saveDifficulty();
+    this.reader.save();
   }
 }

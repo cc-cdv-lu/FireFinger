@@ -30,6 +30,21 @@
   "settings": {
     "application": {
       "description": "General settings for the whole application",
+      "difficulty": {
+        "maxMistakeCount": {
+          "description": "Maximum of mistakes allowed per chapter",
+          "title": "Max. mistake count"
+        },
+        "maxMistakePercentage": {
+          "description": "Maximum Percentage of allowed mistakes",
+          "title": "Max. mistake %"
+        },
+        "minTypeSpeed": {
+          "description": "Minimum amount of letters that have to be typed per minute",
+          "title": "Min. type speed"
+        },
+        "title": "Difficulty"
+      },
       "files": {
         "button": "Open folder in Explorer",
         "description": "Each text needs to be put into a folder with the name of the lesson. See example lesson with example texts as template.",

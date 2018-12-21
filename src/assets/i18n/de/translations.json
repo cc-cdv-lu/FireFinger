@@ -30,6 +30,21 @@
   "settings": {
     "application": {
       "description": "Allgemeine Einstellungen für die gesamte Anwendung",
+      "difficulty": {
+        "maxMistakeCount": {
+          "description": "Maximal zulässige Fehler pro Kapitel",
+          "title": "Max. Fehler"
+        },
+        "maxMistakePercentage": {
+          "description": "Prozentual maximale erlaubte Anzahl an Fehlern",
+          "title": "Max. % an Fehlern"
+        },
+        "minTypeSpeed": {
+          "description": "Mindestanzahl von Buchstaben, die pro Minute eingegeben werden müssen",
+          "title": "Min. Schreibgeschwindigkeit"
+        },
+        "title": "Schwierigkeit"
+      },
       "files": {
         "button": "Öffnen Sie den Ordner im Datei Explorer",
         "description": "Jeder Text muss in einem Ordner mit dem Namen der Lektion abgelegt werden. Siehe Beispiellektion mit Beispieltexten als Vorlage.",

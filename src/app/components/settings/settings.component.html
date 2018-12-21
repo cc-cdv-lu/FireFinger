@@ -1,5 +1,5 @@
 <div class="container" [ngClass]="style.theme">
-  <button mat-raised-button color="accent" (click)="reader.save()">
+  <button mat-raised-button color="accent" (click)="saveSettings()">
     <mat-icon>save</mat-icon>
     {{ 'settings.voice.control.save' | translate }}
   </button>
@@ -121,6 +121,37 @@
       </section>
 
       <section class="section">
+        <h4>{{'settings.application.difficulty.title'|translate}}</h4>
+        <mat-grid-list cols="9" class="voiceSettings" gutterSize="25">
+          <div *ngFor="let s of difficultySettings">
+            <mat-grid-tile colspan="2">
+              <h5>{{ s.translate_key + '.title' | translate }}</h5>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="3">
+              <p>{{ s.translate_key + '.description' | translate }}</p>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="2">
+              <input
+                matInput
+                [(ngModel)]="session.difficulty[s.value_key]"
+                type="number"
+                [min]="s.min"
+                [max]="s.max"
+              />
+            </mat-grid-tile>
+            <mat-grid-tile colspan="2">
+              <b>{{ s.min }}-{{ s.max }}</b>
+            </mat-grid-tile>
+          </div>
+        </mat-grid-list>
+        <p
+          innerHTML="{{
+            'settings.voice.other.capitals.longDescription' | translate
+          }}"
+        ></p>
+      </section>
+
+      <section class="section">
         <h4>Developper</h4>
         <p>No touchy</p>
         <button
@@ -149,7 +180,7 @@
         <mat-form-field>
           <input
             matInput
-            placeholder="{{'settings.voice.control.testphrase'|translate}}"
+            placeholder="{{ 'settings.voice.control.testphrase' | translate }}"
             [(ngModel)]="reader.config.test"
             [ngModelOptions]="{ standalone: true }"
           />
@@ -183,7 +214,11 @@
             [(value)]="reader.config.voice"
             (selectionChange)="onVoiceChange()"
           >
-            <mat-option *ngFor="let voice of reader.voices" [value]="voice.url" (click)="reader.config.voice_id = voice.id">
+            <mat-option
+              *ngFor="let voice of reader.voices"
+              [value]="voice.url"
+              (click)="reader.config.voice_id = voice.id"
+            >
               {{ voice.description }}
             </mat-option>
           </mat-select>
@@ -215,7 +250,9 @@
           </div>
         </mat-grid-list>
         <p
-          innerHTML="{{'settings.voice.other.capitals.longDescription' | translate}}"
+          innerHTML="{{
+            'settings.voice.other.capitals.longDescription' | translate
+          }}"
         ></p>
       </section>
     </mat-expansion-panel>
@@ -223,20 +260,21 @@
   <mat-card class="infoBox">
     <mat-card-header>
       <mat-card-title>
-        <img mat-card-avatar src="assets/icons/png/64x64.png" /> FireFinger v1.0.0
+        <img mat-card-avatar src="assets/icons/png/64x64.png" /> FireFinger
+        v{{version}}
       </mat-card-title>
       <mat-card-subtitle>
-        <p>
-          If you have any issues, questions or inquiries contact us via:
-        </p>
+        <p>If you have any issues, questions or inquiries contact us via:</p>
       </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <mat-grid-list cols="10">
-        <mat-grid-tile colspan="1">
-        </mat-grid-tile>
+        <mat-grid-tile colspan="1"> </mat-grid-tile>
         <mat-grid-tile colspan="2">
-          <a mat-raised-button href="mailto:julien.hoffmann@cc-cdv.lu?subject=FireFinger&body=Hello, I am contacting you about FireFinger because...">
+          <a
+            mat-raised-button
+            href="mailto:julien.hoffmann@cc-cdv.lu?subject=FireFinger&body=Hello, I am contacting you about FireFinger because..."
+          >
             <mat-icon>mail</mat-icon>
             Mail
           </a>
@@ -259,8 +297,7 @@
             Fax
           </a>
         </mat-grid-tile>
-        <mat-grid-tile colspan="1">
-        </mat-grid-tile>
+        <mat-grid-tile colspan="1"> </mat-grid-tile>
         <mat-grid-tile colspan="7">
           Developped by Centre pour le développement des compétences relatives à
           la vue
