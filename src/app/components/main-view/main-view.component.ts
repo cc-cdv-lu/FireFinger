@@ -23,7 +23,7 @@ import { VIEW } from '../../services/type.service';
 })
 export class MainViewComponent implements OnInit {
   @HostBinding('class') componentCssClass;
-  VIEW = VIEW;
+  // VIEW = VIEW;
   // view: VIEW = VIEW.LINE;
   warningText = '';
   areSettingsOpen = false;
@@ -40,16 +40,17 @@ export class MainViewComponent implements OnInit {
   ) {
     // TODO - LEVEL selection is triggered before login creation
     const lastLogin = this.electron.config.get('LAST_LOGIN');
+
+    this.session.restoreSession();
+    if (!this.session.isSessionLoaded) {
+      this.router.navigateByUrl('/levels');
+    }
+
     if (!lastLogin) {
       this.router.navigateByUrl('/login');
     }
     if (lastLogin) {
       this.user.login(lastLogin.name);
-    }
-
-    this.session.restoreSession();
-    if (!this.session.isSessionLoaded) {
-      this.router.navigateByUrl('/levels');
     }
 
     this.view = VIEW.LINE;
@@ -88,9 +89,8 @@ export class MainViewComponent implements OnInit {
   }
 
   shouldFlash() {
-    return (this.session.last_wrong_char !== '' && this.style.warning_flash);
+    return this.session.last_wrong_char !== '' && this.style.warning_flash;
   }
-
 
   getWarningText() {
     let output = '';
@@ -106,7 +106,7 @@ export class MainViewComponent implements OnInit {
         return this.translate.instant('keys.enter');
       case ' ':
         return this.translate.instant('keys.space');
-      case '\'':
+      case "'":
         return this.translate.instant('keys.apostrophe');
       case 'ä':
       case 'Ä':

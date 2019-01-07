@@ -1,27 +1,12 @@
 # FireFinger
-
-**wip** this needs a big update...
-
+Check the pdf to get a more in-depth overview.
 ## Instructions
-
-
+* Login (no password needed)  
 * Select chapter
-* Login
 * Adjust settings
 * Play
 
-Custom dictations can be put into **%appdata%/FireFinger/docs** */subfolder/example.txt*  
-
-### First time use
-
-* Open FireFinger
-* Go to chapters
-* Click the folder icon
-* Copy the premade courses to that folder
-* Back in FireFinger reload using the reload button
-* Login
-* Done
-
+Custom dictations can be put into **%appdata%/FireFinger/docs**/*subfolder/example.txt* as simple txt-files.  
 
 ### Shortcuts
 
@@ -34,6 +19,16 @@ Custom dictations can be put into **%appdata%/FireFinger/docs** */subfolder/exam
 
 ## Changelog
 All notable changes to this project will be documented in this file.
+
+### [1.0.2] Bug fixes and adjustments
+
+- Features:
+    - Improved accessiblity by implementing support for braille displays and keyboard navigation
+    - Difficulty can now be modified in the settings tab
+- Fixes:
+    - Upon first login the user will now be prompted for their login before the level selection appears
+    - Many parts of the code have been refactored and/or cleaned up
+    - Registered MacOS version of the app with Apple to prevent security warnings upon install
 
 ### [1.0.0] First major release
 - Features:
@@ -64,24 +59,11 @@ All notable changes to this project will be documented in this file.
     - Slightly improved end of level screen - still needs some work
     - Fixed first letter of setence and words dissappearing from prev section
 
-### [<0.7.0] Testing
+### [<0.7.0] Prototyping
+- ...
 
 ## Technical
 Uses node.js 10.3.0 and npm 6.xxx
 
-## Introduction
-
-## Mockups
-![FireFinger architecture concept](Concept art/New Mockup 4.png)
-
-![FireFinger architecture concept](Concept art/Views.png)
-![FireFinger architecture concept](Concept art/Highlighting.png)
-
-![FireFinger architecture concept](Concept art/Inverted mode.png)
-
-## Architecture
-![FireFinger architecture concept](concept.png)
-
-## Usage
-
 ## Legal disclaimer
+...
