@@ -15,7 +15,7 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  routerLinks;
+  routerLinks: Array<any>;
 
   @HostBinding('class') componentCssClass;
   @HostListener('window:keydown', ['$event'])
@@ -30,12 +30,11 @@ export class AppComponent implements OnInit {
     }
   }
   constructor(
-    public electronService: ElectronService,
+    public electron: ElectronService,
     private translate: TranslateService,
     public overlayContainer: OverlayContainer,
     public style: StyleService,
     public settings: SettingsComponent,
-    private electron: ElectronService,
     public router: Router,
     public user: UserService
   ) {
@@ -45,7 +44,7 @@ export class AppComponent implements OnInit {
 
     translate.addLangs(['de', 'fr', 'en']);
 
-    let lang = this.electronService.config.get('LANG');
+    let lang = this.electron.config.get('LANG');
     if (!lang) {
       lang = 'de';
     }
@@ -59,7 +58,7 @@ export class AppComponent implements OnInit {
       (data: any) => (document.documentElement.lang = data.lang)
     );
 
-    if (electronService.isElectron()) {
+    if (electron.isElectron()) {
       console.log('Mode electron');
     } else {
       console.log('Mode web');
@@ -88,7 +87,7 @@ export class AppComponent implements OnInit {
       },
     ];
 
-    this.user.userChanged.subscribe(username => {
+    this.user.userChanged.subscribe((username: string) => {
       const namePromise = new Promise((resolve, reject) => {
         resolve(username);
       });
@@ -100,8 +99,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // immediately maximize window after component initalization
-    this.electronService.window.maximize();
-    this.electronService.window.setFullScreen(true);
+    this.electron.window.maximize();
+    this.electron.window.setFullScreen(true);
 
     this.componentCssClass = this.style.theme;
   }

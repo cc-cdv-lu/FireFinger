@@ -1,11 +1,12 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { StyleService } from './style.service';
+import { ElectronService } from './electron.service';
 
-describe('ColorSchemeService', () => {
+describe('StyleService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [StyleService]
+      providers: [StyleService, ElectronService],
     });
   });
 

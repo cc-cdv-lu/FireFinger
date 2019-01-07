@@ -1,52 +1,43 @@
 {
   "productName": "FireFinger",
-  "appId" : "lu.cdv.hoffmann.firefinger",
+  "appId": "lu.cdv.hoffmann.firefinger",
   "directories": {
     "output": "release/"
   },
-"files": [
-        "**/*",
-        "!**/*.ts",
-        "!*.code-workspace",
-        "!LICENSE.md",
-        "!package.json",
-        "!package-lock.json",
-        "!src/",
-        "!e2e/",
-        "!hooks/",
-        "!angular.json",
-        "!_config.yml",
-        "!karma.conf.js",
-        "!tsconfig.json",
-        "!tslint.json"
-    ],
+  "files": [
+    "**/*",
+    "!**/*.ts",
+    "!*.code-workspace",
+    "!LICENSE.md",
+    "!package.json",
+    "!package-lock.json",
+    "!src/",
+    "!e2e/",
+    "!hooks/",
+    "!angular.json",
+    "!_config.yml",
+    "!karma.conf.js",
+    "!tsconfig.json",
+    "!tslint.json"
+  ],
   "win": {
     "icon": "src/assets/icons/win/icon.ico",
-    "target": [
-      "portable"
-    ]
+    "target": ["portable"]
   },
   "mac": {
     "category": "public.app-category.productivity",
     "entitlements": "build/entitlements.mac.plist",
     "icon": "src/assets/icons/mac/icon.icns",
-    "target": [
-      "dmg",
-      "pkg",
-      "zip",
-      "mas"
-    ],
-    },
+    "target": ["dmg", "pkg", "mas"]
+  },
   "mas": {
     "type": "distribution",
     "category": "public.app-category.productivity",
     "entitlements": "build/entitlements.mas.plist",
-    "icon": "src/assets/icons/mac/icon.icns",
+    "icon": "src/assets/icons/mac/icon.icns"
   },
   "linux": {
     "icon": "src/assets/icons/png/512x512.png",
-    "target": [
-      "AppImage"
-    ]
+    "target": ["AppImage"]
   }
 }

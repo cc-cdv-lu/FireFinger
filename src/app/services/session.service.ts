@@ -2,13 +2,13 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ElectronService } from './electron.service';
-
 import { StatisticsService } from './statistics.service';
-import { Lesson, Chapter, VIEW } from './type.service';
 import { UserService } from './user.service';
 import { StringHelperService } from './string-helper.service';
 import { ReaderService } from './reader.service';
 import { SoundEffectService, SOUNDS } from './sound-effect.service';
+
+import { Lesson, Chapter, VIEW } from './type.service';
 
 const LAST_SESSION_KEY = 'LAST_SESSION';
 const DIFFICULTY_KEY = 'DIFFICULTY';

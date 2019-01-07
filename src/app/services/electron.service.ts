@@ -54,7 +54,11 @@ export class ElectronService {
   }
 
   isDev() {
-    return process.mainModule.filename.indexOf('app.asar') === -1;
+    if (process.mainModule) {
+      return process.mainModule.filename.indexOf('app.asar') === -1;
+    } else {
+      return false;
+    }
   }
 
   openDevTools() {

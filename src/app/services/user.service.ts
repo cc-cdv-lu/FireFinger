@@ -1,7 +1,6 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 
-import { StatisticsService, Statistics } from './statistics.service';
-import { StyleService } from './style.service';
+import { Statistics } from './statistics.service';
 import { ElectronService } from './electron.service';
 
 export class User {

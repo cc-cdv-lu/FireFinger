@@ -19,7 +19,6 @@ export class SummaryComponent implements OnInit {
 
   constructor(
     private user: UserService,
-    private stats: StatisticsService,
     private session: SessionService,
     public translate: TranslateService,
     public style: StyleService

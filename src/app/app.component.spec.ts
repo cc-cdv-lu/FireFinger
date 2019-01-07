@@ -1,22 +1,28 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ElectronService } from './services/electron.service';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { StyleService } from './services/style.service';
+import { SettingsComponent } from './components/settings/settings.component';
+import { UserService } from './services/user.service';
+import { Router } from '@angular/router';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      declarations: [AppComponent],
       providers: [
-        ElectronService
+        ElectronService,
+        TranslateService,
+        StyleService,
+        Router,
+        UserService,
+        OverlayContainer,
+        SettingsComponent,
       ],
-      imports: [
-        RouterTestingModule,
-        TranslateModule.forRoot()
-      ]
+      imports: [RouterTestingModule, TranslateModule.forRoot()],
     }).compileComponents();
   }));
 
@@ -28,6 +34,5 @@ describe('AppComponent', () => {
 });
 
 class TranslateServiceStub {
-  setDefaultLang(lang: string): void {
-  }
+  setDefaultLang(lang: string): void {}
 }
