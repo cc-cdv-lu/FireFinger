@@ -106,7 +106,7 @@ export class MainViewComponent implements OnInit {
         return this.translate.instant('keys.enter');
       case ' ':
         return this.translate.instant('keys.space');
-      case "'":
+      case '\'':
         return this.translate.instant('keys.apostrophe');
       case 'ä':
       case 'Ä':
