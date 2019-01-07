@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as MeSpeak from 'mespeak';
-import { ElectronService } from '../providers/electron.service';
+import { ElectronService } from './electron.service';
 
 const READER_CONFIG_KEY = 'READER_CONFIG';
 

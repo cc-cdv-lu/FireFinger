@@ -4,6 +4,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { AppConfig } from './environments/environment';
 
+const unhandled = require('electron-unhandled');
+
 if (AppConfig.production) {
   enableProdMode();
 }
@@ -13,3 +15,7 @@ platformBrowserDynamic()
     preserveWhitespaces: false
   })
   .catch(err => console.error(err));
+
+unhandled({
+  showDialog: true
+});

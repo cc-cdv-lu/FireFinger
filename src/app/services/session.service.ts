@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ElectronService } from '../providers/electron.service';
+import { ElectronService } from './electron.service';
 
 import { StatisticsService } from './statistics.service';
 import { Lesson, Chapter, VIEW } from './type.service';

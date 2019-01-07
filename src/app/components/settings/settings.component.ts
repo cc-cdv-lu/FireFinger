@@ -7,7 +7,7 @@ import { UserService } from '../../services/user.service';
 import { StatisticsService } from '../../services/statistics.service';
 import { ReaderService } from '../../services/reader.service';
 
-import { ElectronService } from '../../providers/electron.service';
+import { ElectronService } from '../../services/electron.service';
 import { AppConfig } from '../../../environments/environment';
 
 import { TranslateService } from '@ngx-translate/core';

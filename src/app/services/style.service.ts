@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ElectronService } from '../providers/electron.service';
+import { ElectronService } from './electron.service';
 
 const FONT_KEY = 'FONT';
 const THEME_KEY = 'THEME';

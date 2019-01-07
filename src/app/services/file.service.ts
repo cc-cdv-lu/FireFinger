@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ElectronService } from '../providers/electron.service';
+import { ElectronService } from './electron.service';
 import { StringHelperService } from './string-helper.service';
 
 import { Chapter, Lesson, ChapterType } from './type.service';
@@ -296,7 +296,7 @@ export class FileService {
    * Shuffles array in place. ES6 version
    * @param {Array} a items An array containing the items.
    */
-  shuffle(input_array) {
+  shuffle(input_array: Array<any>) {
     const a = input_array.slice();
     if (!a) {
       return console.error('Array is undefined!');
@@ -308,7 +308,7 @@ export class FileService {
     return a.slice(); // little hack to allow copy by value
   }
 
-  getRandom(array) {
+  getRandom(array: Array<any>) {
     if (array.length <= 0 || !array) {
       console.error('This is not a good array...');
       return null;

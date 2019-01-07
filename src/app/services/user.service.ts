@@ -2,7 +2,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 
 import { StatisticsService, Statistics } from './statistics.service';
 import { StyleService } from './style.service';
-import { ElectronService } from '../providers/electron.service';
+import { ElectronService } from './electron.service';
 
 export class User {
   name = '';

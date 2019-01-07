@@ -37,6 +37,7 @@
     "e2e": "npm run postinstall:web && ng e2e"
   },
   "dependencies": {
+    "electron-unhandled": "^2.1.0",
     "material-icons": "^0.2.3"
   },
   "devDependencies": {

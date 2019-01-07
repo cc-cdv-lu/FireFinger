@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
-import { ElectronService } from '../../providers/electron.service';
+import { ElectronService } from '../../services/electron.service';
 import { MatDialog } from '@angular/material';
 
 import { SettingsComponent } from '../settings/settings.component';

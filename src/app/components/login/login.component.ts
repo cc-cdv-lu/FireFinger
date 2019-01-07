@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { StyleService } from '../../services/style.service';
 import { StatisticsService } from '../../services/statistics.service';
-import { ElectronService } from '../../providers/electron.service';
+import { ElectronService } from '../../services/electron.service';
 
 @Component({
   selector: 'app-login',
