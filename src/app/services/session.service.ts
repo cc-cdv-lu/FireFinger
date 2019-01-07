@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ElectronService } from '../providers/electron.service';
 
 import { StatisticsService } from './statistics.service';
-import { Lesson, Chapter } from './type.service';
+import { Lesson, Chapter, VIEW } from './type.service';
 import { UserService } from './user.service';
 import { StringHelperService } from './string-helper.service';
 import { ReaderService } from './reader.service';
@@ -306,13 +306,13 @@ export class SessionService {
     this.saveSession();
   }
 
-  getPrevSegment(view) {
+  getPrevSegment(view: VIEW) {
     const str = this.getText();
     const index = this.getIndex();
     return this.stringHelper.getPrevSegment(str, index, view);
   }
 
-  getNextSegment(view) {
+  getNextSegment(view: VIEW) {
     const str = this.getText();
     const index = this.getIndex();
     return this.stringHelper.getNextSegment(str, index, view);

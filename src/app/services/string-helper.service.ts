@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-
-enum VIEW {
-  CHAR, WORD, LINE
-}
-
+import { VIEW } from './type.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +8,12 @@ export class StringHelperService {
 
   constructor() { }
 
-  getCurrentChar(input, index) {
+  getCurrentChar(input: string, index: number) {
     if (!input) { return ''; }
     return input[index];
   }
 
-  getPrevSegment(input, index, view: VIEW) {
+  getPrevSegment(input: string, index: number, view: VIEW) {
     if (!input) { return ''; }
     switch (view) {
       case VIEW.CHAR: return '';
@@ -27,7 +23,7 @@ export class StringHelperService {
     return '';
   }
 
-  getNextSegment(input, index, view: VIEW) {
+  getNextSegment(input: string, index: number, view: VIEW) {
     if (!input) { return ''; }
     switch (view) {
       case VIEW.CHAR: return '';
@@ -36,7 +32,7 @@ export class StringHelperService {
     }
   }
 
-  getBeginningOfWord(str, pos) {
+  getBeginningOfWord(str: string, pos: number) {
     let output = '';
     if (str[pos] === '\n' || str[pos] === ' ') { return output; }
 
@@ -50,7 +46,7 @@ export class StringHelperService {
     return output;
   }
 
-  getRestOfWord(str, pos) {
+  getRestOfWord(str: string, pos: number) {
     let output = '';
     if (str[pos] === '\n' || str[pos] === ' ') { return output; }
 
@@ -64,7 +60,7 @@ export class StringHelperService {
     return output;
   }
 
-  getBeginningOfLine(str, pos) {
+  getBeginningOfLine(str: string, pos: number) {
     if (str[pos - 1] === '\n') { return str[pos - 1]; }
     if (str[pos] === '\n') { return this.getBeginningOfLine(str, pos - 1) + str[pos - 1]; }
 
@@ -78,7 +74,7 @@ export class StringHelperService {
     return output;
   }
 
-  getRestOfLine(str, pos) {
+  getRestOfLine(str: string, pos: number) {
     let output = '';
     if (str[pos] === '\n') { return output; }
     for (let i = pos + 1; i < str.length; i++) {
@@ -88,7 +84,7 @@ export class StringHelperService {
   }
 
   /* For reading out loud*/
-  getWordAt(str, pos) {
+  getWordAt(str: string, pos: number) {
 
     // Perform type conversions.
     str = String(str);
@@ -109,8 +105,8 @@ export class StringHelperService {
 
   }
 
-  shuffleString(s: string): string {
-    const a = s.split(''),
+  shuffleString(str: string): string {
+    const a = str.split(''),
       n = a.length;
 
     for (let i = n - 1; i > 0; i--) {

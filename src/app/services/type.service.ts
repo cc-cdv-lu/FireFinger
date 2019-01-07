@@ -20,6 +20,13 @@ export enum ChapterType {
   DICATION
 }
 
+export enum VIEW {
+  CHAR,
+  WORD,
+  LINE
+}
+
+
 @Injectable({
   providedIn: 'root'
 })

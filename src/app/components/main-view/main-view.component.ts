@@ -13,11 +13,7 @@ import { UserService } from '../../services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ReaderService } from '../../services/reader.service';
 
-enum VIEW {
-  CHAR,
-  WORD,
-  LINE
-}
+import { VIEW } from '../../services/type.service';
 
 @Component({
   // tslint:disable-next-line:component-selector

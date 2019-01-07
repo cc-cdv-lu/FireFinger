@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { ElectronService } from '../providers/electron.service';
-import * as MeSpeak from 'mespeak';
 import { TranslateService } from '@ngx-translate/core';
+import * as MeSpeak from 'mespeak';
+import { ElectronService } from '../providers/electron.service';
 
 const READER_CONFIG_KEY = 'READER_CONFIG';
+
+/**
+ * This service is responsible for reading out loud certain strings
+ */
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReaderService {
-  private speak_reset_counter = 0;
   voices = [
     {
       description: 'English',
@@ -157,7 +160,7 @@ export class ReaderService {
     this.meSpeak.resetQueue();
   }
 
-  loadVoice(voice_url) {
+  loadVoice(voice_url: string) {
     this.meSpeak.loadVoice(window.require(voice_url));
   }
 
@@ -199,8 +202,8 @@ export class ReaderService {
     this.speak(str);
   }
 
-  filterSpecialChars(c: string): string {
-    switch (c) {
+  filterSpecialChars(char: string): string {
+    switch (char) {
       case '\n':
         return this.translate.instant('special.enter');
       case ' ':
@@ -211,33 +214,20 @@ export class ReaderService {
         return this.translate.instant('special.euro');
       case '-':
         return this.translate.instant('special.dash');
-      default: {
-        return c;
-      }
+      case '✓':
+        return this.translate.instant('special.eot');
+      default:
+        return char;
     }
   }
 
   private speak(str: string) {
-    /*
-    this.speak_reset_counter++;
-
-    if (this.speak_reset_counter > 70) {
-      this.meSpeak.recoverFromFSError('Preamptive reset...');
-      this.speak_reset_counter = 0;
-    }
-    */
-
     if (!this.meSpeak.canPlay()) {
       return console.error('Cannot play at the moment...');
     }
     try {
       this.meSpeak.speak(str, this.config.options);
     } catch (err) {
-      /*
-      this.meSpeak.recoverFromFSError(
-        '[' + this.speak_reset_counter + '] Trying to read: ' + str
-      );
-      */
       console.error('Unexpected error while trying to play character: ', err);
     }
   }
