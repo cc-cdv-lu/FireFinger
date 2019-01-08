@@ -8,6 +8,7 @@ import { FileService } from '../../services/file.service';
 import { MaterialManagerModule } from '../../material-manager.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';
+import { ElectronService } from '../../services/electron.service';
 
 describe('LevelSelectionComponent', () => {
   let component: LevelSelectionComponent;
@@ -21,7 +22,7 @@ describe('LevelSelectionComponent', () => {
         RouterTestingModule,
         TranslateModule.forRoot(),
       ],
-      providers: [LessonService, SessionService, StyleService, FileService],
+      providers: [LessonService, SessionService, StyleService, FileService, ElectronService],
     }).compileComponents();
   }));
 

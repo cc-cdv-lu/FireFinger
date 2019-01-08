@@ -1,29 +1,57 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { ElectronService } from './services/electron.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { StyleService } from './services/style.service';
+import { async, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { } from 'jasmine';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './components/home/home.component';
+import { LevelSelectionComponent } from './components/level-selection/level-selection.component';
+import { LoginComponent } from './components/login/login.component';
+import { MainViewComponent } from './components/main-view/main-view.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { UserService } from './services/user.service';
+import { SummaryComponent } from './components/summary/summary.component';
 import { MaterialManagerModule } from './material-manager.module';
-// import { Router } from '@angular/router';
+import { ElectronService } from './services/electron.service';
+import { StyleService } from './services/style.service';
+import { UserService } from './services/user.service';
+import { FormsModule } from '@angular/forms';
+
+
 
 describe('AppComponent', () => {
+  afterAll(() => {
+    TestBed.resetTestingModule();
+  });
+
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  });
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      declarations: [
+        AppComponent,
+        SettingsComponent,
+        MainViewComponent,
+        LoginComponent,
+        LevelSelectionComponent,
+        SummaryComponent,
+        HomeComponent
+      ],
       providers: [
         ElectronService,
         TranslateService,
         StyleService,
-        // Router,
         UserService,
         OverlayContainer,
-        SettingsComponent,
+        SettingsComponent
       ],
-      imports: [RouterTestingModule, TranslateModule.forRoot(), MaterialManagerModule],
+      imports: [
+        RouterTestingModule,
+        TranslateModule.forRoot(),
+        MaterialManagerModule,
+        FormsModule
+      ],
     }).compileComponents();
   }));
 

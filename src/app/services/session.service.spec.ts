@@ -8,11 +8,12 @@ import { StringHelperService } from './string-helper.service';
 import { ReaderService } from './reader.service';
 import { SoundEffectService } from './sound-effect.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('SessionService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, TranslateModule.forRoot()],
       providers: [
         SessionService,
         ElectronService,

@@ -2,11 +2,12 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { LessonService } from './lesson.service';
 import { FileService } from './file.service';
+import { ElectronService } from './electron.service';
 
 describe('LessonService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [LessonService, FileService]
+      providers: [LessonService, FileService, ElectronService]
     });
   });
 

@@ -8,6 +8,7 @@ import { SessionService } from '../../services/session.service';
 import { MaterialManagerModule } from '../../material-manager.module';
 import { MainViewComponent } from '../main-view/main-view.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ElectronService } from '../../services/electron.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -21,7 +22,7 @@ describe('HomeComponent', () => {
         MaterialManagerModule,
         RouterTestingModule,
       ],
-      providers: [StatisticsService, StyleService, SessionService],
+      providers: [StatisticsService, StyleService, SessionService, ElectronService],
     }).compileComponents();
   }));
 

@@ -12,6 +12,8 @@ import { ElectronService } from '../../services/electron.service';
 import { FileService } from '../../services/file.service';
 import { MaterialManagerModule } from '../../material-manager.module';
 import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('SettingsComponent', () => {
   let component: SettingsComponent;
@@ -24,6 +26,8 @@ describe('SettingsComponent', () => {
         MaterialManagerModule,
         TranslateModule.forRoot(),
         FormsModule,
+        RouterTestingModule,
+        BrowserAnimationsModule
       ],
       providers: [
         LessonService,

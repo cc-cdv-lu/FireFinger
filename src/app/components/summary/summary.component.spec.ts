@@ -7,6 +7,7 @@ import { SessionService } from '../../services/session.service';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { StyleService } from '../../services/style.service';
 import { ElectronService } from '../../services/electron.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SummaryComponent', () => {
   let component: SummaryComponent;
@@ -15,8 +16,8 @@ describe('SummaryComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SummaryComponent],
-      imports: [MaterialManagerModule, TranslateModule.forRoot()],
-      providers: [UserService, SessionService, TranslateService, StyleService],
+      imports: [MaterialManagerModule, TranslateModule.forRoot(), RouterTestingModule],
+      providers: [UserService, SessionService, TranslateService, StyleService, ElectronService],
     }).compileComponents();
   }));
 

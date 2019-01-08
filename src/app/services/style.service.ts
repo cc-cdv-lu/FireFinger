@@ -70,7 +70,10 @@ export class StyleService {
   }
 
   get warning_flash() {
-    let c = this.electron.config.get(WARNING_FLASH);
+    let c: any;
+    if (this.electron.config) {
+      c = this.electron.config.get(WARNING_FLASH);
+    }
     if (!c) {
       c = false;
     }
@@ -80,7 +83,9 @@ export class StyleService {
     if (v == null || v === undefined) {
       return;
     }
-    this.electron.config.set(WARNING_FLASH, v);
+    if (this.electron.config) {
+      this.electron.config.set(WARNING_FLASH, v);
+    }
   }
 
   get theme() {
