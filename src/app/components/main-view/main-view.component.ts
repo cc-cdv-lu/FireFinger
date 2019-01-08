@@ -39,7 +39,10 @@ export class MainViewComponent implements OnInit {
     private reader: ReaderService
   ) {
     // TODO - LEVEL selection is triggered before login creation
-    const lastLogin = this.electron.config.get('LAST_LOGIN');
+    let lastLogin: any;
+    if (this.electron.config) {
+      lastLogin = this.electron.config.get('LAST_LOGIN');
+    }
 
     this.session.restoreSession();
     if (!this.session.isSessionLoaded) {
@@ -153,7 +156,11 @@ export class MainViewComponent implements OnInit {
   }
 
   get view() {
-    return this.session.currentChapter.type;
+    if (this.session.currentChapter) {
+      return this.session.currentChapter.type;
+    } else {
+      return VIEW.LINE;
+    }
   }
   set view(v: any) {
     console.log('No longer supported...');

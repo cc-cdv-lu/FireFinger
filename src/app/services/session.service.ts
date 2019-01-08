@@ -52,7 +52,10 @@ export class SessionService {
     public reader: ReaderService
   ) {
     // TODO set up a event system that should trigger the saving of this
-    const store = this.electron.config.get(DIFFICULTY_KEY);
+    let store: any;
+    if (this.electron.config) {
+      store = this.electron.config.get(DIFFICULTY_KEY);
+    }
     if (store) {
       this.difficulty = store;
     }
@@ -286,7 +289,10 @@ export class SessionService {
     this.electron.config.set(LAST_SESSION_KEY, session);
   }
   restoreSession() {
-    const session = this.electron.config.get(LAST_SESSION_KEY);
+    let session: any;
+    if (this.electron.config) {
+      session = this.electron.config.get(LAST_SESSION_KEY);
+    }
     if (!session) {
       this.isSessionLoaded = false;
       return console.log('No previous session was found...');

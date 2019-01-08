@@ -27,21 +27,24 @@ export class ElectronService {
   constructor() {
     // Conditional imports
     if (this.isElectron()) {
+      this.path = window.require('path');
+      this.childProcess = window.require('child_process');
+      this.fs = window.require('fs-extra');
+
       this.ipcRenderer = window.require('electron').ipcRenderer;
       this.webFrame = window.require('electron').webFrame;
       this.remote = window.require('electron').remote;
 
-      this.childProcess = window.require('child_process');
-      this.fs = window.require('fs-extra');
+      this.window = this.remote.getCurrentWindow();
+      this.app = this.remote.app;
+      this.shell = this.remote.shell;
 
-      this.window = window.require('electron').remote.getCurrentWindow();
       const ConfigClass = window.require('electron-store');
       this.config = new ConfigClass();
       console.log('Config location: ', this.config);
-
-      this.app = this.remote.app;
-      this.shell = this.remote.shell;
-      this.path = window.require('path');
+    } else {
+      // console.warn('This is not electron...');
+      return;
     }
 
     if (this.isDev()) {
@@ -51,7 +54,7 @@ export class ElectronService {
 
   isElectron = () => {
     return window && window.process && window.process.type;
-  }
+  };
 
   isDev() {
     if (process.mainModule) {

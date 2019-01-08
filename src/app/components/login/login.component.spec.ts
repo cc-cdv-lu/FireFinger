@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
 import { StyleService } from '../../services/style.service';
 import { StatisticsService } from '../../services/statistics.service';
 import { MaterialManagerModule } from '../../material-manager.module';
+import { TranslateModule } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -15,7 +19,13 @@ describe('LoginComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      imports: [MaterialManagerModule],
+      imports: [
+        MaterialManagerModule,
+        TranslateModule.forRoot(),
+        FormsModule,
+        RouterTestingModule,
+        BrowserAnimationsModule
+      ],
       providers: [
         ElectronService,
         UserService,

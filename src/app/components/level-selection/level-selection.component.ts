@@ -7,6 +7,7 @@ import { StyleService } from '../../services/style.service';
 import { FileService } from '../../services/file.service';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'level-selection',
   templateUrl: './level-selection.component.html',
   styleUrls: ['./level-selection.component.scss'],

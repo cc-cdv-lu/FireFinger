@@ -144,14 +144,20 @@ export class ReaderService {
     private electron: ElectronService,
     private translate: TranslateService
   ) {
-    // Restore options from last session if available
-    this.restore();
+    if (typeof window.require === 'function') {
+      // Restore options from last session if available
+      this.restore();
 
-    // Init service
-    this.meSpeak = window.require('mespeak');
+      // Init service
+      this.meSpeak = window.require('mespeak');
 
-    // Load config
-    this.meSpeak.loadConfig(window.require('mespeak/src/mespeak_config.json'));
+      // Load config
+      this.meSpeak.loadConfig(
+        window.require('mespeak/src/mespeak_config.json')
+      );
+    } else {
+      return;
+    }
 
     // Load voice module (language)
     this.loadVoice(this.config.voice);
@@ -242,6 +248,10 @@ export class ReaderService {
   }
 
   restore() {
+    if (!this.electron.config) {
+      console.log('Config is not working...');
+      return;
+    }
     const opt = this.electron.config.get(READER_CONFIG_KEY);
     if (opt) {
       this.config = opt;

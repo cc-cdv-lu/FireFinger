@@ -8,20 +8,32 @@ import { Chapter, Lesson, ChapterType } from './type.service';
   providedIn: 'root',
 })
 export class FileService {
-  appDataURL: string; // ..../Username/Documents
-  firefingerURL: string; // ..../Username/Documents/FireFinger
-
   constructor(
     private electron: ElectronService,
     private stringhelper: StringHelperService
   ) {
     // this.documentsURL = this.electron.app.getPath('documents');
-    this.appDataURL = this.electron.app.getPath('userData');
-    this.firefingerURL = this.electron.path.join(this.appDataURL, 'docs');
+  }
+
+  getDocsURL() {
+    if (!this.electron.app) {
+      console.log('Electron is not loaded...can\'t get docs url.');
+      return '';
+    }
+
+    const appDataURL: string = this.electron.app.getPath('userData'); // ..../Username/Documents
+    const firefingerURL: string = this.electron.path.join(appDataURL, 'docs'); // ..../Username/Documents/FireFinger
+
+    return firefingerURL;
   }
 
   loadDir(dirURL: string): Array<Lesson> {
     const output = [];
+
+    if (!this.electron.fs) {
+      console.log('Something went wrong with the file service...');
+      return [];
+    }
 
     if (!this.electron.fs.existsSync(dirURL)) {
       console.log('dirURL:', dirURL);
@@ -45,16 +57,16 @@ export class FileService {
   }
 
   loadAllDirs(): Array<Lesson> {
-    const output = [...this.loadDir(this.firefingerURL)];
+    const output = [...this.loadDir(this.getDocsURL())];
     return output;
   }
 
   openDocsFolderInExplorer() {
-    this.electron.shell.openItem(this.firefingerURL);
+    this.electron.shell.openItem(this.getDocsURL());
   }
 
   overrideDocsFolder() {
-    this.createDefaultFolder(this.firefingerURL);
+    this.createDefaultFolder(this.getDocsURL());
   }
 
   createDefaultFolder(dirURL: string) {
@@ -268,15 +280,6 @@ export class FileService {
     file = file.replace(/(?:\r\n|\r|\n)/g, '\n');
 
     return file;
-  }
-
-  createExampleFolder() {
-    const url = this.electron.path.join(this.firefingerURL, 'example-folder');
-    for (let i = 0; i < 5; i++) {
-      const content = 'Dies ist Beispieltext Nummer ' + i;
-      const filename = 'beispieltext' + i + '.txt';
-      this.writeTextFileToFolder(content, filename, url);
-    }
   }
 
   writeTextFileToFolder(content: string, filename: string, location: string) {

@@ -7,7 +7,8 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { StyleService } from './services/style.service';
 import { SettingsComponent } from './components/settings/settings.component';
 import { UserService } from './services/user.service';
-import { Router } from '@angular/router';
+import { MaterialManagerModule } from './material-manager.module';
+// import { Router } from '@angular/router';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -17,12 +18,12 @@ describe('AppComponent', () => {
         ElectronService,
         TranslateService,
         StyleService,
-        Router,
+        // Router,
         UserService,
         OverlayContainer,
         SettingsComponent,
       ],
-      imports: [RouterTestingModule, TranslateModule.forRoot()],
+      imports: [RouterTestingModule, TranslateModule.forRoot(), MaterialManagerModule],
     }).compileComponents();
   }));
 

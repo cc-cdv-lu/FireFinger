@@ -7,10 +7,10 @@ import { MatDialog } from '@angular/material';
 import { StyleService } from '../../services/style.service';
 import { StatisticsService } from '../../services/statistics.service';
 import { UserService } from '../../services/user.service';
-import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { ReaderService } from '../../services/reader.service';
 import { MaterialManagerModule } from '../../material-manager.module';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('MainViewComponent', () => {
   let component: MainViewComponent;
@@ -19,7 +19,11 @@ describe('MainViewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MainViewComponent],
-      imports: [MaterialManagerModule],
+      imports: [
+        MaterialManagerModule,
+        TranslateModule.forRoot(),
+        RouterTestingModule,
+      ],
       providers: [
         SessionService,
         ElectronService,
@@ -27,7 +31,6 @@ describe('MainViewComponent', () => {
         StyleService,
         StatisticsService,
         UserService,
-        Router,
         TranslateService,
         ReaderService,
       ],

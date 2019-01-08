@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, HostBinding } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  HostBinding,
+} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -10,16 +16,24 @@ import { ElectronService } from '../../services/electron.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   @ViewChild('loginField') loginField: ElementRef;
   inputField: string;
   @HostBinding('class') componentCssClass;
 
-  constructor(private electron: ElectronService, public user: UserService, private router: Router,
-    public style: StyleService, public stats: StatisticsService) {
-    const lastUser = this.electron.config.get('LAST_LOGIN');
+  constructor(
+    private electron: ElectronService,
+    public user: UserService,
+    private router: Router,
+    public style: StyleService,
+    public stats: StatisticsService
+  ) {
+    let lastUser: any;
+    if (this.electron.config) {
+      lastUser = this.electron.config.get('LAST_LOGIN');
+    }
     if (!lastUser) {
       this.inputField = '';
     } else {
@@ -34,14 +48,20 @@ export class LoginComponent implements OnInit {
   }
 
   isFieldInvalid(username: string) {
-    if (!username) { return true; }
-    if (username = '') { return true; }
+    if (!username) {
+      return true;
+    }
+    if ((username = '')) {
+      return true;
+    }
 
     return false;
   }
 
   onConfirm() {
-    if (this.isFieldInvalid(this.inputField)) { return; } else {
+    if (this.isFieldInvalid(this.inputField)) {
+      return;
+    } else {
       this.user.login(this.inputField);
       this.router.navigateByUrl('/home');
     }
@@ -54,11 +74,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
   getFormat(n: number) {
-    if (!n) { return ''; }
+    if (!n) {
+      return '';
+    }
     return parseFloat(n.toFixed(2));
   }
-
-
 }

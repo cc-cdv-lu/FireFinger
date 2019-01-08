@@ -34,6 +34,10 @@
     "electron:windows": "npm run build:prod && npx electron-builder build --windows",
     "electron:mac": "npm run build:prod && npx electron-builder build --mac",
     "test": "npm run postinstall:web && ng test",
+    "test:prod": "npm run postinstall:web && ng test --prod",
+    "test:progress": "npm run postinstall:web && ng test --progress",
+    "test:noSM": "npm run postinstall:web && ng test --source-map=false",
+    "lint": "tslint \"src/**/*.ts\"",
     "e2e": "npm run postinstall:web && ng e2e"
   },
   "dependencies": {

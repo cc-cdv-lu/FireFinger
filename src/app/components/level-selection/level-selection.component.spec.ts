@@ -5,8 +5,9 @@ import { LessonService } from '../../services/lesson.service';
 import { SessionService } from '../../services/session.service';
 import { StyleService } from '../../services/style.service';
 import { FileService } from '../../services/file.service';
-import { Router } from '@angular/router';
 import { MaterialManagerModule } from '../../material-manager.module';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('LevelSelectionComponent', () => {
   let component: LevelSelectionComponent;
@@ -15,14 +16,12 @@ describe('LevelSelectionComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LevelSelectionComponent],
-      imports: [MaterialManagerModule],
-      providers: [
-        LessonService,
-        SessionService,
-        Router,
-        StyleService,
-        FileService,
+      imports: [
+        MaterialManagerModule,
+        RouterTestingModule,
+        TranslateModule.forRoot(),
       ],
+      providers: [LessonService, SessionService, StyleService, FileService],
     }).compileComponents();
   }));
 

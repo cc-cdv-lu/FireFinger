@@ -13,4 +13,11 @@ describe('StyleService', () => {
   it('should be created', inject([StyleService], (service: StyleService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should be created', inject(
+    [ElectronService],
+    (service: ElectronService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 });

@@ -44,7 +44,10 @@ export class AppComponent implements OnInit {
 
     translate.addLangs(['de', 'fr', 'en']);
 
-    let lang = this.electron.config.get('LANG');
+    let lang: string;
+    if (this.electron.config) {
+      lang = this.electron.config.get('LANG');
+    }
     if (!lang) {
       lang = 'de';
     }

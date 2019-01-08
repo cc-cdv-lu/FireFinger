@@ -49,7 +49,11 @@ export class StyleService {
   }
 
   get font() {
-    let f = this.electron.config.get(FONT_KEY);
+    let f = 10;
+    if (this.electron.config) {
+      f = this.electron.config.get(FONT_KEY);
+    }
+
     if (!f) {
       f = 20;
     }
@@ -59,7 +63,9 @@ export class StyleService {
     if (!v && !isNaN(v)) {
       return;
     }
-    this.electron.config.set(FONT_KEY, v);
+    if (this.electron.config) {
+      this.electron.config.set(FONT_KEY, v);
+    }
     document.documentElement.style.fontSize = v + 'px';
   }
 
@@ -78,7 +84,11 @@ export class StyleService {
   }
 
   get theme() {
-    let t = this.electron.config.get(THEME_KEY);
+    let t: any;
+
+    if (this.electron.config) {
+      t = this.electron.config.get(THEME_KEY);
+    }
     if (!t) {
       t = 'by-theme';
       this.theme = t;
@@ -89,7 +99,9 @@ export class StyleService {
     if (!t) {
       return;
     }
-    this.electron.config.set(THEME_KEY, t);
+    if (this.electron.config) {
+      this.electron.config.set(THEME_KEY, t);
+    }
   }
 
   getThemes(): string {

@@ -7,10 +7,11 @@ import { StyleService } from '../../services/style.service';
 import { UserService } from '../../services/user.service';
 import { StatisticsService } from '../../services/statistics.service';
 import { ReaderService } from '../../services/reader.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { ElectronService } from '../../services/electron.service';
 import { FileService } from '../../services/file.service';
 import { MaterialManagerModule } from '../../material-manager.module';
+import { FormsModule } from '@angular/forms';
 
 describe('SettingsComponent', () => {
   let component: SettingsComponent;
@@ -19,7 +20,11 @@ describe('SettingsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SettingsComponent],
-      imports: [MaterialManagerModule],
+      imports: [
+        MaterialManagerModule,
+        TranslateModule.forRoot(),
+        FormsModule,
+      ],
       providers: [
         LessonService,
         SessionService,
