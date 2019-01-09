@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import * as MeSpeak from 'mespeak';
+import MeSpeak from 'mespeak';
 import { ElectronService } from './electron.service';
 
 const READER_CONFIG_KEY = 'READER_CONFIG';
@@ -16,32 +16,32 @@ export class ReaderService {
   voices = [
     {
       description: 'English',
-      url: 'mespeak/voices/en/en.json',
+      url: 'en/en.json',
       id: 'en',
     },
     {
       description: 'German',
-      url: 'mespeak/voices/de.json',
+      url: 'de.json',
       id: 'de',
     },
     {
       description: 'French',
-      url: 'mespeak/voices/fr.json',
+      url: 'fr.json',
       id: 'fr',
     },
     {
       description: 'Portugees',
-      url: 'mespeak/voices/pt.json',
+      url: 'pt.json',
       id: 'pt',
     },
     {
       description: 'Spanish',
-      url: 'mespeak/voices/es.json',
+      url: 'es.json',
       id: 'es',
     },
     {
       description: 'Italian',
-      url: 'mespeak/voices/it.json',
+      url: 'it.json',
       id: 'it',
     },
   ];
@@ -122,6 +122,8 @@ export class ReaderService {
   ];
 
   private meSpeak: MeSpeak;
+  private configURL: string;
+  private voiceURLBase: string;
 
   config = {
     voice: this.voices[1].url,
@@ -144,20 +146,23 @@ export class ReaderService {
     private electron: ElectronService,
     private translate: TranslateService
   ) {
-    if (typeof window.require === 'function') {
-      // Restore options from last session if available
-      this.restore();
 
-      // Init service
-      this.meSpeak = window.require('mespeak');
-
-      // Load config
-      this.meSpeak.loadConfig(
-        window.require('mespeak/src/mespeak_config.json')
-      );
+    if (this.electron.isDev()) {
+      this.configURL = this.electron.path.join(this.electron.app.getAppPath(), 'src/assets/mespeak/mespeak_config.json');
+      this.voiceURLBase = this.electron.path.join(this.electron.app.getAppPath(), 'src/assets/mespeak/voices');
     } else {
-      return;
+      this.configURL = this.electron.path.join(this.electron.app.getAppPath(), 'dist/assets/mespeak/mespeak_config.json');
+      this.voiceURLBase = this.electron.path.join(this.electron.app.getAppPath(), 'dist/assets/mespeak/voices');
     }
+
+    // Restore options from last session if available
+    this.restore();
+
+    // Init service
+    this.meSpeak = MeSpeak;
+
+    // Load config
+    this.meSpeak.loadConfig(this.electron.fs.readJsonSync(this.configURL));
 
     // Load voice module (language)
     this.loadVoice(this.config.voice);
@@ -167,7 +172,8 @@ export class ReaderService {
   }
 
   loadVoice(voice_url: string) {
-    this.meSpeak.loadVoice(window.require(voice_url));
+    const url = this.electron.path.join(this.voiceURLBase, voice_url);
+    this.meSpeak.loadVoice(this.electron.fs.readJsonSync(url));
   }
 
   play(str: string, type: number) {

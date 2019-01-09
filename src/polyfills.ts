@@ -82,3 +82,8 @@ import 'zone.js/dist/zone-mix';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+/*
+Turns out, that if your project has dependencies that require 'fs', 'path', 'child_process' etc
+The angular compiler fails to compile the code.To get around this, as someone has already suggested, add this to your polyfills.ts.
+*/
+(window as any).global = window;
