@@ -21,14 +21,14 @@ Custom dictations can be put into **%appdata%/FireFinger/docs**/*subfolder/examp
 All notable changes to this project will be documented in this file.
 
 ### [1.0.2] Bug fixes and adjustments
-
 - Features:
     - Improved accessiblity by implementing support for braille displays and keyboard navigation
     - Difficulty can now be modified in the settings tab
 - Fixes:
     - Upon first login the user will now be prompted for their login before the level selection appears
     - Many parts of the code have been refactored and/or cleaned up
-    - Registered MacOS version of the app with Apple to prevent security warnings upon install
+    - [MacOS] Registered  the app with Apple to prevent security warnings upon install
+    - [MacOS] Fixed bug that prevented courses from being imported upon first install
 
 ### [1.0.0] First major release
 - Features:
