@@ -10,17 +10,18 @@ Custom dictations can be put into **%appdata%/FireFinger/docs**/*subfolder/examp
 
 ### Shortcuts
 
-* **Insert**: Skip this char  
+* **Pause**: Skip this char  
 * **Ctrl + UP**  *OR*  **Ctrl + (+)** : Zoom-in  
 * **Ctrl + DOWN**   *OR*  **Ctrl + (-)** : Zoom-out  
 * **Down** : Repeat this letter  
 * **Right**: Repeat this word  
+* **Esc** Close FireFinger
 
 
 ## Changelog
 All notable changes to this project will be documented in this file.
 
-### [1.0.2] Bug fixes and adjustments
+### [1.0.2] Accessibility, difficulty settings and minor improvements
 - Features:
     - Improved accessiblity by implementing support for braille displays and keyboard navigation
     - Difficulty can now be modified in the settings tab
