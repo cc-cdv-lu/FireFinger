@@ -15,7 +15,7 @@ module.exports = function (config) {
     ],
     client: {
       clearContext: false, // leave Jasmine Spec Runner output visible in browser
-      captureConsole: false
+      captureConsole: false,
     },
     failOnEmptyTestSuite: false,
     singleRun: false,
@@ -32,5 +32,12 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: true,
+    webpack: {
+      node: {
+        fs: 'empty',
+        child_process: 'empty',
+        readline: 'empty',
+      },
+    },
   });
 };
