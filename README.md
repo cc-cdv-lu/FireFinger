@@ -28,8 +28,11 @@ All notable changes to this project will be documented in this file.
 - Fixes:
     - Upon first login the user will now be prompted for their login before the level selection appears
     - Many parts of the code have been refactored and/or cleaned up
-    - [MacOS] Registered  the app with Apple to prevent security warnings upon install
     - [MacOS] Fixed bug that prevented courses from being imported upon first install
+
+### [1.0.1] MacOS app registered
+- Features:
+    - [MacOS] Registered  the app with Apple to prevent security warnings upon install
 
 ### [1.0.0] First major release
 - Features:

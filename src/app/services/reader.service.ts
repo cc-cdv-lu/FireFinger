@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import MeSpeak from 'mespeak';
 import { ElectronService } from './electron.service';
+
+import MeSpeak from 'mespeak';
+import FS from 'fs-extra';
+import path from 'path';
 
 const READER_CONFIG_KEY = 'READER_CONFIG';
 
@@ -148,11 +151,11 @@ export class ReaderService {
   ) {
 
     if (this.electron.isDev()) {
-      this.configURL = this.electron.path.join(this.electron.app.getAppPath(), 'src/assets/mespeak/mespeak_config.json');
-      this.voiceURLBase = this.electron.path.join(this.electron.app.getAppPath(), 'src/assets/mespeak/voices');
+      this.configURL = path.join(this.electron.app.getAppPath(), 'src/assets/mespeak/mespeak_config.json');
+      this.voiceURLBase = path.join(this.electron.app.getAppPath(), 'src/assets/mespeak/voices');
     } else {
-      this.configURL = this.electron.path.join(this.electron.app.getAppPath(), 'dist/assets/mespeak/mespeak_config.json');
-      this.voiceURLBase = this.electron.path.join(this.electron.app.getAppPath(), 'dist/assets/mespeak/voices');
+      this.configURL = path.join(this.electron.app.getAppPath(), 'dist/assets/mespeak/mespeak_config.json');
+      this.voiceURLBase = path.join(this.electron.app.getAppPath(), 'dist/assets/mespeak/voices');
     }
 
     // Restore options from last session if available
@@ -162,7 +165,7 @@ export class ReaderService {
     this.meSpeak = MeSpeak;
 
     // Load config
-    this.meSpeak.loadConfig(this.electron.fs.readJsonSync(this.configURL));
+    this.meSpeak.loadConfig(FS.readJsonSync(this.configURL));
 
     // Load voice module (language)
     this.loadVoice(this.config.voice);
@@ -172,8 +175,8 @@ export class ReaderService {
   }
 
   loadVoice(voice_url: string) {
-    const url = this.electron.path.join(this.voiceURLBase, voice_url);
-    this.meSpeak.loadVoice(this.electron.fs.readJsonSync(url));
+    const url = path.join(this.voiceURLBase, voice_url);
+    this.meSpeak.loadVoice(FS.readJsonSync(url));
   }
 
   play(str: string, type: number) {

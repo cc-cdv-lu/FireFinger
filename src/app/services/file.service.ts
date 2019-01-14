@@ -4,6 +4,9 @@ import { StringHelperService } from './string-helper.service';
 
 import { Chapter, Lesson, ChapterType } from './type.service';
 
+import FS from 'fs-extra';
+import path from 'path';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -22,7 +25,7 @@ export class FileService {
     }
 
     const appDataURL: string = this.electron.app.getPath('userData'); // ..../Username/Documents
-    const firefingerURL: string = this.electron.path.join(appDataURL, 'docs'); // ..../Username/Documents/FireFinger
+    const firefingerURL: string = path.join(appDataURL, 'docs'); // ..../Username/Documents/FireFinger
 
     return firefingerURL;
   }
@@ -30,17 +33,17 @@ export class FileService {
   loadDir(dirURL: string): Array<Lesson> {
     const output = [];
 
-    if (!this.electron.fs) {
+    if (!FS) {
       console.log('Something went wrong with the file service...');
       return [];
     }
 
-    if (!this.electron.fs.existsSync(dirURL)) {
+    if (!FS.existsSync(dirURL)) {
       console.log('dirURL:', dirURL);
       this.createDefaultFolder(dirURL);
     }
 
-    const docsDir = this.electron.fs.readdirSync(dirURL);
+    const docsDir = FS.readdirSync(dirURL);
 
     if (!docsDir) {
       console.warn('This url does not exist:', dirURL);
@@ -70,18 +73,18 @@ export class FileService {
   }
 
   createDefaultFolder(dirURL: string) {
-    if (!this.electron.fs.existsSync(dirURL)) {
-      this.electron.fs.mkdirSync(dirURL);
+    if (!FS.existsSync(dirURL)) {
+      FS.mkdirSync(dirURL);
     }
 
     let assetsURL = '';
     if (this.electron.isDev()) {
-      assetsURL = this.electron.path.join(
+      assetsURL = path.join(
         this.electron.app.getAppPath(),
         'src/assets/docs'
       );
     } else {
-      assetsURL = this.electron.path.join(
+      assetsURL = path.join(
         this.electron.app.getAppPath(),
         'dist/assets/docs'
       );
@@ -101,30 +104,30 @@ export class FileService {
 
   copyFiles(fromURL: string, toURL: string) {
     // Usually you could simply use this:
-    // this.electron.fs.copySync(fromURL, toURL);
+    // FS.copySync(fromURL, toURL);
     // But it's broken for MacOS...
 
-    const folderNames = this.electron.fs.readdirSync(fromURL);
+    const folderNames = FS.readdirSync(fromURL);
     for (const folderName of folderNames) {
-      const folderPath = this.electron.path.join(fromURL, folderName);
-      const fileNames = this.electron.fs.readdirSync(folderPath);
+      const folderPath = path.join(fromURL, folderName);
+      const fileNames = FS.readdirSync(folderPath);
       for (const fileName of fileNames) {
-        const destinationPath = this.electron.path.join(
+        const destinationPath = path.join(
           toURL,
           folderName,
           fileName
         );
-        const filePath = this.electron.path.join(fromURL, folderName, fileName);
-        const file = this.electron.fs.readFileSync(filePath);
-        this.electron.fs.createFileSync(destinationPath);
-        this.electron.fs.writeFileSync(destinationPath, file);
+        const filePath = path.join(fromURL, folderName, fileName);
+        const file = FS.readFileSync(filePath);
+        FS.createFileSync(destinationPath);
+        FS.writeFileSync(destinationPath, file);
       }
     }
   }
 
-  loadFolder(destination: Lesson[], path: string, folderName: string) {
-    const url = this.electron.path.join(path, folderName);
-    const dir = this.electron.fs.readdirSync(url);
+  loadFolder(destination: Lesson[], dirPath: string, folderName: string) {
+    const url = path.join(dirPath, folderName);
+    const dir = FS.readdirSync(url);
     const lesson = {
       name: folderName,
       chapters: new Array<Chapter>(),
@@ -134,7 +137,7 @@ export class FileService {
       if (file[0] === '.') {
         continue;
       }
-      const fileURL = this.electron.path.join(url, file);
+      const fileURL = path.join(url, file);
       const newChapter: Chapter = this.loadFromFile(fileURL);
 
       lesson.chapters.push(newChapter);
@@ -144,8 +147,8 @@ export class FileService {
   }
 
   loadFromFile(url: string): Chapter {
-    const fileEnding = this.electron.path.extname(url);
-    const filename = this.electron.path.basename(url);
+    const fileEnding = path.extname(url);
+    const filename = path.basename(url);
 
     const regexp = /#{5,}/;
     let fileContent = '';
@@ -262,7 +265,7 @@ export class FileService {
   }
 
   getDocFileContents(url: string): string {
-    const file = this.electron.fs.readFileSync(url, 'utf8');
+    const file = FS.readFileSync(url, 'utf8');
     // TODO not implemented
     /*
     var extractor = new WordExtractor();
@@ -275,7 +278,7 @@ export class FileService {
   }
 
   getTXTFileContents(url: string): string {
-    let file = this.electron.fs.readFileSync(url, 'utf8');
+    let file = FS.readFileSync(url, 'utf8');
 
     file = file.replace(/(?:\r\n|\r|\n)/g, '\n');
 
@@ -283,15 +286,15 @@ export class FileService {
   }
 
   writeTextFileToFolder(content: string, filename: string, location: string) {
-    if (!this.electron.fs.existsSync(location)) {
-      this.electron.fs.mkdirSync(location);
+    if (!FS.existsSync(location)) {
+      FS.mkdirSync(location);
     }
-    const path = this.electron.path.join(location, filename);
-    this.electron.fs.writeFile(path, content, err => {
+    const filePath = path.join(location, filename);
+    FS.writeFile(filePath, content, err => {
       if (err) {
         throw console.warn('The was an issue writing this file:', err);
       }
-      console.log('The file was save successfully: ', path);
+      console.log('The file was save successfully: ', filePath);
     });
   }
 

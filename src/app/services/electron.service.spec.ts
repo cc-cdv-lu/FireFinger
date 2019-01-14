@@ -13,4 +13,12 @@ describe('ElectronService', () => {
       expect(service).toBeTruthy();
     }
   ));
+
+  afterAll(() => {
+    TestBed.resetTestingModule();
+  });
+
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  });
 });
