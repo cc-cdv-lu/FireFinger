@@ -8,7 +8,7 @@ import ElectronStore from 'electron-store';
 @Injectable()
 export class ElectronService {
   ipcRenderer: typeof Electron.ipcRenderer;
-  remote: typeof Electron.remote;
+  remote = Electron.remote;
   webFrame: typeof Electron.webFrame;
 
   app: Electron.App;
