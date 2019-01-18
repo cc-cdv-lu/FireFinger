@@ -137,6 +137,8 @@
     "mistakesperkey": "Error rate per letter",
     "result": {
       "fail": "Awww! Better luck next time!",
+      "mistakes": "You mistyped too often. Pay attention to the keys your hitting.",
+      "slow": "Sadly, you were too slow. Try to keep up the pace next time.",
       "title": "Result",
       "win": "Congratulation you mastered this lesson! Check your results and proceed to the next level."
     },

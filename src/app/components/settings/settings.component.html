@@ -122,7 +122,7 @@
 
       <section class="section">
         <h4>{{'settings.application.difficulty.title'|translate}}</h4>
-        <mat-grid-list cols="9" class="voiceSettings" gutterSize="25">
+        <mat-grid-list cols="9" gutterSize="25" rowHeight="160">
           <div *ngFor="let s of difficultySettings">
             <mat-grid-tile colspan="2">
               <h5>{{ s.translate_key + '.title' | translate }}</h5>

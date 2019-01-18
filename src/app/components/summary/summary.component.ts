@@ -42,6 +42,19 @@ export class SummaryComponent implements OnInit {
     this.style.font = this.style.font;
   }
 
+  hasTooManyMistakes() {
+    return (
+      this.session_stats.mistakesCount >
+        this.session.difficulty.maxMistakeCount ||
+      this.session_stats.mistakePercentage >
+        this.session.difficulty.maxMistakePercentage
+    );
+  }
+
+  isTooSlow() {
+    return this.session_stats.typeSpeed < this.session.difficulty.minTypeSpeed;
+  }
+
   loadData() {
     if (!this.user.loggedInUser) {
       return;

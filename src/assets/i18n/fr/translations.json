@@ -137,6 +137,8 @@
     "mistakesperkey": "Taux d'erreur par lettre",
     "result": {
       "fail": "Awww! Plus de chance la prochaine fois!",
+      "mistakes": "Tu avais trop souvent mal tapé. Faits attention aux touches que tu frappes.",
+      "slow": "Malheureusement, tu avais été trop lent. Essayes de garder le rythme la prochaine fois.",
       "title": "Résultat",
       "win": "Félicitation tu as maîtrisé cette leçon! Vérifiez vos résultats et passez au niveau suivant."
     },

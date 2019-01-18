@@ -6,6 +6,8 @@
       </mat-card-title>
       <mat-card-content>
         <h4>{{getResultText()}}</h4>
+        <p *ngIf="isTooSlow()">{{'summary.result.slow' | translate}} ({{session_stats.typeSpeed}} / {{session.difficulty.minTypeSpeed}})</p>
+        <p *ngIf="hasTooManyMistakes()">{{'summary.result.mistakes'| translate}}</p>
       </mat-card-content>
     </mat-card>
 
@@ -31,7 +33,7 @@
         {{'general.typingspeed' | translate}}
       </mat-card-title>
       <mat-card-content>
-        <p>{{session_stats.typeSpeed}}</p>
+        <p>{{session_stats.typeSpeed}} / {{session.difficulty.minTypeSpeed}}</p>
       </mat-card-content>
     </mat-card>
 

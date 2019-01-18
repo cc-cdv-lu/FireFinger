@@ -41,7 +41,7 @@
         },
         "minTypeSpeed": {
           "description": "Mindestanzahl von Buchstaben, die pro Minute eingegeben werden müssen",
-          "title": "Min. Schreibgeschwindigkeit"
+          "title": "Min. Schreib- geschwindigkeit"
         },
         "title": "Schwierigkeit"
       },
@@ -137,6 +137,8 @@
     "mistakesperkey": "Fehlerhäufigkeit pro Buchstabe",
     "result": {
       "fail": "Awww! Viel Glück beim nächsten Mal!",
+      "mistakes": "Du hast dich zu oft vertippt. Achte nächstes mal genau auf die Tasten, die du drückst.",
+      "slow": "Leider warst du zu langsam. Versuche, beim nächsten Mal das Tempo zu halten.",
       "title": "Ergebnis",
       "win": "Glückwunsch, du hast diese Lektion gemeistert! Überprüfen Sie Ihre Ergebnisse und fahren Sie mit dem nächsten Level fort."
     },
