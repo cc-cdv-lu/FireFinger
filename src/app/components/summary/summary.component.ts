@@ -21,7 +21,8 @@ export class SummaryComponent implements OnInit {
     private user: UserService,
     private session: SessionService,
     public translate: TranslateService,
-    public style: StyleService
+    public style: StyleService,
+    public stats: StatisticsService
   ) {}
   /*
     Needed data:

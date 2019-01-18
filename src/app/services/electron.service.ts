@@ -17,6 +17,7 @@ export class ElectronService {
 
   config = new ElectronStore();
 
+
   constructor() {
     this.window = this.remote.getCurrentWindow();
 
