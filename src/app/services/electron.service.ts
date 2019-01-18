@@ -17,6 +17,7 @@ export class ElectronService {
 
   config = new ElectronStore();
 
+  devOverwrite = false;
 
   constructor() {
     this.window = this.remote.getCurrentWindow();
@@ -30,7 +31,7 @@ export class ElectronService {
       this.shell = this.remote.shell;
     }
 
-    if (this.isDev() || true) {
+    if (this.isDev() || this.devOverwrite) {
       this.openDevTools();
     }
   }

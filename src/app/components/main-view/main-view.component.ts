@@ -38,7 +38,7 @@ export class MainViewComponent implements OnInit {
     public translate: TranslateService,
     private reader: ReaderService
   ) {
-    // TODO - LEVEL selection is triggered before login creation
+
     let lastLogin: any;
     if (this.electron.config) {
       lastLogin = this.electron.config.get('LAST_LOGIN');

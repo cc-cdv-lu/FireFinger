@@ -26,8 +26,7 @@ export class SessionService {
   difficulty = {
     maxMistakePercentage: 5, // in percentage
     maxMistakeCount: 50, // as mistakes per session
-    minTypeSpeed: 20, // as characters per minute
-    // TODO revisit stats for this - time needs to be clearly marked in main screen and on summary screen
+    minTypeSpeed: 40, // as characters per minute
   };
 
   //
