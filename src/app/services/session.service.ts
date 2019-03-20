@@ -105,9 +105,21 @@ export class SessionService {
     return this.impossibleKeys.includes(key);
   }
 
+  focusInput() {
+    const input = document.getElementById('inputLetter');
+    input.setAttribute('tabindex', '1');
+    input.focus();
+  }
+
   handleKeyEvent(event: KeyboardEvent) {
     if (!this.isSessionLoaded) {
       return console.log('No session loaded...');
+    }
+
+    if (event.key === 'X' && event.shiftKey && event.ctrlKey) {
+      this.focusInput();
+      console.log('User triggered input focus');
+      return;
     }
 
     // What should happen when level is over

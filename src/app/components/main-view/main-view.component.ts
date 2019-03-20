@@ -69,7 +69,7 @@ export class MainViewComponent implements OnInit {
     this.session.handleKeyEvent(event);
   }
   ngOnInit() {
-    this.focusInput();
+    this.session.focusInput();
   }
 
   /* Shortcuts */
@@ -186,13 +186,6 @@ export class MainViewComponent implements OnInit {
     dialogRef.beforeClose().subscribe(() => {
       this.areSettingsOpen = false;
     });
-  }
-
-  focusInput() {
-    const input = document.getElementById('inputLetter');
-    input.setAttribute('tabindex', '1');
-    input.focus();
-    console.log('Focused the input');
   }
 
   /* DEBUG stuff */
