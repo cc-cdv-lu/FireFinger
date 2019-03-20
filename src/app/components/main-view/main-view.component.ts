@@ -57,6 +57,11 @@ export class MainViewComponent implements OnInit {
     this.view = VIEW.LINE;
 
     document.documentElement.style.fontSize = '20px';
+
+    // this.reader.play('FireFinger', 2);
+    setTimeout(() => {
+      this.reader.play(this.session.getCurrentChar(), 0);
+    }, 500);
   }
 
   activateDebug = false;

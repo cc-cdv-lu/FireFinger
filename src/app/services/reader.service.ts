@@ -149,13 +149,24 @@ export class ReaderService {
     private electron: ElectronService,
     private translate: TranslateService
   ) {
-
     if (this.electron.isDev()) {
-      this.configURL = path.join(this.electron.app.getAppPath(), 'src/assets/mespeak/mespeak_config.json');
-      this.voiceURLBase = path.join(this.electron.app.getAppPath(), 'src/assets/mespeak/voices');
+      this.configURL = path.join(
+        this.electron.app.getAppPath(),
+        'src/assets/mespeak/mespeak_config.json'
+      );
+      this.voiceURLBase = path.join(
+        this.electron.app.getAppPath(),
+        'src/assets/mespeak/voices'
+      );
     } else {
-      this.configURL = path.join(this.electron.app.getAppPath(), 'dist/assets/mespeak/mespeak_config.json');
-      this.voiceURLBase = path.join(this.electron.app.getAppPath(), 'dist/assets/mespeak/voices');
+      this.configURL = path.join(
+        this.electron.app.getAppPath(),
+        'dist/assets/mespeak/mespeak_config.json'
+      );
+      this.voiceURLBase = path.join(
+        this.electron.app.getAppPath(),
+        'dist/assets/mespeak/voices'
+      );
     }
 
     // Restore options from last session if available

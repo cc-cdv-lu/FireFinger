@@ -33,9 +33,9 @@ All notable changes to this project will be documented in this file.
   - Victory and failure sounds can now be toggled off in the settings
   - Settings page now displays a link to the FireFinger wiki page
   - Ctrl + Shift + X now focusses the 'typing' area
-  - [TODO] Improve accessibility when launching FireFinger
+  - Improve accessibility when launching FireFinger
     - Input field will now automatically be focussed upon loading the main view (opening FireFinger, or switching from settings back to main view). This creates a box around the currently highlighted letter. This box can be toggled on/off in the settings. Default is hidden
-    - [TODO] Read out loud the currently displayed letter
+    - Read out loud the currently displayed letter
     - [TODO] If nothing is loaded, tell the user
 - Fixes:
   - ...
