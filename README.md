@@ -35,10 +35,7 @@ All notable changes to this project will be documented in this file.
   - Ctrl + Shift + X now focusses the 'typing' area
   - Improve accessibility when launching FireFinger
     - Input field will now automatically be focussed upon loading the main view (opening FireFinger, or switching from settings back to main view). This creates a box around the currently highlighted letter. This box can be toggled on/off in the settings. Default is hidden
-    - Read out loud the currently displayed letter
-    - [TODO] If nothing is loaded, tell the user
-- Fixes:
-  - ...
+    - Read out loud the currently displayed letter when launching FireFinger
 
 ### [1.0.2] Accessibility, difficulty settings and minor improvements
 
