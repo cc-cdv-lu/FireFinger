@@ -43,6 +43,8 @@
           "description": "Quantité minimale de lettres à taper à la minute",
           "title": "Vitesse de tappage min."
         },
+        "playFailSound": "Jouer son d'échec",
+        "playWinSound": "Jouer le son de succès",
         "title": "Difficulté"
       },
       "files": {

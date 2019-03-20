@@ -27,6 +27,8 @@ export class SessionService {
     maxMistakePercentage: 5, // in percentage
     maxMistakeCount: 50, // as mistakes per session
     minTypeSpeed: 40, // as characters per minute
+    playWinSound: true,
+    playFailSound: false,
   };
 
   //
@@ -228,14 +230,18 @@ export class SessionService {
   onSuccess() {
     this.nextChapter();
     console.log('BIG success! Next level coming up!');
-    this.sound.play(SOUNDS.SUCCESS);
+    if (this.difficulty.playWinSound) {
+      this.sound.play(SOUNDS.SUCCESS);
+    }
     this.gameState = GAME_STATE.SUCCESS;
     this.router.navigateByUrl('summary');
   }
 
   onFailure() {
     console.log('Better luck next time');
-    this.sound.play(SOUNDS.FAILURE);
+    if (this.difficulty.playFailSound) {
+      this.sound.play(SOUNDS.FAILURE);
+    }
     this.gameState = GAME_STATE.FAILURE;
     this.router.navigateByUrl('summary');
   }

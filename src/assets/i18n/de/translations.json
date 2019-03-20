@@ -43,6 +43,8 @@
           "description": "Mindestanzahl von Buchstaben, die pro Minute eingegeben werden müssen",
           "title": "Min. Schreib- geschwindigkeit"
         },
+        "playFailSound": "Fehlschlagton abspielen",
+        "playWinSound": "Erfolgston abspielen",
         "title": "Schwierigkeit"
       },
       "files": {

@@ -53,7 +53,7 @@
         <mat-grid-list cols="10">
           <mat-grid-tile
             colspan="9"
-            (click)="style.warning_flash = !style.warning_flash"
+            (click)="style.hide_focus = !style.hide_focus"
           >
             <p>{{ 'settings.style.hideFocus' | translate }}</p>
           </mat-grid-tile>
@@ -158,6 +158,46 @@
               <b>{{ s.min }}-{{ s.max }}</b>
             </mat-grid-tile>
           </div>
+        </mat-grid-list>
+
+        <mat-divider></mat-divider>
+        <mat-grid-list cols="10">
+          <mat-grid-tile
+            colspan="4"
+            (click)="
+              session.difficulty.playWinSound = !session.difficulty.playWinSound
+            "
+          >
+            <p>
+              {{ 'settings.application.difficulty.playWinSound' | translate }}
+            </p>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1">
+            <mat-slide-toggle
+              color="warn"
+              [(ngModel)]="session.difficulty.playWinSound"
+            >
+            </mat-slide-toggle>
+          </mat-grid-tile>
+
+          <mat-grid-tile
+            colspan="4"
+            (click)="
+              session.difficulty.playFailSound = !session.difficulty
+                .playFailSound
+            "
+          >
+            <p>
+              {{ 'settings.application.difficulty.playFailSound' | translate }}
+            </p>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1">
+            <mat-slide-toggle
+              color="warn"
+              [(ngModel)]="session.difficulty.playFailSound"
+            >
+            </mat-slide-toggle>
+          </mat-grid-tile>
         </mat-grid-list>
       </section>
 
@@ -267,6 +307,7 @@
       </section>
     </mat-expansion-panel>
   </mat-accordion>
+
   <mat-card class="infoBox">
     <mat-card-header>
       <mat-card-title>

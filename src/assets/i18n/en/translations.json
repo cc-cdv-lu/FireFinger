@@ -43,6 +43,8 @@
           "description": "Minimum amount of letters that have to be typed per minute",
           "title": "Min. type speed"
         },
+        "playFailSound": "Play fail sound",
+        "playWinSound": "Win sound",
         "title": "Difficulty"
       },
       "files": {

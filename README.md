@@ -30,7 +30,7 @@ All notable changes to this project will be documented in this file.
 ### [1.0.3] Usability and user experience improvements
 
 - Features:
-  - [TODO] Victory and failure sounds can now be toggled off separately in the settings
+  - Victory and failure sounds can now be toggled off in the settings
   - [TODO] Settings page now displays a link to the FireFinger wiki page
   - Ctrl + Shift + X now focusses the 'typing' area
   - [TODO] Improve accessibility when launching FireFinger
