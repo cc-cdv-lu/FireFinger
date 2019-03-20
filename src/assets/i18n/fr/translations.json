@@ -28,6 +28,10 @@
     "title": "Navigation"
   },
   "settings": {
+    "about": {
+      "title": "Si vous avez des problèmes, des questions ou des demandes de renseignements, contactez-nous via",
+      "wiki": "Neue Updates, Änderungsprotokolle und andere nützliche Informationen zu FireFinger finden Sie in unserem Wiki"
+    },
     "application": {
       "description": "Paramètres généraux pour l'ensemble de l'application",
       "difficulty": {

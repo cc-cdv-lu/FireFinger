@@ -316,7 +316,7 @@
         }}
       </mat-card-title>
       <mat-card-subtitle>
-        <p>If you have any issues, questions or inquiries contact us via:</p>
+        <p>{{ 'settings.about.title' | translate }}</p>
       </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
@@ -325,6 +325,7 @@
         <mat-grid-tile colspan="2">
           <a
             mat-raised-button
+            target="_blank"
             href="mailto:julien.hoffmann@cc-cdv.lu?subject=FireFinger&body=Hello, I am contacting you about FireFinger because..."
           >
             <mat-icon>mail</mat-icon>
@@ -332,24 +333,42 @@
           </a>
         </mat-grid-tile>
         <mat-grid-tile colspan="2">
-          <a mat-raised-button href="http://cc-cdv.lu">
+          <a mat-raised-button target="_blank" rel="noopener noreferrer" href="http://cc-cdv.lu">
             <mat-icon>web</mat-icon>
             Webpage
           </a>
         </mat-grid-tile>
         <mat-grid-tile colspan="2">
-          <a mat-raised-button href="tel:+352 45 43 06 - 1">
+          <a mat-raised-button target="_blank" rel="noopener noreferrer" href="tel:+352 45 43 06 - 1">
             <mat-icon>phone</mat-icon>
             Call
           </a>
         </mat-grid-tile>
         <mat-grid-tile colspan="2">
-          <a mat-raised-button href="tel:+352 45 43 06 - 700">
+          <a mat-raised-button target="_blank" rel="noopener noreferrer" href="tel:+352 45 43 06 - 700">
             <mat-icon>message</mat-icon>
             Fax
           </a>
         </mat-grid-tile>
         <mat-grid-tile colspan="1"> </mat-grid-tile>
+
+        <mat-grid-tile colspan="3"> </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+          {{ 'settings.about.wiki' | translate }}
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+          <a
+            mat-raised-button
+            target="_blank"
+            href="http://wiki.idv.lu/display/PUB/FireFinger"
+            rel="noopener noreferrer"
+          >
+            <mat-icon>info</mat-icon>
+            Wiki
+          </a>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="3"> </mat-grid-tile>
+
         <mat-grid-tile colspan="7">
           Developped by Centre pour le développement des compétences relatives à
           la vue

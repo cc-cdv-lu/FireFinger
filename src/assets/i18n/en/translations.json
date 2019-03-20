@@ -28,6 +28,10 @@
     "title": "Navigation"
   },
   "settings": {
+    "about": {
+      "title": "If you have any issues, questions or inquiries contact us via",
+      "wiki": "New updates, changelogs and other useful informations about FireFinger can be found on our wiki"
+    },
     "application": {
       "description": "General settings for the whole application",
       "difficulty": {
