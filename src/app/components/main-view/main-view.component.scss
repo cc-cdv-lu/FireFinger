@@ -22,6 +22,10 @@
       overflow: visible;
     }
 
+    .hideFocus:focus {
+      outline: none;
+    }
+
     .next {
       width: 100%;
       position: relative;

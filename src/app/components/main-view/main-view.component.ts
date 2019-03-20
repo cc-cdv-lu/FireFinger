@@ -38,7 +38,6 @@ export class MainViewComponent implements OnInit {
     public translate: TranslateService,
     private reader: ReaderService
   ) {
-
     let lastLogin: any;
     if (this.electron.config) {
       lastLogin = this.electron.config.get('LAST_LOGIN');
@@ -69,7 +68,9 @@ export class MainViewComponent implements OnInit {
     }
     this.session.handleKeyEvent(event);
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.focusInput();
+  }
 
   /* Shortcuts */
   getPrev() {
@@ -94,6 +95,10 @@ export class MainViewComponent implements OnInit {
     return this.session.last_wrong_char !== '' && this.style.warning_flash;
   }
 
+  shouldHideFocus() {
+    return this.style.hide_focus;
+  }
+
   getWarningText() {
     let output = '';
     if (!this.session) {
@@ -108,7 +113,8 @@ export class MainViewComponent implements OnInit {
         return this.translate.instant('keys.enter');
       case ' ':
         return this.translate.instant('keys.space');
-      case '\'':
+      // tslint:disable-next-line:quotemark
+      case "'":
         return this.translate.instant('keys.apostrophe');
       case 'ä':
       case 'Ä':
@@ -180,6 +186,13 @@ export class MainViewComponent implements OnInit {
     dialogRef.beforeClose().subscribe(() => {
       this.areSettingsOpen = false;
     });
+  }
+
+  focusInput() {
+    const input = document.getElementById('inputLetter');
+    input.setAttribute('tabindex', '1');
+    input.focus();
+    console.log('Focused the input');
   }
 
   /* DEBUG stuff */

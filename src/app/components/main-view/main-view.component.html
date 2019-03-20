@@ -15,7 +15,7 @@
   >
     <mat-grid-tile class="textTile HUGE" colspan="9" rowspan="3">
       <span class="HUGE prev"> {{ getPrev() }}&lrm; </span>
-      <span class="HUGE current highlight" color="accent">
+      <span class="HUGE current highlight" [ngClass]="{'hideFocus':shouldHideFocus()}" id="inputLetter" color="accent">
         {{ getCurrent() }}
       </span>
       <span class="HUGE next"> &lrm;{{ getNext() }} </span>

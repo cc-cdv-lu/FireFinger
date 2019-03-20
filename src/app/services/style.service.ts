@@ -4,6 +4,7 @@ import { ElectronService } from './electron.service';
 const FONT_KEY = 'FONT';
 const THEME_KEY = 'THEME';
 const WARNING_FLASH = 'WARNING_FLASH';
+const HIDE_FOCUS = 'HIDE_FOCUS';
 
 @Injectable({
   providedIn: 'root',
@@ -74,7 +75,7 @@ export class StyleService {
     if (this.electron.config) {
       c = this.electron.config.get(WARNING_FLASH);
     }
-    if (!c) {
+    if (c === undefined) {
       c = false;
     }
     return c;
@@ -85,6 +86,25 @@ export class StyleService {
     }
     if (this.electron.config) {
       this.electron.config.set(WARNING_FLASH, v);
+    }
+  }
+
+  get hide_focus() {
+    let c: any;
+    if (this.electron.config) {
+      c = this.electron.config.get(HIDE_FOCUS);
+    }
+    if (c === undefined) {
+      c = true;
+    }
+    return c;
+  }
+  set hide_focus(v: boolean) {
+    if (v == null || v === undefined) {
+      return;
+    }
+    if (this.electron.config) {
+      this.electron.config.set(HIDE_FOCUS, v);
     }
   }
 
