@@ -5,8 +5,6 @@
 $material-icons-font-path: '~material-icons/iconfont/';
 @import '~material-icons/iconfont/material-icons.scss';
 
-
-
 /* Application wide - via x rem adjustable sizes */
 body,
 html {
@@ -14,7 +12,6 @@ html {
   padding: 0;
   height: 100%;
 }
-
 
 * {
   /*Replace with your custom font*/
@@ -25,7 +22,6 @@ html {
   //border: 1px solid #f00 !important;
 }
 
-
 html {
   font-size: 20px;
 
@@ -34,7 +30,18 @@ html {
     height: 95%;
   }
 
-  mat-slide-toggle, mat-checked, mat-slide-toggle-thumb-container {
+  .right-aligned-header > .mat-content {
+    justify-content: space-between;
+    margin-right: 50px;
+  }
+  .mat-content > mat-panel-title,
+  .mat-content > mat-panel-description {
+    flex: 0 0 auto;
+  }
+
+  mat-slide-toggle,
+  mat-checked,
+  mat-slide-toggle-thumb-container {
     zoom: 2 !important;
     width: 100% !important;
   }

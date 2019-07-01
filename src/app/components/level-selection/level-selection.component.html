@@ -11,7 +11,7 @@
         mat-raised-button
         color="accent"
         (click)="file.openDocsFolderInExplorer()"
-        attr.aria-label="{{'chapterView.openFolder'| translate}}"
+        attr.aria-label="{{ 'chapterView.openFolder' | translate }}"
       >
         <mat-icon>folder</mat-icon>
       </button>
@@ -22,10 +22,11 @@
     <mat-expansion-panel-header
       [collapsedHeight]="'6rem'"
       [expandedHeight]="'6rem'"
+       class="right-aligned-header"
     >
       <mat-panel-title> {{ set.name }} </mat-panel-title>
       <mat-panel-description>
-        Chapters: {{ set.chapters?.length }}
+        {{ 'chapterView.chapters' | translate }} {{ set.chapters?.length }}
       </mat-panel-description>
     </mat-expansion-panel-header>
 
