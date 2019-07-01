@@ -11,6 +11,7 @@
         mat-raised-button
         color="accent"
         (click)="file.openDocsFolderInExplorer()"
+        attr.aria-label="{{'chapterView.openFolder'| translate}}"
       >
         <mat-icon>folder</mat-icon>
       </button>
@@ -35,6 +36,9 @@
             <button
               mat-icon-button
               color="accent"
+              attr.aria-label="
+              {{ 'chapterView.startChapter' | translate }}
+              {{ chapter.name }}"
               (click)="session.loadSession(set, i); goHome()"
             >
               <mat-icon class="huge">play_arrow</mat-icon>
@@ -44,7 +48,9 @@
             <h3>{{ chapter.name }}</h3>
           </mat-grid-tile>
           <mat-grid-tile colspan="7">
-            <p *ngIf="chapter.type === 0">{{'general.lettertask' | translate}} - <br /></p>
+            <p *ngIf="chapter.type === 0">
+              {{ 'general.lettertask' | translate }} - <br />
+            </p>
             <h4 *ngIf="chapter.newCharacters">{{ chapter.newCharacters }}</h4>
           </mat-grid-tile>
           <!--

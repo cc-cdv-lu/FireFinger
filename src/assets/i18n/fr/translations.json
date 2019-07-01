@@ -1,4 +1,8 @@
 {
+  "chapterView": {
+    "openFolder": "Ouvrir le dossier FireFinger dans l'Explorateur",
+    "startChapter": "Commencer chaptire"
+  },
   "general": {
     "chaptersLoaded": "chapitre(s)",
     "closeapp": "Fermer FireFinger",
@@ -125,7 +129,7 @@
           "title": "Le volume"
         }
       },
-      "title": "Voix",
+      "title": "Sortie vocale",
       "variant": "Variante vocale"
     }
   },

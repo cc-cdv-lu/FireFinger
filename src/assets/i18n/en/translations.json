@@ -1,4 +1,8 @@
 {
+  "chapterView": {
+    "openFolder": "Open FireFinger folder in Explorer",
+    "startChapter": "Start chapter"
+  },
   "general": {
     "chaptersLoaded": "chapter(s) loaded",
     "closeapp": "Close FireFinger",
@@ -125,7 +129,7 @@
           "title": "Volume"
         }
       },
-      "title": "Voice",
+      "title": "Voice output",
       "variant": "Voice variant"
     }
   },

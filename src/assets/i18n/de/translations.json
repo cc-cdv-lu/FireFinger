@@ -1,4 +1,8 @@
 {
+  "chapterView": {
+    "openFolder": "FireFinger-Ordner im Explorer öffnen",
+    "startChapter": "Starte Kapitel"
+  },
   "general": {
     "chaptersLoaded": "Kapitel geladen",
     "closeapp": "FireFinger schließen",
@@ -125,7 +129,7 @@
           "title": "Lautstärke"
         }
       },
-      "title": "Sprache",
+      "title": "Sprachausgabe",
       "variant": "Sprachvariante"
     }
   },
