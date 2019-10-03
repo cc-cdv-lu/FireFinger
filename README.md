@@ -16,9 +16,15 @@ Custom dictations can be put into **%appdata%/FireFinger/docs**/_subfolder/examp
 - **Pause**: Skip this char
 - **Ctrl + UP** _OR_ **Ctrl + (+)** : Zoom-in
 - **Ctrl + DOWN** _OR_ **Ctrl + (-)** : Zoom-out
+- **Ctrl + Shift + X**: Jump to input
 - **Down** : Repeat this letter
 - **Right**: Repeat this word
 - **Esc** Close FireFinger
+- Accesskeys (https://www.w3schools.com/tags/att_global_accesskey.asp)
+  - **H**: Home
+  - **S**: Settings
+  - **C**: Chapters
+  - **U**: User
 
 ## Changelog
 
@@ -26,6 +32,16 @@ All notable changes to this project will be documented in this file.
 
 ### [Future plans]
   - Preconfigured courses and user defined courses will be divided into separate sections and folders
+
+### [1.0.5] More accessibility features
+  - Features:
+    - New colors schemes to support edge filter glasses (Kantenfilterbrillen)
+
+### [1.0.4]
+  - Features
+    - xxx
+  - Fixes
+    - xxx
 
 ### [1.0.3] Usability and user experience improvements
 

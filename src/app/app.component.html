@@ -10,12 +10,14 @@
         [routerLink]="nav.link"
         *ngFor="let nav of routerLinks"
         [attr.aria-label]="nav.name | async"
+        [accessKey]="nav.shortcut"
         role="tab" 
         aria-controls="tabPanel"
         [attr.aria-selected]="this.router.url === nav.link"        
       >
         <mat-icon aria-hidden="true">{{ nav.icon }}</mat-icon>
         {{ nav.name | async }}
+        [{{nav.shortcut | uppercase }}]
       </a>
       <div class="fill-remaining-space"></div>
       <button mat-raised-button color="warn" (click)="closeApp()" [attr.aria-label]="'general.closeapp'|translate">

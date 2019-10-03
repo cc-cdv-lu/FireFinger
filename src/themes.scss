@@ -1,9 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '~@angular/material/theming';
 @include mat-core(); // Typography
-$custom-typography: mat-typography-config($font-family: Verdana, $headline: mat-typography-level(24px, 48px, 400), $body-1: mat-typography-level(16px, 24px, 400));
-@include angular-material-typography($custom-typography); /*
+$custom-typography: mat-typography-config(
+  $font-family: Verdana,
+  $headline: mat-typography-level(24px, 48px, 400),
+  $body-1: mat-typography-level(16px, 24px, 400),
+);
+@include angular-material-typography($custom-typography);
+
+// define 3 theme color
+// mat-palette accepts $palette-name, main, lighter and darker variants
+/*
+The numbers behind the palette variable name select particular shades of chosen color for default, lighter and darker variants.
+If no numbers are provided Angular Material selects sensible defaults $default: 500, $lighter: 100, $darker: 700.
+*/
+
+/**
 *
 *  DEFAULT THEME
 *
@@ -11,8 +25,13 @@ $custom-typography: mat-typography-config($font-family: Verdana, $headline: mat-
 $my-app-primary: mat-palette($mat-teal, 700, 100, 800); // Default colors
 $my-app-accent: mat-palette($mat-teal, 700, 100, 800);
 $my-app-app-warn: mat-palette($mat-red);
-$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-app-warn);
-@include angular-material-theme($my-app-theme); /*
+$my-app-theme: mat-light-theme(
+  $my-app-primary,
+  $my-app-accent,
+  $my-app-app-warn
+);
+@include angular-material-theme($my-app-theme);
+/*
 *
 *  DARK THEME
 *
@@ -51,6 +70,35 @@ $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
 }
 /*
 *
+*  Pink THEME
+*
+*/
+$pink-primary: mat-palette($mat-pink, 300, 400, 700); // pink theme
+$pink-accent: mat-palette($mat-pink, A200, A400, A100);
+$pink-warn: mat-palette($mat-blue, 200);
+$pink-theme: mat-dark-theme($pink-primary, $pink-accent, $pink-warn);
+
+.pink-theme {
+  @include angular-material-theme($pink-theme);
+  background-color: mat-color($pink-primary, A400);
+
+  .highlight {
+    color: mat-color($pink-primary, 50) !important;
+  }
+  .highlight.mat-raised-button {
+    border: 0.1em solid mat-color($pink-primary, 700);
+  }
+
+  .mat-progress-bar-fill::after {
+    background-color: mat-color($pink-primary, 700);
+  }
+
+  .mat-progress-bar-buffer {
+    background: mat-color($pink-primary, 50);
+  }
+}
+/*
+*
 *  Blue and Yellow
 *
 */
@@ -77,7 +125,11 @@ $by-theme: mat-dark-theme($by-primary, $by-accent, $by-warn);
 $true-black-primary: mat-palette($mat-grey); // Dark theme
 $true-black-accent: mat-palette($mat-grey, A200, A100, A400);
 $true-black-warn: mat-palette($mat-deep-purple);
-$true-black-theme: mat-dark-theme($true-black-primary, $true-black-accent, $true-black-warn);
+$true-black-theme: mat-dark-theme(
+  $true-black-primary,
+  $true-black-accent,
+  $true-black-warn
+);
 
 .true-black-theme {
   @include angular-material-theme($true-black-theme);

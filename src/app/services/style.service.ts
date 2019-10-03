@@ -27,6 +27,10 @@ export class StyleService {
       id: 'light-theme',
     },
     {
+      name: 'Pink',
+      id: 'pink-theme',
+    },
+    {
       name: 'Blue & Yellow',
       id: 'by-theme',
     },
