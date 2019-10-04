@@ -8,7 +8,6 @@ import { StyleService } from './services/style.service';
 import { SettingsComponent } from './components/settings/settings.component';
 import { UserService } from './services/user.service';
 import { SessionService } from './services/session.service';
-import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -22,11 +21,13 @@ export class AppComponent implements OnInit {
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.ctrlKey) {
-      if (event.key === 'ArrowUp' || event.key === '+') {
-        return this.style.increaseFont();
-      }
-      if (event.key === 'ArrowDown' || event.key === '-') {
-        return this.style.decreaseFont();
+      switch (event.key) {
+        case 'ArrowUp':
+        case '+':
+          return this.style.increaseFont();
+        case 'ArrowDown':
+        case '-':
+          return this.style.decreaseFont();
       }
     }
   }
@@ -38,8 +39,7 @@ export class AppComponent implements OnInit {
     public settings: SettingsComponent,
     public router: Router,
     private session: SessionService,
-    public user: UserService,
-    dialog: MatDialog
+    public user: UserService
   ) {
     this.overlayContainer
       .getContainerElement()
@@ -115,15 +115,6 @@ export class AppComponent implements OnInit {
     this.componentCssClass = this.style.theme;
   }
 
-  /* DEBUG stuff */
-
-  blurAllButtons() {
-    const buttons = document.getElementsByTagName('button');
-    for (let i = 0; i < buttons.length; i++) {
-      buttons.item(i).blur();
-    }
-  }
-
   closeApp() {
     console.warn('Shutting game down...');
     this.session.saveSession();
@@ -131,6 +122,14 @@ export class AppComponent implements OnInit {
       this.electron.window.close();
     } else {
       window.close();
+    }
+  }
+  /* DEBUG stuff */
+
+  blurAllButtons() {
+    const buttons = document.getElementsByTagName('button');
+    for (let i = 0; i < buttons.length; i++) {
+      buttons.item(i).blur();
     }
   }
 }
