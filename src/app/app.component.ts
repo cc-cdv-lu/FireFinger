@@ -72,25 +72,25 @@ export class AppComponent implements OnInit {
         name: this.translate.get('nav.home'),
         link: '/home',
         icon: 'home',
-        shortcut: 'h'
+        shortcut: '1'
       },
       {
         name: this.translate.get('nav.settings'),
         link: '/settings',
         icon: 'settings',
-        shortcut: 's'
+        shortcut: '2'
       },
       {
         name: this.translate.get('nav.levels'),
         link: '/levels',
         icon: 'bookmarks',
-        shortcut: 'c'
+        shortcut: '3'
       },
       {
         name: this.translate.get('nav.login'),
         link: '/login',
         icon: 'person',
-        shortcut: 'u'
+        shortcut: '4'
       },
     ];
 

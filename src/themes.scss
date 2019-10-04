@@ -82,6 +82,10 @@ $pink-theme: mat-dark-theme($pink-primary, $pink-accent, $pink-warn);
   @include angular-material-theme($pink-theme);
   background-color: mat-color($pink-primary, A400);
 
+  .prev,.next {
+    color: black;
+  }
+
   .highlight {
     color: mat-color($pink-primary, 50) !important;
   }

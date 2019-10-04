@@ -17,7 +17,7 @@
       >
         <mat-icon aria-hidden="true">{{ nav.icon }}</mat-icon>
         {{ nav.name | async }}
-        [{{nav.shortcut | uppercase }}]
+        <b aria-hidden="true">[{{nav.shortcut | uppercase }}]</b>
       </a>
       <div class="fill-remaining-space"></div>
       <button mat-raised-button color="warn" (click)="closeApp()" [attr.aria-label]="'general.closeapp'|translate">

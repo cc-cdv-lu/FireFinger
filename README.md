@@ -36,12 +36,13 @@ All notable changes to this project will be documented in this file.
 ### [1.0.5] More accessibility features
   - Features:
     - New colors schemes to support edge filter glasses (Kantenfilterbrillen)
+    - Added accesskey support
 
-### [1.0.4]
+### [1.0.4] Visual changes
   - Features
-    - xxx
-  - Fixes
-    - xxx
+    - Improved about section
+    - New logo
+    - Improved chapter view descriptions
 
 ### [1.0.3] Usability and user experience improvements
 
