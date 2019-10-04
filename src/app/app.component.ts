@@ -126,7 +126,6 @@ export class AppComponent implements OnInit {
 
   closeApp() {
     console.warn('Shutting game down...');
-    // TODO: ask before closing
     this.session.saveSession();
     if (this.electron.window) {
       this.electron.window.close();

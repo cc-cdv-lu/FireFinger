@@ -318,7 +318,7 @@ export class SessionService {
       this.isSessionLoaded = false;
       return console.log('No previous session was found...');
     }
-    // TODO: load mistakes count and so on...
+
     this.currentLesson = session.lesson;
     this.currentChapter = session.chapter;
     this.currentIndex = session.index;
