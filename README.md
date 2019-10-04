@@ -37,6 +37,7 @@ All notable changes to this project will be documented in this file.
   - Features:
     - New colors schemes to support edge filter glasses (Kantenfilterbrillen)
     - Added accesskey support
+    - Saving previous session - can continue where left off
 
 ### [1.0.4] Visual changes
   - Features

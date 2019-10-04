@@ -2,12 +2,13 @@ import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ElectronService } from './services/electron.service';
 import { TranslateService } from '@ngx-translate/core';
-import { AppConfig } from '../environments/environment';
 
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { StyleService } from './services/style.service';
 import { SettingsComponent } from './components/settings/settings.component';
 import { UserService } from './services/user.service';
+import { SessionService } from './services/session.service';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -36,7 +37,9 @@ export class AppComponent implements OnInit {
     public style: StyleService,
     public settings: SettingsComponent,
     public router: Router,
-    public user: UserService
+    private session: SessionService,
+    public user: UserService,
+    dialog: MatDialog
   ) {
     this.overlayContainer
       .getContainerElement()
@@ -72,25 +75,25 @@ export class AppComponent implements OnInit {
         name: this.translate.get('nav.home'),
         link: '/home',
         icon: 'home',
-        shortcut: '1'
+        shortcut: '1',
       },
       {
         name: this.translate.get('nav.settings'),
         link: '/settings',
         icon: 'settings',
-        shortcut: '2'
+        shortcut: '2',
       },
       {
         name: this.translate.get('nav.levels'),
         link: '/levels',
         icon: 'bookmarks',
-        shortcut: '3'
+        shortcut: '3',
       },
       {
         name: this.translate.get('nav.login'),
         link: '/login',
         icon: 'person',
-        shortcut: '4'
+        shortcut: '4',
       },
     ];
 
@@ -123,6 +126,8 @@ export class AppComponent implements OnInit {
 
   closeApp() {
     console.warn('Shutting game down...');
+    // TODO: ask before closing
+    this.session.saveSession();
     if (this.electron.window) {
       this.electron.window.close();
     } else {

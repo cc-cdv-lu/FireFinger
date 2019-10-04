@@ -140,7 +140,7 @@ export class SessionService {
     if (pressedKey === 'Escape') {
       return this.reset();
     }
-    if (this.shouldIgnore(pressedKey)) {
+    if (this.shouldIgnore(pressedKey) || event.altKey) {
       return;
     }
 
@@ -303,8 +303,11 @@ export class SessionService {
       lesson: this.currentLesson,
       chapter: this.currentChapter,
       index: this.currentIndex,
+      indexInText: this.getIndex(),
+      stats: this.stats.currentStats,
     };
     this.electron.config.set(LAST_SESSION_KEY, session);
+    console.log('Saved last session:', session);
   }
   restoreSession() {
     let session: any;
@@ -315,10 +318,16 @@ export class SessionService {
       this.isSessionLoaded = false;
       return console.log('No previous session was found...');
     }
+    // TODO: load mistakes count and so on...
     this.currentLesson = session.lesson;
     this.currentChapter = session.chapter;
     this.currentIndex = session.index;
+    this.indexInText = session.indexInText ? session.indexInText : 0;
+    if (session.stats) {
+      this.stats.currentStats = session.stats;
+    }
     this.isSessionLoaded = true;
+    console.log('Loaded last session:', session);
   }
 
   loadSession(lesson: Lesson, index: number) {
