@@ -1,13 +1,16 @@
+import { OverlayContainer } from '@angular/cdk/overlay';
+
 import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ElectronService } from './services/electron.service';
+import {
+  ElectronService,
+  StyleService,
+  UserService,
+  SessionService,
+} from './core/services/index';
 import { TranslateService } from '@ngx-translate/core';
 
-import { OverlayContainer } from '@angular/cdk/overlay';
-import { StyleService } from './services/style.service';
-import { SettingsComponent } from './components/settings/settings.component';
-import { UserService } from './services/user.service';
-import { SessionService } from './services/session.service';
+import { SettingsComponent } from './settings/settings.component';
 
 @Component({
   selector: 'app-root',
@@ -109,8 +112,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // immediately maximize window after component initalization
-    this.electron.window.maximize();
-    this.electron.window.setFullScreen(true);
+    // FIXME: this.electron.window.maximize();
+    // FIXME: this.electron.window.setFullScreen(true);
 
     this.componentCssClass = this.style.theme;
   }
@@ -119,7 +122,7 @@ export class AppComponent implements OnInit {
     console.warn('Shutting game down...');
     this.session.saveSession();
     if (this.electron.window) {
-      this.electron.window.close();
+      // FIXME: this.electron.window.close();
     } else {
       window.close();
     }

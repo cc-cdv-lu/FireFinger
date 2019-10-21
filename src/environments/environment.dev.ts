@@ -6,5 +6,5 @@
 export const AppConfig = {
   production: false,
   environment: 'DEV',
-  VERSION: require('../../package.json').version + '_dev'
+  VERSION: require('../../package.json').version + '_dev',
 };

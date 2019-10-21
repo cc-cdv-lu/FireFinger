@@ -16,7 +16,9 @@ function createWindow() {
     y: 0,
     width: size.width,
     height: size.height,
-    icon: path.join(__dirname, 'assets/icons/png/64x64.png'),
+    webPreferences: {
+      nodeIntegration: true,
+    },
   });
 
   if (serve) {
@@ -34,6 +36,10 @@ function createWindow() {
     );
   }
 
+  if (serve) {
+    win.webContents.openDevTools();
+  }
+
   // Emitted when the window is closed.
   win.on('closed', () => {
     // Dereference the window object, usually you would store window
@@ -48,17 +54,6 @@ try {
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
   app.on('ready', createWindow);
-  app.on('ready', () => {
-    win.webContents.on('crashed', err => {
-      console.error('FireFinger crashed!', err);
-    });
-    win.webContents.on('unresponsive', err => {
-      console.error('FireFinger has become unresponsive!', err);
-    });
-    process.on('uncaughtException', err => {
-      console.error('FireFinger has encounterd an uncaugt exception!', err);
-    });
-  });
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {

@@ -1,57 +1,15 @@
-import { OverlayContainer } from '@angular/cdk/overlay';
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { } from 'jasmine';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { LevelSelectionComponent } from './components/level-selection/level-selection.component';
-import { LoginComponent } from './components/login/login.component';
-import { MainViewComponent } from './components/main-view/main-view.component';
-import { SettingsComponent } from './components/settings/settings.component';
-import { SummaryComponent } from './components/summary/summary.component';
-import { MaterialManagerModule } from './material-manager.module';
-import { ElectronService } from './services/electron.service';
-import { StyleService } from './services/style.service';
-import { UserService } from './services/user.service';
-import { FormsModule } from '@angular/forms';
-
-
+import { TranslateModule } from '@ngx-translate/core';
+import { ElectronService } from './core/services';
 
 describe('AppComponent', () => {
-  afterAll(() => {
-    TestBed.resetTestingModule();
-  });
-
-  afterEach(() => {
-    TestBed.resetTestingModule();
-  });
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent,
-        SettingsComponent,
-        MainViewComponent,
-        LoginComponent,
-        LevelSelectionComponent,
-        SummaryComponent,
-        HomeComponent
-      ],
-      providers: [
-        ElectronService,
-        TranslateService,
-        StyleService,
-        UserService,
-        OverlayContainer,
-        SettingsComponent
-      ],
-      imports: [
-        RouterTestingModule,
-        TranslateModule.forRoot(),
-        MaterialManagerModule,
-        FormsModule
-      ],
+      declarations: [AppComponent],
+      providers: [ElectronService],
+      imports: [RouterTestingModule, TranslateModule.forRoot()]
     }).compileComponents();
   }));
 
