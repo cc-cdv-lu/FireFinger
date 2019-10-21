@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  HostBinding,
-} from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 
 import {
@@ -19,8 +13,7 @@ import {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
-  @ViewChild('loginField', { static: false }) loginField: ElementRef;
+export class LoginComponent {
   inputField: string;
   @HostBinding('class') componentCssClass;
 
@@ -30,8 +23,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     public style: StyleService,
     public stats: StatisticsService
-  ) {}
-  ngOnInit() {
+  ) {
     let lastUser: any;
     if (this.electron.config) {
       lastUser = this.electron.config.get('LAST_LOGIN');
@@ -45,9 +37,6 @@ export class LoginComponent implements OnInit {
 
     this.style.font = this.style.font;
 
-    if (this.loginField) {
-      this.loginField.nativeElement.focus();
-    }
     this.componentCssClass = this.style.theme;
     if (!this.user.loggedInUser) {
       this.onConfirm();

@@ -8,7 +8,6 @@
         <mat-grid-tile colspan="3">
           <mat-form-field class="full-width-input">
             <input
-              #loginField
               matInput
               matAutosize="true"
               maxRows="1"
@@ -24,8 +23,6 @@
           </button>
         </mat-grid-tile>
       </mat-grid-list>
-      <div class="left"></div>
-      <div class="right"></div>
     </mat-card-content>
   </mat-card>
   <mat-card *ngIf="user.loggedInUser">
