@@ -7,7 +7,7 @@ import {
   StatisticsService,
   Statistics,
   StyleService,
-} from '../core/services/index';
+} from '../../core/services/index';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

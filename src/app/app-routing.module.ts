@@ -2,11 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './shared/components';
 
-import { HomeComponent } from './home/home.component';
-import { LevelSelectionComponent } from './level-selection/level-selection.component';
-import { SettingsComponent } from './settings/settings.component';
-import { LoginComponent } from './login/login.component';
-import { SummaryComponent } from './summary/summary.component';
+import { PagesRoutingModule } from './pages/pages-routing.module';
 
 const routes: Routes = [
   {
@@ -18,30 +14,10 @@ const routes: Routes = [
     path: '**',
     component: PageNotFoundComponent,
   },
-  {
-    path: 'home',
-    component: HomeComponent,
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
-    path: 'levels',
-    component: LevelSelectionComponent,
-  },
-  {
-    path: 'settings',
-    component: SettingsComponent,
-  },
-  {
-    path: 'summary',
-    component: SummaryComponent,
-  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, { useHash: true }), PagesRoutingModule],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

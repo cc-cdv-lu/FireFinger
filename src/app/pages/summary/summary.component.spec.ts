@@ -7,9 +7,9 @@ import {
   SessionService,
   StyleService,
   ElectronService,
-} from '../core/services/index';
+} from '../../core/services/index';
 
-import { MaterialManagerModule } from '../shared/material-manager.module';
+import { MaterialManagerModule } from '../../shared/material-manager.module';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SummaryComponent', () => {

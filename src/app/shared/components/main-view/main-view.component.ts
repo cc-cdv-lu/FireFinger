@@ -12,7 +12,7 @@ import {
   VIEW,
 } from '../../../core/services/index';
 
-import { SettingsComponent } from '../../../settings/settings.component';
+import { SettingsComponent } from '../../../pages/settings/settings.component';
 
 import { TranslateService } from '@ngx-translate/core';
 

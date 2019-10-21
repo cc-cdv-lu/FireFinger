@@ -5,10 +5,10 @@ import {
   UserService,
   StyleService,
   StatisticsService,
-} from '../core/services/index';
+} from '../../core/services/index';
 
 import { LoginComponent } from './login.component';
-import { MaterialManagerModule } from '../shared/material-manager.module';
+import { MaterialManagerModule } from '../../shared/material-manager.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';

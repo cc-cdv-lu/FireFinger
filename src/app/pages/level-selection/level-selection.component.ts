@@ -6,7 +6,7 @@ import {
   SessionService,
   StyleService,
   FileService,
-} from '../core/services/index';
+} from '../../core/services/index';
 
 @Component({
   // tslint:disable-next-line:component-selector

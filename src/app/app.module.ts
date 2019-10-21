@@ -15,11 +15,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
-import { HomeModule } from './home/home.module';
-import { SettingsModule } from './settings/settings.module';
-import { LoginModule } from './login/login.module';
-import { LevelSelectionModule } from './level-selection/level-selection.module';
-import { SummaryModule } from './summary/summary.module';
+import { PagesModule } from './pages/pages.modules';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -36,11 +32,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     CoreModule.forRoot(),
     SharedModule,
-    HomeModule,
-    SettingsModule,
-    LoginModule,
-    LevelSelectionModule,
-    SummaryModule,
+    PagesModule,
     AppRoutingModule,
     TranslateModule.forRoot({
       loader: {
@@ -53,6 +45,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: []
+  exports: [],
 })
 export class AppModule {}

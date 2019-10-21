@@ -10,7 +10,7 @@ import {
 } from './core/services/index';
 import { TranslateService } from '@ngx-translate/core';
 
-import { SettingsComponent } from './settings/settings.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @Component({
   selector: 'app-root',

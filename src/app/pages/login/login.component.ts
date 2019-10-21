@@ -12,7 +12,7 @@ import {
   StyleService,
   StatisticsService,
   ElectronService,
-} from '../core/services/index';
+} from '../../core/services/index';
 
 @Component({
   selector: 'app-login',
