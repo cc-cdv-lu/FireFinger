@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
-import { HomeComponent } from './home/home.component';
-import { SettingsComponent } from './settings/settings.component';
-import { LevelSelectionComponent } from './level-selection/level-selection.component';
-import { LoginComponent } from './login/login.component';
-import { SummaryComponent } from './summary/summary.component';
+import {
+  HomeComponent,
+  SettingsComponent,
+  SummaryComponent,
+  LevelSelectionComponent,
+  LoginComponent,
+} from './';
 
 @NgModule({
   declarations: [

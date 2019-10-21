@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
-import { SettingsComponent } from './settings/settings.component';
-import { SummaryComponent } from './summary/summary.component';
-import { LevelSelectionComponent } from './level-selection/level-selection.component';
-import { LoginComponent } from './login/login.component';
+import {
+  HomeComponent,
+  SettingsComponent,
+  SummaryComponent,
+  LevelSelectionComponent,
+  LoginComponent,
+} from './';
 
 const routes: Routes = [
   {
