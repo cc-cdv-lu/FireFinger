@@ -30,11 +30,13 @@ export class LoginComponent implements OnInit {
     private router: Router,
     public style: StyleService,
     public stats: StatisticsService
-  ) {
+  ) {}
+  ngOnInit() {
     let lastUser: any;
     if (this.electron.config) {
       lastUser = this.electron.config.get('LAST_LOGIN');
     }
+    console.log('Last user:', lastUser);
     if (!lastUser) {
       this.inputField = '';
     } else {
@@ -42,12 +44,14 @@ export class LoginComponent implements OnInit {
     }
 
     this.style.font = this.style.font;
-  }
-  ngOnInit() {
+
     if (this.loginField) {
       this.loginField.nativeElement.focus();
     }
     this.componentCssClass = this.style.theme;
+    if (!this.user.loggedInUser) {
+      this.onConfirm();
+    }
   }
 
   isFieldInvalid(username: string) {
