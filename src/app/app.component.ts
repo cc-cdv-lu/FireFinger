@@ -112,8 +112,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // immediately maximize window after component initalization
-    // FIXME: this.electron.window.maximize();
-    // FIXME: this.electron.window.setFullScreen(true);
+    this.electron.window.maximize();
+    this.electron.window.setFullScreen(true);
 
     this.componentCssClass = this.style.theme;
   }
@@ -122,7 +122,7 @@ export class AppComponent implements OnInit {
     console.warn('Shutting game down...');
     this.session.saveSession();
     if (this.electron.window) {
-      // FIXME: this.electron.window.close();
+      this.electron.window.close();
     } else {
       window.close();
     }

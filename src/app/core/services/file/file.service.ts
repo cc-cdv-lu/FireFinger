@@ -16,6 +16,13 @@ export class FileService {
     private stringhelper: StringHelperService
   ) {
     // this.documentsURL = this.electron.app.getPath('documents');
+
+    // TODO: this should not be called here...
+    const buildIn = this.getBuildInCoursesURL();
+    if (!FS.existsSync(buildIn)) {
+      console.log('buildIn do not exist yet - creating dirURL:', buildIn);
+      this.createDefaultFolder(buildIn);
+    }
   }
 
   getDocsURL() {
@@ -25,9 +32,16 @@ export class FileService {
     }
 
     const appDataURL: string = this.electron.app.getPath('userData'); // ..../Username/Documents
-    const firefingerURL: string = path.join(appDataURL, 'docs'); // ..../Username/Documents/FireFinger
+    const firefingerDocsURL: string = path.join(appDataURL, 'docs'); // ..../Username/Documents/FireFinger/docs
 
-    return firefingerURL;
+    return firefingerDocsURL;
+  }
+
+  getBuildInCoursesURL() {
+    const appDataURL: string = this.electron.app.getPath('userData'); // ..../Username/Documents
+    const customURL: string = path.join(appDataURL, 'buildIn'); // ..../Username/Documents/FireFinger/buildIn
+
+    return customURL;
   }
 
   loadDir(dirURL: string): Array<Lesson> {
@@ -41,11 +55,6 @@ export class FileService {
     if (!dirURL || dirURL.length < 5) {
       console.warn('Invalid parameter for fs');
       return [];
-    }
-
-    if (!FS.existsSync(dirURL)) {
-      console.log('dirURL:', dirURL);
-      this.createDefaultFolder(dirURL);
     }
 
     const docsDir = FS.readdirSync(dirURL);
@@ -65,7 +74,11 @@ export class FileService {
   }
 
   loadAllDirs(): Array<Lesson> {
-    const output = [...this.loadDir(this.getDocsURL())];
+    // TODO: seperate build in courses (buildIn) and custom courses (docs)
+    const output: Lesson[] = [
+      ...this.loadDir(this.getDocsURL()),
+      ...this.loadDir(this.getBuildInCoursesURL()),
+    ];
     return output;
   }
 
@@ -74,7 +87,7 @@ export class FileService {
   }
 
   overrideDocsFolder() {
-    this.createDefaultFolder(this.getDocsURL());
+    this.createDefaultFolder(this.getBuildInCoursesURL());
   }
 
   createDefaultFolder(dirURL: string) {
@@ -88,9 +101,15 @@ export class FileService {
 
     let assetsURL = '';
     if (this.electron.isDev()) {
-      assetsURL = path.join(this.electron.app.getAppPath(), 'src/assets/docs');
+      assetsURL = path.join(
+        this.electron.app.getAppPath(),
+        'src/assets/buildIn'
+      );
     } else {
-      assetsURL = path.join(this.electron.app.getAppPath(), 'dist/assets/docs');
+      assetsURL = path.join(
+        this.electron.app.getAppPath(),
+        'dist/assets/buildIn'
+      );
     }
 
     // If user has not yet had any files in their folder, copy the example files to their folder
