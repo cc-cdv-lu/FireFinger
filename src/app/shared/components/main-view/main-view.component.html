@@ -2,13 +2,15 @@
   class="container"
   [ngClass]="style.theme"
   [style.backgroundColor]="shouldFlash() ? '#ec644b' : ''"
+  
   [attr.lang]="getReadingLang()"
-  tabIndex="0"
   [attr.aria-label]="getCurrent() + getNext()"
-  role="alert"
+  tabIndex="0"
+  role="textbox"
   id="inputLetter"
+  aria-hidden="false"
 >
-  <mat-grid-list cols="9" class="viewContainer" [rowHeight]="'8rem'">
+  <mat-grid-list cols="9" class="viewContainer" [rowHeight]="'8rem'" aria-hidden="true">
     <mat-grid-tile class="textTile HUGE" colspan="9" rowspan="3">
       <span class="HUGE prev"> {{ getPrev() }}&lrm; </span>
       <span
