@@ -2,21 +2,21 @@
   class="container"
   [ngClass]="style.theme"
   [style.backgroundColor]="shouldFlash() ? '#ec644b' : ''"
+  [attr.lang]="getReadingLang()"
   tabIndex="0"
   [attr.aria-label]="getCurrent() + getNext()"
-  role="textbox"
-  [attr.lang]="getReadingLang()"
+  role="alert"
+  id="inputLetter"
 >
-  <mat-grid-list
-    aria-hidden="true"
-    cols="9"
-    class="viewContainer"
-    [rowHeight]="'8rem'"
-  >
+  <mat-grid-list cols="9" class="viewContainer" [rowHeight]="'8rem'">
     <mat-grid-tile class="textTile HUGE" colspan="9" rowspan="3">
       <span class="HUGE prev"> {{ getPrev() }}&lrm; </span>
-      <span class="HUGE current highlight" [ngClass]="{'hideFocus':shouldHideFocus()}" id="inputLetter" color="accent">
-        {{ getCurrent() }}
+      <span
+        class="HUGE current highlight"
+        [ngClass]="{ hideFocus: shouldHideFocus() }"
+        color="accent"
+      >
+        {{ getCurrentWithHighlight() }}
       </span>
       <span class="HUGE next"> &lrm;{{ getNext() }} </span>
     </mat-grid-tile>

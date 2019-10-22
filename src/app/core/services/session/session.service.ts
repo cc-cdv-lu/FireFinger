@@ -112,6 +112,7 @@ export class SessionService {
 
   focusInput() {
     const input = document.getElementById('inputLetter');
+    console.log('User triggered input focus', input);
     input.setAttribute('tabindex', '1');
     input.focus();
   }
@@ -123,7 +124,6 @@ export class SessionService {
 
     if (event.key === 'X' && event.shiftKey && event.ctrlKey) {
       this.focusInput();
-      console.log('User triggered input focus');
       return;
     }
 

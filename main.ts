@@ -36,9 +36,11 @@ function createWindow() {
     );
   }
 
+  /*
   if (serve) {
     win.webContents.openDevTools();
   }
+  */
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -54,6 +56,17 @@ try {
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
   app.on('ready', createWindow);
+  app.on('ready', () => {
+    win.webContents.on('crashed', err => {
+      console.error('FireFinger crashed!', err);
+    });
+    win.webContents.on('unresponsive', err => {
+      console.error('FireFinger has become unresponsive!', err);
+    });
+    process.on('uncaughtException', err => {
+      console.error('FireFinger has encounterd an uncaugt exception!', err);
+    });
+  });
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {

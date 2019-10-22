@@ -1,40 +1,42 @@
 {
-  "productName": "angular-electron",
+  "productName": "FireFinger",
   "directories": {
     "output": "release/"
   },
-    "files": [
-        "**/*",
-        "!**/*.ts",
-        "!*.code-workspace",
-        "!LICENSE.md",
-        "!package.json",
-        "!package-lock.json",
-        "!src/",
-        "!e2e/",
-        "!hooks/",
-        "!angular.json",
-        "!_config.yml",
-        "!karma.conf.js",
-        "!tsconfig.json",
-        "!tslint.json"
-    ],
+  "files": [
+    "**/*",
+    "!**/*.ts",
+    "!*.code-workspace",
+    "!LICENSE.md",
+    "!package.json",
+    "!package-lock.json",
+    "!src/",
+    "!e2e/",
+    "!hooks/",
+    "!angular.json",
+    "!_config.yml",
+    "!karma.conf.js",
+    "!tsconfig.json",
+    "!tslint.json"
+  ],
   "win": {
-    "icon": "dist",
-    "target": [
-      "portable"
-    ]
+    "icon": "src/assets/icons/win/icon.ico",
+    "target": ["portable"]
   },
   "mac": {
-    "icon": "dist",
-    "target": [
-      "dmg"
-    ]
+    "category": "public.app-category.productivity",
+    "entitlements": "build/entitlements.mac.plist",
+    "icon": "src/assets/icons/mac/icon.icns",
+    "target": ["dmg", "pkg", "mas"]
+  },
+  "mas": {
+    "type": "distribution",
+    "category": "public.app-category.productivity",
+    "entitlements": "build/entitlements.mas.plist",
+    "icon": "src/assets/icons/mac/icon.icns"
   },
   "linux": {
-    "icon": "dist",
-    "target": [
-      "AppImage"
-    ]
+    "icon": "src/assets/icons/png/512x512.png",
+    "target": ["AppImage"]
   }
 }

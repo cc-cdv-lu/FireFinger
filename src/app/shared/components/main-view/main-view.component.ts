@@ -86,8 +86,11 @@ export class MainViewComponent implements OnInit {
   getNext() {
     return this.session.getNextSegment(this.view);
   }
-
   getCurrent() {
+    return this.session.getCurrentChar();
+  }
+
+  getCurrentWithHighlight() {
     const char = this.attemptHighlight(this.session.getCurrentChar());
 
     return char;
