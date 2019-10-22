@@ -87,7 +87,7 @@ export class MainViewComponent implements OnInit {
     return this.session.getNextSegment(this.view);
   }
   getCurrentForBraille() {
-    return this.session.getCurrentChar().replace('\n', '\u2880');
+    return this.session.getCurrentChar().replace('\n', '\u2880'); // https://www.fileformat.info/info/unicode/char/2880/index.htm
   }
 
   getCurrentWithHighlight() {

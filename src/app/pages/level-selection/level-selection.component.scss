@@ -12,9 +12,11 @@
     }
   }
 
-  .playTile {
-    border: 15px solid white;
+  .playIcon {
+    border: 3px solid white;
     border-radius: 300px;
+    display: inline;
+    vertical-align: middle;
   }
 
   mat-expansion-panel {
@@ -32,4 +34,3 @@
     }
   }
 }
-

@@ -115,7 +115,7 @@ $by-theme: mat-dark-theme($by-primary, $by-accent, $by-warn);
   @include angular-material-theme($by-theme);
   background-color: mat-color($by-primary);
   border-color: mat-color($by-accent, A400);
-  color: mat-color($by-primary, 100) !important;
+  color: mat-color($by-primary, 100);
 
   .highlight {
     color: mat-color($by-accent, A400) !important;
@@ -139,7 +139,7 @@ $true-black-theme: mat-dark-theme(
   @include angular-material-theme($true-black-theme);
   background-color: black;
   border-color: mat-color($true-black-accent, A400);
-  color: mat-color($true-black-accent, A400) !important;
+  color: mat-color($true-black-accent, A400);
 
   .highlight {
     color: white !important;
@@ -159,7 +159,7 @@ $dl-theme: mat-dark-theme($dl-primary, $dl-accent, $dl-warn);
   @include angular-material-theme($dl-theme);
   background-color: mat-color($dl-primary);
   border-color: mat-color($dl-accent, A400);
-  color: mat-color($dl-primary, 100) !important;
+  color: mat-color($dl-primary, 100);
 
   .highlight {
     color: mat-color($dl-accent, A400) !important;
