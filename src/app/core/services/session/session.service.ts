@@ -180,8 +180,14 @@ export class SessionService {
       return this.nextTextIndex();
     }
 
-    // Ignore special cases such as user trying to increase font size or typing special characters
+    if (
+      pressedKey === '"' &&
+      (this.getCurrentChar() === '„' || this.getCurrentChar() === '“')
+    ) {
+      return this.nextTextIndex();
+    }
     if (event.ctrlKey) {
+      // Ignore special cases such as user trying to increase font size or typing special characters
       return;
     }
 
