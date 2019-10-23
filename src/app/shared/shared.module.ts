@@ -5,11 +5,20 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { MaterialManagerModule } from './material-manager.module';
 
-import { PageNotFoundComponent, MainViewComponent } from './components/';
+import {
+  PageNotFoundComponent,
+  MainViewComponent,
+  LessonBrowserComponent,
+} from './components/';
 import { WebviewDirective } from './directives/';
 
 @NgModule({
-  declarations: [PageNotFoundComponent, WebviewDirective, MainViewComponent],
+  declarations: [
+    PageNotFoundComponent,
+    WebviewDirective,
+    MainViewComponent,
+    LessonBrowserComponent,
+  ],
   imports: [CommonModule, TranslateModule, MaterialManagerModule, FormsModule],
   exports: [
     TranslateModule,
@@ -17,6 +26,7 @@ import { WebviewDirective } from './directives/';
     MaterialManagerModule,
     MainViewComponent,
     FormsModule,
+    LessonBrowserComponent,
   ],
 })
 export class SharedModule {}

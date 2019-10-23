@@ -1,12 +1,9 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { Router } from '@angular/router';
 
 import {
-  LessonService,
-  SessionService,
   StyleService,
   FileService,
-} from '../../core/services/index';
+} from '../../core/services';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -16,24 +13,20 @@ import {
 })
 export class LevelSelectionComponent implements OnInit {
   @HostBinding('class') componentCssClass;
+  allLessons = [];
   constructor(
-    public lesson: LessonService,
-    public session: SessionService,
-    public router: Router,
     public style: StyleService,
     public file: FileService
   ) {}
-  allLessons = this.lesson.lessons;
   ngOnInit() {
     this.style.font = this.style.font;
+    this.reloadChapters();
   }
 
-  goHome() {
-    this.router.navigateByUrl('/');
-  }
 
   reloadChapters() {
-    this.allLessons = this.lesson.reload();
+    this.allLessons = [];
+    return (this.allLessons = this.file.loadAllDirs());
   }
 
   getChapterCount() {

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import {
-  LessonService,
   SessionService,
   StyleService,
   UserService,
@@ -92,11 +91,10 @@ export class SettingsComponent implements OnInit {
     },
   ];
 
-  allLessons = this.lessons.lessons;
+  // allLessons = this.lessons.lessons;
   Math = Math;
 
   constructor(
-    public lessons: LessonService,
     public session: SessionService,
     public style: StyleService,
     public user: UserService,

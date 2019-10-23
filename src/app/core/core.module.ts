@@ -10,7 +10,6 @@ import {
   StringHelperService,
   StyleService,
   FileService,
-  LessonService,
   ReaderService,
   TypeService,
 } from './services/';
@@ -33,7 +32,6 @@ export class CoreModule {
         StringHelperService,
         StyleService,
         FileService,
-        LessonService,
         ReaderService,
         TypeService,
       ],

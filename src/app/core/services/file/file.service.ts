@@ -16,13 +16,14 @@ export class FileService {
     private stringhelper: StringHelperService
   ) {
     // this.documentsURL = this.electron.app.getPath('documents');
-
     // TODO: this should not be called here...
+    /*
     const buildIn = this.getBuildInCoursesURL();
     if (!FS.existsSync(buildIn)) {
       console.log('buildIn do not exist yet - creating dirURL:', buildIn);
       this.createDefaultFolder(buildIn);
     }
+    */
   }
 
   getDocsURL() {
@@ -38,10 +39,20 @@ export class FileService {
   }
 
   getBuildInCoursesURL() {
-    const appDataURL: string = this.electron.app.getPath('userData'); // ..../Username/Documents
-    const customURL: string = path.join(appDataURL, 'buildIn'); // ..../Username/Documents/FireFinger/buildIn
+    let assetsURL = '';
+    if (this.electron.isDev()) {
+      assetsURL = path.join(
+        this.electron.app.getAppPath(),
+        'src/assets/buildIn'
+      );
+    } else {
+      assetsURL = path.join(
+        this.electron.app.getAppPath(),
+        'dist/assets/buildIn'
+      );
+    }
 
-    return customURL;
+    return assetsURL;
   }
 
   loadDir(dirURL: string): Array<Lesson> {
@@ -86,9 +97,10 @@ export class FileService {
     this.electron.shell.openItem(this.getDocsURL());
   }
 
-  overrideDocsFolder() {
-    this.createDefaultFolder(this.getBuildInCoursesURL());
-  }
+  /*
+    overrideDocsFolder() {
+      this.createDefaultFolder(this.getBuildInCoursesURL());
+    }
 
   createDefaultFolder(dirURL: string) {
     if (!dirURL || dirURL.length < 5) {
@@ -123,6 +135,7 @@ export class FileService {
       );
     }
   }
+  */
 
   copyFiles(fromURL: string, toURL: string) {
     // Usually you could simply use this:

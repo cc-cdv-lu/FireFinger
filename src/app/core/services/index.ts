@@ -5,7 +5,6 @@ export * from './file/file.service';
 
 export * from './reader/reader.service';
 export * from './user/user.service';
-export * from './lesson/lesson.service';
 export * from './session/session.service';
 
 export * from './sound-effect/sound-effect.service';
