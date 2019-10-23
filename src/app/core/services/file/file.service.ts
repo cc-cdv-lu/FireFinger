@@ -14,17 +14,7 @@ export class FileService {
   constructor(
     private electron: ElectronService,
     private stringhelper: StringHelperService
-  ) {
-    // this.documentsURL = this.electron.app.getPath('documents');
-    // TODO: this should not be called here...
-    /*
-    const buildIn = this.getBuildInCoursesURL();
-    if (!FS.existsSync(buildIn)) {
-      console.log('buildIn do not exist yet - creating dirURL:', buildIn);
-      this.createDefaultFolder(buildIn);
-    }
-    */
-  }
+  ) {}
 
   getDocsURL() {
     if (!this.electron.app) {
@@ -84,76 +74,16 @@ export class FileService {
     return output;
   }
 
-  loadAllDirs(): Array<Lesson> {
-    // TODO: seperate build in courses (buildIn) and custom courses (docs)
-    const output: Lesson[] = [
-      ...this.loadDir(this.getDocsURL()),
-      ...this.loadDir(this.getBuildInCoursesURL()),
-    ];
-    return output;
+  loadBuildInLessons(): Array<Lesson> {
+    return [...this.loadDir(this.getBuildInCoursesURL())];
+  }
+
+  loadCustomLessons(): Array<Lesson> {
+    return [...this.loadDir(this.getDocsURL())];
   }
 
   openDocsFolderInExplorer() {
     this.electron.shell.openItem(this.getDocsURL());
-  }
-
-  /*
-    overrideDocsFolder() {
-      this.createDefaultFolder(this.getBuildInCoursesURL());
-    }
-
-  createDefaultFolder(dirURL: string) {
-    if (!dirURL || dirURL.length < 5) {
-      return console.warn('Invalid parameter for mkdir');
-    }
-    console.log('Trying to create', dirURL);
-    if (!FS.existsSync(dirURL)) {
-      FS.mkdirSync(dirURL);
-    }
-
-    let assetsURL = '';
-    if (this.electron.isDev()) {
-      assetsURL = path.join(
-        this.electron.app.getAppPath(),
-        'src/assets/buildIn'
-      );
-    } else {
-      assetsURL = path.join(
-        this.electron.app.getAppPath(),
-        'dist/assets/buildIn'
-      );
-    }
-
-    // If user has not yet had any files in their folder, copy the example files to their folder
-    try {
-      console.log('Will now copy assets from ' + assetsURL + ' to ' + dirURL);
-      this.copyFiles(assetsURL, dirURL);
-    } catch (err) {
-      console.warn(
-        'Error while trying to copy assets over to users folder:',
-        err
-      );
-    }
-  }
-  */
-
-  copyFiles(fromURL: string, toURL: string) {
-    // Usually you could simply use this:
-    // FS.copySync(fromURL, toURL);
-    // But it's broken for MacOS...
-
-    const folderNames = FS.readdirSync(fromURL);
-    for (const folderName of folderNames) {
-      const folderPath = path.join(fromURL, folderName);
-      const fileNames = FS.readdirSync(folderPath);
-      for (const fileName of fileNames) {
-        const destinationPath = path.join(toURL, folderName, fileName);
-        const filePath = path.join(fromURL, folderName, fileName);
-        const file = FS.readFileSync(filePath);
-        FS.createFileSync(destinationPath);
-        FS.writeFileSync(destinationPath, file);
-      }
-    }
   }
 
   loadFolder(destination: Lesson[], dirPath: string, folderName: string) {

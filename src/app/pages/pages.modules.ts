@@ -10,6 +10,7 @@ import {
   SummaryComponent,
   LevelSelectionComponent,
   LoginComponent,
+  MyTextsComponent,
 } from './';
 
 @NgModule({
@@ -19,6 +20,7 @@ import {
     LevelSelectionComponent,
     LoginComponent,
     SummaryComponent,
+    MyTextsComponent,
   ],
   imports: [CommonModule, SharedModule, PagesRoutingModule],
   providers: [SettingsComponent],
@@ -29,6 +31,7 @@ import {
     LevelSelectionComponent,
     LoginComponent,
     SummaryComponent,
+    MyTextsComponent,
   ],
 })
 export class PagesModule {}

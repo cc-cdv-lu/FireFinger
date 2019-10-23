@@ -93,10 +93,16 @@ export class AppComponent implements OnInit {
         shortcut: '3',
       },
       {
+        name: this.translate.get('nav.myTexts'),
+        link: '/my-texts',
+        icon: 'sentiment_satisfied_alt',
+        shortcut: '4',
+      },
+      {
         name: this.translate.get('nav.login'),
         link: '/login',
         icon: 'person',
-        shortcut: '4',
+        shortcut: '5',
       },
     ];
 

@@ -1,16 +1,19 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 
-import { StyleService, FileService } from '../../core/services';
+import {
+  StyleService,
+  FileService,
+} from '../../core/services';
 
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: 'level-selection',
-  templateUrl: './level-selection.component.html',
-  styleUrls: ['./level-selection.component.scss'],
+  selector: 'my-texts',
+  templateUrl: './my-texts.component.html',
+  styleUrls: ['./my-texts.component.scss'],
 })
-export class LevelSelectionComponent implements OnInit {
+export class MyTextsComponent implements OnInit {
   @HostBinding('class') componentCssClass;
-  allLessons = [];
+  customTexts = [];
   constructor(public style: StyleService, public file: FileService) {}
   ngOnInit() {
     this.style.font = this.style.font;
@@ -18,13 +21,14 @@ export class LevelSelectionComponent implements OnInit {
   }
 
   reloadChapters() {
-    this.allLessons = [];
-    return (this.allLessons = this.file.loadBuildInLessons());
+    this.customTexts = [];
+    // TODO: change from allDirs to custom dirs
+    return (this.customTexts = this.file.loadCustomLessons());
   }
 
   getChapterCount() {
     let count = 0;
-    for (const lesson of this.allLessons) {
+    for (const lesson of this.customTexts) {
       count += lesson.chapters.length;
     }
     return count;

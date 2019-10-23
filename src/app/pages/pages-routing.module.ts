@@ -8,6 +8,7 @@ import {
   SummaryComponent,
   LevelSelectionComponent,
   LoginComponent,
+  MyTextsComponent,
 } from './';
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'levels',
     component: LevelSelectionComponent,
+  },
+  {
+    path: 'my-texts',
+    component: MyTextsComponent,
   },
   {
     path: 'login',

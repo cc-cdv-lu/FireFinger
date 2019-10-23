@@ -1,22 +1,3 @@
 <div class="container" [ngClass]="style.theme">
-  <mat-grid-list cols="2" rowHeight="4rem">
-    <mat-grid-tile>
-      <button mat-raised-button color="accent" (click)="reloadChapters()">
-        <mat-icon>replay</mat-icon>
-        {{ getChapterCount() }} {{ 'general.chaptersLoaded' | translate }}
-      </button>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <button
-        mat-raised-button
-        color="accent"
-        (click)="file.openDocsFolderInExplorer()"
-        attr.aria-label="{{ 'chapterView.openFolder' | translate }}"
-      >
-        <mat-icon>folder</mat-icon>
-      </button>
-    </mat-grid-tile>
-  </mat-grid-list>
-
   <lesson-browser [lessons]="allLessons"></lesson-browser>
 </div>
