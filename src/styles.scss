@@ -11,23 +11,24 @@ html {
   margin: 0;
   padding: 0;
   height: 100%;
-  .appContainer {
-    min-height: 100%;
-  }
   background-color: black;
 }
 
 * {
   /*Replace with your custom font*/
-  font-family: Verdana, sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
   /*Add the !important to overwrite all elements*/
 
   /* overflow debugging */
-  //border: 1px solid #f00 !important;
+  // border: 1px solid #f00 !important;
 }
 
 html {
   font-size: 20px;
+
+  .appContainer {
+    min-height: 100%;
+  }
 
   .container {
     width: 100%;

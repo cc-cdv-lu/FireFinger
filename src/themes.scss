@@ -4,7 +4,7 @@
 @import '~@angular/material/theming';
 @include mat-core(); // Typography
 $custom-typography: mat-typography-config(
-  $font-family: Verdana,
+  $font-family: Roboto,
   $headline: mat-typography-level(24px, 48px, 400),
   $body-1: mat-typography-level(16px, 24px, 400),
 );
@@ -82,7 +82,8 @@ $pink-theme: mat-dark-theme($pink-primary, $pink-accent, $pink-warn);
   @include angular-material-theme($pink-theme);
   background-color: mat-color($pink-primary, A400);
 
-  .prev,.next {
+  .prev,
+  .next {
     color: black;
   }
 
@@ -114,7 +115,7 @@ $by-theme: mat-dark-theme($by-primary, $by-accent, $by-warn);
 .by-theme {
   @include angular-material-theme($by-theme);
   background-color: mat-color($by-primary);
-  border-color: mat-color($by-accent, A400);
+  // border-color: mat-color($by-accent, A400);
   color: mat-color($by-primary, 100);
 
   .highlight {
@@ -165,19 +166,3 @@ $dl-theme: mat-dark-theme($dl-primary, $dl-accent, $dl-warn);
     color: mat-color($dl-accent, A400) !important;
   }
 }
-
-
-/**
-
-
-**/
-/* You can add global styles to this file, and also import other style files */
-html, body {
-  margin: 0;
-  padding: 0;
-
-  height: 100%;
-}
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

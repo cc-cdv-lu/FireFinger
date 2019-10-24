@@ -2,7 +2,6 @@
   class="container"
   [ngClass]="style.theme"
   [style.backgroundColor]="shouldFlash() ? '#ec644b' : ''"
-  
   [attr.lang]="getReadingLang()"
   [attr.aria-label]="getCurrentForBraille() + getNext()"
   tabIndex="0"
@@ -10,17 +9,27 @@
   id="inputLetter"
   aria-hidden="false"
 >
-  <mat-grid-list cols="9" class="viewContainer" [rowHeight]="'8rem'" aria-hidden="true">
+  <mat-grid-list
+    cols="9"
+    class="viewContainer"
+    [rowHeight]="'8rem'"
+    aria-hidden="true"
+  >
     <mat-grid-tile class="textTile HUGE" colspan="9" rowspan="3">
-      <span class="HUGE prev"> {{ getPrev() }}&lrm; </span>
+      <span class="HUGE prev" [ngStyle]="{ 'font-family': style.fontFamily }">
+        {{ getPrev() }}&lrm;
+      </span>
       <span
         class="HUGE current highlight"
         [ngClass]="{ hideFocus: shouldHideFocus() }"
+        [ngStyle]="{ 'font-family': style.fontFamily }"
         color="accent"
       >
         {{ getCurrentWithHighlight() }}
       </span>
-      <span class="HUGE next"> &lrm;{{ getNext() }} </span>
+      <span class="HUGE next" [ngStyle]="{ 'font-family': style.fontFamily }">
+        &lrm;{{ getNext() }}
+      </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="9" rowSpan="1" [style.color]="'accent'">
       <h3 class="highlight" [lang]="translate.currentLang">

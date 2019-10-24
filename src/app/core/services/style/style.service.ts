@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ElectronService } from '../electron/electron.service';
 
 const FONT_KEY = 'FONT';
+const FONT_FAMILY_KEY = 'FONT_FAMILY';
 const THEME_KEY = 'THEME';
 const WARNING_FLASH = 'WARNING_FLASH';
 const HIDE_FOCUS = 'HIDE_FOCUS';
@@ -12,6 +13,15 @@ const HIDE_FOCUS = 'HIDE_FOCUS';
 export class StyleService {
   constructor(private electron: ElectronService) {}
 
+  fontFamilies = [
+    'Verdana',
+    'Roboto',
+    'Helvetica Neue',
+    'Courier New',
+    'Times New Roman',
+    'Arial',
+    'Arial Black',
+  ];
   themes = [
     /*
     {
@@ -90,6 +100,27 @@ export class StyleService {
     }
     if (this.electron.config) {
       this.electron.config.set(WARNING_FLASH, v);
+    }
+  }
+
+  get font_family() {
+    let c: any;
+    if (this.electron.config) {
+      c = this.electron.config.get(FONT_FAMILY_KEY);
+    }
+    if (c === undefined) {
+      c = this.fontFamilies[0];
+    }
+    return c;
+  }
+  set font_family(v: string) {
+    console.log('Setting font family...');
+    if (v === null || v === undefined) {
+      return;
+    }
+    if (this.electron.config) {
+      this.electron.config.set(FONT_FAMILY_KEY, v);
+      console.log('Font family set...');
     }
   }
 

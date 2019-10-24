@@ -88,6 +88,32 @@
             <p>{{ 'settings.style.fontshortcut' | translate }}</p>
           </mat-grid-tile>
         </mat-grid-list>
+
+        <mat-grid-list cols="9">
+          <mat-grid-tile colspan="2">
+            <h5>
+              {{ 'settings.style.fontFamily' | translate }}
+            </h5>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="4"> <p></p> </mat-grid-tile>
+          <mat-grid-tile colspan="3">
+            <mat-select
+              placeholder="{{ 'settings.style.fontFamily' | translate }}"
+              [(value)]="style.fontFamily"
+            >
+              <mat-option
+                [ngStyle]="{ 'font-family': fontF + ' !important' }"
+                *ngFor="let fontF of style.fontFamilies"
+                [value]="fontF"
+              >
+                {{ fontF }}
+              </mat-option>
+            </mat-select>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <p [ngStyle]="{ 'font-family': style.fontFamily }">
+          value of thing is now {{ style.fontFamily }}
+        </p>
       </section>
     </mat-expansion-panel>
 

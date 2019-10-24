@@ -82,6 +82,7 @@
       "colorscheme": "Change color scheme",
       "description": "Adjust colors and font size",
       "errorwarning": "Flash screen red when user mistyped letter",
+      "fontFamily": "Font family",
       "fontshortcut": "Can also be changed via Ctrl + (+) or Ctrl + (arrow up).",
       "fontsize": "Font size",
       "hideFocus": "Hide focus outline when input is focused",

@@ -24,8 +24,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class MainViewComponent implements OnInit {
   @HostBinding('class') componentCssClass;
-  // VIEW = VIEW;
-  // view: VIEW = VIEW.LINE;
   warningText = '';
   areSettingsOpen = false;
   constructor(
@@ -58,6 +56,8 @@ export class MainViewComponent implements OnInit {
     this.view = VIEW.LINE;
 
     document.documentElement.style.fontSize = '20px';
+
+    console.log('Using font:', this.style.font_family);
 
     // this.reader.play('FireFinger', 2);
     setTimeout(() => {
@@ -109,6 +109,10 @@ export class MainViewComponent implements OnInit {
 
   shouldHideFocus() {
     return this.style.hide_focus;
+  }
+
+  getFontFamily() {
+    return this.style.font_family;
   }
 
   getWarningText() {
