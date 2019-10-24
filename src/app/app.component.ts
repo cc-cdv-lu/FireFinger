@@ -110,7 +110,7 @@ export class AppComponent implements OnInit {
       const namePromise = new Promise((resolve, reject) => {
         resolve(username);
       });
-      this.routerLinks[3].name = username
+      this.routerLinks[4].name = username
         ? namePromise
         : this.translate.get('nav.login');
     });
