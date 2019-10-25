@@ -26,6 +26,7 @@ export class StyleService {
     'Courier New',
     'Helvetica Neue',
     'Neue Haas Grotesk Text Pro',
+    'Noto Sans',
     'OpenDyslexic',
     'Roboto',
     'Times',

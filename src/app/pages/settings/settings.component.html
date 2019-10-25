@@ -331,9 +331,8 @@
   <mat-card class="infoBox">
     <mat-card-header>
       <mat-card-title>
-        <img mat-card-avatar src="assets/icons/png/64x64.png" /> FireFinger v{{
-          version
-        }}
+        <img mat-card-avatar src="assets/icons/png/64x64.png" />
+        FireFinger v{{ version }}
       </mat-card-title>
       <mat-card-subtitle>
         <p>{{ 'settings.about.title' | translate }}</p>
@@ -387,9 +386,11 @@
         </mat-grid-tile>
         <mat-grid-tile colspan="1"> </mat-grid-tile>
 
-        <mat-grid-tile colspan="3"> </mat-grid-tile>
-        <mat-grid-tile colspan="2">
-          {{ 'settings.about.wiki' | translate }}
+        <mat-grid-tile colspan="2"> </mat-grid-tile>
+        <mat-grid-tile colspan="4">
+          <p class="smallText">
+            {{ 'settings.about.wiki' | translate }}
+          </p>
         </mat-grid-tile>
         <mat-grid-tile colspan="2">
           <a
@@ -402,11 +403,13 @@
             Wiki
           </a>
         </mat-grid-tile>
-        <mat-grid-tile colspan="3"> </mat-grid-tile>
+        <mat-grid-tile colspan="2"> </mat-grid-tile>
 
         <mat-grid-tile colspan="7">
-          Developped by Centre pour le développement des compétences relatives à
-          la vue
+          <p class="smallText">
+            Developped by Centre pour le développement des compétences relatives à
+            la vue
+          </p>
         </mat-grid-tile>
         <mat-grid-tile colspan="3">
           <img mat-card-image class="cdv" src="assets/img/cdv.png" />

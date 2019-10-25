@@ -89,13 +89,24 @@ html {
     height: 100%;
   }
 
+  .mat-select {
+    margin: 3px;
+    padding: 5px;
+    outline: 1px solid white;
+  }
+
   .mat-select-content {
     line-height: 1.5rem !important;
     font-size: 1rem !important;
   }
 
   .mat-select-panel {
-    min-height: 30vh;
+    min-height: 48rem;
+  }
+
+  .mat-option {
+    font-size: 1rem !important;
+    line-height: 2rem !important;
   }
 
   mat-progress-bar {
@@ -114,10 +125,23 @@ html {
     line-height: 2rem !important;
   }
 
+  .mat-card-avatar {
+    display: inline-block;
+    height: 3rem;
+    width: 3rem;
+    vertical-align: middle;
+  }
+
   mat-nav-list {
     a {
       height: 2em !important;
     }
+  }
+
+  .smallText {
+    font-size: 1rem !important;
+    line-height: 1rem !important;
+
   }
 
   mat-toolbar {
