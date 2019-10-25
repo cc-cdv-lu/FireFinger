@@ -1,6 +1,7 @@
 {
   "chapterView": {
     "chapters": "Chapitres:",
+    "letterCount": "Nombre de lettres",
     "openFolder": "Ouvrir le dossier FireFinger dans l'Explorateur",
     "startChapter": "Commencer chaptire"
   },
