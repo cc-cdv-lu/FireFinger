@@ -57,7 +57,7 @@ export class MainViewComponent implements OnInit {
 
     document.documentElement.style.fontSize = '20px';
 
-    console.log('Using font:', this.style.font_family);
+    // console.log('Using font:', this.style.font_family);
 
     // this.reader.play('FireFinger', 2);
     setTimeout(() => {
@@ -109,10 +109,6 @@ export class MainViewComponent implements OnInit {
 
   shouldHideFocus() {
     return this.style.hide_focus;
-  }
-
-  getFontFamily() {
-    return this.style.font_family;
   }
 
   getWarningText() {

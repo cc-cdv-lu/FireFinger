@@ -11,7 +11,10 @@ const HIDE_FOCUS = 'HIDE_FOCUS';
   providedIn: 'root',
 })
 export class StyleService {
-  constructor(private electron: ElectronService) {}
+  private _fontFamily: string;
+  constructor(private electron: ElectronService) {
+    console.log('Font family:', this.fontFamily);
+  }
 
   fontFamilies = [
     'Verdana',
@@ -102,26 +105,25 @@ export class StyleService {
       this.electron.config.set(WARNING_FLASH, v);
     }
   }
-
-  get font_family() {
-    let c: any;
-    if (this.electron.config) {
-      c = this.electron.config.get(FONT_FAMILY_KEY);
+  get fontFamily() {
+    if (this.electron.config && this._fontFamily === undefined) {
+      this._fontFamily = this.electron.config.get(FONT_FAMILY_KEY);
+      console.log('fontFamily:', this._fontFamily);
     }
-    if (c === undefined) {
-      c = this.fontFamilies[0];
+    if (this._fontFamily === undefined) {
+      this._fontFamily = this.fontFamilies[0];
     }
-    return c;
+    return this._fontFamily;
   }
-  set font_family(v: string) {
-    console.log('Setting font family...');
+  set fontFamily(v: string) {
     if (v === null || v === undefined) {
       return;
     }
     if (this.electron.config) {
       this.electron.config.set(FONT_FAMILY_KEY, v);
-      console.log('Font family set...');
     }
+    this._fontFamily = v;
+    console.log('Font family now:', this._fontFamily);
   }
 
   get hide_focus() {

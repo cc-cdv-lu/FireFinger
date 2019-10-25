@@ -27,7 +27,10 @@
       >
         {{ getCurrentWithHighlight() }}
       </span>
-      <span class="HUGE next" [ngStyle]="{ 'font-family': style.fontFamily }">
+      <span
+        class="HUGE next"
+        [ngStyle]="{ 'font-family': style.fontFamily }"
+      >
         &lrm;{{ getNext() }}
       </span>
     </mat-grid-tile>
