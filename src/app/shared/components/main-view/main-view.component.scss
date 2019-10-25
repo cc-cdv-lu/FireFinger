@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .viewContainer {
+    .guideline {
+      border-bottom: 5px solid lightgray;
+    }
+    .textTile {
+      overflow: visible;
+    }
+
+    .prev {
+      width: 100%;
+      //text-overflow: ellipsis;
+      /* Required for text-overflow to do anything */
+      white-space: nowrap;
+      overflow: hidden;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .current {
+    }
+
+    .next {
+      width: 100%;
+      position: relative;
+      text-overflow: clip;
+      // text-overflow: ellipsis;
+      /* Required for text-overflow to do anything */
+      white-space: nowrap;
+      overflow: hidden;
+      text-align: left;
+    }
+  }
+}

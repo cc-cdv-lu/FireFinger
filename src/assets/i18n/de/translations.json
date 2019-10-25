@@ -1,6 +1,7 @@
 {
   "chapterView": {
     "chapters": "Kapitel:",
+    "letterCount": "Buchstaben",
     "openFolder": "FireFinger-Ordner im Explorer öffnen",
     "startChapter": "Starte Kapitel"
   },
@@ -28,6 +29,7 @@
     "home": "Start",
     "levels": "Kapitel",
     "login": "Anmeldung",
+    "myTexts": "Meine Texte",
     "settings": "Einstellungen",
     "summary": "Zusammenfassung",
     "title": "Navigation"
@@ -81,9 +83,12 @@
       "colorscheme": "Ändern Sie das Farbschema",
       "description": "Passen Sie Farben und Schriftgröße an",
       "errorwarning": "Rot blinken, wenn Benutzer sich vertippt",
+      "fontFamily": "Schriftart",
+      "fontFamilyNote": "Um zu funktionieren, müssen die Schriften installiert sein. Besuchen Sie unser Wiki, um sie herunterzuladen:",
       "fontshortcut": "Kann auch über Ctrl + (+) oder Ctrl + (Pfeil oben) geändert werden.",
       "fontsize": "Schriftgröße",
       "hideFocus": "Blende die Fokuskontur aus, wenn die Eingabe aktiv ist",
+      "showGuideline": "Leitlinie anzeigen",
       "theme": "Darstellung",
       "title": "Stil"
     },

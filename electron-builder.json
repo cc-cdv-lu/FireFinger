@@ -1,6 +1,5 @@
 {
   "productName": "FireFinger",
-  "appId": "lu.cdv.hoffmann.firefinger",
   "directories": {
     "output": "release/"
   },

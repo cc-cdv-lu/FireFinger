@@ -1,13 +1,16 @@
+import { OverlayContainer } from '@angular/cdk/overlay';
+
 import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ElectronService } from './services/electron.service';
+import {
+  ElectronService,
+  StyleService,
+  UserService,
+  SessionService,
+} from './core/services/index';
 import { TranslateService } from '@ngx-translate/core';
 
-import { OverlayContainer } from '@angular/cdk/overlay';
-import { StyleService } from './services/style.service';
-import { SettingsComponent } from './components/settings/settings.component';
-import { UserService } from './services/user.service';
-import { SessionService } from './services/session.service';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @Component({
   selector: 'app-root',
@@ -90,10 +93,16 @@ export class AppComponent implements OnInit {
         shortcut: '3',
       },
       {
+        name: this.translate.get('nav.myTexts'),
+        link: '/my-texts',
+        icon: 'sentiment_satisfied_alt',
+        shortcut: '4',
+      },
+      {
         name: this.translate.get('nav.login'),
         link: '/login',
         icon: 'person',
-        shortcut: '4',
+        shortcut: '5',
       },
     ];
 
@@ -101,7 +110,7 @@ export class AppComponent implements OnInit {
       const namePromise = new Promise((resolve, reject) => {
         resolve(username);
       });
-      this.routerLinks[3].name = username
+      this.routerLinks[4].name = username
         ? namePromise
         : this.translate.get('nav.login');
     });

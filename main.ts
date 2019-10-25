@@ -16,7 +16,9 @@ function createWindow() {
     y: 0,
     width: size.width,
     height: size.height,
-    icon: path.join(__dirname, 'assets/icons/png/64x64.png'),
+    webPreferences: {
+      nodeIntegration: true,
+    },
   });
 
   if (serve) {
@@ -33,6 +35,12 @@ function createWindow() {
       })
     );
   }
+
+  /*
+  if (serve) {
+    win.webContents.openDevTools();
+  }
+  */
 
   // Emitted when the window is closed.
   win.on('closed', () => {

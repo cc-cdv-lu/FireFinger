@@ -1,42 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from './shared/components';
 
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
-import { LevelSelectionComponent } from './components/level-selection/level-selection.component';
-import { SettingsComponent } from './components/settings/settings.component';
-import { SummaryComponent } from './components/summary/summary.component';
+import { PagesRoutingModule } from './pages/pages-routing.module';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
+    redirectTo: 'home',
+    pathMatch: 'full',
   },
   {
-    path: 'home',
-    component: HomeComponent
+    path: '**',
+    component: PageNotFoundComponent,
   },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'levels',
-    component: LevelSelectionComponent
-  },
-  {
-    path: 'settings',
-    component: SettingsComponent
-  },
-  {
-    path: 'summary',
-    component: SummaryComponent
-  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { useHash: true }), PagesRoutingModule],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

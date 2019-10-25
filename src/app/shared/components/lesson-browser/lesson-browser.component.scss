@@ -1,0 +1,29 @@
+.chapterCard {
+  padding: 0 15vw 0 5vw;
+}
+.playIcon {
+  border: 3px solid white;
+  border-radius: 300px;
+  display: inline;
+  vertical-align: middle;
+}
+
+mat-expansion-panel {
+  margin: 10px;
+  position: relative;
+}
+mat-card {
+  margin: 10px !important;
+  max-width: 80%;
+  max-height: 70%;
+
+  mat-card-title,
+  mat-card-subtitle,
+  mat-card-content {
+    padding-left: 1em;
+  }
+
+  mat-card-title {
+    font-weight: bold;
+  }
+}

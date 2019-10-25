@@ -1,10 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import './cdv_palette.scss';
 @import '~@angular/material/theming';
 @include mat-core(); // Typography
 $custom-typography: mat-typography-config(
-  $font-family: Verdana,
+  $font-family: Roboto,
   $headline: mat-typography-level(24px, 48px, 400),
   $body-1: mat-typography-level(16px, 24px, 400),
 );
@@ -61,6 +62,11 @@ $light-accent: mat-palette($mat-brown, 200);
 $light-warn: mat-palette($mat-deep-orange, 200);
 $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
 
+body,
+html {
+  background-color: white;
+}
+
 .light-theme {
   @include angular-material-theme($light-theme);
 
@@ -82,7 +88,8 @@ $pink-theme: mat-dark-theme($pink-primary, $pink-accent, $pink-warn);
   @include angular-material-theme($pink-theme);
   background-color: mat-color($pink-primary, A400);
 
-  .prev,.next {
+  .prev,
+  .next {
     color: black;
   }
 
@@ -114,13 +121,46 @@ $by-theme: mat-dark-theme($by-primary, $by-accent, $by-warn);
 .by-theme {
   @include angular-material-theme($by-theme);
   background-color: mat-color($by-primary);
-  border-color: mat-color($by-accent, A400);
-  color: mat-color($by-primary, 100) !important;
+  // border-color: mat-color($by-accent, A400);
+  color: mat-color($by-primary, 100);
 
   .highlight {
     color: mat-color($by-accent, A400) !important;
   }
 }
+
+/*
+*
+*  CDV palette
+*
+*/
+$cdv-primary: mat-palette($md-cdvblue, 900); // Dark theme
+$cdv-accent: mat-palette($md-cdvgreen);
+$cdv-warn: mat-palette($md-cdvpink);
+$cdv-background: mat-palette($md-cdvbackground);
+$cdv-theme: mat-dark-theme($cdv-primary, $cdv-accent, $cdv-warn);
+
+.cdv-theme {
+  @include angular-material-theme($cdv-theme);
+  background-color: mat-color($cdv-background, 800);
+  color: mat-color($cdv-primary, 100);
+
+  .highlight {
+    color: mat-color($cdv-accent, A400) !important;
+  }
+  .highlight.mat-raised-button {
+    border: 0.1em solid mat-color($cdv-accent, 700);
+  }
+
+  .mat-progress-bar-fill::after {
+    background-color: mat-color($cdv-warn, 700);
+  }
+
+  .mat-progress-bar-buffer {
+    background: mat-color($cdv-primary, 50);
+  }
+}
+
 /*
 *
 *  TRUE BLACK
@@ -139,7 +179,7 @@ $true-black-theme: mat-dark-theme(
   @include angular-material-theme($true-black-theme);
   background-color: black;
   border-color: mat-color($true-black-accent, A400);
-  color: mat-color($true-black-accent, A400) !important;
+  color: mat-color($true-black-accent, A400);
 
   .highlight {
     color: white !important;
@@ -159,7 +199,7 @@ $dl-theme: mat-dark-theme($dl-primary, $dl-accent, $dl-warn);
   @include angular-material-theme($dl-theme);
   background-color: mat-color($dl-primary);
   border-color: mat-color($dl-accent, A400);
-  color: mat-color($dl-primary, 100) !important;
+  color: mat-color($dl-primary, 100);
 
   .highlight {
     color: mat-color($dl-accent, A400) !important;

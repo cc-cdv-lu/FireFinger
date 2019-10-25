@@ -15,7 +15,7 @@
         aria-controls="tabPanel"
         [attr.aria-selected]="this.router.url === nav.link"        
       >
-        <mat-icon aria-hidden="true">{{ nav.icon }}</mat-icon>
+        <mat-icon color="accent" aria-hidden="true">{{ nav.icon }}</mat-icon>
         {{ nav.name | async }}
         <b aria-hidden="true">[{{nav.shortcut | uppercase }}]</b>
       </a>

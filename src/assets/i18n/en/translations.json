@@ -1,6 +1,7 @@
 {
   "chapterView": {
     "chapters": "Chapters:",
+    "letterCount": "Number of letters",
     "openFolder": "Open FireFinger folder in Explorer",
     "startChapter": "Start chapter"
   },
@@ -28,6 +29,7 @@
     "home": "Start",
     "levels": "Chapters",
     "login": "Login",
+    "myTexts": "My texts",
     "settings": "Settings",
     "summary": "Summary",
     "title": "Navigation"
@@ -81,9 +83,12 @@
       "colorscheme": "Change color scheme",
       "description": "Adjust colors and font size",
       "errorwarning": "Flash screen red when user mistyped letter",
+      "fontFamily": "Font family",
+      "fontFamilyNote": "Fonts must be installed in order to work. Visit our Wiki to download them:",
       "fontshortcut": "Can also be changed via Ctrl + (+) or Ctrl + (arrow up).",
       "fontsize": "Font size",
       "hideFocus": "Hide focus outline when input is focused",
+      "showGuideline": "Display guideline",
       "theme": "Theme",
       "title": "Style"
     },
