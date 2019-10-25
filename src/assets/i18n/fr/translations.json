@@ -84,6 +84,7 @@
       "description": "Ajuster les couleurs et la taille de la police",
       "errorwarning": "Clignote l'image en rouge lorsque les erreurs d'utilisateur entre unes erreurs",
       "fontFamily": "Police",
+      "fontFamilyNote": "Les polices doivent être installées pour fonctionner. Visitez notre Wiki pour les télécharger :",
       "fontshortcut": "Peut également être modifié via Ctrl + (+) ou Ctrl + (flèche en haut).",
       "fontsize": "Taille de la police",
       "hideFocus": "Masquer le contour du focus lorsque l'entrée est active",

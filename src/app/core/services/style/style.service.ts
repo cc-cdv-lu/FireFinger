@@ -30,6 +30,7 @@ export class StyleService {
     'Noto Sans',
     'OpenDyslexic',
     'Roboto',
+    'Schoulschreft',
     'Times',
     'Times New Roman',
     'Verdana',
