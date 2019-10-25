@@ -134,20 +134,30 @@ $by-theme: mat-dark-theme($by-primary, $by-accent, $by-warn);
 *  CDV palette
 *
 */
-$cdv-primary: mat-palette($md-cdvblue); // Dark theme
-$cdv-accent: mat-palette($md-cdvgreen, A200, A100, A400);
+$cdv-primary: mat-palette($md-cdvblue, 900); // Dark theme
+$cdv-accent: mat-palette($md-cdvgreen);
 $cdv-warn: mat-palette($md-cdvpink);
 $cdv-background: mat-palette($md-cdvbackground);
 $cdv-theme: mat-dark-theme($cdv-primary, $cdv-accent, $cdv-warn);
 
 .cdv-theme {
   @include angular-material-theme($cdv-theme);
-  background-color: mat-color($cdv-background);
-  // border-color: mat-color($by-accent, A400);
-  color: mat-color($cdv-primary);
+  background-color: mat-color($cdv-background, 800);
+  color: mat-color($cdv-primary, 100);
 
   .highlight {
     color: mat-color($cdv-accent, A400) !important;
+  }
+  .highlight.mat-raised-button {
+    border: 0.1em solid mat-color($cdv-accent, 700);
+  }
+
+  .mat-progress-bar-fill::after {
+    background-color: mat-color($cdv-warn, 700);
+  }
+
+  .mat-progress-bar-buffer {
+    background: mat-color($cdv-primary, 50);
   }
 }
 
