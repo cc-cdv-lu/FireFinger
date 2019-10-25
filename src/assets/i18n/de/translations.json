@@ -87,6 +87,7 @@
       "fontshortcut": "Kann auch über Ctrl + (+) oder Ctrl + (Pfeil oben) geändert werden.",
       "fontsize": "Schriftgröße",
       "hideFocus": "Blende die Fokuskontur aus, wenn die Eingabe aktiv ist",
+      "showGuideline": "Leitlinie anzeigen",
       "theme": "Darstellung",
       "title": "Stil"
     },

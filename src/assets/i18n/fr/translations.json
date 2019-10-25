@@ -87,6 +87,7 @@
       "fontshortcut": "Peut également être modifié via Ctrl + (+) ou Ctrl + (flèche en haut).",
       "fontsize": "Taille de la police",
       "hideFocus": "Masquer le contour du focus lorsque l'entrée est active",
+      "showGuideline": "Monter ligne de guidage",
       "theme": "Thème",
       "title": "Style"
     },

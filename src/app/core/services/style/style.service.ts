@@ -6,6 +6,7 @@ const FONT_FAMILY_KEY = 'FONT_FAMILY';
 const THEME_KEY = 'THEME';
 const WARNING_FLASH = 'WARNING_FLASH';
 const HIDE_FOCUS = 'HIDE_FOCUS';
+const GUIDELINE = 'GUIDELINE';
 
 @Injectable({
   providedIn: 'root',
@@ -46,6 +47,10 @@ export class StyleService {
     {
       name: 'Light',
       id: 'light-theme',
+    },
+    {
+      name: 'CDV',
+      id: 'cdv-theme',
     },
     {
       name: 'Pink',
@@ -111,6 +116,24 @@ export class StyleService {
     }
     if (this.electron.config) {
       this.electron.config.set(WARNING_FLASH, v);
+    }
+  }
+  get show_guideline() {
+    let c: any;
+    if (this.electron.config) {
+      c = this.electron.config.get(GUIDELINE);
+    }
+    if (c === undefined) {
+      c = false;
+    }
+    return c;
+  }
+  set show_guideline(v: boolean) {
+    if (v == null || v === undefined) {
+      return;
+    }
+    if (this.electron.config) {
+      this.electron.config.set(GUIDELINE, v);
     }
   }
   get fontFamily() {

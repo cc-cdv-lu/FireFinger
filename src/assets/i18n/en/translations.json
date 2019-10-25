@@ -87,6 +87,7 @@
       "fontshortcut": "Can also be changed via Ctrl + (+) or Ctrl + (arrow up).",
       "fontsize": "Font size",
       "hideFocus": "Hide focus outline when input is focused",
+      "showGuideline": "Display guideline",
       "theme": "Theme",
       "title": "Style"
     },

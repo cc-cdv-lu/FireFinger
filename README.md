@@ -41,6 +41,7 @@ All notable changes to this project will be documented in this file.
   - Added font selector
   - Many improvements for people using braille displays
   - Added new and improved german course
+  - Guideline can now be turned off
 - Other
   - Upgrade to newest angular-electron and Angular 8
   - Fixes white background on bottom of pages

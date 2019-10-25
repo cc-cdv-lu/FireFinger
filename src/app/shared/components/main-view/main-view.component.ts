@@ -111,6 +111,10 @@ export class MainViewComponent implements OnInit {
     return this.style.hide_focus;
   }
 
+  shouldShowGuideline() {
+    return this.style.show_guideline;
+  }
+
   getWarningText() {
     let output = '';
     if (!this.session) {

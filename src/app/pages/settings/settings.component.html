@@ -57,6 +57,21 @@
         <mat-grid-list cols="10">
           <mat-grid-tile
             colspan="9"
+            (click)="style.show_guideline = !style.show_guideline"
+          >
+            <p>{{ 'settings.style.showGuideline' | translate }}</p>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1">
+            <mat-slide-toggle color="warn" [(ngModel)]="style.show_guideline">
+            </mat-slide-toggle>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </section>
+
+      <section class="section">
+        <mat-grid-list cols="10">
+          <mat-grid-tile
+            colspan="9"
             (click)="style.hide_focus = !style.hide_focus"
           >
             <p>{{ 'settings.style.hideFocus' | translate }}</p>
@@ -407,8 +422,8 @@
 
         <mat-grid-tile colspan="7">
           <p class="smallText">
-            Developped by Centre pour le développement des compétences relatives à
-            la vue
+            Developped by Centre pour le développement des compétences relatives
+            à la vue
           </p>
         </mat-grid-tile>
         <mat-grid-tile colspan="3">

@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import './cdv_palette.scss';
 @import '~@angular/material/theming';
 @include mat-core(); // Typography
 $custom-typography: mat-typography-config(
@@ -61,7 +62,8 @@ $light-accent: mat-palette($mat-brown, 200);
 $light-warn: mat-palette($mat-deep-orange, 200);
 $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
 
-body,html {
+body,
+html {
   background-color: white;
 }
 
@@ -126,6 +128,29 @@ $by-theme: mat-dark-theme($by-primary, $by-accent, $by-warn);
     color: mat-color($by-accent, A400) !important;
   }
 }
+
+/*
+*
+*  CDV palette
+*
+*/
+$cdv-primary: mat-palette($md-cdvblue); // Dark theme
+$cdv-accent: mat-palette($md-cdvgreen, A200, A100, A400);
+$cdv-warn: mat-palette($md-cdvpink);
+$cdv-background: mat-palette($md-cdvbackground);
+$cdv-theme: mat-dark-theme($cdv-primary, $cdv-accent, $cdv-warn);
+
+.cdv-theme {
+  @include angular-material-theme($cdv-theme);
+  background-color: mat-color($cdv-background);
+  // border-color: mat-color($by-accent, A400);
+  color: mat-color($cdv-primary);
+
+  .highlight {
+    color: mat-color($cdv-accent, A400) !important;
+  }
+}
+
 /*
 *
 *  TRUE BLACK

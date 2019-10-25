@@ -3,8 +3,10 @@
   flex-direction: column;
   justify-content: center;
   .viewContainer {
-    .textTile {
+    .guideline {
       border-bottom: 5px solid lightgray;
+    }
+    .textTile {
       overflow: visible;
     }
 

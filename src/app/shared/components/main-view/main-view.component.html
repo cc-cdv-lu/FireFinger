@@ -16,7 +16,12 @@
     [rowHeight]="'8rem'"
     aria-hidden="true"
   >
-    <mat-grid-tile class="textTile HUGE" colspan="9" rowspan="3">
+    <mat-grid-tile
+      class="textTile HUGE"
+      colspan="9"
+      rowspan="3"
+      [ngClass]="shouldShowGuideline() ? 'guideline' : ''"
+    >
       <span class="HUGE prev" [ngStyle]="{ 'font-family': style.fontFamily }">
         {{ getPrev() }}&lrm;
       </span>
