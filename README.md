@@ -31,19 +31,34 @@ Custom dictations can be put into **%appdata%/FireFinger/docs**/_subfolder/examp
 All notable changes to this project will be documented in this file.
 
 ### [Future plans]
-  - Preconfigured courses and user defined courses will be divided into separate sections and folders
+
+- TBA
+
+### [1.1.0] First major update
+
+- Features
+  - Integrated courses and custom courses are now separated. You'll find your own texts in "My texts"
+  - Added font selector
+  - Many improvements for people using braille displays
+  - Added new and improved german course
+- Other
+  - Upgrade to newest angular-electron and Angular 8
+  - Fixes white background on bottom of pages
+  - Many more fixes, ugliness cleanup and much more
 
 ### [1.0.5] More accessibility features
-  - Features:
-    - New colors schemes to support edge filter glasses (Kantenfilterbrillen)
-    - Added accesskey support
-    - Saving previous session - can continue where left off
+
+- Features:
+  - New colors schemes to support edge filter glasses (Kantenfilterbrillen)
+  - Added accesskey support
+  - Saving previous session - can continue where left off
 
 ### [1.0.4] Visual changes
-  - Features
-    - Improved about section
-    - New logo
-    - Improved chapter view descriptions
+
+- Features
+  - Improved about section
+  - New logo
+  - Improved chapter view descriptions
 
 ### [1.0.3] Usability and user experience improvements
 
