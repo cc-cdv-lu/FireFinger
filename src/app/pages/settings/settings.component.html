@@ -17,7 +17,7 @@
 
       <section class="section">
         <h4>{{ 'settings.style.theme' | translate }}</h4>
-        <mat-grid-list cols="4" rowHeight="4rem">
+        <mat-grid-list cols="3" rowHeight="4rem">
           <mat-grid-tile *ngFor="let theme of style.themes">
             <button
               mat-raised-button
@@ -102,18 +102,16 @@
               [(value)]="style.fontFamily"
             >
               <mat-option
-                [ngStyle]="{ 'font-family': fontF + ' !important' }"
                 *ngFor="let fontF of style.fontFamilies"
                 [value]="fontF"
               >
-                {{ fontF }}
+                <p [ngStyle]="{ 'font-family': fontF }">
+                  {{ fontF }}
+                </p>
               </mat-option>
             </mat-select>
           </mat-grid-tile>
         </mat-grid-list>
-        <p [ngStyle]="{ 'font-family': style.fontFamily }">
-          value of thing is now {{ style.fontFamily }}
-        </p>
       </section>
     </mat-expansion-panel>
 

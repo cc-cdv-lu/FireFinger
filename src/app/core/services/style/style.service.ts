@@ -17,13 +17,20 @@ export class StyleService {
   }
 
   fontFamilies = [
-    'Verdana',
-    'Roboto',
-    'Helvetica Neue',
-    'Courier New',
-    'Times New Roman',
     'Arial',
     'Arial Black',
+    'Calibri',
+    'Calibri Light',
+    'Consolas',
+    'Comic Sans MS',
+    'Courier New',
+    'Helvetica Neue',
+    'Neue Haas Grotesk Text Pro',
+    'OpenDyslexic',
+    'Roboto',
+    'Times',
+    'Times New Roman',
+    'Verdana',
   ];
   themes = [
     /*

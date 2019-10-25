@@ -95,7 +95,7 @@ html {
   }
 
   .mat-select-panel {
-    overflow: visible !important;
+    min-height: 30vh;
   }
 
   mat-progress-bar {

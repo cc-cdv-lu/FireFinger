@@ -8,6 +8,7 @@
   role="textbox"
   id="inputLetter"
   aria-hidden="false"
+  [style.outline]="shouldHideFocus() ? 'none' : '1px solid yellow'"
 >
   <mat-grid-list
     cols="9"
@@ -21,16 +22,12 @@
       </span>
       <span
         class="HUGE current highlight"
-        [ngClass]="{ hideFocus: shouldHideFocus() }"
         [ngStyle]="{ 'font-family': style.fontFamily }"
         color="accent"
       >
         {{ getCurrentWithHighlight() }}
       </span>
-      <span
-        class="HUGE next"
-        [ngStyle]="{ 'font-family': style.fontFamily }"
-      >
+      <span class="HUGE next" [ngStyle]="{ 'font-family': style.fontFamily }">
         &lrm;{{ getNext() }}
       </span>
     </mat-grid-tile>

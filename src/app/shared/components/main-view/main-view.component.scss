@@ -2,10 +2,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   .viewContainer {
     .textTile {
-      border-bottom: 5px solid gray;
+      border-bottom: 5px solid lightgray;
+      overflow: visible;
     }
 
     .prev {
@@ -19,11 +19,6 @@
     }
 
     .current {
-      overflow: visible;
-    }
-
-    .hideFocus:focus {
-      outline: none;
     }
 
     .next {
