@@ -1,6 +1,6 @@
 <div class="appContainer" [ngClass]="style.theme">
-  <mat-toolbar class="toolbar" [ngClass]="style.theme">
-    <mat-toolbar-row id="tabPanel" role="tablist">
+  <mat-toolbar class="toolbar tabs" [ngClass]="style.theme">
+    <mat-toolbar-row role="tablist" aria-label="FireFinger Navigation Tabs">
       <div class="fill-remaining-space"></div>
       <a
         mat-raised-button
@@ -8,22 +8,33 @@
         [ngClass]="this.router.url === nav.link ? 'highlight' : ''"
         [style.margin]="'0.5rem'"
         [routerLink]="nav.link"
+        (click)="goTo(nav.link)"
         *ngFor="let nav of routerLinks"
         [attr.aria-label]="nav.name | async"
         [accessKey]="nav.shortcut"
-        role="tab" 
-        aria-controls="tabPanel"
-        [attr.aria-selected]="this.router.url === nav.link"        
+        role="tab"
+        
+        [attr.id]="nav.tabID"
+        [attr.aria-controls]="nav.pageID"
+        [attr.aria-selected]="this.router.url === nav.link"
       >
         <mat-icon color="accent" aria-hidden="true">{{ nav.icon }}</mat-icon>
         {{ nav.name | async }}
-        <b aria-hidden="true">[{{nav.shortcut | uppercase }}]</b>
-      </a>
+        <b aria-hidden="true">[{{ nav.shortcut | uppercase }}]</b>
+    </a>
       <div class="fill-remaining-space"></div>
-      <button mat-raised-button color="warn" (click)="closeApp()" [attr.aria-label]="'general.closeapp'|translate">
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="closeApp()"
+        [attr.aria-label]="'general.closeapp' | translate"
+      >
         <mat-icon aria-hidden="true">close</mat-icon>
       </button>
     </mat-toolbar-row>
   </mat-toolbar>
-  <router-outlet  [ngClass]="style.theme" class="view"></router-outlet>
+  <router-outlet
+    [ngClass]="style.theme"
+    class="view"
+  ></router-outlet>
 </div>

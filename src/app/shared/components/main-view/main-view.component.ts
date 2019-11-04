@@ -10,9 +10,9 @@ import {
   UserService,
   ReaderService,
   VIEW,
-} from '../../../core/services/index';
+} from '../../../core/services';
 
-import { SettingsComponent } from '../../../pages/settings/settings.component';
+import { SettingsComponent } from '../../../pages/';
 
 import { TranslateService } from '@ngx-translate/core';
 

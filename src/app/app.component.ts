@@ -33,6 +33,11 @@ export class AppComponent implements OnInit {
           return this.style.decreaseFont();
       }
     }
+    if (event.code === 'Space') {
+      if (document.activeElement.id.includes('tab-')) {
+        document.activeElement.dispatchEvent(new Event('click'));
+      }
+    }
   }
   constructor(
     public electron: ElectronService,
@@ -79,30 +84,40 @@ export class AppComponent implements OnInit {
         link: '/home',
         icon: 'home',
         shortcut: '1',
+        pageID: 'page-home',
+        tabID: 'tab-1',
       },
       {
         name: this.translate.get('nav.settings'),
         link: '/settings',
         icon: 'settings',
         shortcut: '2',
+        id: 'page-settings',
+        tabID: 'tab-2',
       },
       {
         name: this.translate.get('nav.levels'),
         link: '/levels',
         icon: 'bookmarks',
         shortcut: '3',
+        id: 'page-levels',
+        tabID: 'tab-3',
       },
       {
         name: this.translate.get('nav.myTexts'),
         link: '/my-texts',
         icon: 'sentiment_satisfied_alt',
         shortcut: '4',
+        id: 'page-my-texts',
+        tabID: 'tab-4',
       },
       {
         name: this.translate.get('nav.login'),
         link: '/login',
         icon: 'person',
         shortcut: '5',
+        id: 'page-login',
+        tabID: 'tab-5',
       },
     ];
 
@@ -132,6 +147,9 @@ export class AppComponent implements OnInit {
     } else {
       window.close();
     }
+  }
+  goTo(url: string) {
+    this.router.navigateByUrl(url);
   }
   /* DEBUG stuff */
 

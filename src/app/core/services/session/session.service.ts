@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ElectronService } from '../electron/electron.service';
@@ -142,6 +142,9 @@ export class SessionService {
     // console.log('Key Event:', event);
     if (pressedKey === 'Escape') {
       return this.reset();
+    }
+    if (document.activeElement.id !== 'inputLetter') {
+      return;
     }
     if (this.shouldIgnore(pressedKey) || event.altKey) {
       return;
