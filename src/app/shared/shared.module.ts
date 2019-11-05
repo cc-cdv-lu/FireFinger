@@ -9,7 +9,7 @@ import {
   PageNotFoundComponent,
   MainViewComponent,
   LessonBrowserComponent,
-} from './components/';
+} from '.';
 import { WebviewDirective } from './directives/';
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Lesson, SessionService } from '../../../core/services';
+import { Lesson, SessionService } from '../../../core';
 import { Router } from '@angular/router';
 
 @Component({

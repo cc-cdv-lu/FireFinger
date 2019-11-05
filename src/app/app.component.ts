@@ -7,10 +7,10 @@ import {
   StyleService,
   UserService,
   SessionService,
-} from './core/services/index';
+} from './core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { SettingsComponent } from './pages/settings/settings.component';
+import { SettingsComponent } from './pages';
 
 @Component({
   selector: 'app-root',

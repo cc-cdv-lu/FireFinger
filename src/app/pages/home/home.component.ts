@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 
-import { StyleService, SessionService, StatisticsService } from '../../core/services/index';
+import { StyleService, SessionService, StatisticsService } from '../../core';
 
 @Component({
   selector: 'app-home',

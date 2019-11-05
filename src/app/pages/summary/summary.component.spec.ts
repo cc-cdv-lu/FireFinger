@@ -7,7 +7,7 @@ import {
   SessionService,
   StyleService,
   ElectronService,
-} from '../../core/services/index';
+} from '../../core/index';
 
 import { MaterialManagerModule } from '../../shared/material-manager.module';
 import { RouterTestingModule } from '@angular/router/testing';

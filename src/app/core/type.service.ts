@@ -1,6 +1,3 @@
-import { Injectable } from '@angular/core';
-
-
 export class Lesson {
   name: string;
   chapters: Array<Chapter>;
@@ -24,13 +21,4 @@ export enum VIEW {
   CHAR,
   WORD,
   LINE
-}
-
-
-@Injectable({
-  providedIn: 'root'
-})
-export class TypeService {
-
-  constructor() { }
 }

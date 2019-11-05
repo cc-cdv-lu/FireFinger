@@ -2,12 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LevelSelectionComponent } from './level-selection.component';
 import {
-  LessonService,
   SessionService,
   ElectronService,
   StyleService,
   FileService,
-} from '../../core/services/index';
+} from '../../core';
 import { MaterialManagerModule } from '../../shared/material-manager.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';
@@ -25,7 +24,6 @@ describe('LevelSelectionComponent', () => {
         TranslateModule.forRoot(),
       ],
       providers: [
-        LessonService,
         SessionService,
         StyleService,
         FileService,

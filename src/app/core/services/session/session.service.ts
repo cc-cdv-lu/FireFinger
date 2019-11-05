@@ -11,7 +11,7 @@ import {
   SOUNDS,
 } from '../sound-effect/sound-effect.service';
 
-import { Lesson, Chapter, VIEW } from '../type/type.service';
+import { Lesson, Chapter, VIEW } from '../../type.service';
 
 const LAST_SESSION_KEY = 'LAST_SESSION';
 const DIFFICULTY_KEY = 'DIFFICULTY';

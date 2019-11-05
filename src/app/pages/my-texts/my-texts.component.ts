@@ -3,7 +3,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import {
   StyleService,
   FileService,
-} from '../../core/services';
+} from '../../core';
 
 @Component({
   // tslint:disable-next-line:component-selector

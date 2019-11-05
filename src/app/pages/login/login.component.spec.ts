@@ -5,7 +5,7 @@ import {
   UserService,
   StyleService,
   StatisticsService,
-} from '../../core/services/index';
+} from '../../core/index';
 
 import { LoginComponent } from './login.component';
 import { MaterialManagerModule } from '../../shared/material-manager.module';

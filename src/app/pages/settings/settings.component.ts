@@ -8,7 +8,7 @@ import {
   ReaderService,
   ElectronService,
   FileService,
-} from '../../core/services/index';
+} from '../../core';
 
 import { AppConfig } from '../../../environments/environment';
 

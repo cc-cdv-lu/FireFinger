@@ -6,7 +6,7 @@ import {
   ElectronService,
   StyleService,
   FileService,
-} from '../../core/services/index';
+} from '../../core/index';
 import { MaterialManagerModule } from '../../shared/material-manager.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';

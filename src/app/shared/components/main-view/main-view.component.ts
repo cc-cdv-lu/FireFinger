@@ -10,7 +10,7 @@ import {
   UserService,
   ReaderService,
   VIEW,
-} from '../../../core/services';
+} from '../../../core';
 
 import { SettingsComponent } from '../../../pages/';
 

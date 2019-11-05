@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ElectronService } from '../electron/electron.service';
 import { StringHelperService } from '../string-helper/string-helper.service';
 
-import { Chapter, Lesson, ChapterType } from '../type/type.service';
+import { Chapter, Lesson, ChapterType } from '../../type.service';
 
 import * as FS from 'fs-extra';
 import * as path from 'path';
