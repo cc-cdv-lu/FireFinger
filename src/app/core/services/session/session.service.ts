@@ -122,7 +122,7 @@ export class SessionService {
       return console.log('No session loaded...');
     }
 
-    if (event.key === 'X' && event.shiftKey && event.ctrlKey) {
+    if (event.key === 'X' && event.ctrlKey && event.altKey) {
       this.focusInput();
       return;
     }
