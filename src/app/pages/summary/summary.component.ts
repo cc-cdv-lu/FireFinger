@@ -41,6 +41,18 @@ export class SummaryComponent implements OnInit {
   ngOnInit() {
     this.loadData();
     this.style.font = this.style.font;
+    this.focusFocus();
+  }
+
+  focusFocus() {
+    setTimeout(() => {
+      const focus = document.getElementById('initFocus');
+      console.log('Focus:', focus);
+      if (focus) {
+        focus.setAttribute('tabindex', '1');
+        focus.focus();
+      }
+    }, 500);
   }
 
   hasTooManyMistakes() {

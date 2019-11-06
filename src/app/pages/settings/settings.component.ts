@@ -130,4 +130,8 @@ export class SettingsComponent implements OnInit {
     this.session.saveDifficulty();
     this.reader.save();
   }
+
+  openLink(url: string) {
+    this.electron.shell.openExternal(url);
+  }
 }

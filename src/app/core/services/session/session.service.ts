@@ -55,7 +55,7 @@ export class SessionService {
     private stringHelper: StringHelperService,
     public reader: ReaderService
   ) {
-    // TODO set up a event system that should trigger the saving of this
+    // TODO: set up a event system that should trigger the saving of this
     let store: any;
     if (this.electron.config) {
       store = this.electron.config.get(DIFFICULTY_KEY);
@@ -75,9 +75,11 @@ export class SessionService {
 
   focusInput() {
     const input = document.getElementById('inputLetter');
-    console.log('User triggered input focus', input);
-    input.setAttribute('tabindex', '1');
-    input.focus();
+    if (input) {
+      input.setAttribute('tabindex', '1');
+      input.focus();
+      console.log('Setting focus to input...');
+    }
   }
 
   onEndOfChapter(event) {

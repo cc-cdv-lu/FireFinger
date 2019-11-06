@@ -13,7 +13,20 @@ export class LessonBrowserComponent implements OnInit {
 
   constructor(public session: SessionService, public router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.focusFocus();
+  }
+
+  focusFocus() {
+    setTimeout(() => {
+      const focus = document.getElementById('initFocus');
+      console.log('Focus:', focus);
+      if (focus) {
+        focus.setAttribute('tabindex', '1');
+        focus.focus();
+      }
+    }, 500);
+  }
 
   goHome() {
     this.router.navigateByUrl('/');

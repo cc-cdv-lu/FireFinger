@@ -1,4 +1,9 @@
-<div  id="page-settings" role="tabpanel"  class="container" [ngClass]="style.theme">
+<div
+  id="page-settings"
+  role="tabpanel"
+  class="container"
+  [ngClass]="style.theme"
+>
   <button mat-raised-button color="accent" (click)="saveSettings()">
     <mat-icon>save</mat-icon>
     {{ 'settings.voice.control.save' | translate }}
@@ -374,47 +379,38 @@
       <mat-grid-list cols="10">
         <mat-grid-tile colspan="1"> </mat-grid-tile>
         <mat-grid-tile colspan="2">
-          <a
+          <button
             mat-raised-button
-            target="_blank"
-            href="mailto:julien.hoffmann@cc-cdv.lu?subject=FireFinger&body=Hello, I am contacting you about FireFinger because..."
+            (click)="
+              openLink(
+                'mailto:julien.hoffmann@cc-cdv.lu?subject=FireFinger&body=Hello, I am contacting you about FireFinger because...'
+              )
+            "
           >
             <mat-icon>mail</mat-icon>
             Mail
-          </a>
+          </button>
         </mat-grid-tile>
         <mat-grid-tile colspan="2">
-          <a
-            mat-raised-button
-            target="_blank"
-            rel="noopener noreferrer"
-            href="http://cc-cdv.lu"
-          >
+          <button mat-raised-button (click)="openLink('http://cc-cdv.lu')">
             <mat-icon>web</mat-icon>
             Webpage
-          </a>
+          </button>
         </mat-grid-tile>
         <mat-grid-tile colspan="2">
-          <a
-            mat-raised-button
-            target="_blank"
-            rel="noopener noreferrer"
-            href="tel:+352 45 43 06 - 1"
-          >
+          <button mat-raised-button (click)="openLink('tel:+352 45 43 06 - 1')">
             <mat-icon>phone</mat-icon>
             Call
-          </a>
+          </button>
         </mat-grid-tile>
         <mat-grid-tile colspan="2">
-          <a
+          <button
             mat-raised-button
-            target="_blank"
-            rel="noopener noreferrer"
-            href="tel:+352 45 43 06 - 700"
+            (click)="openLink('tel:+352 45 43 06 - 700')"
           >
             <mat-icon>message</mat-icon>
             Fax
-          </a>
+          </button>
         </mat-grid-tile>
         <mat-grid-tile colspan="1"> </mat-grid-tile>
 
@@ -427,9 +423,7 @@
         <mat-grid-tile colspan="2">
           <a
             mat-raised-button
-            target="_blank"
-            href="http://wiki.idv.lu/display/PUB/FireFinger"
-            rel="noopener noreferrer"
+            (click)="openLink('http://wiki.idv.lu/display/PUB/FireFinger')"
           >
             <mat-icon>info</mat-icon>
             Wiki

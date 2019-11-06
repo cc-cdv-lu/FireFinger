@@ -67,11 +67,6 @@ export class KeyHandlerService {
       return console.log('No session loaded...');
     }
 
-    if (event.key === 'X' && event.ctrlKey && event.altKey) {
-      this.session.focusInput();
-      return;
-    }
-
     if (this.session.checkIfDone()) {
       return;
     }

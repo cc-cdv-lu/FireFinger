@@ -23,6 +23,11 @@ export class AppComponent implements OnInit {
   @HostBinding('class') componentCssClass;
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
+    // console.log('Event key:', event.key);
+    if (event.key === 'x' && event.ctrlKey && event.altKey) {
+      this.session.focusInput();
+      return;
+    }
     if (event.ctrlKey) {
       switch (event.key) {
         case 'ArrowUp':

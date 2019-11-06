@@ -1,28 +1,40 @@
 <div class="container" *ngIf="session_stats" [ngClass]="style.theme">
   <div class="center">
-    <mat-card class="card" [style.backgroundColor]="didWin() ? 'green' : 'red'" [style.color]="'white'">
+    <mat-card
+      class="card"
+      [style.backgroundColor]="didWin() ? 'green' : 'red'"
+      [style.color]="'white'"
+    >
       <mat-card-title>
-        <h2>{{'summary.result.title' | translate}}</h2>
+        <h2>{{ 'summary.result.title' | translate }}</h2>
       </mat-card-title>
-      <mat-card-content>
-        <h4>{{getResultText()}}</h4>
-        <p *ngIf="isTooSlow()">{{'summary.result.slow' | translate}} ({{session_stats.typeSpeed}} / {{session.difficulty.minTypeSpeed}})</p>
-        <p *ngIf="hasTooManyMistakes()">{{'summary.result.mistakes'| translate}}</p>
+      <mat-card-content id="initFocus">
+        <b>{{ getResultText() }}</b>
+        <p *ngIf="isTooSlow()">
+          {{ 'summary.result.slow' | translate }}
+          ({{ session_stats.typeSpeed }} /
+          {{ session.difficulty.minTypeSpeed }})
+        </p>
+        <p *ngIf="hasTooManyMistakes()">
+          {{ 'summary.result.mistakes' | translate }}
+        </p>
       </mat-card-content>
     </mat-card>
 
     <mat-card class="card">
       <mat-card-title>
-        {{'summary.mistakesperkey' | translate}}
+        <h2>{{ 'summary.mistakesperkey' | translate }}</h2>
       </mat-card-title>
       <mat-card-content>
-        <b>{{'summary.totalmistakes' | translate }}:</b>
-        <p>{{session_stats.mistakesCount}}</p>
-        <mat-divider></mat-divider>
+        <h3>{{ 'summary.totalmistakes' | translate }}:</h3>
+        <p>{{ session_stats.mistakesCount }}</p>
+        <mat-divider aria-hidden="true"></mat-divider>
         <mat-grid-list cols="5" [rowHeight]="'2.5rem'">
-          <mat-grid-tile *ngFor="let mistake of stats.getTopMistakes(session_stats, 10)">
-            <b>{{mistake?.key}}:</b>
-            <p>{{mistake?.count}}</p>
+          <mat-grid-tile
+            *ngFor="let mistake of stats.getTopMistakes(session_stats, 10)"
+          >
+            <b>{{ mistake?.key }}:</b>
+            <p>{{ mistake?.count }}</p>
           </mat-grid-tile>
         </mat-grid-list>
       </mat-card-content>
@@ -30,25 +42,28 @@
 
     <mat-card class="card">
       <mat-card-title>
-        {{'general.typingspeed' | translate}}
+        <h2>{{ 'general.typingspeed' | translate }}</h2>
       </mat-card-title>
       <mat-card-content>
-        <p>{{session_stats.typeSpeed}} / {{session.difficulty.minTypeSpeed}}</p>
+        <p>
+          {{ session_stats.typeSpeed }} / {{ session.difficulty.minTypeSpeed }}
+        </p>
       </mat-card-content>
     </mat-card>
 
     <mat-card class="card">
-      <nav>
-        <a mat-raised-button color="primary" routerLink="/home">
-          <p *ngIf="!didWin()">{{'summary.backbutton' | translate}}</p>
-          <p *ngIf="didWin()">{{'summary.continuebutton' | translate}}</p>
-        </a>
-      </nav>
+      <a mat-raised-button color="primary" routerLink="/home">
+        <p *ngIf="!didWin()">{{ 'summary.backbutton' | translate }}</p>
+        <p *ngIf="didWin()">{{ 'summary.continuebutton' | translate }}</p>
+      </a>
     </mat-card>
   </div>
-
 </div>
 
 <mat-card class="card" *ngIf="!session_stats">
-  <nav><a mat-raised-button color="primary" routerLink="/home">{{'summary.backbutton' | translate}}</a></nav>
+  <nav>
+    <a mat-raised-button color="primary" routerLink="/home">{{
+      'summary.backbutton' | translate
+    }}</a>
+  </nav>
 </mat-card>
