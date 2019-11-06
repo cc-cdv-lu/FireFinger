@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { SessionService } from '../session/session.service';
 import { ReaderService } from '../reader/reader.service';
 import {
@@ -49,7 +50,7 @@ export class KeyHandlerService {
     'F12',
   ];
 
-  impossibleKeys = ['´', '`', 'ß'];
+  impossibleKeys = ['´', '`', 'ß', '�'];
 
   shouldIgnore(key: string): boolean {
     /* If pressed key is part of the list, ignore it (return true)*/
@@ -73,7 +74,7 @@ export class KeyHandlerService {
 
     // Handle special keys
     const pressedKey = event.key;
-    const expectedKey = this.session.getExpectedKey();
+    const expectedKey = this.session.getCurrentChar();
 
     // console.log('Expected vs pressed:', pressedKey, expectedKey);
     // console.log('Key Event:', event);
@@ -87,44 +88,39 @@ export class KeyHandlerService {
       return;
     }
 
-    if (pressedKey === 'ArrowDown') {
-      return this.reader.play(
-        this.session.getCurrentChar(),
-        this.session.getCurrentChapter().type
-      );
-    } // play current char
-    if (pressedKey === 'ArrowRight') {
-      return this.reader.play(this.session.getCurrentWord(), 2);
-    } // play current word
-    if (pressedKey === 'ArrowLeft') {
-      return;
-    }
-    if (pressedKey === 'ArrowUp') {
-      return;
+    switch (pressedKey) {
+      case 'ArrowDown': {
+        // play current char
+        return this.reader.play(
+          this.session.getCurrentChar(),
+          this.session.getCurrentChapter().type
+        );
+      }
+      case 'ArrowRight': {
+        // play current word
+        return this.reader.play(this.session.getCurrentWord(), 2);
+      }
+      case 'ArrowLeft':
+      case 'ArrowUp': {
+        // do nothing
+        return;
+      }
     }
 
     // Default case
     if (
-      pressedKey === this.session.getCurrentChar() ||
+      pressedKey === expectedKey ||
       pressedKey === 'Pause' ||
       this.isImpossible(expectedKey)
     ) {
       return this.session.nextTextIndex();
     }
     // Special cases
-    if (pressedKey === 'Enter' && this.session.getCurrentChar() === '\n') {
+    if (pressedKey === 'Enter' && expectedKey === '\n') {
       return this.session.nextTextIndex();
     }
 
-    if (this.session.getCurrentChar() === '�') {
-      return this.session.nextTextIndex();
-    }
-
-    if (
-      pressedKey === '"' &&
-      (this.session.getCurrentChar() === '„' ||
-        this.session.getCurrentChar() === '“')
-    ) {
+    if (pressedKey === '"' && (expectedKey === '„' || expectedKey === '“')) {
       return this.session.nextTextIndex();
     }
     if (event.ctrlKey) {

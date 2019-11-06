@@ -166,7 +166,6 @@ export class SessionService {
           return 'Something went wrong...';
       }
     }
-
     return this._currentLesson.chapters[this._currentIndex].content;
   }
 
@@ -175,10 +174,6 @@ export class SessionService {
       return 0;
     }
     return this.indexInText;
-  }
-
-  getExpectedKey(): string {
-    return this.stringHelper.getCurrentChar(this.getText(), this.getIndex());
   }
 
   getCurrentWord(): string {
