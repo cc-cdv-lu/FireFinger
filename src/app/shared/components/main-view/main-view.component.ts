@@ -116,6 +116,10 @@ export class MainViewComponent implements OnInit {
     return this.style.show_guideline;
   }
 
+  isInFocus(): boolean {
+    return document.activeElement.id === 'inputLetter';
+  }
+
   getWarningText() {
     let output = '';
     if (!this.session) {

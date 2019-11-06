@@ -19,12 +19,11 @@
       <mat-toolbar-row>
         <p>
           {{ 'mainView.mistakes' | translate }}:
-          {{ stats.currentStats.mistakesCount }} ({{
-            session.getMistakePercentage()
-          }})
+          {{ stats.currentStats.mistakesCount }}
+          ({{ session.getMistakePercentage() }})
         </p>
         <span aria-hidden="true" class="fill-remaining-space"></span>
-        <p class="currentChapter">{{ session.currentChapter?.name }}</p>
+        <p class="currentChapter">{{ session.getCurrentChapter()?.name }}</p>
         <span aria-hidden="true" class="fill-remaining-space"></span>
         <p>
           {{ 'mainView.typespeed' | translate }}:

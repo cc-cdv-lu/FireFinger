@@ -26,9 +26,9 @@
         {{ getPrev() }}&lrm;
       </span>
       <span
-        class="HUGE current highlight"
+        class="HUGE current"
+        [ngClass]="isInFocus() ? 'highlight' : ''"
         [ngStyle]="{ 'font-family': style.fontFamily }"
-        color="accent"
       >
         {{ getCurrentWithHighlight() }}
       </span>
