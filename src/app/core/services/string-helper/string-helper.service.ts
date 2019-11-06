@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { VIEW } from '../../type.service';
+import { VIEW } from '../../types';
 
 @Injectable({
   providedIn: 'root'

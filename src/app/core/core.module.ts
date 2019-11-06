@@ -10,7 +10,8 @@ import {
   StringHelperService,
   StyleService,
   FileService,
-  ReaderService
+  ReaderService,
+  KeyHandlerService
 } from '.';
 
 @NgModule({
@@ -31,7 +32,8 @@ export class CoreModule {
         StringHelperService,
         StyleService,
         FileService,
-        ReaderService
+        ReaderService,
+        KeyHandlerService
       ],
     };
   }

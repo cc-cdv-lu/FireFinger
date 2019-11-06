@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ElectronService } from '../electron/electron.service';
 import { StatisticsService } from '../statistics/statistics.service';
 import { UserService } from '../user/user.service';
-import { StringHelperService } from '../string-helper/string-helper.service';
-import { ReaderService } from '../reader/reader.service';
+import { ElectronService } from '../electron/electron.service';
 import {
   SoundEffectService,
   SOUNDS,
 } from '../sound-effect/sound-effect.service';
-
-import { Lesson, Chapter, VIEW } from '../../type.service';
+import { StringHelperService } from '../string-helper/string-helper.service';
+import { ReaderService } from '../reader/reader.service';
+import { Lesson, Chapter, VIEW } from '../../types';
 
 const LAST_SESSION_KEY = 'LAST_SESSION';
 const DIFFICULTY_KEY = 'DIFFICULTY';
@@ -37,15 +36,15 @@ export class SessionService {
   //
   gameState = GAME_STATE.PLAYING;
 
-  isSessionLoaded = false;
+  private _isSessionLoaded = false;
 
   // Session data
   private indexInText = 0;
   last_wrong_char = '';
 
-  currentLesson: Lesson;
-  currentChapter: Chapter;
-  currentIndex: number;
+  private _currentLesson: Lesson;
+  private _currentChapter: Chapter;
+  private _currentIndex: number;
 
   constructor(
     private stats: StatisticsService,
@@ -66,48 +65,12 @@ export class SessionService {
     }
   }
 
-  ignoreKeys = [
-    'ContextMenu',
-    'CapsLock',
-    'Tab',
-    'Insert',
-    'Home',
-    'PageUp',
-    'PageDown',
-    'Delete',
-    'End',
-    'Backspace',
-    'Shift',
-    'Control',
-    'Alt',
-    'AltGraph',
-    'Meta',
-    'Dead',
-    'F1',
-    'F2',
-    'F3',
-    'F4',
-    'F5',
-    'F6',
-    'F7',
-    'F8',
-    'F9',
-    'F10',
-    'F11',
-    'F12',
-  ];
-
-  impossibleKeys = ['´', '`', 'ß'];
-
-  shouldIgnore(key: string): boolean {
-    /* If pressed key is part of the list, ignore it (return true)*/
-    /* If it is not part of the list (indexOf = -1), true false */
-    return this.ignoreKeys.includes(key);
+  isSessionLoaded() {
+    return this._isSessionLoaded;
   }
 
-  isImpossible(key: string) {
-    // These are chars that require some buggy key combinations that are not recognized at the moment
-    return this.impossibleKeys.includes(key);
+  getCurrentChapter() {
+    return this._currentChapter;
   }
 
   focusInput() {
@@ -115,93 +78,6 @@ export class SessionService {
     console.log('User triggered input focus', input);
     input.setAttribute('tabindex', '1');
     input.focus();
-  }
-
-  handleKeyEvent(event: KeyboardEvent) {
-    if (!this.isSessionLoaded) {
-      return console.log('No session loaded...');
-    }
-
-    if (event.key === 'X' && event.ctrlKey && event.altKey) {
-      this.focusInput();
-      return;
-    }
-
-    // What should happen when level is over
-    if (this.getIndex() >= this.getText().length) {
-      return this.onEndOfChapter(event);
-    }
-
-    // Handle special keys
-    const pressedKey = event.key;
-    const expectedKey = this.stringHelper.getCurrentChar(
-      this.getText(),
-      this.getIndex()
-    );
-    // console.log('Expected vs pressed:', pressedKey, expectedKey);
-    // console.log('Key Event:', event);
-    if (pressedKey === 'Escape') {
-      return this.reset();
-    }
-    if (document.activeElement.id !== 'inputLetter') {
-      return;
-    }
-    if (this.shouldIgnore(pressedKey) || event.altKey) {
-      return;
-    }
-
-    if (pressedKey === 'ArrowDown') {
-      return this.reader.play(this.getCurrentChar(), this.currentChapter.type);
-    } // play current char
-    if (pressedKey === 'ArrowRight') {
-      return this.reader.play(
-        this.stringHelper.getWordAt(this.getText(), this.getIndex()),
-        2
-      );
-    } // play current word
-    if (pressedKey === 'ArrowLeft') {
-      return;
-    }
-    if (pressedKey === 'ArrowUp') {
-      return;
-    }
-
-    // Default case
-    if (
-      pressedKey === this.getCurrentChar() ||
-      pressedKey === 'Pause' ||
-      this.isImpossible(expectedKey)
-    ) {
-      return this.nextTextIndex();
-    }
-    // Special cases
-    if (pressedKey === 'Enter' && this.getCurrentChar() === '\n') {
-      return this.nextTextIndex();
-    }
-
-    if (this.getCurrentChar() === '�') {
-      return this.nextTextIndex();
-    }
-
-    if (
-      pressedKey === '"' &&
-      (this.getCurrentChar() === '„' || this.getCurrentChar() === '“')
-    ) {
-      return this.nextTextIndex();
-    }
-    if (event.ctrlKey) {
-      // Ignore special cases such as user trying to increase font size or typing special characters
-      return;
-    }
-
-    // If wrong letter was entered
-    this.sound.play(SOUNDS.ERROR);
-    if (pressedKey !== this.last_wrong_char) {
-      console.log('Entered ' + pressedKey + ' instead of ' + expectedKey);
-      this.last_wrong_char = pressedKey;
-      this.stats.logMistakes(pressedKey, expectedKey);
-      return;
-    }
   }
 
   onEndOfChapter(event) {
@@ -261,11 +137,21 @@ export class SessionService {
   reset() {
     this.indexInText = 0;
     this.stats.reset();
-    this.isSessionLoaded = false;
+    this._isSessionLoaded = false;
+    this.saveSession();
+  }
+
+  checkIfDone(): boolean {
+    // What should happen when level is over
+    if (this.getIndex() >= this.getText().length) {
+      this.onEndOfChapter(event);
+      return true;
+    }
+    return false;
   }
 
   getText() {
-    if (!this.currentLesson) {
+    if (!this._currentLesson) {
       return '';
     }
     if (!this.isSessionLoaded) {
@@ -279,7 +165,7 @@ export class SessionService {
       }
     }
 
-    return this.currentLesson.chapters[this.currentIndex].content;
+    return this._currentLesson.chapters[this._currentIndex].content;
   }
 
   getIndex() {
@@ -287,6 +173,14 @@ export class SessionService {
       return 0;
     }
     return this.indexInText;
+  }
+
+  getExpectedKey(): string {
+    return this.stringHelper.getCurrentChar(this.getText(), this.getIndex());
+  }
+
+  getCurrentWord(): string {
+    return this.stringHelper.getWordAt(this.getText(), this.getIndex());
   }
 
   getMistakePercentageAsNumber() {
@@ -312,9 +206,9 @@ export class SessionService {
 
   saveSession() {
     const session = {
-      lesson: this.currentLesson,
-      chapter: this.currentChapter,
-      index: this.currentIndex,
+      lesson: this._currentLesson,
+      chapter: this._currentChapter,
+      index: this._currentIndex,
       indexInText: this.getIndex(),
       stats: this.stats.currentStats,
     };
@@ -327,27 +221,28 @@ export class SessionService {
       session = this.electron.config.get(LAST_SESSION_KEY);
     }
     if (!session) {
-      this.isSessionLoaded = false;
+      this._isSessionLoaded = false;
       return console.log('No previous session was found...');
     }
 
-    this.currentLesson = session.lesson;
-    this.currentChapter = session.chapter;
-    this.currentIndex = session.index;
+    this._currentLesson = session.lesson;
+    this._currentChapter = session.chapter;
+    this._currentIndex = session.index;
     this.indexInText = session.indexInText ? session.indexInText : 0;
     if (session.stats) {
       this.stats.currentStats = session.stats;
+      this.stats.adjustTimeAfterRestore();
     }
-    this.isSessionLoaded = true;
+    this._isSessionLoaded = true;
     console.log('Loaded last session:', session);
   }
 
   loadSession(lesson: Lesson, index: number) {
     this.reset();
-    this.currentLesson = lesson;
-    this.currentChapter = lesson.chapters[index];
-    this.currentIndex = index;
-    this.isSessionLoaded = true;
+    this._currentLesson = lesson;
+    this._currentChapter = lesson.chapters[index];
+    this._currentIndex = index;
+    this._isSessionLoaded = true;
     this.saveSession();
   }
 
@@ -382,19 +277,19 @@ export class SessionService {
     const word = this.stringHelper.getWordAt(this.getText(), this.getIndex());
 
     if (word.length > 2 && this.getText()[this.getIndex() - 1] === ' ') {
-      this.reader.play(word, this.currentChapter.type);
+      this.reader.play(word, this._currentChapter.type);
     } else {
-      this.reader.play(this.getCurrentChar(), this.currentChapter.type);
+      this.reader.play(this.getCurrentChar(), this._currentChapter.type);
     }
   }
 
   // index = 0;
   nextChapter() {
-    if (!this.currentLesson) {
+    if (!this._currentLesson) {
       return console.log('No lesson loaded...');
     }
-    if (this.currentIndex < this.currentLesson.chapters.length - 1) {
-      this.loadSession(this.currentLesson, this.currentIndex + 1);
+    if (this._currentIndex < this._currentLesson.chapters.length - 1) {
+      this.loadSession(this._currentLesson, this._currentIndex + 1);
     } else {
       // TODO reached end of chapters
       console.log('Reached end of lesson!');
@@ -402,8 +297,8 @@ export class SessionService {
   }
 
   previousChapter() {
-    if (this.currentIndex > 0) {
-      this.loadSession(this.currentLesson, this.currentIndex - 1);
+    if (this._currentIndex > 0) {
+      this.loadSession(this._currentLesson, this._currentIndex - 1);
     } else {
       console.log('Reached beginning of lesson');
     }

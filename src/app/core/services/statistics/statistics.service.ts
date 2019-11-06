@@ -44,6 +44,10 @@ export class StatisticsService {
     this.currentStats = new Statistics();
   }
 
+  adjustTimeAfterRestore() {
+    this.iLastTime = new Date().getTime();
+  }
+
   logMistakes(pressedKey: string, expectedKey: string) {
     switch (expectedKey) {
       case ' ':

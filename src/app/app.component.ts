@@ -149,6 +149,8 @@ export class AppComponent implements OnInit {
     }
   }
   goTo(url: string) {
+    console.log('Saving session...');
+    this.session.saveSession();
     this.router.navigateByUrl(url);
   }
   /* DEBUG stuff */

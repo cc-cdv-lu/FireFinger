@@ -10,6 +10,7 @@ import {
   UserService,
   ReaderService,
   VIEW,
+  KeyHandlerService,
 } from '../../../core';
 
 import { SettingsComponent } from '../../../pages/';
@@ -35,7 +36,8 @@ export class MainViewComponent implements OnInit {
     private user: UserService,
     private router: Router,
     public translate: TranslateService,
-    private reader: ReaderService
+    private reader: ReaderService,
+    private keyHandler: KeyHandlerService
   ) {
     let lastLogin: any;
     if (this.electron.config) {
@@ -69,10 +71,7 @@ export class MainViewComponent implements OnInit {
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
     this.blurAllButtons();
-    if (this.areSettingsOpen) {
-      return;
-    }
-    this.session.handleKeyEvent(event);
+    this.keyHandler.handleKeyEvent(event);
   }
   ngOnInit() {
     this.session.focusInput();
@@ -90,7 +89,9 @@ export class MainViewComponent implements OnInit {
     if (!this.session.getCurrentChar()) {
       return '';
     }
-      return this.session.getCurrentChar().replace('\n', '\u2880'); // https://www.fileformat.info/info/unicode/char/2880/index.htm
+    // https://www.fileformat.info/info/unicode/char/2880/index.htm
+    // Replace new line char with point-8 (Enter-Button on braille display)
+    return this.session.getCurrentChar().replace('\n', '\u2880');
   }
 
   getCurrentWithHighlight() {
@@ -177,8 +178,8 @@ export class MainViewComponent implements OnInit {
   }
 
   get view() {
-    if (this.session.currentChapter) {
-      return this.session.currentChapter.type;
+    if (this.session.getCurrentChapter()) {
+      return this.session.getCurrentChapter().type;
     } else {
       return VIEW.LINE;
     }
