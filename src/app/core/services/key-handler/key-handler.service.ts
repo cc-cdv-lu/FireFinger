@@ -59,11 +59,12 @@ export class KeyHandlerService {
   }
 
   isImpossible(key: string): boolean {
-    // These are chars that require some buggy key combinations that are not recognized at the moment
+    // These are chars that require some buggy or unsupported key combinations
     return this.impossibleKeys.includes(key);
   }
 
   handleKeyEvent(event: KeyboardEvent) {
+    // Pre-handle checks
     if (!this.session.isSessionLoaded) {
       return console.log('No session loaded...');
     }
@@ -71,61 +72,64 @@ export class KeyHandlerService {
     if (this.session.checkIfDone()) {
       return;
     }
-
-    // Handle special keys
-    const pressedKey = event.key;
-    const expectedKey = this.session.getCurrentChar();
-
-    // console.log('Expected vs pressed:', pressedKey, expectedKey);
-    // console.log('Key Event:', event);
-    if (pressedKey === 'Escape') {
-      return this.session.reset();
-    }
     if (document.activeElement.id !== 'inputLetter') {
       return;
     }
-    if (this.shouldIgnore(pressedKey) || event.altKey) {
+
+    const pressedKey = event.key;
+    const expectedKey = this.session.getCurrentChar();
+
+    // Ignore special cases such as user trying to increase font size or starting to type special characters
+    if (this.shouldIgnore(pressedKey) || event.altKey || event.ctrlKey) {
       return;
     }
 
+    if (this.isImpossible(expectedKey)) {
+      return this.session.nextTextIndex();
+    }
+
     switch (pressedKey) {
+      // Reset current session / restart current level
+      case 'Escape': {
+        return this.session.reset();
+      }
+      // play current char
       case 'ArrowDown': {
-        // play current char
         return this.reader.play(
           this.session.getCurrentChar(),
           this.session.getCurrentChapter().type
         );
       }
+      // play current word
       case 'ArrowRight': {
-        // play current word
         return this.reader.play(this.session.getCurrentWord(), 2);
       }
+      // do nothing
       case 'ArrowLeft':
       case 'ArrowUp': {
-        // do nothing
         return;
       }
-    }
-
-    // Default case
-    if (
-      pressedKey === expectedKey ||
-      pressedKey === 'Pause' ||
-      this.isImpossible(expectedKey)
-    ) {
-      return this.session.nextTextIndex();
-    }
-    // Special cases
-    if (pressedKey === 'Enter' && expectedKey === '\n') {
-      return this.session.nextTextIndex();
-    }
-
-    if (pressedKey === '"' && (expectedKey === '„' || expectedKey === '“')) {
-      return this.session.nextTextIndex();
-    }
-    if (event.ctrlKey) {
-      // Ignore special cases such as user trying to increase font size or typing special characters
-      return;
+      // Default case
+      case expectedKey:
+      case 'Pause': {
+        return this.session.nextTextIndex();
+      }
+      // Special cases
+      case 'Enter': {
+        if (expectedKey === '\n') {
+          return this.session.nextTextIndex();
+        } else {
+          break;
+        }
+      }
+      // Handle apothrophies
+      case '"': {
+        if (expectedKey === '„' || expectedKey === '“') {
+          return this.session.nextTextIndex();
+        } else {
+          break;
+        }
+      }
     }
 
     // If wrong letter was entered
