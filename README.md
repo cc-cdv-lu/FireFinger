@@ -34,6 +34,13 @@ All notable changes to this project will be documented in this file.
 
 - TBA
 
+### [1.1.1] Minor patch
+- Fixes
+    - Fixed some accessibility issues
+    - Changed focus input shortcut because of clash with JAWS
+        - Before: Ctrl + Shift + X
+        - Now: Ctrl + Alt + X
+
 ### [1.1.0] First major update
 
 - Features
