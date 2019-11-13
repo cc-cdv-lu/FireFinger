@@ -27,12 +27,9 @@
     "category": "public.app-category.productivity",
     "entitlements": "build/entitlements.mac.plist",
     "icon": "src/assets/icons/mac/icon.icns",
-    "target": ["dmg", "pkg", "mas"]
+    "target": ["dmg", "pkg"]
   },
-  "mas": {
-    "type": "distribution",
-    "category": "public.app-category.productivity",
-    "entitlements": "build/entitlements.mas.plist",
+  "dmg": {
     "icon": "src/assets/icons/mac/icon.icns"
   },
   "linux": {
