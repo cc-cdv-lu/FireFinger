@@ -100,6 +100,7 @@ export class SessionService {
       mistakePercentage <= this.difficulty.maxMistakePercentage &&
       typeSpeed >= this.difficulty.minTypeSpeed
     ) {
+      console.log('SUCCESS!');
       this.onSuccess();
     } else {
       if (mistakeCount > this.difficulty.maxMistakeCount) {

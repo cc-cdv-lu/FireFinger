@@ -48,6 +48,7 @@ export class KeyHandlerService {
     'F10',
     'F11',
     'F12',
+    'NumLock',
   ];
 
   impossibleKeys = ['´', '`', 'ß', '�'];
@@ -79,6 +80,7 @@ export class KeyHandlerService {
     const pressedKey = event.key;
     const expectedKey = this.session.getCurrentChar();
 
+
     // Ignore special cases such as user trying to increase font size or starting to type special characters
     if (this.shouldIgnore(pressedKey) || event.altKey || event.ctrlKey) {
       return;
@@ -87,6 +89,8 @@ export class KeyHandlerService {
     if (this.isImpossible(expectedKey)) {
       return this.session.nextTextIndex();
     }
+
+    console.log('PRESSED KEY:', pressedKey);
 
     switch (pressedKey) {
       // Reset current session / restart current level
