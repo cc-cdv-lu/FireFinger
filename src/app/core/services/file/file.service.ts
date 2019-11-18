@@ -4,6 +4,8 @@ import { StringHelperService } from '../string-helper/string-helper.service';
 
 import { Chapter, Lesson, ChapterType } from '../../types';
 
+import { ConfigService, FileCONFIG } from '../config/config.service';
+
 import * as FS from 'fs-extra';
 import * as path from 'path';
 
@@ -11,21 +13,60 @@ import * as path from 'path';
   providedIn: 'root',
 })
 export class FileService {
+  _config: FileCONFIG;
   constructor(
     private electron: ElectronService,
-    private stringhelper: StringHelperService
-  ) {}
+    private stringhelper: StringHelperService,
+    private config: ConfigService
+  ) {
+    this._config = this.config.loadConfig<FileCONFIG>(
+      this.generateFallbackConfig()
+    );
+    this.config.registerSaveCallback(this.saveConfig);
+    console.log('File config was loaded:', this._config);
+  }
 
-  getDocsURL() {
-    if (!this.electron.app) {
-      console.log('Electron is not loaded...cannot get docs url.');
-      return '';
-    }
+  generateFallbackConfig(): FileCONFIG {
+    const output = new FileCONFIG();
 
+    // Set default docs path
     const appDataURL: string = this.electron.app.getPath('userData'); // ..../Username/Documents
     const firefingerDocsURL: string = path.join(appDataURL, 'docs'); // ..../Username/Documents/FireFinger/docs
+    output.customDocsURLS.push(firefingerDocsURL);
 
-    return firefingerDocsURL;
+    return output;
+  }
+
+  saveConfig() {
+    console.log('Saving config:', this._config);
+    this.config.saveConfig<FileCONFIG>(this._config);
+  }
+
+  addDocsURL(url: string) {
+    if (url && url.length > 10) {
+      console.log('Adding new folder...\n', url);
+      this._config.customDocsURLS.push(url);
+    } else {
+      console.warn('Could not add invalid url:', url);
+    }
+    this.saveConfig();
+  }
+
+  removeDocsURL(index: number) {
+    if (index <= this._config.customDocsURLS.length && index >= 0) {
+      this._config.customDocsURLS.splice(index);
+    } else {
+      console.warn('Could not remove url at invalid index:', index);
+    }
+    this.saveConfig();
+  }
+
+  getDocsURLs(): string[] {
+    if (!this.electron.app || !this._config) {
+      console.log('Electron is not loaded...cannot get docs url.');
+      return [];
+    }
+    return this._config.customDocsURLS;
   }
 
   getBuildInCoursesURL() {
@@ -79,11 +120,19 @@ export class FileService {
   }
 
   loadCustomLessons(): Array<Lesson> {
-    return [...this.loadDir(this.getDocsURL())];
+    const output: Array<Lesson> = [];
+    for (const lessonURL of this.getDocsURLs()) {
+      output.push(...this.loadDir(lessonURL));
+    }
+    return output;
   }
 
-  openDocsFolderInExplorer() {
-    this.electron.shell.openItem(this.getDocsURL());
+  openFolderInExplorer(url: string) {
+    this.electron.shell.openItem(url);
+  }
+
+  openDefaultDocsFolderInExplorer() {
+    this.openFolderInExplorer(this.getDocsURLs()[0]);
   }
 
   loadFolder(destination: Lesson[], dirPath: string, folderName: string) {

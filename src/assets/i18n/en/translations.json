@@ -59,7 +59,9 @@
         "title": "Difficulty"
       },
       "files": {
+        "add": "Add folder",
         "button": "Open folder in Explorer",
+        "delete": "Remove folder",
         "description": "Each text needs to be put into a folder with the name of the lesson. See example lesson with example texts as template.",
         "override": "(Re)-create default lesson files",
         "title": "Lesson files"
