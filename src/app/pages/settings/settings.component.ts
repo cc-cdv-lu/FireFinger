@@ -8,6 +8,7 @@ import {
   ReaderService,
   ElectronService,
   FileService,
+  ConfigService,
 } from '../../core';
 
 import { AppConfig } from '../../../environments/environment';
@@ -102,7 +103,8 @@ export class SettingsComponent implements OnInit {
     public reader: ReaderService,
     public translate: TranslateService,
     public electron: ElectronService,
-    public file: FileService
+    public file: FileService,
+    public config: ConfigService
   ) {}
 
   ngOnInit() {
@@ -126,9 +128,25 @@ export class SettingsComponent implements OnInit {
     this.style.theme = theme;
   }
 
+  selectNewDocsURL() {
+    const output = this.electron.dialog.showOpenDialogSync(
+      this.electron.window,
+      {
+        properties: ['openDirectory'],
+      }
+    );
+    if (output && output.length > 0) {
+      this.file.addDocsURL(output[0]);
+    }
+  }
+
   saveSettings() {
+    // TODO: migrate these to config service as well
+    // this.config.saveAll();
+
     this.session.saveDifficulty();
     this.reader.save();
+    this.file.saveConfig();
   }
 
   openLink(url: string) {

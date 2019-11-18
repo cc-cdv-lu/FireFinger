@@ -59,7 +59,9 @@
         "title": "Schwierigkeit"
       },
       "files": {
+        "add": "Ordner hinzufügen",
         "button": "Öffnen Sie den Ordner im Datei Explorer",
+        "delete": "Ordner entfernen",
         "description": "Jeder Text muss in einem Ordner mit dem Namen der Lektion abgelegt werden. Siehe Beispiellektion mit Beispieltexten als Vorlage.",
         "override": "Standard-Unterrichtsdateien (wiederher-) erstellen",
         "title": "Unterrichtsdateien"

@@ -12,3 +12,5 @@ export * from './services/statistics/statistics.service';
 export * from './services/style/style.service';
 export * from './types';
 export * from './services/string-helper/string-helper.service';
+
+export * from './services/config/config.service';

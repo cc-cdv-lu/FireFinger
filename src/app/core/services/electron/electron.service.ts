@@ -7,12 +7,12 @@ export class ElectronService {
   config = new ElectronStore();
 
   devOverwrite = false;
-
   ipcRenderer: typeof Electron.ipcRenderer;
   remote: typeof Electron.remote;
   webFrame: typeof Electron.webFrame;
   webContents: typeof Electron.webContents;
 
+  dialog: typeof Electron.dialog;
   app: typeof Electron.remote.app;
   shell: typeof Electron.shell;
   window: Electron.BrowserWindow;
@@ -25,6 +25,7 @@ export class ElectronService {
       this.webFrame = Electron.webFrame;
       this.webContents = Electron.WebContents;
 
+      this.dialog = this.remote.dialog;
       this.app = this.remote.app;
       this.shell = Electron.shell;
       this.window = this.remote.BrowserWindow.getAllWindows()[0];
