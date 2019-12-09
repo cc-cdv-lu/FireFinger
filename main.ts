@@ -1,4 +1,5 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, ipcMain } from 'electron';
+import { autoUpdater } from 'electron-updater';
 import * as path from 'path';
 import * as url from 'url';
 
@@ -66,6 +67,7 @@ try {
     process.on('uncaughtException', err => {
       console.error('FireFinger has encounterd an uncaugt exception!', err);
     });
+    autoUpdater.checkForUpdatesAndNotify();
   });
 
   // Quit when all windows are closed.
@@ -83,6 +85,20 @@ try {
     if (win === null) {
       createWindow();
     }
+  });
+
+  ipcMain.on('app_version', event => {
+    event.sender.send('app_version', { version: app.getVersion() });
+  });
+  ipcMain.on('restart_app', () => {
+    autoUpdater.quitAndInstall();
+  });
+
+  autoUpdater.on('update-available', () => {
+    win.webContents.send('update_available');
+  });
+  autoUpdater.on('update-downloaded', () => {
+    win.webContents.send('update_downloaded');
   });
 } catch (e) {
   // Catch Error

@@ -1,6 +1,10 @@
 {
   "productName": "FireFinger",
   "appId": "lu.cdv.hoffmann.firefinger",
+  "publish": {
+    "provider": "github",
+    "token": "f2141dc1835f78f6768a4a2cbb96ce5bd7a1e09c"
+  },
   "directories": {
     "output": "release/"
   },
