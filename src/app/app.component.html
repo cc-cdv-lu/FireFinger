@@ -13,7 +13,6 @@
         [attr.aria-label]="nav.name | async"
         [accessKey]="nav.shortcut"
         role="tab"
-        
         [attr.id]="nav.tabID"
         [attr.aria-controls]="nav.pageID"
         [attr.aria-selected]="this.router.url === nav.link"
@@ -21,7 +20,7 @@
         <mat-icon color="accent" aria-hidden="true">{{ nav.icon }}</mat-icon>
         {{ nav.name | async }}
         <b aria-hidden="true">[{{ nav.shortcut | uppercase }}]</b>
-    </a>
+      </a>
       <div class="fill-remaining-space"></div>
       <button
         mat-raised-button
@@ -33,8 +32,6 @@
       </button>
     </mat-toolbar-row>
   </mat-toolbar>
-  <router-outlet
-    [ngClass]="style.theme"
-    class="view"
-  ></router-outlet>
+  <router-outlet [ngClass]="style.theme" class="view"></router-outlet>
+  <app-self-updater></app-self-updater>
 </div>
