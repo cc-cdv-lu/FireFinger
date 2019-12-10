@@ -1,6 +1,9 @@
 {
   "productName": "FireFinger",
   "appId": "lu.cdv.hoffmann.firefinger",
+  "publish": {
+    "provider": "github"
+  },
   "directories": {
     "output": "release/"
   },
@@ -22,7 +25,7 @@
   ],
   "win": {
     "icon": "src/assets/icons/win/icon.ico",
-    "target": ["portable"]
+    "target": ["nsis"]
   },
   "mac": {
     "category": "public.app-category.productivity",

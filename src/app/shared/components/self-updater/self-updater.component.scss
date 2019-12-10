@@ -1,0 +1,13 @@
+#notification {
+  position: fixed;
+  bottom: 50%;
+  left: 20px;
+  width: 25vw;
+  padding: 20px;
+  border-radius: 15px;
+  border: 10px solid goldenrod;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.hidden {
+  display: none;
+}

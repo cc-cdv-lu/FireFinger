@@ -9,6 +9,7 @@ import {
   PageNotFoundComponent,
   MainViewComponent,
   LessonBrowserComponent,
+  SelfUpdaterComponent,
 } from '.';
 import { WebviewDirective } from './directives/';
 
@@ -18,6 +19,7 @@ import { WebviewDirective } from './directives/';
     WebviewDirective,
     MainViewComponent,
     LessonBrowserComponent,
+    SelfUpdaterComponent,
   ],
   imports: [CommonModule, TranslateModule, MaterialManagerModule, FormsModule],
   exports: [
@@ -25,6 +27,7 @@ import { WebviewDirective } from './directives/';
     WebviewDirective,
     MaterialManagerModule,
     MainViewComponent,
+    SelfUpdaterComponent,
     FormsModule,
     LessonBrowserComponent,
   ],
