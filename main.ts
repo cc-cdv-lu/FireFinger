@@ -1,11 +1,24 @@
 import { app, BrowserWindow, screen, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
+const log = require('electron-log');
 import * as path from 'path';
 import * as url from 'url';
 
 let win, serve;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
+
+// -------------------------------------------------------------------
+// Logging
+//
+// THIS SECTION IS NOT REQUIRED
+//
+// This logging setup is not required for auto-updates to work,
+// but it sure makes debugging easier :)
+// -------------------------------------------------------------------
+autoUpdater.logger = log;
+autoUpdater.logger.info('====================FireFinger===================');
+log.info('App starting...');
 
 function createWindow() {
   const electronScreen = screen;
@@ -59,15 +72,17 @@ try {
   app.on('ready', createWindow);
   app.on('ready', () => {
     win.webContents.on('crashed', err => {
-      console.error('FireFinger crashed!', err);
+      log.error('FireFinger crashed!', err);
     });
     win.webContents.on('unresponsive', err => {
-      console.error('FireFinger has become unresponsive!', err);
+      log.error('FireFinger has become unresponsive!', err);
     });
     process.on('uncaughtException', err => {
-      console.error('FireFinger has encounterd an uncaugt exception!', err);
+      log.error('FireFinger has encounterd an uncaugt exception!', err);
     });
-    autoUpdater.checkForUpdatesAndNotify();
+    autoUpdater
+      .checkForUpdatesAndNotify()
+      .then(() => log.info('Checking for update...'));
   });
 
   // Quit when all windows are closed.
@@ -94,12 +109,16 @@ try {
     autoUpdater.quitAndInstall();
   });
 
-  autoUpdater.on('update-available', () => {
-    win.webContents.send('update_available');
-  });
-  autoUpdater.on('update-downloaded', () => {
-    win.webContents.send('update_downloaded');
-  });
+  if (!serve) {
+    autoUpdater.on('update-available', () => {
+      log.info('Update available!');
+      win.webContents.send('update_available');
+    });
+    autoUpdater.on('update-downloaded', () => {
+      log.info('Update downloaded!');
+      win.webContents.send('update_downloaded');
+    });
+  }
 } catch (e) {
   // Catch Error
   // throw e;

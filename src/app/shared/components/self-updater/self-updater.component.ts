@@ -1,5 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { ElectronService, StyleService } from '../../../core';
+import { autoUpdater } from 'electron-updater';
 
 @Component({
   selector: 'app-self-updater',

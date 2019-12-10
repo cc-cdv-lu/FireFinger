@@ -1,6 +1,6 @@
 {
   "name": "FireFinger",
-  "version": "1.1.2",
+  "version": "1.1.4-alpha",
   "description": "Dactylo training app build upon angular-electron",
   "homepage": "http://gitlab.lowvision.lu/it/FireFinger",
   "author": {
@@ -37,6 +37,8 @@
     "electron:linux": "npm run build:prod && electron-builder build --linux",
     "electron:windows": "npm run build:prod && electron-builder build --windows",
     "electron:mac": "npm run build:prod && electron-builder build --mac",
+    "deploy:windows": "npm run build:prod && electron-builder build --windows --publish always",
+    "deploy:mac": "npm run build:prod && electron-builder build --mac --publish always",
     "test": "npm run postinstall:web && ng test",
     "e2e": "npm run build:prod && mocha --timeout 300000 --require ts-node/register e2e/**/*.spec.ts",
     "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
@@ -94,6 +96,7 @@
     "@angular/animations": "^8.2.13",
     "@angular/cdk": "~8.2.3",
     "@angular/material": "^8.2.3",
+    "electron-log": "^4.0.0",
     "electron-store": "^5.1.0",
     "electron-updater": "^4.2.0",
     "fs-extra": "^8.1.0",
