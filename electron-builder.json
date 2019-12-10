@@ -25,7 +25,7 @@
   ],
   "win": {
     "icon": "src/assets/icons/win/icon.ico",
-    "target": ["nsis"]
+    "target": ["nsis", "portable"]
   },
   "mac": {
     "category": "public.app-category.productivity",
