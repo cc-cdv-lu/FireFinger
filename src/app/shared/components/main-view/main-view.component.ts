@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material';
 
 import {
@@ -15,7 +16,6 @@ import {
 
 import { SettingsComponent } from '../../../pages/';
 
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   // tslint:disable-next-line:component-selector

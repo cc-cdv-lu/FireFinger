@@ -153,6 +153,14 @@ export class SessionService {
     return false;
   }
 
+  getProgress() {
+    if (!this.getText()) {
+      return 0;
+    }
+    const progress = (this.getIndex() / this.getText().length) * 100;
+    return parseFloat(progress + '').toFixed(2);
+  }
+
   getText() {
     if (!this._currentLesson) {
       return '';

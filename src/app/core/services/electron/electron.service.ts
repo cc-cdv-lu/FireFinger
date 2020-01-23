@@ -59,8 +59,6 @@ export class ElectronService {
     }
   }
 
-
-
   openDevTools() {
     this.remote.getCurrentWebContents().openDevTools();
   }

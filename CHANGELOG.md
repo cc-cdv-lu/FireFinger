@@ -1,492 +1,206 @@
-## 6.2.0 (2019-09-29)
-
-* [Bumped Version] 6.2.0 ([8838e0e](https://github.com/maximegris/angular-electron/commit/8838e0e))
-* misc/ add Stale to close unactive issues ([398bdf1](https://github.com/maximegris/angular-electron/commit/398bdf1))
-* Upgrade Angular 8.2.8 & Electron 6.0.10 ([2ecda63](https://github.com/maximegris/angular-electron/commit/2ecda63))
-
-
-
-## 6.1.0 (2019-08-15)
-
-* [Bumped Version] 6.1.0 ([b47c594](https://github.com/maximegris/angular-electron/commit/b47c594))
-* [DELETE]: vscode settings removed ([becc9b4](https://github.com/maximegris/angular-electron/commit/becc9b4))
-* [UPDATE]: Typescript version fixes ([a284c23](https://github.com/maximegris/angular-electron/commit/a284c23))
-* Angular src restructured as modular as per angular official guidelines, .travis.yml support added fo ([5983703](https://github.com/maximegris/angular-electron/commit/5983703))
-* Corejs path updates ([88056d6](https://github.com/maximegris/angular-electron/commit/88056d6))
-* Electron 6.0.0 ([1aef350](https://github.com/maximegris/angular-electron/commit/1aef350))
-* fix/ Version Electron in README ([acf0d4f](https://github.com/maximegris/angular-electron/commit/acf0d4f))
-* misc/ upgrade Angular 8.2 / Spectron 7 ([6e2211f](https://github.com/maximegris/angular-electron/commit/6e2211f))
-* Update dependencies ([bd51f28](https://github.com/maximegris/angular-electron/commit/bd51f28))
-
-
-
-## <small>6.0.1 (2019-05-31)</small>
-
-* [Bumped Version] 6.0.1 ([4f9cef3](https://github.com/maximegris/angular-electron/commit/4f9cef3))
-* ref/ strict version build-angular & zonejs ([5a24b56](https://github.com/maximegris/angular-electron/commit/5a24b56))
-* ref/ strict version codelyzer ([6ede0c8](https://github.com/maximegris/angular-electron/commit/6ede0c8))
-
-
-
-## 6.0.0 (2019-05-31)
-
-* [Bumped Version] 6.0.0 ([fb719ab](https://github.com/maximegris/angular-electron/commit/fb719ab))
-* Add CI for macOS. ([3ba02e3](https://github.com/maximegris/angular-electron/commit/3ba02e3))
-* bump angular version ([7a564a0](https://github.com/maximegris/angular-electron/commit/7a564a0))
-* bump tslint & codelyzer versions, update tslint rules & alphabetize ([8425cdc](https://github.com/maximegris/angular-electron/commit/8425cdc))
-* Fix Travis CI link ([10aaa4c](https://github.com/maximegris/angular-electron/commit/10aaa4c))
-* Not gitignore src/karma.conf.js ([7599320](https://github.com/maximegris/angular-electron/commit/7599320))
-* ref/ upgrade Angular 8 and Electron 5 ([92334cf](https://github.com/maximegris/angular-electron/commit/92334cf))
-* Remove Node.js v12. ([ccbf6cd](https://github.com/maximegris/angular-electron/commit/ccbf6cd))
-* Run CI for Node.js version 10 ([2538965](https://github.com/maximegris/angular-electron/commit/2538965))
-* update versions and prepare for electron 5 ([07a5786](https://github.com/maximegris/angular-electron/commit/07a5786))
-* Use service xvfb. ([4db31e3](https://github.com/maximegris/angular-electron/commit/4db31e3))
-* version bump ([bb1d6bb](https://github.com/maximegris/angular-electron/commit/bb1d6bb))
-* feat(CI): update Ubuntu and Node versions in Travis ([e0ff557](https://github.com/maximegris/angular-electron/commit/e0ff557))
-* fix: type conflicts ([a2971bf](https://github.com/maximegris/angular-electron/commit/a2971bf))
-* fix(e2e): add mocha types ([20e1e89](https://github.com/maximegris/angular-electron/commit/20e1e89))
-* fix(e2e): without devTools ([2581983](https://github.com/maximegris/angular-electron/commit/2581983)), closes [/github.com/electron/spectron/issues/174#issuecomment-319242097](https://github.com//github.com/electron/spectron/issues/174/issues/issuecomment-319242097)
-* chore: Spectron for e2e tests ([901438a](https://github.com/maximegris/angular-electron/commit/901438a))
-
-
-
-## 5.1.0 (2018-11-30)
-
-* [Bumped Version] 5.1.0 ([b790e12](https://github.com/maximegris/angular-electron/commit/b790e12))
-* fix/ typo Angular 7 ([fde371f](https://github.com/maximegris/angular-electron/commit/fde371f))
-* fix/ typo README ([723233c](https://github.com/maximegris/angular-electron/commit/723233c))
-* fix/ typo script npm electron:windows ([45bab44](https://github.com/maximegris/angular-electron/commit/45bab44))
-* ref/ remve npx - fix vulnerabilities ([41aeb57](https://github.com/maximegris/angular-electron/commit/41aeb57))
-* update README ([f146d5d](https://github.com/maximegris/angular-electron/commit/f146d5d))
-
-
-
-## 5.0.0 (2018-11-11)
-
-* Fix typos in README file ([0440ee9](https://github.com/maximegris/angular-electron/commit/0440ee9))
-* ref/ Generate changelog ([a89b3ce](https://github.com/maximegris/angular-electron/commit/a89b3ce))
-* ref/ Upgrade to Angular 7 ([315a79b](https://github.com/maximegris/angular-electron/commit/315a79b))
-* Update electron-builder.json files rule ([82c7bcf](https://github.com/maximegris/angular-electron/commit/82c7bcf))
-* Update Version Electron 2 to 3 #hacktoberfest ([f083328](https://github.com/maximegris/angular-electron/commit/f083328))
-
-
-
-## <small>4.2.2 (2018-08-22)</small>
-
-* fix/ build serve & electron with single tsc command ([9106c8f](https://github.com/maximegris/angular-electron/commit/9106c8f))
-* fix/ typo README ([a9448aa](https://github.com/maximegris/angular-electron/commit/a9448aa))
-
-
-
-## <small>4.2.1 (2018-08-22)</small>
-
-* fix/ jslib in main process error ([ef33f5e](https://github.com/maximegris/angular-electron/commit/ef33f5e))
-
-
-
-## 4.2.0 (2018-08-19)
-
-* [Bumped Version] V4.2.0 ([0da3856](https://github.com/maximegris/angular-electron/commit/0da3856))
-* fix/ electron builder output directories #200 ([f4535e5](https://github.com/maximegris/angular-electron/commit/f4535e5)), closes [#200](https://github.com/maximegris/angular-electron/issues/200)
-* Make sure tsconfig be used. ([961c8b1](https://github.com/maximegris/angular-electron/commit/961c8b1))
-* ref/ remove some directories of tsconfig.app.json ([1adad4a](https://github.com/maximegris/angular-electron/commit/1adad4a))
-* Upgrade Angular (6.1.2) deps ([d8818c1](https://github.com/maximegris/angular-electron/commit/d8818c1))
-
-
-
-## 4.1.0 (2018-06-27)
-
-* Allow Angular Using Electron Modules ([ec705ee](https://github.com/maximegris/angular-electron/commit/ec705ee))
-* fix/ version angular (revert 6.0.6 -> 6.0.5) ([63a41b8](https://github.com/maximegris/angular-electron/commit/63a41b8))
-* fix/ version ts-node ([0d8341a](https://github.com/maximegris/angular-electron/commit/0d8341a))
-* ref/ postinstall web & electron ([50657d0](https://github.com/maximegris/angular-electron/commit/50657d0))
-* update README ([1d48e32](https://github.com/maximegris/angular-electron/commit/1d48e32))
-* feat(zone): add zone-patch-electron to patch Electron native APIs in polyfills ([01842e2](https://github.com/maximegris/angular-electron/commit/01842e2))
-
-
-
-## 4.0.0 (2018-05-25)
-
-* misc/ remove unused packages ([a7e33b6](https://github.com/maximegris/angular-electron/commit/a7e33b6))
-* misc/ update Changelog ([b758122](https://github.com/maximegris/angular-electron/commit/b758122))
-* ref/ upgrade angular to 6.0.3 ([e7fac6e](https://github.com/maximegris/angular-electron/commit/e7fac6e))
-
-
-
-## <small>3.4.1 (2018-05-25)</small>
-
-* misc/ update changelog ([70b359f](https://github.com/maximegris/angular-electron/commit/70b359f))
-* version 3.4.1 ([308ea9c](https://github.com/maximegris/angular-electron/commit/308ea9c))
-
-
-
-## 3.4.0 (2018-05-25)
-
-* misc/ update changelog ([7d5eeb3](https://github.com/maximegris/angular-electron/commit/7d5eeb3))
-* Modify electron builder configuration to remove source code and tests ([0cf6899](https://github.com/maximegris/angular-electron/commit/0cf6899))
-* ref/ remove contributors ([6dc97a1](https://github.com/maximegris/angular-electron/commit/6dc97a1))
-* The file is unused  ([05c9e39](https://github.com/maximegris/angular-electron/commit/05c9e39))
-* Translation issue ([35354b1](https://github.com/maximegris/angular-electron/commit/35354b1))
-* version 3.4.0 ([06d6b0f](https://github.com/maximegris/angular-electron/commit/06d6b0f))
-* refactor: update electron, electron-builder to latest (2.0.2, 20.14.7) ([f19e6ee](https://github.com/maximegris/angular-electron/commit/f19e6ee))
-* refactor: upgrade to NodeJS 8, Angular 6, CLI 6, Electron 2.0, RxJS 6.1 ([e37efdb](https://github.com/maximegris/angular-electron/commit/e37efdb))
-* refactor(hooks): replace hooks to ng-cli fileReplacements logic ([c940037](https://github.com/maximegris/angular-electron/commit/c940037))
-* fix(test): create polyfills-test.ts for karma test & setup Travis CI ([7fbc68c](https://github.com/maximegris/angular-electron/commit/7fbc68c))
-* fix(travis): set progress to false (speed up npm) ([be48531](https://github.com/maximegris/angular-electron/commit/be48531))
-
-
-
-## 3.3.0 (2018-04-15)
-
-* add Changelog file ([71083f1](https://github.com/maximegris/angular-electron/commit/71083f1))
-* fix/ typo README.md (production variables) ([a8c2b63](https://github.com/maximegris/angular-electron/commit/a8c2b63))
-* version 3.3.0 ([a88bda6](https://github.com/maximegris/angular-electron/commit/a88bda6))
-* version 3.3.0 changelog ([ddfbbf9](https://github.com/maximegris/angular-electron/commit/ddfbbf9))
-
-
-
-## 3.2.0 (2018-04-15)
-
-* fix e2e tests based on PR #161 and terminate the npm process after test execution ([fccf348](https://github.com/maximegris/angular-electron/commit/fccf348)), closes [#161](https://github.com/maximegris/angular-electron/issues/161)
-* fix/ app e2e spec ([8046b2a](https://github.com/maximegris/angular-electron/commit/8046b2a))
-* Including electron to eliminate Electron not found err sg ([d78203f](https://github.com/maximegris/angular-electron/commit/d78203f))
-* provide webFrame access ([6bd044e](https://github.com/maximegris/angular-electron/commit/6bd044e))
-* ref/ add node/electron module import as exemple : fs and remote ([e3ad12d](https://github.com/maximegris/angular-electron/commit/e3ad12d))
-* remove copyfiles ([9af5138](https://github.com/maximegris/angular-electron/commit/9af5138))
-* update dependencies ([89963ab](https://github.com/maximegris/angular-electron/commit/89963ab))
-* version 3.2.0 ([8dc69fa](https://github.com/maximegris/angular-electron/commit/8dc69fa))
-
-
-
-## 3.1.0 (2018-03-15)
-
-* Added option -o to script npm run ng:serve so that it really open the browser ([72aff8d](https://github.com/maximegris/angular-electron/commit/72aff8d))
-* Fix to change environment ([448d68b](https://github.com/maximegris/angular-electron/commit/448d68b))
-* version 3.1.0 ([f7c71e7](https://github.com/maximegris/angular-electron/commit/f7c71e7))
-
-
-
-## <small>3.0.1 (2018-03-07)</small>
-
-* fix/ icon app ([22699ef](https://github.com/maximegris/angular-electron/commit/22699ef))
-* version 3.0.1 ([5258ff1](https://github.com/maximegris/angular-electron/commit/5258ff1))
-
-
-
-## 3.0.0 (2018-02-25)
-
-* fix/ TranslateModule test ([7863aa9](https://github.com/maximegris/angular-electron/commit/7863aa9))
-* Ng not ejected anymore ([67ab31c](https://github.com/maximegris/angular-electron/commit/67ab31c))
-* pin all dependency versions ([0558d6a](https://github.com/maximegris/angular-electron/commit/0558d6a))
-* update dependencies and fix unit tests ([4d3ca6e](https://github.com/maximegris/angular-electron/commit/4d3ca6e))
-
-
-
-## <small>2.7.1 (2018-02-15)</small>
-
-* ref/ dernière version cli ([3df8158](https://github.com/maximegris/angular-electron/commit/3df8158))
-* version 2.7.1 ([1ae6f7a](https://github.com/maximegris/angular-electron/commit/1ae6f7a))
-
-
-
-## 2.7.0 (2018-02-15)
-
-* Correction of a word. ([d6655c7](https://github.com/maximegris/angular-electron/commit/d6655c7))
-* feat/ add webview directive ([e1b5600](https://github.com/maximegris/angular-electron/commit/e1b5600))
-* migrate Angular to 5.2.0 ([b8cf343](https://github.com/maximegris/angular-electron/commit/b8cf343))
-* ref/ Remove sponsor ([2a28239](https://github.com/maximegris/angular-electron/commit/2a28239))
-* ref/ update angular & dep ([e3b1fab](https://github.com/maximegris/angular-electron/commit/e3b1fab))
-* ref/ upgrade electron (security issue) ([f6a0c4e](https://github.com/maximegris/angular-electron/commit/f6a0c4e))
-* version bump + logo resize ([3545d16](https://github.com/maximegris/angular-electron/commit/3545d16))
-* fix: fixes maximegris/angular-electron#118 ([6d21e69](https://github.com/maximegris/angular-electron/commit/6d21e69)), closes [maximegris/angular-electron#118](https://github.com/maximegris/angular-electron/issues/118)
-* fix: fixes maximegris/angular-electron#98 ([136344b](https://github.com/maximegris/angular-electron/commit/136344b)), closes [maximegris/angular-electron#98](https://github.com/maximegris/angular-electron/issues/98)
-
-
-
-## <small>2.4.1 (2017-12-14)</small>
-
-* fix/ Manage icons for linux binary generation ([ccd0601](https://github.com/maximegris/angular-electron/commit/ccd0601))
-* version 2.4.1 ([5fcfca0](https://github.com/maximegris/angular-electron/commit/5fcfca0))
-
-
-
-## 2.4.0 (2017-12-08)
-
-* version 2.4.0 ([0437b33](https://github.com/maximegris/angular-electron/commit/0437b33))
-
-
-
-## 2.3.0 (2017-12-04)
-
-* add ngx translate ([facda37](https://github.com/maximegris/angular-electron/commit/facda37))
-* Use HttpClientModule ([5704e2e](https://github.com/maximegris/angular-electron/commit/5704e2e))
-
-
-
-## 2.2.0 (2017-11-28)
-
-* Brought back scripts defined in webpack.config.js ([441da3d](https://github.com/maximegris/angular-electron/commit/441da3d))
-* migrate to Angular 5.0.3 ([f4bc5b2](https://github.com/maximegris/angular-electron/commit/f4bc5b2))
-* Update LICENSE badge ([fa783aa](https://github.com/maximegris/angular-electron/commit/fa783aa))
-* Update to electron-builder ([0e94b52](https://github.com/maximegris/angular-electron/commit/0e94b52))
-
-
-
-## <small>2.1.1 (2017-11-19)</small>
-
-* Move codesponsor ([064be4c](https://github.com/maximegris/angular-electron/commit/064be4c))
-
-
-
-## 2.1.0 (2017-11-19)
-
-* Add codesponsor ([87e695d](https://github.com/maximegris/angular-electron/commit/87e695d))
-* Add script for winportable ([2be2dae](https://github.com/maximegris/angular-electron/commit/2be2dae))
-* Add support for building a Windows self-contained executable ([7cfa790](https://github.com/maximegris/angular-electron/commit/7cfa790))
-* fix/ electron-packager need favicon >= 256x256 on Windows ([d2c253f](https://github.com/maximegris/angular-electron/commit/d2c253f))
-* fix/ refact webpack config (inspired by ng eject Angular 5) ([d1c30ac](https://github.com/maximegris/angular-electron/commit/d1c30ac))
-* fix/ replace aotPlugin in no prod mode ([a0caf1e](https://github.com/maximegris/angular-electron/commit/a0caf1e))
-* fix/ Replace AotPlugin to AngularCompilerPlugin ([bef106e](https://github.com/maximegris/angular-electron/commit/bef106e))
-* fix/ Update README Angular 5 ([93c6949](https://github.com/maximegris/angular-electron/commit/93c6949))
-* fix/ webpack template path ([518b66b](https://github.com/maximegris/angular-electron/commit/518b66b))
-* Mgrate to Angular 5.0.2 ([bd7bed6](https://github.com/maximegris/angular-electron/commit/bd7bed6))
-* Update package.json ([b16cf73](https://github.com/maximegris/angular-electron/commit/b16cf73))
-* Version 2.1.0 ([fccef2f](https://github.com/maximegris/angular-electron/commit/fccef2f))
-
-
-
-## 2.0.0 (2017-11-13)
-
-* Add buffer to externals ([7e797f0](https://github.com/maximegris/angular-electron/commit/7e797f0))
-* Edit a typo on README ([956a2bc](https://github.com/maximegris/angular-electron/commit/956a2bc))
-* Fix #55 removed bootstraps.css which for example purpose before. ([41445eb](https://github.com/maximegris/angular-electron/commit/41445eb)), closes [#55](https://github.com/maximegris/angular-electron/issues/55)
-* License MIT ([73494b7](https://github.com/maximegris/angular-electron/commit/73494b7))
-* Migrate to Angular 5 ([3a3ffe1](https://github.com/maximegris/angular-electron/commit/3a3ffe1))
-
-
-
-## 1.9.0 (2017-09-22)
-
-* feat/  launch electron & webpack in // (npm run start) ([8c37cc4](https://github.com/maximegris/angular-electron/commit/8c37cc4))
-* ref/ Exclude node_modules (tslint) ([412a0a5](https://github.com/maximegris/angular-electron/commit/412a0a5))
-
-
-
-## <small>1.8.1 (2017-09-22)</small>
-
-* Fix #55 , and also added functionality for scripts global building ([012a894](https://github.com/maximegris/angular-electron/commit/012a894)), closes [#55](https://github.com/maximegris/angular-electron/issues/55)
-* ref/ add package-lock in gitignore ([4edd98d](https://github.com/maximegris/angular-electron/commit/4edd98d))
-* remove package-lock ([8e98627](https://github.com/maximegris/angular-electron/commit/8e98627))
-* upgrade angular version 4.4.3 ([10d0f87](https://github.com/maximegris/angular-electron/commit/10d0f87))
-* version 1.8.1 ([70879d1](https://github.com/maximegris/angular-electron/commit/70879d1))
-
-
-
-## 1.8.0 (2017-09-09)
-
-* upgrade lib version ([2ac2aa0](https://github.com/maximegris/angular-electron/commit/2ac2aa0))
-
-
-
-## 1.7.0 (2017-08-18)
-
-* ref/ Update Angular (4.3.5) / Electron (1.7.2) / Electron Packager (8.7.2) / Typescript (2.5.0) ([f97cd81](https://github.com/maximegris/angular-electron/commit/f97cd81))
-
-
-
-## <small>1.6.1 (2017-07-27)</small>
-
-* fix/  angular-cli error in prod compilation with aot ([c26a5ae](https://github.com/maximegris/angular-electron/commit/c26a5ae))
-* version 1.6.1 ([899babd](https://github.com/maximegris/angular-electron/commit/899babd))
-
-
-
-## 1.6.0 (2017-07-16)
-
-* ajout package-lock npm v5 ([09c0840](https://github.com/maximegris/angular-electron/commit/09c0840))
-* Change background img ([7e58717](https://github.com/maximegris/angular-electron/commit/7e58717))
-* Fix npm run build:prod ([c23bade](https://github.com/maximegris/angular-electron/commit/c23bade))
-* fix/ Bindings not updating automatically #44 ([2a90191](https://github.com/maximegris/angular-electron/commit/2a90191)), closes [#44](https://github.com/maximegris/angular-electron/issues/44)
-* fix/ e2e test with jasmine2 ([9c51f32](https://github.com/maximegris/angular-electron/commit/9c51f32))
-* fix/ typescript issues ([bb0a6ab](https://github.com/maximegris/angular-electron/commit/bb0a6ab))
-* increment version deps ([bde452c](https://github.com/maximegris/angular-electron/commit/bde452c))
-* Revert last pull request - break production compilation ([ccc9064](https://github.com/maximegris/angular-electron/commit/ccc9064))
-* upgrade angular version to 4.3.0 ([ab16959](https://github.com/maximegris/angular-electron/commit/ab16959))
-
-
-
-## 1.5.0 (2017-06-10)
-
-* fix/ karma Unit test ([ea13d6d](https://github.com/maximegris/angular-electron/commit/ea13d6d))
-* fix/ remove yarn because of error with module dep in prod builds ([8a49a45](https://github.com/maximegris/angular-electron/commit/8a49a45))
-* update yarn lock ([18c0e62](https://github.com/maximegris/angular-electron/commit/18c0e62))
-
-
-
-## <small>1.4.4 (2017-06-08)</small>
-
-* fix/ Fix npm run lint ([db7972a](https://github.com/maximegris/angular-electron/commit/db7972a))
-* ref/ electron ./dist more generic ([7e71add](https://github.com/maximegris/angular-electron/commit/7e71add))
-* Replace const icon to let icon ([dadf65f](https://github.com/maximegris/angular-electron/commit/dadf65f))
-
-
-
-## <small>1.4.3 (2017-06-06)</small>
-
-* fix/ favicon path during packaging ([aa2b012](https://github.com/maximegris/angular-electron/commit/aa2b012))
-* remove build node 8 till node-sass failed ([34f201d](https://github.com/maximegris/angular-electron/commit/34f201d))
-* v1.4.3 ([4961fb0](https://github.com/maximegris/angular-electron/commit/4961fb0))
-
-
-
-## <small>1.4.2 (2017-05-31)</small>
-
-* Change dep versions ([62d08d3](https://github.com/maximegris/angular-electron/commit/62d08d3))
-* install npm dep when building ([56948d0](https://github.com/maximegris/angular-electron/commit/56948d0))
-* Minor update ([5f282b7](https://github.com/maximegris/angular-electron/commit/5f282b7))
-* No hot reload in browser ([7892f0d](https://github.com/maximegris/angular-electron/commit/7892f0d))
-* update Electron v1.6.10 ([f2f2080](https://github.com/maximegris/angular-electron/commit/f2f2080))
-* upgrade ng/electron dependencies ([78b0f27](https://github.com/maximegris/angular-electron/commit/78b0f27))
-* chore(package): bump dependencies ([b62c7b6](https://github.com/maximegris/angular-electron/commit/b62c7b6))
-
-
-
-## 1.4.0 (2017-05-23)
-
-* 1.4.0 ([23213c4](https://github.com/maximegris/angular-electron/commit/23213c4))
-* Change style home page ([93dcc52](https://github.com/maximegris/angular-electron/commit/93dcc52))
-* Fixed compiler warnings ([fca6b15](https://github.com/maximegris/angular-electron/commit/fca6b15))
-* ref/ electron main from js to ts ([835d32b](https://github.com/maximegris/angular-electron/commit/835d32b))
-* Remove caret & tilde ([dd98155](https://github.com/maximegris/angular-electron/commit/dd98155))
-
-
-
-## <small>1.3.5 (2017-05-18)</small>
-
-* Add new tags ([cd07a86](https://github.com/maximegris/angular-electron/commit/cd07a86))
-* v 1.3.5 ([d528a71](https://github.com/maximegris/angular-electron/commit/d528a71))
-
-
-
-## <small>1.3.4 (2017-05-12)</small>
-
-* feat/ add nodejs native lib in webpack config ([27d9bc6](https://github.com/maximegris/angular-electron/commit/27d9bc6))
-* Fix issue #15 ([d77cbf1](https://github.com/maximegris/angular-electron/commit/d77cbf1)), closes [#15](https://github.com/maximegris/angular-electron/issues/15)
-* Ref/ Electron packager in external file ([17b04e8](https://github.com/maximegris/angular-electron/commit/17b04e8))
-* version 1.3.4 ([374af16](https://github.com/maximegris/angular-electron/commit/374af16))
-
-
-
-## <small>1.3.3 (2017-05-10)</small>
-
-* Chapters order ([a772b9c](https://github.com/maximegris/angular-electron/commit/a772b9c))
-* Chapters order ([06547e5](https://github.com/maximegris/angular-electron/commit/06547e5))
-* Delete spec file of electron.service ([083498e](https://github.com/maximegris/angular-electron/commit/083498e))
-* Fix issue #15 ([e7cd6e6](https://github.com/maximegris/angular-electron/commit/e7cd6e6)), closes [#15](https://github.com/maximegris/angular-electron/issues/15)
-* Move Browser mode chapter ([8818750](https://github.com/maximegris/angular-electron/commit/8818750))
-* Version 1.3.3 ([f4db75b](https://github.com/maximegris/angular-electron/commit/f4db75b))
-
-
-
-## <small>1.3.2 (2017-05-05)</small>
-
-* Add comments of how conditional import works ([e6c1b3b](https://github.com/maximegris/angular-electron/commit/e6c1b3b))
-* Conditional import of Electron/NodeJS libs - The app can be launch in browser mode ([c434f8a](https://github.com/maximegris/angular-electron/commit/c434f8a))
-* Fix indentation ([6a9836a](https://github.com/maximegris/angular-electron/commit/6a9836a))
-* Fix prepree2e script ([b2af4fd](https://github.com/maximegris/angular-electron/commit/b2af4fd))
-* Set e2e tests ([d223974](https://github.com/maximegris/angular-electron/commit/d223974))
-* Suround electron browser by try/catch ([88be472](https://github.com/maximegris/angular-electron/commit/88be472))
-* Update @types/node ([9d43304](https://github.com/maximegris/angular-electron/commit/9d43304))
-* Update readme with e2e info ([01bbf13](https://github.com/maximegris/angular-electron/commit/01bbf13))
-* update version ([0849a0a](https://github.com/maximegris/angular-electron/commit/0849a0a))
-
-
-
-## <small>1.3.1 (2017-05-05)</small>
-
-* Add routing module ([7334ce8](https://github.com/maximegris/angular-electron/commit/7334ce8))
-* Fixed hardcoded path in glob copy, blocking assets after eject ([815d519](https://github.com/maximegris/angular-electron/commit/815d519))
-* update comments in dev/prod env files ([7cf6a51](https://github.com/maximegris/angular-electron/commit/7cf6a51))
-* Version 1.3.1 ([f18ac77](https://github.com/maximegris/angular-electron/commit/f18ac77))
-
-
-
-## 1.3.0 (2017-05-01)
-
-* Fix webpack prod/dev env ([8549da1](https://github.com/maximegris/angular-electron/commit/8549da1))
-
-
-
-## <small>1.2.1 (2017-04-30)</small>
-
-* allowJs ([4efd188](https://github.com/maximegris/angular-electron/commit/4efd188))
-* Example url background in scss ([3705a35](https://github.com/maximegris/angular-electron/commit/3705a35))
-* Fix electron build (extract-zip workaround) ([a7ee90e](https://github.com/maximegris/angular-electron/commit/a7ee90e))
-* Fix webpack config url in css ([cea4be5](https://github.com/maximegris/angular-electron/commit/cea4be5))
-* html loader ([c55558a](https://github.com/maximegris/angular-electron/commit/c55558a))
-* update version 1.2.1 ([78e8da7](https://github.com/maximegris/angular-electron/commit/78e8da7))
-
-
-
-## 1.2.0 (2017-04-19)
-
-* Set one example of css class in app component ([a15775f](https://github.com/maximegris/angular-electron/commit/a15775f))
-* Update npm dependencies ([0a93ebe](https://github.com/maximegris/angular-electron/commit/0a93ebe))
-
-
-
-## <small>1.1.2 (2017-04-18)</small>
-
-* Fix typo & fix script electron:mac ([bd06859](https://github.com/maximegris/angular-electron/commit/bd06859))
-* Set theme jekyll-theme-architect ([644d857](https://github.com/maximegris/angular-electron/commit/644d857))
-* update README ([97fa63d](https://github.com/maximegris/angular-electron/commit/97fa63d))
-* update README ([23fc0a9](https://github.com/maximegris/angular-electron/commit/23fc0a9))
-* update README ([a8dcf6a](https://github.com/maximegris/angular-electron/commit/a8dcf6a))
-* v1.1.2 ([e29e467](https://github.com/maximegris/angular-electron/commit/e29e467))
-
-
-
-## <small>1.1.1 (2017-04-12)</small>
-
-* Fix webpack.config file path (travisci) ([a172df9](https://github.com/maximegris/angular-electron/commit/a172df9))
-* live reload on disk ([7bb2f8b](https://github.com/maximegris/angular-electron/commit/7bb2f8b))
-* Remove unused dependency (webpack-dev-server) ([e9150f4](https://github.com/maximegris/angular-electron/commit/e9150f4))
-
-
-
-## 1.1.0 (2017-04-12)
-
-* add depdencies CI & Licence ([6ceb0f2](https://github.com/maximegris/angular-electron/commit/6ceb0f2))
-* Override webpack configuration ([60d6116](https://github.com/maximegris/angular-electron/commit/60d6116))
-
-
-
-## <small>1.0.3 (2017-04-07)</small>
-
-* Add TravisCI ([e5640fd](https://github.com/maximegris/angular-electron/commit/e5640fd))
-* v1.0.3 ([9866d53](https://github.com/maximegris/angular-electron/commit/9866d53))
-
-
-
-## <small>1.0.2 (2017-04-07)</small>
-
-* Add TravisCI ([ef4b80e](https://github.com/maximegris/angular-electron/commit/ef4b80e))
-* Fix typo ([f964c3f](https://github.com/maximegris/angular-electron/commit/f964c3f))
-* Fix typo ([e42bb5e](https://github.com/maximegris/angular-electron/commit/e42bb5e))
-* Update README ([3bb45b3](https://github.com/maximegris/angular-electron/commit/3bb45b3))
-* Update README with angular-cli doc ([5a57578](https://github.com/maximegris/angular-electron/commit/5a57578))
-* v1.0.2 ([1bd8e0e](https://github.com/maximegris/angular-electron/commit/1bd8e0e))
-
-
-
-## <small>1.0.1 (2017-04-03)</small>
-
-* feat/ Add electron-packager scripts ([57891dc](https://github.com/maximegris/angular-electron/commit/57891dc))
-* ref/ update README ([7fddc20](https://github.com/maximegris/angular-electron/commit/7fddc20))
-* update README ([9a983c1](https://github.com/maximegris/angular-electron/commit/9a983c1))
-* v1.0.0 ([7a21eb9](https://github.com/maximegris/angular-electron/commit/7a21eb9))
-* v1.0.1 ([68275a3](https://github.com/maximegris/angular-electron/commit/68275a3))
-* chore: initial commit from @angular/cli ([616a69e](https://github.com/maximegris/angular-electron/commit/616a69e))
+## <small>1.1.4 (2020-01-23)</small>
+
+* accessibility improvements ([85d59a1](https://github.com/cc-cdv-lu/FireFinger/commit/85d59a1))
+* added 'pink-theme' ([c377614](https://github.com/cc-cdv-lu/FireFinger/commit/c377614))
+* added a completely new course and fixed issue with gänsefüsschen ([33762aa](https://github.com/cc-cdv-lu/FireFinger/commit/33762aa))
+* added angular-electron 6 starter ([528f483](https://github.com/cc-cdv-lu/FireFinger/commit/528f483))
+* added button to forcefully override existing courses ([1ba0b61](https://github.com/cc-cdv-lu/FireFinger/commit/1ba0b61))
+* added chapter selection to settings ([c3d9243](https://github.com/cc-cdv-lu/FireFinger/commit/c3d9243))
+* added char lessons and part of word lessons ([9f0e30e](https://github.com/cc-cdv-lu/FireFinger/commit/9f0e30e))
+* added color schemes to settings ([3970a92](https://github.com/cc-cdv-lu/FireFinger/commit/3970a92))
+* added concept ([ef45b42](https://github.com/cc-cdv-lu/FireFinger/commit/ef45b42))
+* added difficulty settings ([884b332](https://github.com/cc-cdv-lu/FireFinger/commit/884b332))
+* added electron-unhandled ([40a3655](https://github.com/cc-cdv-lu/FireFinger/commit/40a3655))
+* added end of level screen ([ab2b52f](https://github.com/cc-cdv-lu/FireFinger/commit/ab2b52f))
+* added file support, started work on settings ([ae328f2](https://github.com/cc-cdv-lu/FireFinger/commit/ae328f2))
+* added hardcoded lesson loading ([76f1a08](https://github.com/cc-cdv-lu/FireFinger/commit/76f1a08))
+* added info and contact box ([0b56514](https://github.com/cc-cdv-lu/FireFinger/commit/0b56514))
+* added lang attr. to reading text ([3c514da](https://github.com/cc-cdv-lu/FireFinger/commit/3c514da))
+* added logging to folder opening ([c9dc8d5](https://github.com/cc-cdv-lu/FireFinger/commit/c9dc8d5))
+* added mac os related files for builded with registered id ([7841628](https://github.com/cc-cdv-lu/FireFinger/commit/7841628))
+* added mock-ups export ([44d3c18](https://github.com/cc-cdv-lu/FireFinger/commit/44d3c18))
+* added more buttons to ignore list ([bbe6a49](https://github.com/cc-cdv-lu/FireFinger/commit/bbe6a49))
+* added more error handling ([4821504](https://github.com/cc-cdv-lu/FireFinger/commit/4821504))
+* added persistant config support ([3a3b49f](https://github.com/cc-cdv-lu/FireFinger/commit/3a3b49f))
+* added preview to font choices ([00d966c](https://github.com/cc-cdv-lu/FireFinger/commit/00d966c))
+* added session manager ([9dcbb98](https://github.com/cc-cdv-lu/FireFinger/commit/9dcbb98))
+* added sound effects and polished up some code ([39044cc](https://github.com/cc-cdv-lu/FireFinger/commit/39044cc))
+* added status bar ([7322027](https://github.com/cc-cdv-lu/FireFinger/commit/7322027))
+* added theme cdv palette ([4f049e6](https://github.com/cc-cdv-lu/FireFinger/commit/4f049e6))
+* added upper case detection ([b0eeca7](https://github.com/cc-cdv-lu/FireFinger/commit/b0eeca7))
+* added voice options to settings ([b67aa78](https://github.com/cc-cdv-lu/FireFinger/commit/b67aa78))
+* added voice output ([4dd1894](https://github.com/cc-cdv-lu/FireFinger/commit/4dd1894))
+* additions to stats ([63c1e33](https://github.com/cc-cdv-lu/FireFinger/commit/63c1e33))
+* adjusted and finalized 1.0.3 update requirements closes #34 #32 #31 #29 ([7b1a06c](https://github.com/cc-cdv-lu/FireFinger/commit/7b1a06c)), closes [#34](https://github.com/cc-cdv-lu/FireFinger/issues/34) [#32](https://github.com/cc-cdv-lu/FireFinger/issues/32) [#31](https://github.com/cc-cdv-lu/FireFinger/issues/31) [#29](https://github.com/cc-cdv-lu/FireFinger/issues/29)
+* adjusted settings...mostly ([ab01b06](https://github.com/cc-cdv-lu/FireFinger/commit/ab01b06))
+* aligning chapter view descriptions to the right ([a363461](https://github.com/cc-cdv-lu/FireFinger/commit/a363461))
+* another build ([b4c427c](https://github.com/cc-cdv-lu/FireFinger/commit/b4c427c))
+* background color fix ([37143a0](https://github.com/cc-cdv-lu/FireFinger/commit/37143a0))
+* better navigation for new users - needs further improvmenets ([d01a0fd](https://github.com/cc-cdv-lu/FireFinger/commit/d01a0fd))
+* big improvements to settings ([0955eba](https://github.com/cc-cdv-lu/FireFinger/commit/0955eba))
+* big refactoring... ([f2a4949](https://github.com/cc-cdv-lu/FireFinger/commit/f2a4949))
+* broken push before update... ([b48d8b2](https://github.com/cc-cdv-lu/FireFinger/commit/b48d8b2))
+* build fixes for version 0.9.0 ([4d312f9](https://github.com/cc-cdv-lu/FireFinger/commit/4d312f9))
+* build v 0.7.0 ([d51994d](https://github.com/cc-cdv-lu/FireFinger/commit/d51994d))
+* bumped version number - set goals for version 1.0.3 - see changelog in README.md ([664bbe3](https://github.com/cc-cdv-lu/FireFinger/commit/664bbe3))
+* changed focus input shortcut to Ctrl + Alt + X ([c26d910](https://github.com/cc-cdv-lu/FireFinger/commit/c26d910))
+* cleanup ([2c0af2b](https://github.com/cc-cdv-lu/FireFinger/commit/2c0af2b))
+* cleanup ([11e5a7f](https://github.com/cc-cdv-lu/FireFinger/commit/11e5a7f))
+* cleanup of electron service ([97ab86d](https://github.com/cc-cdv-lu/FireFinger/commit/97ab86d))
+* code cleaning ([aa43308](https://github.com/cc-cdv-lu/FireFinger/commit/aa43308))
+* code cleanup ([14eac4e](https://github.com/cc-cdv-lu/FireFinger/commit/14eac4e))
+* code cleanup ([ff17be0](https://github.com/cc-cdv-lu/FireFinger/commit/ff17be0))
+* code cleanup ([f7b44ac](https://github.com/cc-cdv-lu/FireFinger/commit/f7b44ac))
+* code cleanup ([ab4f375](https://github.com/cc-cdv-lu/FireFinger/commit/ab4f375))
+* code formatting ([690074e](https://github.com/cc-cdv-lu/FireFinger/commit/690074e))
+* completely revamped layout management, enabled application wide zooming via shortcut and much more ([63a9e17](https://github.com/cc-cdv-lu/FireFinger/commit/63a9e17))
+* completely split custom courses and build in courses ([b9c899d](https://github.com/cc-cdv-lu/FireFinger/commit/b9c899d))
+* css adjustments ([c7c44fb](https://github.com/cc-cdv-lu/FireFinger/commit/c7c44fb))
+* Ctrl + Shift + X now focusses the 'typing' area ([dba41f6](https://github.com/cc-cdv-lu/FireFinger/commit/dba41f6))
+* documentation updates ([d024762](https://github.com/cc-cdv-lu/FireFinger/commit/d024762))
+* enabled reading of file in build version ([ef6c7ad](https://github.com/cc-cdv-lu/FireFinger/commit/ef6c7ad))
+* even cleaner... ([8833a44](https://github.com/cc-cdv-lu/FireFinger/commit/8833a44))
+* expanded settings ([d0f4428](https://github.com/cc-cdv-lu/FireFinger/commit/d0f4428))
+* extracted file related stuff to own service ([b75e82a](https://github.com/cc-cdv-lu/FireFinger/commit/b75e82a))
+* finished localization ([c3cc510](https://github.com/cc-cdv-lu/FireFinger/commit/c3cc510))
+* first build cleanup ([6ff471b](https://github.com/cc-cdv-lu/FireFinger/commit/6ff471b))
+* first run ([2952ee3](https://github.com/cc-cdv-lu/FireFinger/commit/2952ee3))
+* first successful complete pass of test ([7f66241](https://github.com/cc-cdv-lu/FireFinger/commit/7f66241))
+* first working skeleton ([c2e8eb1](https://github.com/cc-cdv-lu/FireFinger/commit/c2e8eb1))
+* fix for dev tools appearing in production ([057fd34](https://github.com/cc-cdv-lu/FireFinger/commit/057fd34))
+* fix for enter button ([1797e1b](https://github.com/cc-cdv-lu/FireFinger/commit/1797e1b))
+* fix for env ([0e269ad](https://github.com/cc-cdv-lu/FireFinger/commit/0e269ad))
+* fix for private/public issue ([ea0391a](https://github.com/cc-cdv-lu/FireFinger/commit/ea0391a))
+* fix for test browser crash ([2821fb6](https://github.com/cc-cdv-lu/FireFinger/commit/2821fb6))
+* fix user login on startup ([6ee9fdd](https://github.com/cc-cdv-lu/FireFinger/commit/6ee9fdd))
+* fixed background color ([ba6767a](https://github.com/cc-cdv-lu/FireFinger/commit/ba6767a))
+* fixed end of level screen ([5dd996f](https://github.com/cc-cdv-lu/FireFinger/commit/5dd996f))
+* fixed end of session bug ([27d2e73](https://github.com/cc-cdv-lu/FireFinger/commit/27d2e73))
+* fixed file explorer button in settings ([7752ba0](https://github.com/cc-cdv-lu/FireFinger/commit/7752ba0))
+* fixed first letter of setence and words dissappearing from prev section ([b7482b5](https://github.com/cc-cdv-lu/FireFinger/commit/b7482b5))
+* fixed font family ([6c44d6a](https://github.com/cc-cdv-lu/FireFinger/commit/6c44d6a))
+* fixed fontsize not being set to previous value on launch ([6dcb6c0](https://github.com/cc-cdv-lu/FireFinger/commit/6dcb6c0))
+* fixed for verticalbars appearing in main view ([8a56fa7](https://github.com/cc-cdv-lu/FireFinger/commit/8a56fa7))
+* fixed login screen and 'beautified' page selection with icons, colors and new titles... ([5c1f9f2](https://github.com/cc-cdv-lu/FireFinger/commit/5c1f9f2))
+* fixed login screen css ([467ca54](https://github.com/cc-cdv-lu/FireFinger/commit/467ca54))
+* fixed main-view for braille displays ([953caea](https://github.com/cc-cdv-lu/FireFinger/commit/953caea))
+* fixed menu bar and removed unused code ([29a1e5b](https://github.com/cc-cdv-lu/FireFinger/commit/29a1e5b))
+* fixed opening external links ([041301f](https://github.com/cc-cdv-lu/FireFinger/commit/041301f))
+* fixed outline always showing ([5a85fa5](https://github.com/cc-cdv-lu/FireFinger/commit/5a85fa5))
+* fixed set of lessons are now imported into the appdata folder upon first launch ([a1e58a7](https://github.com/cc-cdv-lu/FireFinger/commit/a1e58a7))
+* fixed styles of level selection ([91724db](https://github.com/cc-cdv-lu/FireFinger/commit/91724db))
+* fixed thumb-slide size ([cc98d50](https://github.com/cc-cdv-lu/FireFinger/commit/cc98d50))
+* fixed type speed stats calculation - is now keys per minute ([c61e9f1](https://github.com/cc-cdv-lu/FireFinger/commit/c61e9f1))
+* fixed voice settings css ([eedfdc9](https://github.com/cc-cdv-lu/FireFinger/commit/eedfdc9))
+* fixed warning flash toggle ([8aa031e](https://github.com/cc-cdv-lu/FireFinger/commit/8aa031e))
+* fixed zooming clash with special characters triggering mistakes being counted ([4b2490f](https://github.com/cc-cdv-lu/FireFinger/commit/4b2490f))
+* fixes for laptops ([2b6495a](https://github.com/cc-cdv-lu/FireFinger/commit/2b6495a))
+* fixes for reader ([0dd6cd4](https://github.com/cc-cdv-lu/FireFinger/commit/0dd6cd4))
+* fixing github & gitlab ([8545a27](https://github.com/cc-cdv-lu/FireFinger/commit/8545a27))
+* further improvements to settings ([b8ff390](https://github.com/cc-cdv-lu/FireFinger/commit/b8ff390))
+* further improvements to settings ([c9b3259](https://github.com/cc-cdv-lu/FireFinger/commit/c9b3259))
+* further progress on testing implementation ([2b996fb](https://github.com/cc-cdv-lu/FireFinger/commit/2b996fb))
+* guideline can now be turned off in settings ([5926fad](https://github.com/cc-cdv-lu/FireFinger/commit/5926fad))
+* icon fix ([1e9fbc4](https://github.com/cc-cdv-lu/FireFinger/commit/1e9fbc4))
+* ide config changes ([b3df1b6](https://github.com/cc-cdv-lu/FireFinger/commit/b3df1b6))
+* implemented memory leak for for mespeak ([c3bee42](https://github.com/cc-cdv-lu/FireFinger/commit/c3bee42))
+* improved chapter view, improved styles ([edfc8c8](https://github.com/cc-cdv-lu/FireFinger/commit/edfc8c8))
+* improved end of level screen, removed last empty character at end of level, removed some console log ([b51207a](https://github.com/cc-cdv-lu/FireFinger/commit/b51207a))
+* improved header and footer css ([e40d2ce](https://github.com/cc-cdv-lu/FireFinger/commit/e40d2ce))
+* improved line height, added chapter button, hide debug bar, custom chapter for kids, ... ([696b90f](https://github.com/cc-cdv-lu/FireFinger/commit/696b90f))
+* improved summary screen ([4c0d72d](https://github.com/cc-cdv-lu/FireFinger/commit/4c0d72d))
+* improved tab list accessibility ([aface4f](https://github.com/cc-cdv-lu/FireFinger/commit/aface4f))
+* improved ux of chapters screen ([7ca9af4](https://github.com/cc-cdv-lu/FireFinger/commit/7ca9af4))
+* increased version number ([4e99d3a](https://github.com/cc-cdv-lu/FireFinger/commit/4e99d3a))
+* incresed version number ([ef556d2](https://github.com/cc-cdv-lu/FireFinger/commit/ef556d2))
+* initial upgrade to angular 8 - stuff is still plenty broken ([c357e89](https://github.com/cc-cdv-lu/FireFinger/commit/c357e89))
+* Input field will now automatically be focussed upon loading the main view (opening FireFinger, or sw ([f5446d7](https://github.com/cc-cdv-lu/FireFinger/commit/f5446d7))
+* launch fix ([fe0c9c0](https://github.com/cc-cdv-lu/FireFinger/commit/fe0c9c0))
+* layout and warning changes...wip ([5bae780](https://github.com/cc-cdv-lu/FireFinger/commit/5bae780))
+* layout improvements ([e2306c4](https://github.com/cc-cdv-lu/FireFinger/commit/e2306c4))
+* layout improvements... ([d50af1c](https://github.com/cc-cdv-lu/FireFinger/commit/d50af1c))
+* localization fixes ([6d153e5](https://github.com/cc-cdv-lu/FireFinger/commit/6d153e5))
+* localization, style and chapter reorganisation ([bcddc66](https://github.com/cc-cdv-lu/FireFinger/commit/bcddc66))
+* major cleanup and fixed time getting screwed up when restoring from old session ([003edaa](https://github.com/cc-cdv-lu/FireFinger/commit/003edaa))
+* major improvements for level selection screen ([e9c8fa1](https://github.com/cc-cdv-lu/FireFinger/commit/e9c8fa1))
+* many layout fixes and stuff... ([8132d0b](https://github.com/cc-cdv-lu/FireFinger/commit/8132d0b))
+* many style improvements, fixed some settings buttons, fixed red flashing background and made color l ([59503ae](https://github.com/cc-cdv-lu/FireFinger/commit/59503ae))
+* marking the end of the text now ([f9b3fb1](https://github.com/cc-cdv-lu/FireFinger/commit/f9b3fb1))
+* material icons are no longer being downloaded and instead are available locally ([1ea823f](https://github.com/cc-cdv-lu/FireFinger/commit/1ea823f))
+* mini ([8ff6ec1](https://github.com/cc-cdv-lu/FireFinger/commit/8ff6ec1))
+* minor corrections... ([a5de8a4](https://github.com/cc-cdv-lu/FireFinger/commit/a5de8a4))
+* minor fixes and deploy ([eb89299](https://github.com/cc-cdv-lu/FireFinger/commit/eb89299))
+* minor style change ([971659c](https://github.com/cc-cdv-lu/FireFinger/commit/971659c))
+* minor upgrade for packages ([614603d](https://github.com/cc-cdv-lu/FireFinger/commit/614603d))
+* mockups... ([6e70a5d](https://github.com/cc-cdv-lu/FireFinger/commit/6e70a5d))
+* more more more... ([f705db9](https://github.com/cc-cdv-lu/FireFinger/commit/f705db9))
+* more polish for visuals and added debugging console ([cf04d2d](https://github.com/cc-cdv-lu/FireFinger/commit/cf04d2d))
+* moved account summary and stats to login screen ([cd31e34](https://github.com/cc-cdv-lu/FireFinger/commit/cd31e34))
+* much cleaner approach to importing some non-compatible modules ([bc2d271](https://github.com/cc-cdv-lu/FireFinger/commit/bc2d271))
+* much cleaner modules for pages ([8709fc2](https://github.com/cc-cdv-lu/FireFinger/commit/8709fc2))
+* new courses added ([83e8cef](https://github.com/cc-cdv-lu/FireFinger/commit/83e8cef))
+* new version 1.0.4 ([a67e731](https://github.com/cc-cdv-lu/FireFinger/commit/a67e731))
+* out of alpha ([76c8272](https://github.com/cc-cdv-lu/FireFinger/commit/76c8272))
+* partially cleaned-up lessons ([c01ac64](https://github.com/cc-cdv-lu/FireFinger/commit/c01ac64))
+* preparation for mac rebuild ([cba71d1](https://github.com/cc-cdv-lu/FireFinger/commit/cba71d1))
+* preparing for extraction of major components ([a37a736](https://github.com/cc-cdv-lu/FireFinger/commit/a37a736))
+* progress on re-fixing testing ([6282512](https://github.com/cc-cdv-lu/FireFinger/commit/6282512))
+* published 1.1.1 ([de95fc3](https://github.com/cc-cdv-lu/FireFinger/commit/de95fc3))
+* Read out loud the currently displayed letter when launching FireFinger ([dc3582e](https://github.com/cc-cdv-lu/FireFinger/commit/dc3582e))
+* readme test update ([1073f83](https://github.com/cc-cdv-lu/FireFinger/commit/1073f83))
+* readme test update ([b20bd05](https://github.com/cc-cdv-lu/FireFinger/commit/b20bd05))
+* readme updated ([6979609](https://github.com/cc-cdv-lu/FireFinger/commit/6979609))
+* readme updated ([ee7c82a](https://github.com/cc-cdv-lu/FireFinger/commit/ee7c82a))
+* removed non needed assets ([fb4e3d3](https://github.com/cc-cdv-lu/FireFinger/commit/fb4e3d3))
+* removed old code ([d2f4644](https://github.com/cc-cdv-lu/FireFinger/commit/d2f4644))
+* removed some comments ([01bb904](https://github.com/cc-cdv-lu/FireFinger/commit/01bb904))
+* removed some debugging logs ([8efa326](https://github.com/cc-cdv-lu/FireFinger/commit/8efa326))
+* removing stuff ([d60730d](https://github.com/cc-cdv-lu/FireFinger/commit/d60730d))
+* renamed debug folder ([0cb1c75](https://github.com/cc-cdv-lu/FireFinger/commit/0cb1c75))
+* Resolve "Add custom courses folder" ([186d901](https://github.com/cc-cdv-lu/FireFinger/commit/186d901))
+* Resolve "Implement auto updater" ([4466d06](https://github.com/cc-cdv-lu/FireFinger/commit/4466d06))
+* rewrote copy assets method and set some types ([8cf33f7](https://github.com/cc-cdv-lu/FireFinger/commit/8cf33f7))
+* saving session before closing and loading it on start ([69c4ce7](https://github.com/cc-cdv-lu/FireFinger/commit/69c4ce7))
+* separating it into more modules ([d3601d5](https://github.com/cc-cdv-lu/FireFinger/commit/d3601d5))
+* Settings page now displays a link to the FireFinger wiki page ([b92652b](https://github.com/cc-cdv-lu/FireFinger/commit/b92652b))
+* should be working now ([135be9d](https://github.com/cc-cdv-lu/FireFinger/commit/135be9d))
+* small adjustments ([ee060b2](https://github.com/cc-cdv-lu/FireFinger/commit/ee060b2))
+* small stuff... ([cf9b69c](https://github.com/cc-cdv-lu/FireFinger/commit/cf9b69c))
+* small visual indicator when text is focussed -> current character has highlight color ([c3574e5](https://github.com/cc-cdv-lu/FireFinger/commit/c3574e5))
+* splitting courses and custom texts ([6601a0a](https://github.com/cc-cdv-lu/FireFinger/commit/6601a0a))
+* started implemented themes ([cdf6843](https://github.com/cc-cdv-lu/FireFinger/commit/cdf6843))
+* started work on font family switcher ([16b4821](https://github.com/cc-cdv-lu/FireFinger/commit/16b4821))
+* started work on localization ([4e80d4c](https://github.com/cc-cdv-lu/FireFinger/commit/4e80d4c))
+* started work on meta data overhaul ([e9a0157](https://github.com/cc-cdv-lu/FireFinger/commit/e9a0157))
+* started work on spec testing - jasmine ([e442da0](https://github.com/cc-cdv-lu/FireFinger/commit/e442da0))
+* started working on split courses... ([5d3b9b5](https://github.com/cc-cdv-lu/FireFinger/commit/5d3b9b5))
+* style adjustments ([52f3b53](https://github.com/cc-cdv-lu/FireFinger/commit/52f3b53))
+* style changes, implemented username being shown in toolbar, fixed €, @, ... not being recognized ([9023bb6](https://github.com/cc-cdv-lu/FireFinger/commit/9023bb6))
+* style fixes of code ([31eacc0](https://github.com/cc-cdv-lu/FireFinger/commit/31eacc0))
+* switched over to angular material themes instead of custom colorschemes ([5b30692](https://github.com/cc-cdv-lu/FireFinger/commit/5b30692))
+* switched over to more standarized way of settings fonts ([50aa4cf](https://github.com/cc-cdv-lu/FireFinger/commit/50aa4cf))
+* switched over to using 'routes' ([d1e4401](https://github.com/cc-cdv-lu/FireFinger/commit/d1e4401))
+* switched to a more graceful import method ([1133be4](https://github.com/cc-cdv-lu/FireFinger/commit/1133be4))
+* switched to install location ([f3a66d2](https://github.com/cc-cdv-lu/FireFinger/commit/f3a66d2))
+* testing different way of opening the folder ([5114ab8](https://github.com/cc-cdv-lu/FireFinger/commit/5114ab8))
+* under the hood improvements ([6c91aec](https://github.com/cc-cdv-lu/FireFinger/commit/6c91aec))
+* updated changelog ([86a689b](https://github.com/cc-cdv-lu/FireFinger/commit/86a689b))
+* updated changelog ([7a80874](https://github.com/cc-cdv-lu/FireFinger/commit/7a80874))
+* updated changelog ([8d97a33](https://github.com/cc-cdv-lu/FireFinger/commit/8d97a33))
+* updated courses ([9376e31](https://github.com/cc-cdv-lu/FireFinger/commit/9376e31))
+* updated icons ([fe82e60](https://github.com/cc-cdv-lu/FireFinger/commit/fe82e60))
+* updated readme ([b25ba58](https://github.com/cc-cdv-lu/FireFinger/commit/b25ba58))
+* updated readme ([477b04c](https://github.com/cc-cdv-lu/FireFinger/commit/477b04c))
+* updated some packages ([d39f426](https://github.com/cc-cdv-lu/FireFinger/commit/d39f426))
+* updated to the new framework of angular-electron ([e98ae9f](https://github.com/cc-cdv-lu/FireFinger/commit/e98ae9f))
+* user and stats changes ([1f11ba5](https://github.com/cc-cdv-lu/FireFinger/commit/1f11ba5))
+* using fs-extra and appData folder for lessons now ([e28b4c5](https://github.com/cc-cdv-lu/FireFinger/commit/e28b4c5))
+* version 1.0.2 publish ([f02d07f](https://github.com/cc-cdv-lu/FireFinger/commit/f02d07f))
+* Victory and failure sounds can now be toggled off in the settings ([ecbcce0](https://github.com/cc-cdv-lu/FireFinger/commit/ecbcce0))
+* WIP layout changes ([b3b17b9](https://github.com/cc-cdv-lu/FireFinger/commit/b3b17b9))
+* working on accessiblility ([0d240ba](https://github.com/cc-cdv-lu/FireFinger/commit/0d240ba))
+* working on fix for file writing... ([056cec3](https://github.com/cc-cdv-lu/FireFinger/commit/056cec3))
+* working with appdata now ([2108987](https://github.com/cc-cdv-lu/FireFinger/commit/2108987))
 
 
 

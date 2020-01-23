@@ -7,9 +7,9 @@
         <span aria-hidden="true" class="fill-remaining-space"></span>
         <mat-progress-bar
           mode="determinate"
-          [value]="getProgress()"
+          [value]="session.getProgress()"
           role="progressbar"
-          [attr.aria-valuenow]="getProgress()"
+          [attr.aria-valuenow]="session.getProgress()"
           [attr.aria-valuetext]="'general.progressbar' | translate"
           aria-valuemin="0"
           aria-valuemax="100"

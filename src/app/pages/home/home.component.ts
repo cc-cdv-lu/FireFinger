@@ -20,13 +20,4 @@ export class HomeComponent implements OnInit {
     // The following line needs to be present for the font size to be applied
     this.style.font = this.style.font;
   }
-
-  getProgress() {
-    if (!this.session.getText()) {
-      return 0;
-    }
-    const progress =
-      (this.session.getIndex() / this.session.getText().length) * 100;
-    return parseFloat(progress + '').toFixed(2);
-  }
 }
