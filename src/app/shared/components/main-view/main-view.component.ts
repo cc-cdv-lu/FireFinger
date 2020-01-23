@@ -192,23 +192,6 @@ export class MainViewComponent implements OnInit {
     console.log('No longer supported...');
   }
 
-  openSettings() {
-    if (this.areSettingsOpen) {
-      return;
-    }
-    this.areSettingsOpen = true;
-    const dialogRef = this.dialog.open(SettingsComponent, {
-      height: '80%',
-      width: '55%',
-      data: {
-        electron_service: this.electron,
-      },
-    });
-    dialogRef.beforeClose().subscribe(() => {
-      this.areSettingsOpen = false;
-    });
-  }
-
   /* DEBUG stuff */
 
   blurAllButtons() {
