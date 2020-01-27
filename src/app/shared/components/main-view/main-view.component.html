@@ -1,14 +1,14 @@
 <div
   class="container"
-  [ngClass]="style.theme"
-  [style.backgroundColor]="shouldFlash() ? '#ec644b' : ''"
-  [attr.lang]="getReadingLang()"
-  [attr.aria-label]="getCurrentForBraille() + getNext()"
+  [ngClass]="view.getTheme()"
+  [style.backgroundColor]="view.shouldFlash() ? '#ec644b' : ''"
+  [attr.lang]="view.getVoiceLang()"
+  [attr.aria-label]="view.getAriaLabel()"
   tabIndex="0"
   role="textbox"
   id="inputLetter"
   aria-hidden="false"
-  [style.outline]="shouldHideFocus() ? 'none' : '1px solid yellow'"
+  [style.outline]="view.shouldHideFocus() ? 'none' : '1px solid yellow'"
 >
   <mat-grid-list
     cols="9"
@@ -20,25 +20,31 @@
       class="textTile HUGE"
       colspan="9"
       rowspan="3"
-      [ngClass]="shouldShowGuideline() ? 'guideline' : ''"
+      [ngClass]="view.shouldShowGuideline() ? 'guideline' : ''"
     >
-      <span class="HUGE prev" [ngStyle]="{ 'font-family': style.fontFamily }">
-        {{ getPrev() }}&lrm;
+      <span
+        class="HUGE prev"
+        [ngStyle]="{ 'font-family': view.getFontFamily() }"
+      >
+        {{ view.getPrev() }}&lrm;
       </span>
       <span
         class="HUGE current"
-        [ngClass]="isInFocus() ? 'highlight' : ''"
-        [ngStyle]="{ 'font-family': style.fontFamily }"
+        [ngClass]="view.isInFocus() ? 'highlight' : ''"
+        [ngStyle]="{ 'font-family': view.getFontFamily() }"
       >
-        {{ getCurrentWithHighlight() }}
+        {{ view.getCurrentWithHighlight() }}
       </span>
-      <span class="HUGE next" [ngStyle]="{ 'font-family': style.fontFamily }">
-        &lrm;{{ getNext() }}
+      <span
+        class="HUGE next"
+        [ngStyle]="{ 'font-family': view.getFontFamily() }"
+      >
+        &lrm;{{ view.getNext() }}
       </span>
     </mat-grid-tile>
     <mat-grid-tile colspan="9" rowSpan="1" [style.color]="'accent'">
-      <h3 class="highlight" [lang]="translate.currentLang">
-        {{ getWarningText() }}
+      <h3 class="highlight" [lang]="view.getTextLang()">
+        {{ view.getWarningText() }}
       </h3>
     </mat-grid-tile>
   </mat-grid-list>

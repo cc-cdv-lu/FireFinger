@@ -7,6 +7,7 @@ import {
   SOUNDS,
 } from '../sound-effect/sound-effect.service';
 import { StatisticsService } from '../statistics/statistics.service';
+import { ChapterType } from '../../types';
 
 @Injectable({
   providedIn: 'root',
@@ -80,7 +81,6 @@ export class KeyHandlerService {
     const pressedKey = event.key;
     const expectedKey = this.session.getCurrentChar();
 
-
     // Ignore special cases such as user trying to increase font size or starting to type special characters
     if (this.shouldIgnore(pressedKey) || event.altKey || event.ctrlKey) {
       return;
@@ -90,7 +90,14 @@ export class KeyHandlerService {
       return this.session.nextTextIndex();
     }
 
-    console.log('PRESSED KEY:', pressedKey);
+    // console.log('PRESSED KEY:', pressedKey);
+
+    if (
+      this.session.getChapterType() === ChapterType.SIMPLE &&
+      pressedKey.toLowerCase() === expectedKey
+    ) {
+      return this.session.nextTextIndex();
+    }
 
     switch (pressedKey) {
       // Reset current session / restart current level

@@ -11,11 +11,13 @@ import {
   LevelSelectionComponent,
   LoginComponent,
   MyTextsComponent,
+  SimpleWinComponent,
 } from './';
 
 @NgModule({
   declarations: [
     HomeComponent,
+    SimpleWinComponent,
     SettingsComponent,
     LevelSelectionComponent,
     LoginComponent,
@@ -27,6 +29,7 @@ import {
   exports: [
     PagesRoutingModule,
     HomeComponent,
+    SimpleWinComponent,
     SettingsComponent,
     LevelSelectionComponent,
     LoginComponent,

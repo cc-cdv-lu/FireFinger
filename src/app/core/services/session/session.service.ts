@@ -10,7 +10,7 @@ import {
 } from '../sound-effect/sound-effect.service';
 import { StringHelperService } from '../string-helper/string-helper.service';
 import { ReaderService } from '../reader/reader.service';
-import { Lesson, Chapter, VIEW } from '../../types';
+import { Lesson, Chapter, ChapterType } from '../../types';
 
 const LAST_SESSION_KEY = 'LAST_SESSION';
 const DIFFICULTY_KEY = 'DIFFICULTY';
@@ -119,13 +119,19 @@ export class SessionService {
   }
 
   onSuccess() {
-    this.nextChapter();
     console.log('BIG success! Next level coming up!');
     if (this.difficulty.playWinSound) {
       this.sound.play(SOUNDS.SUCCESS);
     }
     this.gameState = GAME_STATE.SUCCESS;
-    this.router.navigateByUrl('summary');
+
+    if (this.getChapterType() === ChapterType.SIMPLE) {
+      this.randomNextChapter();
+      this.router.navigateByUrl('simple-win');
+    } else {
+      this.nextChapter();
+      this.router.navigateByUrl('summary');
+    }
   }
 
   onFailure() {
@@ -134,7 +140,11 @@ export class SessionService {
       this.sound.play(SOUNDS.FAILURE);
     }
     this.gameState = GAME_STATE.FAILURE;
-    this.router.navigateByUrl('summary');
+    if (this.getChapterType() === ChapterType.SIMPLE) {
+      this.router.navigateByUrl('simple-win');
+    } else {
+      this.router.navigateByUrl('summary');
+    }
   }
 
   reset() {
@@ -250,18 +260,27 @@ export class SessionService {
     this._currentIndex = index;
     this._isSessionLoaded = true;
     this.saveSession();
+    console.log('Loaded chapter:', this._currentChapter);
   }
 
-  getPrevSegment(view: VIEW) {
-    const str = this.getText();
-    const index = this.getIndex();
-    return this.stringHelper.getPrevSegment(str, index, view);
+  getChapterType() {
+    if (this.getCurrentChapter()) {
+      return this.getCurrentChapter().type;
+    } else {
+      return ChapterType.DICTATION;
+    }
   }
 
-  getNextSegment(view: VIEW) {
+  getPrevSegment() {
     const str = this.getText();
     const index = this.getIndex();
-    return this.stringHelper.getNextSegment(str, index, view);
+    return this.stringHelper.getPrevSegment(str, index, this.getChapterType());
+  }
+
+  getNextSegment() {
+    const str = this.getText();
+    const index = this.getIndex();
+    return this.stringHelper.getNextSegment(str, index, this.getChapterType());
   }
 
   getCurrentChar() {
@@ -279,6 +298,9 @@ export class SessionService {
     } else {
       return console.log('Cannot continue, reached end of text!');
     }
+    if (this.getChapterType() === ChapterType.SIMPLE) {
+      return;
+    }
 
     const word = this.stringHelper.getWordAt(this.getText(), this.getIndex());
 
@@ -287,6 +309,18 @@ export class SessionService {
     } else {
       this.reader.play(this.getCurrentChar(), this._currentChapter.type);
     }
+  }
+
+  randomNextChapter() {
+    const length = this._currentLesson.chapters.length;
+    const newIndex = Math.floor(Math.random() * length);
+    if (newIndex === this._currentIndex && length > 1) {
+      return this.randomNextChapter();
+    }
+    if (!this._currentLesson) {
+      return console.log('No lesson loaded...');
+    }
+    this.loadSession(this._currentLesson, newIndex);
   }
 
   // index = 0;

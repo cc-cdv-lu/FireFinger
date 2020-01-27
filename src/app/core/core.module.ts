@@ -11,7 +11,8 @@ import {
   StyleService,
   FileService,
   ReaderService,
-  KeyHandlerService
+  KeyHandlerService,
+  ViewService
 } from '.';
 
 @NgModule({
@@ -29,6 +30,7 @@ export class CoreModule {
         SessionService,
         SoundEffectService,
         StatisticsService,
+        ViewService,
         StringHelperService,
         StyleService,
         FileService,

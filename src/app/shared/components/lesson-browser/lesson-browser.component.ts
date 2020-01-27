@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Lesson, SessionService } from '../../../core';
+import { Lesson, SessionService, ChapterType } from '../../../core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LessonBrowserComponent implements OnInit {
   @Input() lessons: Array<Lesson>;
+  ChapterType = ChapterType;
 
   constructor(public session: SessionService, public router: Router) {}
 

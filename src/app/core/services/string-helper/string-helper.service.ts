@@ -1,40 +1,55 @@
 import { Injectable } from '@angular/core';
-import { VIEW } from '../../types';
+import { ChapterType } from '../../types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StringHelperService {
-
-  constructor() { }
+  constructor() {}
 
   getCurrentChar(input: string, index: number) {
-    if (!input) { return ''; }
+    if (!input) {
+      return '';
+    }
     return input[index];
   }
 
-  getPrevSegment(input: string, index: number, view: VIEW) {
-    if (!input) { return ''; }
-    switch (view) {
-      case VIEW.CHAR: return '';
-      case VIEW.WORD: return this.getBeginningOfWord(input, index);
-      case VIEW.LINE: return this.getBeginningOfLine(input, index);
+  getPrevSegment(input: string, index: number, ct: ChapterType) {
+    if (!input) {
+      return '';
+    }
+    switch (ct) {
+      case ChapterType.CHAR:
+        return '';
+      case ChapterType.WORD:
+      case ChapterType.SIMPLE:
+        return this.getBeginningOfWord(input, index);
+      case ChapterType.DICTATION:
+        return this.getBeginningOfLine(input, index);
     }
     return '';
   }
 
-  getNextSegment(input: string, index: number, view: VIEW) {
-    if (!input) { return ''; }
-    switch (view) {
-      case VIEW.CHAR: return '';
-      case VIEW.WORD: return this.getRestOfWord(input, index);
-      case VIEW.LINE: return this.getRestOfLine(input, index);
+  getNextSegment(input: string, index: number, ct: ChapterType) {
+    if (!input) {
+      return '';
+    }
+    switch (ct) {
+      case ChapterType.CHAR:
+        return '';
+      case ChapterType.WORD:
+      case ChapterType.SIMPLE:
+        return this.getRestOfWord(input, index);
+      case ChapterType.DICTATION:
+        return this.getRestOfLine(input, index);
     }
   }
 
   getBeginningOfWord(str: string, pos: number) {
     let output = '';
-    if (str[pos] === '\n' || str[pos] === ' ') { return output; }
+    if (str[pos] === '\n' || str[pos] === ' ') {
+      return output;
+    }
 
     for (let i = pos - 1; i >= 0; i--) {
       if (str[i] !== '\n' && str[i] !== ' ') {
@@ -48,7 +63,9 @@ export class StringHelperService {
 
   getRestOfWord(str: string, pos: number) {
     let output = '';
-    if (str[pos] === '\n' || str[pos] === ' ') { return output; }
+    if (str[pos] === '\n' || str[pos] === ' ') {
+      return output;
+    }
 
     for (let i = pos + 1; i < str.length; i++) {
       if (str[i] !== '\n' && str[i] !== ' ') {
@@ -61,14 +78,20 @@ export class StringHelperService {
   }
 
   getBeginningOfLine(str: string, pos: number) {
-    if (str[pos - 1] === '\n') { return str[pos - 1]; }
-    if (str[pos] === '\n') { return this.getBeginningOfLine(str, pos - 1) + str[pos - 1]; }
+    if (str[pos - 1] === '\n') {
+      return str[pos - 1];
+    }
+    if (str[pos] === '\n') {
+      return this.getBeginningOfLine(str, pos - 1) + str[pos - 1];
+    }
 
     let output = '';
     for (let i = pos - 1; i >= 0; i--) {
       if (str[i] !== '\n') {
         output = str[i] + output;
-      } else { return output; }
+      } else {
+        return output;
+      }
     }
 
     return output;
@@ -76,16 +99,21 @@ export class StringHelperService {
 
   getRestOfLine(str: string, pos: number) {
     let output = '';
-    if (str[pos] === '\n') { return output; }
+    if (str[pos] === '\n') {
+      return output;
+    }
     for (let i = pos + 1; i < str.length; i++) {
-      if (str[i] !== '\n') { output += str[i]; } else { return output; }
+      if (str[i] !== '\n') {
+        output += str[i];
+      } else {
+        return output;
+      }
     }
     return output;
   }
 
   /* For reading out loud*/
   getWordAt(str: string, pos: number) {
-
     // Perform type conversions.
     str = String(str);
     // tslint:disable-next-line:no-bitwise
@@ -102,7 +130,6 @@ export class StringHelperService {
 
     // Return the word, using the located bounds to extract it from the string.
     return str.slice(left, right + pos);
-
   }
 
   shuffleString(str: string): string {
@@ -117,5 +144,4 @@ export class StringHelperService {
     }
     return a.join('');
   }
-
 }
