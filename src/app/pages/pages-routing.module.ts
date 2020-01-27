@@ -9,6 +9,7 @@ import {
   LevelSelectionComponent,
   LoginComponent,
   MyTextsComponent,
+  SimpleWinComponent,
 } from './';
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'summary',
     component: SummaryComponent,
+  },
+  {
+    path: 'simple-win',
+    component: SimpleWinComponent,
   },
   {
     path: 'levels',

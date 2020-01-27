@@ -10,15 +10,14 @@ export class Chapter {
   characters: string;
   newCharacters: string;
   amount: number;
+  data?: {
+    soundSRC?: string;
+    imageSRC?: string;
+  };
 }
 export enum ChapterType {
   CHAR,
   WORD,
-  DICATION
-}
-
-export enum VIEW {
-  CHAR,
-  WORD,
-  LINE
+  DICTATION,
+  SIMPLE,
 }

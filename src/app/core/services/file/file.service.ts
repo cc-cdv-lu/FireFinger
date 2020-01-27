@@ -149,8 +149,9 @@ export class FileService {
       }
       const fileURL = path.join(url, file);
       const newChapter: Chapter = this.loadFromFile(fileURL);
-
-      lesson.chapters.push(newChapter);
+      if (newChapter !== undefined) {
+        lesson.chapters.push(newChapter);
+      }
     }
     destination.push(lesson);
     return destination;
@@ -158,12 +159,22 @@ export class FileService {
 
   loadFromFile(url: string): Chapter {
     const fileEnding = path.extname(url);
-    const filename = path.basename(url);
+    const filename = path.basename(url).replace(fileEnding, '');
 
     const regexp = /#{5,}/;
     let fileContent = '';
 
-    switch (fileEnding) {
+    const output: Chapter = {
+      name: filename, // Try to get it from name field
+      type: -1,
+      amount: -1,
+      characters: '',
+      newCharacters: '',
+      content: '',
+      data: {},
+    };
+
+    switch (fileEnding.toLowerCase()) {
       case '.doc':
       case '.docx':
         fileContent = this.getDocFileContents(url);
@@ -171,6 +182,32 @@ export class FileService {
       case '.txt':
         fileContent = this.getTXTFileContents(url);
         break;
+      case '.png':
+      case '.jpg':
+      case '.jpeg':
+      case '.gif':
+      case '.bmp':
+        output.type = ChapterType.SIMPLE;
+        output.content = filename.toLowerCase();
+
+        const bitmap = FS.readFileSync(url);
+        const data = 'data:image/' + fileEnding.replace('.', '') + ';base64,';
+        output.data.imageSRC = data + bitmap.toString('base64');
+
+        output.amount = filename.length;
+        const soundURL =
+          url.replace(path.basename(url), '') + filename + '.mp3';
+        if (FS.pathExistsSync(soundURL)) {
+          const soundFile = FS.readFileSync(soundURL);
+          const soundData =
+            'data:audio/mpeg;base64,' + soundFile.toString('base64');
+          output.data.soundSRC = soundData;
+        }
+        return output;
+        break;
+      case '.mp3':
+      case '.wav':
+        return undefined;
       default:
         console.log('Cannot get contents from this file:', url);
         break;
@@ -182,22 +219,13 @@ export class FileService {
      *
      */
 
-    const output: Chapter = {
-      name: filename.replace(fileEnding, ''), // Try to get it from name field
-      type: -1,
-      amount: -1,
-      characters: '',
-      newCharacters: '',
-      content: '',
-    };
-
     /* IF IT'S A DICTATION LESSON */
     if (!fileContent.match(regexp)) {
       /* If there is no ###### present, then it's simply a dictation
         take the whole text as content and generate the rest/use default values */
       output.content = fileContent;
       output.characters = this.getCharsOfText(fileContent);
-      output.type = ChapterType.DICATION;
+      output.type = ChapterType.DICTATION;
 
       return output;
     } else {
@@ -246,6 +274,8 @@ export class FileService {
     }
     return output;
   }
+
+  generateSimpleLesson(url: string) {}
 
   generateCharLesson(chapter: Chapter) {
     // chapter.characters     -> which characters

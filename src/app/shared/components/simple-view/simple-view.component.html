@@ -1,0 +1,46 @@
+<div
+  class="container"
+  [ngClass]="view.getTheme()"
+  [style.backgroundColor]="view.shouldFlash() ? '#ec644b' : ''"
+  [attr.lang]="view.getVoiceLang()"
+  [attr.aria-label]="view.getAriaLabel()"
+  tabIndex="0"
+  role="textbox"
+  id="inputLetter"
+  aria-hidden="false"
+  [style.outline]="view.shouldHideFocus() ? 'none' : '1px solid yellow'"
+>
+  <div class="soundButton" *ngIf="view.isRecordingAvailable()">
+    <button mat-raised-button (click)="view.playRecording()">
+      <mat-icon color="accent">volume_up</mat-icon>
+    </button>
+  </div>
+
+  <mat-grid-list
+    cols="1"
+    class="viewContainer"
+    [rowHeight]="'8rem'"
+    aria-hidden="true"
+  >
+    <mat-grid-tile rowspan="3">
+      <img class="simpleImage" [src]="view.getImageSource()" />
+    </mat-grid-tile>
+
+    <mat-grid-tile rowspan="2">
+      <span class="HUGE">
+        {{ view.getChapter().content | uppercase }}
+      </span>
+    </mat-grid-tile>
+
+    <mat-grid-tile></mat-grid-tile>
+
+    <mat-grid-tile class="textTile HUGE" rowspan="2">
+      <span
+        class="HUGE current highlight"
+        [ngStyle]="{ 'font-family': view.getFontFamily() }"
+      >
+        {{ view.getSimpleContent() | uppercase }}
+      </span>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

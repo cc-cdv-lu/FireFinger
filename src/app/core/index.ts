@@ -6,6 +6,7 @@ export * from './services/reader/reader.service';
 export * from './services/user/user.service';
 export * from './services/session/session.service';
 export * from './services/key-handler/key-handler.service';
+export * from './services/view/view.service';
 
 export * from './services/sound-effect/sound-effect.service';
 export * from './services/statistics/statistics.service';

@@ -12,12 +12,14 @@ import {
   SelfUpdaterComponent,
 } from '.';
 import { WebviewDirective } from './directives/';
+import { SimpleViewComponent } from './components/simple-view/simple-view.component';
 
 @NgModule({
   declarations: [
     PageNotFoundComponent,
     WebviewDirective,
     MainViewComponent,
+    SimpleViewComponent,
     LessonBrowserComponent,
     SelfUpdaterComponent,
   ],
@@ -27,6 +29,7 @@ import { WebviewDirective } from './directives/';
     WebviewDirective,
     MaterialManagerModule,
     MainViewComponent,
+    SimpleViewComponent,
     SelfUpdaterComponent,
     FormsModule,
     LessonBrowserComponent,
