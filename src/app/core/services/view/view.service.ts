@@ -87,11 +87,11 @@ export class ViewService {
   */
 
   getPrev() {
-    this.session.getPrevSegment();
+    return this.session.getPrevSegment();
   }
 
   getNext() {
-    this.session.getNextSegment();
+    return this.session.getNextSegment();
   }
 
   getChapter() {
