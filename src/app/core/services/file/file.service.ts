@@ -99,6 +99,7 @@ export class FileService {
       return [];
     }
 
+    FS.ensureDirSync(dirURL);
     const docsDir = FS.readdirSync(dirURL);
 
     if (!docsDir) {
@@ -132,6 +133,8 @@ export class FileService {
   }
 
   openDefaultDocsFolderInExplorer() {
+    const defaultDocs = this.getDocsURLs()[0];
+    FS.ensureDirSync(defaultDocs);
     this.openFolderInExplorer(this.getDocsURLs()[0]);
   }
 
