@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MainViewComponent } from './main-view.component';
 import {
@@ -10,7 +10,7 @@ import {
   ReaderService,
 } from '../../../core';
 
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { MaterialManagerModule } from '../../material-manager.module';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -19,7 +19,7 @@ describe('MainViewComponent', () => {
   let component: MainViewComponent;
   let fixture: ComponentFixture<MainViewComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [MainViewComponent],
       imports: [

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MyTextsComponent } from './my-texts.component';
 import {
@@ -15,7 +15,7 @@ describe('LevelSelectionComponent', () => {
   let component: MyTextsComponent;
   let fixture: ComponentFixture<MyTextsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [MyTextsComponent],
       imports: [

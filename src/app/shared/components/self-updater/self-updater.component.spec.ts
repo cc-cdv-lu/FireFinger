@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SelfUpdaterComponent } from './self-updater.component';
 
@@ -6,7 +6,7 @@ describe('SelfUpdaterComponent', () => {
   let component: SelfUpdaterComponent;
   let fixture: ComponentFixture<SelfUpdaterComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SelfUpdaterComponent ]
     })
