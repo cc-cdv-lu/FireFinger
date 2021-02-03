@@ -273,9 +273,7 @@ export class ReaderService {
       console.log('Config is not working...');
       return;
     }
-    const opt = JSON.parse(
-      this.electron.config.get(READER_CONFIG_KEY) as string
-    );
+    const opt = this.electron.config.get(READER_CONFIG_KEY);
     if (opt) {
       this.config = opt;
     }
