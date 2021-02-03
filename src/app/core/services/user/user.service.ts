@@ -21,7 +21,8 @@ export class UserService {
 
   login(name: string) {
     // first try to find the user in the config
-    this.loggedInUser = this.electron.config.get('USER_' + name);
+    this.loggedInUser = new User();
+    this.loggedInUser = { ...(<User>this.electron.config.get('USER_' + name)) };
 
     // if he is not present, log a new user
     if (!this.loggedInUser) {

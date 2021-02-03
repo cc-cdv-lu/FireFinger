@@ -129,7 +129,7 @@ export class FileService {
   }
 
   openFolderInExplorer(url: string) {
-    this.electron.shell.openItem(url);
+    this.electron.shell.openPath(url);
   }
 
   openDefaultDocsFolderInExplorer() {

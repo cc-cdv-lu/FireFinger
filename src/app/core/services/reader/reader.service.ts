@@ -5,6 +5,7 @@ import { ElectronService } from '../electron/electron.service';
 import * as MeSpeak from 'mespeak';
 import * as FS from 'fs-extra';
 import * as path from 'path';
+import { CONFIG } from '../config/config.service';
 
 const READER_CONFIG_KEY = 'READER_CONFIG';
 
@@ -272,7 +273,9 @@ export class ReaderService {
       console.log('Config is not working...');
       return;
     }
-    const opt = this.electron.config.get(READER_CONFIG_KEY);
+    const opt = JSON.parse(
+      this.electron.config.get(READER_CONFIG_KEY) as string
+    );
     if (opt) {
       this.config = opt;
     }

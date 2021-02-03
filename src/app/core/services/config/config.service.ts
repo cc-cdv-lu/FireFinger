@@ -22,7 +22,7 @@ export class ConfigService {
   saveCallbacks = [];
 
   loadConfig<T extends CONFIG>(fallback: T): T {
-    const config_data = this.electron.config.get(fallback.key);
+    const config_data = this.electron.config.get(fallback.key) as string;
     if (config_data && config_data.length) {
       return JSON.parse(config_data) as T;
     }

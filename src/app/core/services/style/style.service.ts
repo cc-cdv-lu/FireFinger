@@ -83,7 +83,7 @@ export class StyleService {
   get font() {
     let f = 10;
     if (this.electron.config) {
-      f = this.electron.config.get(FONT_KEY);
+      f = this.electron.config.get(FONT_KEY) as number;
     }
 
     if (!f) {
@@ -139,7 +139,7 @@ export class StyleService {
   }
   get fontFamily() {
     if (this.electron.config && this._fontFamily === undefined) {
-      this._fontFamily = this.electron.config.get(FONT_FAMILY_KEY);
+      this._fontFamily = this.electron.config.get(FONT_FAMILY_KEY) as string;
       console.log('fontFamily:', this._fontFamily);
     }
     if (this._fontFamily === undefined) {

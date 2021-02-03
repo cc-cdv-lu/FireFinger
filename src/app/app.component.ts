@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
 
     let lang: string;
     if (this.electron.config) {
-      lang = this.electron.config.get('LANG');
+      lang = this.electron.config.get('LANG') as string;
     }
     if (!lang) {
       lang = 'de';
