@@ -5,7 +5,6 @@ import { ElectronService } from '../electron/electron.service';
 import * as MeSpeak from 'mespeak';
 import * as FS from 'fs-extra';
 import * as path from 'path';
-import { CONFIG } from '../config/config.service';
 
 const READER_CONFIG_KEY = 'READER_CONFIG';
 

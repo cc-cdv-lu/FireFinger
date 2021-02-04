@@ -51,13 +51,11 @@ export class UserService {
   }
 
   recalculateOverallStats() {
-    let sessionCount;
+    let sessionCount = 0;
     // Totals
     this.loggedInUser.overallStats.mistakesCount += this.loggedInUser.lastSessionStats.mistakesCount;
     if (this.loggedInUser.overallStats.sessionCount > 0) {
       sessionCount = this.loggedInUser.overallStats.sessionCount;
-    } else {
-      sessionCount = 0;
     }
 
     if (this.loggedInUser.lastSessionStats.mistakeKeys) {
@@ -92,7 +90,7 @@ export class UserService {
     this.loggedInUser.overallStats.sessionCount++;
   }
 
-  private findKeyPair(key: string, arr) {
+  private findKeyPair(key: string, arr: Array<any>) {
     if (!arr) {
       return null;
     }
