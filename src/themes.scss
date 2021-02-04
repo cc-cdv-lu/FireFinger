@@ -31,7 +31,7 @@ $my-app-theme: mat-light-theme(
   $my-app-accent,
   $my-app-app-warn
 );
-@include angular-material-theme($my-app-theme);
+@include angular-material-color($my-app-theme);
 /*
 *
 *  DARK THEME
@@ -43,7 +43,7 @@ $dark-warn: mat-palette($mat-deep-orange);
 $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
 .dark-theme {
-  @include angular-material-theme($dark-theme);
+  @include angular-material-color($dark-theme);
   background-color: mat-color($dark-primary);
   border-color: mat-color($dark-accent, A400);
   color: mat-color($dark-primary, 100) !important;
@@ -68,7 +68,7 @@ html {
 }
 
 .light-theme {
-  @include angular-material-theme($light-theme);
+  @include angular-material-color($light-theme);
 
   .highlight {
     color: mat-color($light-accent, A400) !important;
@@ -85,7 +85,7 @@ $pink-warn: mat-palette($mat-blue, 200);
 $pink-theme: mat-dark-theme($pink-primary, $pink-accent, $pink-warn);
 
 .pink-theme {
-  @include angular-material-theme($pink-theme);
+  @include angular-material-color($pink-theme);
   background-color: mat-color($pink-primary, A400);
 
   .prev,
@@ -111,7 +111,8 @@ $pink-theme: mat-dark-theme($pink-primary, $pink-accent, $pink-warn);
 /*
 *
 *  Blue and Yellow
-*
+* -> Just this one causes issues for some reason. Also replacing theme with color does not help
+* What's going on?
 */
 $by-primary: mat-palette($mat-blue-grey); // Dark theme
 $by-accent: mat-palette($mat-amber, A200, A100, A400);
@@ -119,7 +120,7 @@ $by-warn: mat-palette($mat-deep-orange);
 $by-theme: mat-dark-theme($by-primary, $by-accent, $by-warn);
 
 .by-theme {
-  @include angular-material-theme($by-theme);
+  @include angular-material-color($by-theme);
   background-color: mat-color($by-primary);
   // border-color: mat-color($by-accent, A400);
   color: mat-color($by-primary, 100);
@@ -141,7 +142,7 @@ $cdv-background: mat-palette($md-cdvbackground);
 $cdv-theme: mat-dark-theme($cdv-primary, $cdv-accent, $cdv-warn);
 
 .cdv-theme {
-  @include angular-material-theme($cdv-theme);
+  @include angular-material-color($cdv-theme);
   background-color: mat-color($cdv-background, 800);
   color: mat-color($cdv-primary, 100);
 
@@ -176,7 +177,7 @@ $true-black-theme: mat-dark-theme(
 );
 
 .true-black-theme {
-  @include angular-material-theme($true-black-theme);
+  @include angular-material-color($true-black-theme);
   background-color: black;
   border-color: mat-color($true-black-accent, A400);
   color: mat-color($true-black-accent, A400);
@@ -196,7 +197,7 @@ $dl-warn: mat-palette($mat-green);
 $dl-theme: mat-dark-theme($dl-primary, $dl-accent, $dl-warn);
 
 .dl-theme {
-  @include angular-material-theme($dl-theme);
+  @include angular-material-color($dl-theme);
   background-color: mat-color($dl-primary);
   border-color: mat-color($dl-accent, A400);
   color: mat-color($dl-primary, 100);

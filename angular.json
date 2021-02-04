@@ -24,7 +24,7 @@
               "src/favicon.256x256.png",
               "src/favicon.512x512.png"
             ],
-            "styles": ["src/styles.scss", "src/themes.scss", "src/mixins.scss"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           },
           "configurations": {
