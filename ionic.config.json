@@ -1,0 +1,7 @@
+{
+  "name": "FireFinger2",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

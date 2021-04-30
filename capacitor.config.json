@@ -1,0 +1,13 @@
+{
+  "appId": "lu.cdv.hoffmann.firefinger",
+  "appName": "FireFinger",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

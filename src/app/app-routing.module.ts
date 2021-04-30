@@ -1,23 +1,22 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { PageNotFoundComponent } from './shared';
-
-import { PagesRoutingModule } from './pages/pages-routing.module';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
+    redirectTo: 'folder/Inbox',
+    pathMatch: 'full'
   },
   {
-    path: '**',
-    component: PageNotFoundComponent,
-  },
+    path: 'folder/:id',
+    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true, relativeLinkResolution: 'legacy' }), PagesRoutingModule],
-  exports: [RouterModule],
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+  ],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}
