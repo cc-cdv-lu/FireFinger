@@ -5,18 +5,29 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'folder/Inbox',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  }
+    loadChildren: () =>
+      import('./feat/folder/folder.module').then((m) => m.FolderPageModule),
+  },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./feat/home/home.module').then((m) => m.HomeModule),
+  },
+  {
+    path: 'settings',
+    loadChildren: () =>
+      import('./feat/settings/settings.module').then((m) => m.SettingsModule),
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}
