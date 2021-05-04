@@ -1,7 +1,15 @@
 app-footer {
-    display: block;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 8vh;
+  display: block;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 8vh;
+}
+
+app-typing-io {
+  border: 1px solid red;
+  width: 100%;
+  position: fixed;
+  display: block;
+  bottom: 50vh;
 }

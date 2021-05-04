@@ -1,0 +1,44 @@
+.io {
+  font-size: 3rem;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.prev {
+  // grid-auto-columns: auto;
+  color: green;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  direction: rtl;
+  text-align: right;
+}
+
+.curr {
+  // grid-auto-columns: min-content;
+  color: lime;
+  text-align: center;
+  width: 100%;
+  //text-overflow: ellipsis;
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+  direction: rtl;
+  // text-align: right;
+}
+
+.next {
+  // grid-auto-columns: auto;
+  color: yellow;
+  text-align: start;
+  width: 100%;
+  position: relative;
+  text-overflow: clip;
+  // text-overflow: ellipsis;
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}

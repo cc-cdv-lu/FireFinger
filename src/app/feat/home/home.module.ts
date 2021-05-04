@@ -4,6 +4,7 @@ import { HomeComponent } from './home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule, Routes } from '@angular/router';
+import { TypingIoComponent } from './components/typing-io/typing-io.component'
 
 const routes: Routes = [
   {
@@ -14,6 +15,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [CommonModule, IonicModule, RouterModule.forChild(routes)],
-  declarations: [HomeComponent, FooterComponent],
+  declarations: [HomeComponent, FooterComponent, TypingIoComponent],
 })
 export class HomeModule {}
