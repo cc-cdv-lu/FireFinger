@@ -1,3 +1,17 @@
-<p>
-  footer works!
-</p>
+<div class="container">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-progress-bar
+          color="secondary"
+          [value]="progress"
+        ></ion-progress-bar>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col> (Chapter name) </ion-col>
+      <ion-col> (Errors) </ion-col>
+      <ion-col> {{progress * 100}}  %</ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
