@@ -4,14 +4,14 @@
       <ion-col>
         <ion-progress-bar
           color="secondary"
-          [value]="progress"
+          [value]="getProgress()"
         ></ion-progress-bar>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col> (Chapter name) </ion-col>
       <ion-col> (Errors) </ion-col>
-      <ion-col> {{progress * 100}}  %</ion-col>
+      <ion-col> {{ getProgressText() }}</ion-col>
     </ion-row>
   </ion-grid>
 </div>

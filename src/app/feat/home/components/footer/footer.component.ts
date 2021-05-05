@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TextService } from 'src/app/core';
 
 @Component({
   selector: 'app-footer',
@@ -6,11 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-
-  progress = 0.5;
-
-  constructor() { }
+  constructor(private textService: TextService) {}
 
   ngOnInit() {}
 
+  getProgress() {
+    return this.textService.getProgress();
+  }
+
+  getProgressText(): string {
+    return Math.round(this.getProgress()) * 100 + ' %';
+  }
 }

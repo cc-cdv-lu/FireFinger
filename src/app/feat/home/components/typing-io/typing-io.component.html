@@ -3,30 +3,30 @@
     <ion-row
       class="text"
       [ngStyle]="{
-        'font-size': view.fontSize + 'em',
-        'font-family': view.fontFamily
+        'font-size': style.fontSize + 'em',
+        'font-family': style.fontFamily
       }"
     >
-      <ion-col class="prev">{{ view.prev }}&lrm;</ion-col>
+      <ion-col class="prev">{{ getView().prev }}&lrm;</ion-col>
       <ion-col size="auto" class="curr highlight">
-        <app-character [character]="view.curr"></app-character>
+        <app-character [character]="getView().curr"></app-character>
       </ion-col>
-      <ion-col class="next">&lrm;{{ view.next }}</ion-col>
+      <ion-col class="next">&lrm;{{ getView().next }}</ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-button (click)="setFontSize(view.fontSize - 1)">
+  <ion-button (click)="setFontSize(style.fontSize - 1)">
     <ion-icon name="remove"></ion-icon>
   </ion-button>
 
-  <ion-button (click)="setFontSize(view.fontSize + 1)">
+  <ion-button (click)="setFontSize(style.fontSize + 1)">
     <ion-icon name="add"></ion-icon>
   </ion-button>
   <div
     class="center curr highlight"
-    [ngStyle]="{ 'font-size': view.fontSize * 0.6 + 'em' }"
+    [ngStyle]="{ 'font-size': style.fontSize * 0.6 + 'em' }"
   >
-    {{ specifyCharacter(view.curr) }}
+    {{ specifyCharacter(getView().curr) }}
   </div>
 
   <!--

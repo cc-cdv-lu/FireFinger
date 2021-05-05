@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { View, TextService } from 'src/app/core';
 import { CharacterComponent } from '../character/character.component';
 
 @Component({
@@ -8,32 +9,26 @@ import { CharacterComponent } from '../character/character.component';
 })
 export class TypingIoComponent implements AfterViewInit {
   @ViewChild(CharacterComponent) charComponent: CharacterComponent;
-  view = {
-    prev: 'das Haus ist',
-    curr: ' ',
-    next: 'ein sehr kleines Haus',
+  style = {
     fontSize: 5,
-    fontFamily: 'Schoulschreft'
-    // next: 't ein sehr großes Haus mit viel Garten oder, keine Ahnung bin neu hier',
+    fontFamily: 'Schoulschreft',
   };
 
-  constructor() {}
+  constructor(private textService: TextService) {}
   ngAfterViewInit() {
     this.charComponent.onTypingSuccess.subscribe(() => {
-      this.progressTemp();
+      this.textService.advance();
     });
+  }
+
+  getView(): View {
+    return this.textService.getView();
   }
 
   setFontSize(f: number) {
     if (f > 0) {
-      this.view.fontSize = f;
+      this.style.fontSize = f;
     }
-  }
-
-  progressTemp() {
-    this.view.prev += this.view.curr;
-    this.view.curr = this.view.next[0];
-    this.view.next = this.view.next.substr(1, this.view.next.length);
   }
 
   specifyCharacter(character: string): string {
