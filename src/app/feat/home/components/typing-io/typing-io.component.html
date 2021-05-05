@@ -1,14 +1,16 @@
 <ion-grid>
-  <ion-row class="io" [ngStyle]="{ 'font-size': view.fontSize + 'rem' }">
+  <ion-row class="text" [ngStyle]="{ 'font-size': view.fontSize + 'em' }">
     <ion-col class="prev">{{ view.prev }}&lrm;</ion-col>
-    <ion-col size="auto" class="curr">
+    <ion-col size="auto" class="curr highlight">
       <app-character [character]="view.curr"></app-character>
     </ion-col>
     <ion-col class="next">&lrm;{{ view.next }}</ion-col>
   </ion-row>
-  <ion-row>
+  <ion-row [ngStyle]="{ 'font-size': view.fontSize *0.60 + 'em' }">
     <ion-col></ion-col>
-    <ion-col class="center curr">{{ specifyCharacter(view.curr) }}</ion-col>
+    <ion-col class="center curr highlight">
+      {{ specifyCharacter(view.curr) }}
+    </ion-col>
     <ion-col></ion-col>
   </ion-row>
 

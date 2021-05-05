@@ -6,15 +6,18 @@ ion-grid {
   --ion-grid-column-padding: 0px;
 }
 .center {
-    text-align: center;
+  text-align: center;
 }
-.io {
-  font-size: 3rem;
+.text {
+  font-size: 3em;
   width: 100%;
+  color: var(--ion-color-medium);
+}
+.highlight {
+  color: var(--ion-color-warning);
 }
 .prev {
   // grid-auto-columns: auto;
-  color: var(--ion-color-medium);
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -24,13 +27,11 @@ ion-grid {
 
 .curr {
   // grid-auto-columns: min-content;
-  color: var(--ion-color-warning);
   text-align: center;
 }
 
 .next {
   // grid-auto-columns: auto;
-  color: var(--ion-color-medium);
   text-align: start;
   width: 100%;
   position: relative;
