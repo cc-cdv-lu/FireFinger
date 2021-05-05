@@ -1,9 +1,21 @@
 $basecolor: lightgray;
 $highlightcolor: yellow;
 
+.container {
+  height: 100%;
+  width: 100%;
+}
+
 ion-grid {
   --ion-grid-padding: 0px;
   --ion-grid-column-padding: 0px;
+
+  width: 100%;
+
+  position: fixed;
+  display: block;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .center {
   text-align: center;
@@ -17,7 +29,6 @@ ion-grid {
   color: var(--ion-color-warning);
 }
 .prev {
-  // grid-auto-columns: auto;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -26,7 +37,6 @@ ion-grid {
 }
 
 .curr {
-  // grid-auto-columns: min-content;
   text-align: center;
 }
 

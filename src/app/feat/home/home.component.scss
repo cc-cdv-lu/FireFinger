@@ -7,10 +7,6 @@ app-footer {
 }
 
 app-typing-io {
-  border: 1px solid red;
   width: 100%;
-  position: fixed;
-  display: block;
-  top: 50%;
-  transform: translateY(-50%);
+  height: 100%;
 }

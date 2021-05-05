@@ -1,35 +1,35 @@
-<ion-grid>
-  <ion-row class="text" [ngStyle]="{ 'font-size': view.fontSize + 'em' }">
-    <ion-col class="prev">{{ view.prev }}&lrm;</ion-col>
-    <ion-col size="auto" class="curr highlight">
-      <app-character [character]="view.curr"></app-character>
-    </ion-col>
-    <ion-col class="next">&lrm;{{ view.next }}</ion-col>
-  </ion-row>
-  <ion-row [ngStyle]="{ 'font-size': view.fontSize *0.60 + 'em' }">
-    <ion-col></ion-col>
-    <ion-col class="center curr highlight">
-      {{ specifyCharacter(view.curr) }}
-    </ion-col>
-    <ion-col></ion-col>
-  </ion-row>
+<div class="container">
+  <ion-grid>
+    <ion-row
+      class="text"
+      [ngStyle]="{
+        'font-size': view.fontSize + 'em',
+        'font-family': view.fontFamily
+      }"
+    >
+      <ion-col class="prev">{{ view.prev }}&lrm;</ion-col>
+      <ion-col size="auto" class="curr highlight">
+        <app-character [character]="view.curr"></app-character>
+      </ion-col>
+      <ion-col class="next">&lrm;{{ view.next }}</ion-col>
+    </ion-row>
+  </ion-grid>
 
-  <ion-row>
-    <ion-col>
-      <ion-button (click)="setFontSize(view.fontSize - 1)">
-        <ion-icon name="remove"></ion-icon>
-      </ion-button>
-    </ion-col>
-    <ion-col></ion-col>
-    <ion-col>
-      <ion-button (click)="setFontSize(view.fontSize + 1)">
-        <ion-icon name="add"></ion-icon>
-      </ion-button>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+  <ion-button (click)="setFontSize(view.fontSize - 1)">
+    <ion-icon name="remove"></ion-icon>
+  </ion-button>
 
-<!--
+  <ion-button (click)="setFontSize(view.fontSize + 1)">
+    <ion-icon name="add"></ion-icon>
+  </ion-button>
+  <div
+    class="center curr highlight"
+    [ngStyle]="{ 'font-size': view.fontSize * 0.6 + 'em' }"
+  >
+    {{ specifyCharacter(view.curr) }}
+  </div>
+
+  <!--
  [ngStyle]="{ 'font-family': view.getFontFamily() }"
  [ngClass]="view.isInFocus() ? 'highlight' : ''"
--->
+--></div>

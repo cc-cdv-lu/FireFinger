@@ -13,6 +13,7 @@ export class TypingIoComponent implements AfterViewInit {
     curr: ' ',
     next: 'ein sehr kleines Haus',
     fontSize: 5,
+    fontFamily: 'Schoulschreft'
     // next: 't ein sehr großes Haus mit viel Garten oder, keine Ahnung bin neu hier',
   };
 
@@ -36,17 +37,25 @@ export class TypingIoComponent implements AfterViewInit {
   }
 
   specifyCharacter(character: string): string {
+    let output = '';
     switch (character.toLowerCase()) {
       case ' ':
-        return 'SPACE';
+        output = 'SPACE';
+        break;
       case 'ä':
       case 'ü':
       case 'ö':
-        return 'Umlaut';
+        output = 'Umlaut';
+        break;
       case 'é':
       case 'è':
       case 'ê':
-        return 'Accent';
+        output = 'Accent';
+        break;
     }
+    if (character.toLowerCase() !== character) {
+      output += '\n' + 'Major';
+    }
+    return output.trim();
   }
 }
