@@ -1,41 +1,42 @@
 $basecolor: lightgray;
 $highlightcolor: yellow;
 
+ion-grid {
+  --ion-grid-padding: 0px;
+  --ion-grid-column-padding: 0px;
+}
+.center {
+    text-align: center;
+}
 .io {
   font-size: 3rem;
   width: 100%;
+}
+.prev {
+  // grid-auto-columns: auto;
+  color: var(--ion-color-medium);
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  direction: rtl;
+  text-align: right;
+}
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.curr {
+  // grid-auto-columns: min-content;
+  color: var(--ion-color-warning);
+  text-align: center;
+}
 
-  .prev {
-    // grid-auto-columns: auto;
-    color: var(--ion-color-medium);
-    width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    direction: rtl;
-    text-align: right;
-  }
-
-  .curr {
-    // grid-auto-columns: min-content;
-    color: var(--ion-color-warning);
-    text-align: center;
-
-  }
-
-  .next {
-    // grid-auto-columns: auto;
-    color: var(--ion-color-medium);
-    text-align: start;
-    width: 100%;
-    position: relative;
-    text-overflow: clip;
-    // text-overflow: ellipsis;
-    /* Required for text-overflow to do anything */
-    white-space: nowrap;
-    overflow: hidden;
-  }
+.next {
+  // grid-auto-columns: auto;
+  color: var(--ion-color-medium);
+  text-align: start;
+  width: 100%;
+  position: relative;
+  text-overflow: clip;
+  // text-overflow: ellipsis;
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
 }

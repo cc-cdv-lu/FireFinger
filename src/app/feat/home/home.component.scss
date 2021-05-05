@@ -11,5 +11,6 @@ app-typing-io {
   width: 100%;
   position: fixed;
   display: block;
-  bottom: 50vh;
+  top: 50%;
+  transform: translateY(-50%);
 }

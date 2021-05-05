@@ -1,17 +1,27 @@
 <ion-grid>
-  <ion-row class="io">
-    <ion-col size="1"></ion-col>
-    <ion-col size="12">
-      <span class="HUGE prev">{{ view.prev }}&lrm;</span>
-      <span class="HUGE curr">{{ view.curr }}</span>
-      <span class="HUGE next">&lrm;{{ view.next }}</span>
-    </ion-col>
-    <ion-col size="1"></ion-col>
+  <ion-row class="io" [ngStyle]="{ 'font-size': view.fontSize + 'rem' }">
+    <ion-col class="prev">{{ view.prev }}&lrm;</ion-col>
+    <ion-col size="auto" class="curr">{{ view.curr }}</ion-col>
+    <ion-col class="next">&lrm;{{ view.next }}</ion-col>
   </ion-row>
   <ion-row>
     <ion-col></ion-col>
-    <ion-col>SPACE</ion-col>
+    <ion-col class="center">SPACE</ion-col>
     <ion-col></ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-button (click)="setFontSize(view.fontSize - 1)">
+        <ion-icon name="remove"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col></ion-col>
+    <ion-col>
+      <ion-button (click)="setFontSize(view.fontSize + 1)">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-col>
   </ion-row>
 </ion-grid>
 

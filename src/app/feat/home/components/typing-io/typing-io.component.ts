@@ -10,10 +10,17 @@ export class TypingIoComponent implements OnInit {
     prev: 'das Haus i',
     curr: 's',
     next: 't ein sehr großes Haus',
+    fontSize: 5
     // next: 't ein sehr großes Haus mit viel Garten oder, keine Ahnung bin neu hier',
   };
 
   constructor() {}
+
+  setFontSize(f: number) {
+    if (f > 0) {
+      this.view.fontSize = f;
+    }
+  }
 
   ngOnInit() {}
 }
