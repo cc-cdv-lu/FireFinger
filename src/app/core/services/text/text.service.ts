@@ -35,29 +35,30 @@ export class TextService {
   }
 
   advance() {
-    if (this.index < this.text.length) {
-      this.updateView(this.index + 1, this.text);
-    } else {
-      console.warn('FINISHED');
-      // TODO: FINISHED
+    const hasFinished = this.updateView(this.index + 1, this.text);
+    if (hasFinished) {
+      console.warn('FINISHED!');
     }
   }
 
-  updateView(index: number, text: string) {
+  updateView(index: number, text: string): boolean {
     // TODO: line end at Enter
 
     this.index = index;
     this.text = text;
 
-    if (index > text.length) {
+    if (index >= text.length) {
       console.warn('Reached end...');
       this.view.curr = '✓';
       this.view.prev = this.text;
+      return true;
     }
 
     this.view.prev = this.text.substring(0, index);
     this.view.curr = this.text[index];
     this.view.next = this.text.substr(this.index + 1, this.text.length);
     console.log('Advanced...', this.index, this.view);
+
+    return false;
   }
 }
