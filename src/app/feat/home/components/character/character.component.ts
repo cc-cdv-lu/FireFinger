@@ -61,23 +61,24 @@ export class CharacterComponent {
       event.preventDefault();
     }
 
+    // Ignores everything like Shift, Tab, Control, Dead, ...
     if (ignoreKeys.includes(event.key)) {
       console.log('Should probably ignore this...', event.key);
       return;
     }
     if (event.key.length > 1 && event.key !== 'Enter') {
-      // Ignores everything like Shift, Tab, Control, Dead, ...
       console.log('Should probably ignore this...', event.key);
       return;
     }
+
     const typing = { expected: this.character, typed: event.key };
     this.typingOutput.emit(typing);
     this.isCorrect =
       this.typedCorrectly(typing) || impossibleKeys.includes(this.character);
     if (this.isCorrect) {
-      this.onTypingSuccess.emit();
+      this.onTypingSuccess.emit(typing);
     } else {
-      this.onTypingError.emit();
+      this.onTypingError.emit(typing);
     }
     console.log('Correct?', this.isCorrect, typing);
   }
