@@ -11,13 +11,18 @@ export type View = {
 })
 export class TextService {
   // TODO: Serialize these two on save
-  private text: string;
+  private text: string = '';
   private index: number = 0;
 
   private view: View = { prev: '', curr: '', next: '' };
 
   constructor() {
-    this.updateView(0, 'Das Haus ist klein!');
+    this.updateView(
+      0,
+      `Tschüss, schönen Tag noch.
+Schönes Wochenende.
+Mach’s gut. Antwort: Mach’s besser. / Du auch.`
+    );
   }
 
   /**
@@ -54,10 +59,17 @@ export class TextService {
       return true;
     }
 
-    this.view.prev = this.text.substring(0, index);
+    const startSplit = this.text.substring(0, index).split('\n');
+    this.view.prev = startSplit[startSplit.length - 1];
+
     this.view.curr = this.text[index];
-    this.view.next = this.text.substr(this.index + 1, this.text.length);
-    console.log('Advanced...', this.index, this.view);
+
+    const rest = this.text.substr(this.index + 1, this.text.length);
+    if (this.view.curr === '\n') {
+      this.view.next = '';
+    } else {
+      this.view.next = rest.split('\n')[0];
+    }
 
     return false;
   }
