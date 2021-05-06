@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TextService } from 'src/app/core';
+import { StatsService, TextService } from 'src/app/core';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +7,10 @@ import { TextService } from 'src/app/core';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-  constructor(private textService: TextService) {}
+  constructor(
+    private textService: TextService,
+    private statsService: StatsService
+  ) {}
 
   ngOnInit() {}
 
@@ -16,6 +19,10 @@ export class FooterComponent implements OnInit {
   }
 
   getProgressText(): string {
-    return Math.round(this.getProgress()) * 100 + ' %';
+    return Math.round(this.getProgress() * 100) + ' %';
+  }
+
+  getMistakeText(): string {
+    return Math.round(this.statsService.getMistakeRatio() * 100) + '%';
   }
 }

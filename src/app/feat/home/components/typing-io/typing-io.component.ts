@@ -25,12 +25,13 @@ export class TypingIoComponent implements AfterViewInit {
     private statsService: StatsService
   ) {}
   ngAfterViewInit() {
-    this.charComponent.onTypingSuccess.subscribe(() => {
+    this.charComponent.onTypingSuccess.subscribe((e) => {
       this.textService.advance();
+      this.statsService.registerSuccess(e);
     });
 
     this.charComponent.onTypingError.subscribe((e) => {
-      this.statsService.registerError(e);
+      this.statsService.registerMistake(e);
     });
   }
 

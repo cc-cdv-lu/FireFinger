@@ -24,7 +24,7 @@ export class TextService {
    * @returns The current progress in fraction (e.g. 0.3)
    */
   getProgress() {
-    if (!this.text?.length || this.index) {
+    if (!this.text?.length || !this.index) {
       return 0;
     }
     return this.index / this.text.length;
