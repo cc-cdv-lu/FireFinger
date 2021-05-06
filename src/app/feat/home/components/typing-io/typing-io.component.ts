@@ -1,5 +1,11 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { View, TextService, StyleService, Style } from 'src/app/core';
+import {
+  View,
+  TextService,
+  StyleService,
+  Style,
+  StatsService,
+} from 'src/app/core';
 import { CharacterComponent } from '../character/character.component';
 
 @Component({
@@ -13,11 +19,18 @@ export class TypingIoComponent implements AfterViewInit {
   // DEBUG: Change this
   isInputFocused = true;
 
-
-  constructor(private textService: TextService, private styleService: StyleService) {}
+  constructor(
+    private textService: TextService,
+    private styleService: StyleService,
+    private statsService: StatsService
+  ) {}
   ngAfterViewInit() {
     this.charComponent.onTypingSuccess.subscribe(() => {
       this.textService.advance();
+    });
+
+    this.charComponent.onTypingError.subscribe((e) => {
+      this.statsService.registerError(e);
     });
   }
 
