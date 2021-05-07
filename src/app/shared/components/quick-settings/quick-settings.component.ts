@@ -10,6 +10,8 @@ export class QuickSettingsComponent implements OnInit {
 
   fonts = ['Comic Sans', 'Courier New', 'Schoulschreft', 'Arial'];
 
+  fontSize = 15;
+
   constructor(public styleService: StyleService) { }
 
   ngOnInit() {}
