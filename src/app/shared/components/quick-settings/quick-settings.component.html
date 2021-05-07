@@ -8,6 +8,7 @@
     <ion-select
       placeholder="Select One"
       name="fontFamily"
+      lines="none"
       ngDefaultControl
       [(ngModel)]="styleService.style.fontFamily"
       (ionChange)="updateFamily($event)"
@@ -26,6 +27,7 @@
       color="secondary"
       step="0.5"
       pin="true"
+      lines="none"
       [(value)]="styleService.style.fontSize"
       (ionChange)="updateSize($event)"
       name="fontSize"
