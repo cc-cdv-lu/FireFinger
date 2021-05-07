@@ -1,0 +1,37 @@
+<ion-list>
+  <ion-list-header>
+    <ion-label> Quick settings </ion-label>
+  </ion-list-header>
+
+  <ion-item>
+    <ion-label>Family</ion-label>
+    <ion-select
+      placeholder="Select One"
+      name="fontSize"
+      ngDefaultControl
+      [(ngModel)]="styleService.style.fontFamily"
+    >
+      <ion-select-option *ngFor="let font of fonts" [value]="font">
+        {{ font }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Size</ion-label>
+    <ion-range
+      min="0"
+      max="30"
+      color="secondary"
+      step="0.5"
+      [(ngModel)]="styleService.style.fontSize"
+      name="fontSize"
+      ngDefaultControl
+    >
+      <ion-label slot="end">30</ion-label>
+    </ion-range>
+  </ion-item>
+</ion-list>
+
+<p>font: {{ styleService.style.fontFamily }}</p>
+<p>size: {{ styleService.style.fontSize }}</p>
