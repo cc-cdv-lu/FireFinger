@@ -10,6 +10,7 @@
       name="fontFamily"
       ngDefaultControl
       [(ngModel)]="styleService.style.fontFamily"
+      (ionChange)="updateFamily($event)"
     >
       <ion-select-option *ngFor="let font of fonts" [value]="font">
         {{ font }}
@@ -21,11 +22,12 @@
     <ion-label>Size</ion-label>
     <ion-range
       min="0"
-      max="30"
+      max="50"
       color="secondary"
       step="0.5"
       pin="true"
-      [(ngModel)]="styleService.style.fontSize"
+      [(value)]="styleService.style.fontSize"
+      (ionChange)="updateSize($event)"
       name="fontSize"
       ngDefaultControl
     >
