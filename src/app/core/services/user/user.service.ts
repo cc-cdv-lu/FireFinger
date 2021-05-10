@@ -15,15 +15,12 @@ export class UserService {
 
   login(username: string) {
     this.onUserChange.emit(username);
+    this.username = username;
+    Storage.set({ key: LAST_USER, value: this.username });
+    this.addNewUser(username);
   }
 
   prepare() {
-    this.onUserChange.subscribe((username) => {
-      this.username = username;
-      Storage.set({ key: LAST_USER, value: this.username });
-      this.addNewUser(username);
-    });
-
     Storage.get({ key: LAST_USER }).then((user) => {
       if (user && user.value !== 'null') {
         this.login(user.value);

@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { QuickSettingsComponent } from './components/quick-settings/quick-settings.component';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
-  declarations: [QuickSettingsComponent],
+  declarations: [QuickSettingsComponent, LoginComponent],
   imports: [CommonModule, FormsModule, IonicModule, RouterModule],
-  exports: [QuickSettingsComponent],
+  exports: [QuickSettingsComponent, LoginComponent],
 })
 export class SharedModule {}

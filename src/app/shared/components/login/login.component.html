@@ -1,0 +1,18 @@
+{{ getUsername() }}
+test
+
+<ion-list>
+  <ion-item>
+    <ion-label>Users</ion-label>
+    <ion-select placeholder="Select One">
+      <ion-select-option
+        *ngFor="let user of getUserlist()"
+        (click)="login(user)"
+        [value]="user"
+      >
+        {{ user }}
+      </ion-select-option>
+      <ion-select-option (click)="newUser()">New user</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
