@@ -23,7 +23,9 @@ export class ConfigService {
   loadedConfig: Config;
 
   constructor(userService: UserService) {
-
+    userService.onUserChange.subscribe((username) => {
+      this.retrieveConfig(username);
+    });
   }
 
   async retrieveConfig(username: string): Promise<Config> {
