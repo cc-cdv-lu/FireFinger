@@ -36,8 +36,10 @@ ion-grid {
   text-align: right;
 }
 
-.curr {
-  text-align: center;
+.characterhelper {
+  position: fixed;
+  bottom: 8vh;
+  width: 100%;
 }
 
 .next {

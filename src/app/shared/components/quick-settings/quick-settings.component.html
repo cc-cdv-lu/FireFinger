@@ -23,7 +23,7 @@
     <ion-label>Size</ion-label>
     <ion-range
       min="0"
-      max="50"
+      [max]="maxFontSize"
       color="secondary"
       step="0.5"
       pin="true"
@@ -33,10 +33,17 @@
       name="fontSize"
       ngDefaultControl
     >
-      <ion-label slot="end">30</ion-label>
+      <ion-label slot="end">{{ maxFontSize }}</ion-label>
     </ion-range>
   </ion-item>
-</ion-list>
 
-<p>font: {{ styleService.style.fontFamily }}</p>
-<p>size: {{ styleService.style.fontSize }}</p>
+  <ion-item>
+    <ion-label>Show helper</ion-label>
+    <ion-toggle
+      [(value)]="configService.config.showHelper"
+      name="showHelper"
+      ngDefaultControl
+    >
+    </ion-toggle>
+  </ion-item>
+</ion-list>

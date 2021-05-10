@@ -10,7 +10,6 @@
       <ion-col class="prev">{{ getView().prev }}&lrm;</ion-col>
       <ion-col
         size="auto"
-        class="curr"
         [ngClass]="isInputFocused ? 'highlight' : ''"
       >
         <app-character [character]="getView().curr"></app-character>
@@ -27,8 +26,8 @@
     <ion-icon name="add"></ion-icon>
   </ion-button>
   <div
-    class="center curr highlight"
-    [ngStyle]="{ 'font-size': getStyle().fontSize * 0.4 + 'em' }"
+    class="center highlight characterhelper"
+    [ngStyle]="{ 'font-size': getStyle().fontSize * 0.3 + 'em' }"
   >
     {{ specifyCharacter(getView().curr) }}
   </div>

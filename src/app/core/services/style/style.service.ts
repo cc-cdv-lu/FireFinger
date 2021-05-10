@@ -5,6 +5,11 @@ export type Style = {
   fontFamily: string;
 };
 
+export const DEFAULT_STYLE: Style = {
+  fontFamily: 'Arial',
+  fontSize: 5,
+};
+
 @Injectable({
   providedIn: 'root',
 })
