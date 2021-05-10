@@ -6,6 +6,11 @@ import { UserService } from '../user/user.service';
 
 const { Storage } = Plugins;
 
+const DEFAULT_CONFIG: Config = {
+  style: DEFAULT_STYLE,
+  user: DEFAULT_USER,
+};
+
 type Config = {
   style: Style;
   user: User;
@@ -18,11 +23,7 @@ export class ConfigService {
   loadedConfig: Config;
 
   constructor(userService: UserService) {
-    // listen for on user change, to load config
 
-    userService.onUserChange.subscribe((username: string) => {
-      this.retrieveConfig(username);
-    });
   }
 
   async retrieveConfig(username: string): Promise<Config> {
@@ -31,6 +32,8 @@ export class ConfigService {
       ? JSON.parse(ret.value)
       : this.getDefaultConfig();
 
+    this.loadedConfig.user.name = username;
+    console.log('Retrieved config:', this.loadedConfig);
     return this.loadedConfig;
   }
 
@@ -55,14 +58,12 @@ export class ConfigService {
       key: `CONFIG_${username}`,
       value: JSON.stringify(this.loadedConfig),
     });
+
+    console.log('Saved config for user', username, this.loadedConfig);
   }
 
   getDefaultConfig(): Config {
-    const c: Config = {
-      style: DEFAULT_STYLE,
-      user: DEFAULT_USER,
-    };
-
-    return c;
+    console.log('DEFAULT CONFIG', DEFAULT_CONFIG);
+    return DEFAULT_CONFIG;
   }
 }
