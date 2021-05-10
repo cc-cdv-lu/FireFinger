@@ -2,7 +2,6 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import {
   View,
   TextService,
-  StyleService,
   Style,
   StatsService,
   ConfigService,
