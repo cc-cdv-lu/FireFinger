@@ -5,6 +5,7 @@ import {
   StyleService,
   Style,
   StatsService,
+  ConfigService,
 } from 'src/app/core';
 import { CharacterComponent } from '../character/character.component';
 
@@ -21,7 +22,7 @@ export class TypingIoComponent implements AfterViewInit {
 
   constructor(
     private textService: TextService,
-    private styleService: StyleService,
+    private configService: ConfigService,
     private statsService: StatsService
   ) {}
   ngAfterViewInit() {
@@ -40,7 +41,7 @@ export class TypingIoComponent implements AfterViewInit {
   }
 
   getStyle(): Style {
-    return this.styleService.getStyle();
+    return this.configService.getStyle();
   }
 
   setFontSize(f: number) {

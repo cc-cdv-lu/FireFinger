@@ -27,6 +27,7 @@
   </ion-button>
   <div
     class="center highlight characterhelper"
+    *ngIf="getStyle().showHelper"
     [ngStyle]="{ 'font-size': getStyle().fontSize * 0.3 + 'em' }"
   >
     {{ specifyCharacter(getView().curr) }}

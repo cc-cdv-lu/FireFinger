@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 
-export type Stats = {};
-
 @Injectable({
   providedIn: 'root',
 })

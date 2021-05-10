@@ -1,5 +1,6 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StyleService } from 'src/app/core';
+import { ConfigService } from 'src/app/core/services/config/config.service';
 
 @Component({
   selector: 'app-quick-settings',
@@ -9,18 +10,25 @@ import { StyleService } from 'src/app/core';
 export class QuickSettingsComponent implements OnInit {
   fonts = ['Comic Sans', 'Courier New', 'Schoulschreft', 'Arial'];
 
-  fontSize = 15;
   maxFontSize = 100;
 
-  constructor(public styleService: StyleService) {}
+  constructor(private configService: ConfigService) {}
 
   ngOnInit() {}
 
+  getConfig() {
+    return this.configService.getConfig();
+  }
+
+  saveConfig() {
+    return this.configService.saveConfig();
+  }
+
   updateSize(e: CustomEvent) {
-    this.styleService.style.fontSize = e.detail.value;
+    this.configService.getStyle().fontSize = e.detail.value;
   }
 
   updateFamily(e: CustomEvent) {
-    this.styleService.style.fontFamily = e.detail.value;
+    this.configService.getStyle().fontFamily = e.detail.value;
   }
 }

@@ -3,6 +3,7 @@
     <ion-label> Quick settings </ion-label>
   </ion-list-header>
 
+
   <ion-item>
     <ion-label>Family</ion-label>
     <ion-select
@@ -10,7 +11,7 @@
       name="fontFamily"
       lines="none"
       ngDefaultControl
-      [(ngModel)]="styleService.style.fontFamily"
+      [(ngModel)]="getConfig().style.fontFamily"
       (ionChange)="updateFamily($event)"
     >
       <ion-select-option *ngFor="let font of fonts" [value]="font">
@@ -28,7 +29,7 @@
       step="0.5"
       pin="true"
       lines="none"
-      [(value)]="styleService.style.fontSize"
+      [(value)]="getConfig().style.fontSize"
       (ionChange)="updateSize($event)"
       name="fontSize"
       ngDefaultControl
@@ -40,10 +41,17 @@
   <ion-item>
     <ion-label>Show helper</ion-label>
     <ion-toggle
-      [(value)]="configService.config.showHelper"
+      [(ngModel)]="getConfig().style.showHelper"
+      (ionChange)="getConfig().style.showHelper = $event.detail.value"
       name="showHelper"
       ngDefaultControl
     >
     </ion-toggle>
   </ion-item>
 </ion-list>
+
+<p>
+  {{ getConfig().style.showHelper }}
+</p>
+
+<ion-button (click)="saveConfig()"> Save </ion-button>

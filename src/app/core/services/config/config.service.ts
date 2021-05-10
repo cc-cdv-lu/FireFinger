@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Plugins } from '@capacitor/core';
+import { DEFAULT_STYLE, DEFAULT_USER, Style, User } from '../data.types';
 
-import { DEFAULT_STYLE, Style } from '../style/style.service';
-import { User } from '../user-service/user-service.service';
+import { UserService } from '../user/user.service';
 
 const { Storage } = Plugins;
 
@@ -14,11 +14,15 @@ type Config = {
 @Injectable({
   providedIn: 'root',
 })
-export class ConfigServiceService {
+export class ConfigService {
   loadedConfig: Config;
 
-  constructor() {
+  constructor(userService: UserService) {
     // listen for on user change, to load config
+
+    userService.onUserChange.subscribe((username: string) => {
+      this.retrieveConfig(username);
+    });
   }
 
   async retrieveConfig(username: string): Promise<Config> {
@@ -30,7 +34,23 @@ export class ConfigServiceService {
     return this.loadedConfig;
   }
 
-  async saveConfig(username: string): Promise<void> {
+  getConfig(): Config {
+    if (!this.loadedConfig) {
+      this.loadedConfig = this.getDefaultConfig();
+    }
+    return this.loadedConfig;
+  }
+
+  getStyle(): Style {
+    return this.getConfig().style;
+  }
+
+  getUser(): User {
+    return this.getConfig().user;
+  }
+
+  async saveConfig(username?: string): Promise<void> {
+    username = username ? username : this.loadedConfig.user.name;
     await Storage.set({
       key: `CONFIG_${username}`,
       value: JSON.stringify(this.loadedConfig),
@@ -40,7 +60,7 @@ export class ConfigServiceService {
   getDefaultConfig(): Config {
     const c: Config = {
       style: DEFAULT_STYLE,
-      user: { stats: {} },
+      user: DEFAULT_USER,
     };
 
     return c;
