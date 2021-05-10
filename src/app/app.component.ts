@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MenuController } from '@ionic/angular';
+import { UserService } from './core/services';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -18,5 +20,13 @@ export class AppComponent {
     */
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+  public username = '(NO NAME)';
+  constructor(
+    private userService: UserService,
+    private menuController: MenuController
+  ) {
+    this.userService.onUserChange.subscribe(
+      (username) => (this.username = username)
+    );
+  }
 }

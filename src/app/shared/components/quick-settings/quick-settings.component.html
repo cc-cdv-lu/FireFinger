@@ -3,7 +3,6 @@
     <ion-label> Quick settings </ion-label>
   </ion-list-header>
 
-
   <ion-item>
     <ion-label>Family</ion-label>
     <ion-select
@@ -11,8 +10,9 @@
       name="fontFamily"
       lines="none"
       ngDefaultControl
+      [ngStyle]="{ 'font-family': getConfig().style.fontFamily }"
       [(ngModel)]="getConfig().style.fontFamily"
-      (ionChange)="updateFamily($event)"
+      (ionChange)="getConfig().style.fontFamily = $event.detail.value"
     >
       <ion-select-option *ngFor="let font of fonts" [value]="font">
         {{ font }}
@@ -30,7 +30,7 @@
       pin="true"
       lines="none"
       [(value)]="getConfig().style.fontSize"
-      (ionChange)="updateSize($event)"
+      (ionChange)="getConfig().style.fontSize = $event.detail.value"
       name="fontSize"
       ngDefaultControl
     >

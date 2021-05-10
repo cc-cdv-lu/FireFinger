@@ -1,10 +1,15 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu swipeGesture="true" contentId="main-content" type="overlay">
+    <ion-menu
+      swipeGesture="true"
+      contentId="main-content"
+      menuId="main-menu"
+      type="overlay"
+    >
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>(Username)</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+          <ion-list-header>{{ username }}</ion-list-header>
+          <ion-note>FireFinger v2.0.0-dev</ion-note>
 
           <ion-menu-toggle
             auto-hide="false"
@@ -30,6 +35,7 @@
         <app-quick-settings></app-quick-settings>
       </ion-content>
     </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
+
+    <ion-router-outlet id="main-content"> </ion-router-outlet>
   </ion-split-pane>
 </ion-app>
