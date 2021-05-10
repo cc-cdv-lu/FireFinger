@@ -22,12 +22,4 @@ export class QuickSettingsComponent implements OnInit {
   saveConfig() {
     return this.configService.saveConfig();
   }
-
-  updateSize(e: CustomEvent) {
-    this.configService.getStyle().fontSize = e.detail.value;
-  }
-
-  updateFamily(e: CustomEvent) {
-    this.configService.getStyle().fontFamily = e.detail.value;
-  }
 }

@@ -14,7 +14,11 @@
       [(ngModel)]="getConfig().style.fontFamily"
       (ionChange)="getConfig().style.fontFamily = $event.detail.value"
     >
-      <ion-select-option *ngFor="let font of fonts" [value]="font">
+      <ion-select-option
+        *ngFor="let font of fonts"
+        [ngStyle]="{ 'font-family': font }"
+        [value]="font"
+      >
         {{ font }}
       </ion-select-option>
     </ion-select>
@@ -42,7 +46,7 @@
     <ion-label>Show helper</ion-label>
     <ion-toggle
       [(ngModel)]="getConfig().style.showHelper"
-      (ionChange)="getConfig().style.showHelper = $event.detail.value"
+      (ionChange)="getConfig().style.showHelper = $event.detail.checked"
       name="showHelper"
       ngDefaultControl
     >
