@@ -2,8 +2,12 @@
   <ion-item>
     <ion-label>Users</ion-label>
     <ion-select
+      [disabled]="getUserlist().length === 0"
       placeholder="Select One"
-      (ionChange)="login($event.detail.user)"
+      name="username"
+      [(value)]="userService.username"
+      ngDefaultControl
+      (ionChange)="login($event.detail.value)"
     >
       <ion-select-option *ngFor="let user of getUserlist()" [value]="user">
         {{ user }}

@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Plugins } from '@capacitor/core';
-const LAST_USER = 'last_user';
-const USER_LIST = 'user_list';
+const LAST_USER = 'ff_last_user';
+const USER_LIST = 'ff_user_list';
 
 const { Storage } = Plugins;
 @Injectable({
@@ -9,28 +9,38 @@ const { Storage } = Plugins;
 })
 export class UserService {
   @Output() onUserChange = new EventEmitter<string>();
-  public username = '(NO NAME)';
+  public username = undefined;
   public userlist: Array<string> = [];
   constructor() {}
 
   login(username: string) {
+    if (!username) {
+      console.warn('Undefined user tried to login');
+      return;
+    }
     this.onUserChange.emit(username);
     this.username = username;
+    console.log(username, 'seems to be logged in');
     Storage.set({ key: LAST_USER, value: this.username });
     this.addNewUser(username);
   }
 
   prepare() {
+    this.getUserlist().then((ul) => (this.userlist = ul));
     Storage.get({ key: LAST_USER }).then((user) => {
-      if (user && user.value !== 'null') {
+      console.log('last thingy:', user);
+      if (
+        user &&
+        user.value &&
+        user.value !== 'null' &&
+        user.value !== 'undefined'
+      ) {
         this.login(user.value);
         console.log('Loading config for previous user.', user);
       } else {
-        this.login('(NO NAME)');
+        console.log('There is noone to login...');
       }
     });
-
-    this.getUserlist().then((ul) => (this.userlist = ul));
   }
 
   async getUserlist(): Promise<Array<string>> {
@@ -48,7 +58,6 @@ export class UserService {
     const userlist = await this.getUserlist();
     if (
       !userlist.includes(username) &&
-      username !== '(NO NAME)' &&
       username !== 'null' &&
       username !== 'undefined' &&
       username

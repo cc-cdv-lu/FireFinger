@@ -10,17 +10,11 @@ import { NewUserComponent } from '../new-user/new-user.component';
 })
 export class LoginComponent implements OnInit {
   constructor(
-    private userService: UserService,
+    public userService: UserService,
     private modalController: ModalController
   ) {}
 
-  ngOnInit() {
-    this.printInfo();
-  }
-
-  printInfo() {
-    console.log(this.getUsername(), this.getUserlist());
-  }
+  ngOnInit() {}
 
   getUsername() {
     return this.userService.username;
@@ -29,7 +23,7 @@ export class LoginComponent implements OnInit {
     return this.userService.userlist;
   }
 
-  login(username: string) {
+  login(username: any) {
     this.userService.login(username);
   }
 
@@ -48,7 +42,6 @@ export class LoginComponent implements OnInit {
       } else {
         console.warn('Received invalid new user...', data);
       }
-      this.printInfo();
     });
   }
 }
