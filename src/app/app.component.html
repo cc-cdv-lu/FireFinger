@@ -11,8 +11,18 @@
           <ion-list-header>
             {{ getUsername() }}
           </ion-list-header>
+          <ion-note>
+            FireFinger {{ version }}
+            <ion-button
+              (click)="openLink('http://wiki.cc-cdv.lu/display/PUB/FireFinger')"
+            >
+              <ion-icon
+                slot="icon-only"
+                name="information-circle-outline"
+              ></ion-icon>
+            </ion-button>
+          </ion-note>
           <app-login></app-login>
-          <ion-note>FireFinger v2.0.0-dev</ion-note>
 
           <ion-menu-toggle
             auto-hide="false"

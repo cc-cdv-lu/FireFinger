@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from './core/services/user/user.service';
+import { version } from '../../package.json';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class AppComponent {
     { title: 'Texts', url: 'texts', icon: 'document-text' },
     { title: 'Settings', url: '/settings/', icon: 'settings' },
   ];
+  version = version;
   constructor(private userService: UserService) {
     this.userService.prepare();
   }
@@ -23,5 +25,9 @@ export class AppComponent {
     } else {
       return this.userService.username;
     }
+  }
+
+  openLink(link: string) {
+    window.location.href = link;
   }
 }
