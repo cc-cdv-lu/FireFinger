@@ -36,8 +36,9 @@ export class UserService {
   async getUserlist(): Promise<Array<string>> {
     const list = await Storage.get({ key: USER_LIST });
     const obj = JSON.parse(list.value);
-    if (obj && obj?.users !== null) {
-      return JSON.parse(list.value).users;
+    console.log('Got:', obj?.users);
+    if (obj && obj?.users) {
+      return obj.users;
     } else {
       return [];
     }
@@ -48,7 +49,9 @@ export class UserService {
     if (
       !userlist.includes(username) &&
       username !== '(NO NAME)' &&
-      username !== 'null'
+      username !== 'null' &&
+      username !== 'undefined' &&
+      username
     ) {
       this.userlist.push(username);
     }
@@ -56,5 +59,6 @@ export class UserService {
       key: USER_LIST,
       value: JSON.stringify({ users: this.userlist }),
     });
+    console.log('Tried adding new user:', this.userlist);
   }
 }

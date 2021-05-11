@@ -18,6 +18,10 @@ export class AppComponent {
   }
 
   getUsername() {
-    return this.userService.username;
+    if (!this.userService.username) {
+      return '[Please login]';
+    } else {
+      return this.userService.username;
+    }
   }
 }

@@ -6,9 +6,10 @@ import { QuickSettingsComponent } from './components/quick-settings/quick-settin
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import { NewUserComponent } from './components/new-user/new-user.component';
 
 @NgModule({
-  declarations: [QuickSettingsComponent, LoginComponent],
+  declarations: [QuickSettingsComponent, LoginComponent, NewUserComponent],
   imports: [CommonModule, FormsModule, IonicModule, RouterModule],
   exports: [QuickSettingsComponent, LoginComponent],
 })

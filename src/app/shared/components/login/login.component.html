@@ -1,18 +1,19 @@
-{{ getUsername() }}
-test
-
 <ion-list>
   <ion-item>
     <ion-label>Users</ion-label>
-    <ion-select placeholder="Select One">
-      <ion-select-option
-        *ngFor="let user of getUserlist()"
-        (click)="login(user)"
-        [value]="user"
-      >
+    <ion-select
+      placeholder="Select One"
+      (ionChange)="login($event.detail.user)"
+    >
+      <ion-select-option *ngFor="let user of getUserlist()" [value]="user">
         {{ user }}
       </ion-select-option>
-      <ion-select-option (click)="newUser()">New user</ion-select-option>
     </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-button expand="block" (click)="newUser()">
+      <ion-icon name="add"></ion-icon>
+      New user
+    </ion-button>
   </ion-item>
 </ion-list>
