@@ -1,9 +1,8 @@
-$basecolor: lightgray;
-$highlightcolor: yellow;
-
 .container {
   height: 100%;
   width: 100%;
+
+  background-color: var(--ion-background-color);
 }
 
 ion-grid {
@@ -23,10 +22,11 @@ ion-grid {
 .text {
   font-size: 3em;
   width: 100%;
-  color: var(--ion-color-medium);
+  // color: var(--ion-color-medium);
+  color: var(--ion-text-color);
 }
 .highlight {
-  color: var(--ion-color-warning);
+  color: var(--ion-color-tertiary);
 }
 .prev {
   width: 100%;

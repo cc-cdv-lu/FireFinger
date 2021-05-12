@@ -83,7 +83,7 @@ export class ThemeSwitcherComponent {
 
     this.domCtrl.write(() => {
       theme.styles.forEach((style) => {
-        document.documentElement.style.setProperty(
+        this.document.documentElement.style.setProperty(
           style.themeVariable,
           style.value
         );

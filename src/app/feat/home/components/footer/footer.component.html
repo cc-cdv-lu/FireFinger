@@ -1,17 +1,19 @@
-<div class="container">
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-progress-bar
-          color="secondary"
-          [value]="getProgress()"
-        ></ion-progress-bar>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col> (Chapter name) </ion-col>
-      <ion-col> Mistakes: {{getMistakeText()}} </ion-col>
-      <ion-col> Progress: {{ getProgressText() }}</ion-col>
-    </ion-row>
-  </ion-grid>
-</div>
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-progress-bar
+            color="secondary"
+            [value]="getProgress()"
+          ></ion-progress-bar>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col> (Chapter name) </ion-col>
+        <ion-col> Mistakes: {{ getMistakeText() }} </ion-col>
+        <ion-col> Progress: {{ getProgressText() }}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
