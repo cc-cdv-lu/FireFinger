@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { IonToggle } from '@ionic/angular';
 
 @Component({
   selector: 'app-dark-mode-toggle',
   templateUrl: './dark-mode-toggle.component.html',
   styleUrls: ['./dark-mode-toggle.component.scss'],
 })
-export class DarkModeToggleComponent implements OnInit {
+export class DarkModeToggleComponent implements AfterViewInit {
+  toggle: HTMLIonToggleElement;
   constructor() {}
-  ngOnInit() {
-    this.prepareDarkModeToggle();
-  }
-
-  prepareDarkModeToggle() {
+  ngAfterViewInit() {
     // Query for the toggle that is used to change between themes
-    const toggle: HTMLIonToggleElement = document.querySelector('#themeToggle');
+    const toggle: HTMLIonToggleElement = document.querySelector(
+      '#darkModeToggle'
+    );
 
     // Listen for the toggle check/uncheck to toggle the dark class on the <body>
     toggle.addEventListener('ionChange', (ev: CustomEvent) => {
@@ -23,17 +23,20 @@ export class DarkModeToggleComponent implements OnInit {
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 
     // Listen for changes to the prefers-color-scheme media query
-    prefersDark.addListener((e) => checkToggle(e.matches));
-
-    // Called when the app loads
-    function loadApp() {
-      checkToggle(prefersDark.matches);
-    }
+    prefersDark.addEventListener('change', (e) => checkToggle(e.matches));
 
     // Called by the media query to check/uncheck the toggle
-    function checkToggle(shouldCheck) {
+    function checkToggle(shouldCheck: boolean) {
+      console.log('Toggle should be:', shouldCheck, prefersDark);
       toggle.checked = shouldCheck;
     }
+
+    // Called once when the component loads
+    function loadApp() {
+      checkToggle(prefersDark.matches);
+      document.body.classList.toggle('dark', prefersDark.matches);
+    }
+
     loadApp();
   }
 }
