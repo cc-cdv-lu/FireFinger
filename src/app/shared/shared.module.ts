@@ -7,10 +7,25 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { NewUserComponent } from './components/new-user/new-user.component';
+import { IonicThemeSwitcherModule } from 'ionic-theme-switcher';
+import { ThemeSwitcherComponent } from './components/theme-switcher/theme-switcher.component';
+import { DarkModeToggleComponent } from './components/dark-mode-toggle/dark-mode-toggle.component';
 
 @NgModule({
-  declarations: [QuickSettingsComponent, LoginComponent, NewUserComponent],
-  imports: [CommonModule, FormsModule, IonicModule, RouterModule],
+  declarations: [
+    QuickSettingsComponent,
+    LoginComponent,
+    NewUserComponent,
+    ThemeSwitcherComponent,
+    DarkModeToggleComponent,
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    RouterModule,
+    IonicThemeSwitcherModule,
+  ],
   exports: [QuickSettingsComponent, LoginComponent],
 })
 export class SharedModule {}
