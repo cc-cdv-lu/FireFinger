@@ -11,6 +11,8 @@ export class AppComponent {
   /*
   - Text parser
     * Supported file types? also support docx? What about encoding?
+    * How should it work? Save metadata in folder or copy contents and create firefinger-files?
+    * Should also track progress (which courses have been finished by that user?)
   - Theme switcher: https://github.com/marcos-dev/ionic-theme-switcher
   - Stats, error tracking, timer when leaving application mid session?
   - Save session in progress for that user
@@ -19,6 +21,7 @@ export class AppComponent {
   - Make the behaviour while typing texts more modular, extendable
     * To consider: neurovisual disabilities
     * To consider: multiline texts?
+  - Fix tsconfig paths (@app/core/...)
 
 */
 
