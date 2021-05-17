@@ -1,9 +1,9 @@
 /* STYLE */
-export type Style = {
+export interface Style {
   fontSize: number;
   fontFamily: string;
   showHelper: boolean;
-};
+}
 
 export const DEFAULT_STYLE: Style = {
   fontFamily: 'Arial',
@@ -12,14 +12,14 @@ export const DEFAULT_STYLE: Style = {
 };
 
 /* STATS */
-export type UserStats = {};
-export type LessonStats = {
+export interface UserStats {}
+export interface LessonStats {
   rating: number;
   time: number;
   mistakes: number;
   length: number;
-};
-export type SessionsStats = {
+}
+export interface SessionsStats {
   // How many letters were typed since last mistake
   combo: number;
   sessionStats: LessonStats;
@@ -33,30 +33,35 @@ export const DEFAULT_USER: User = {
   name: '(no name)',
 };
 
-export type User = {
+export interface User {
   stats: UserStats;
   name: string;
   completedLessons?: Array<CompletedLesson>;
-};
+}
 
 /*xxxx*/
 
 /* COURSES */
-export type Course = {
+export interface Course {
   lessons: Array<Lesson>;
   id: string;
   name: string;
   description: string;
-};
-export type Lesson = {
+}
+export interface Lesson {
   id: string;
   name: string;
   description: string;
-  type: string; // Courses type (text, image, ...)
+  type: string; // Courses interface (text, image, ...)
   display: string; // Prefered display style
-};
-// Saved in user config?
-export type CompletedLesson = {
+}
+// Saved in user
+export interface CompletedLesson {
   date: Date;
+  courseId: string;
+  lessonId: string;
   stats: LessonStats;
-};
+}
+
+export const DISPLAY_TYPES: Array<string> = ['DEFAULT'];
+export const LESSON_TYPES: Array<string> = ['DEFAULT'];

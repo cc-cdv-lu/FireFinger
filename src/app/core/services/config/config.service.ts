@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Plugins } from '@capacitor/core';
-import { DEFAULT_STYLE, DEFAULT_USER, Style, User } from '../data.types';
+import { DEFAULT_STYLE, DEFAULT_USER, Style, User } from '../../data.types';
 
 import { UserService } from '../user/user.service';
 

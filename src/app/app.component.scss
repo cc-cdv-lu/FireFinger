@@ -1,3 +1,16 @@
+#settings {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+
+#about {
+  position: absolute;
+  bottom: 0px;
+  right: 20px;
+
+}
+
 ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
 }

@@ -1,4 +1,77 @@
 <div class="container">
+  <div class="courseList">
+    <ion-list>
+      <ion-list-header>
+        <ion-label>
+          <h3>Courses</h3>
+        </ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let course of courseList">
+        <ion-label>{{ course.name }}</ion-label>
+        <ion-note slot="end">{{ course.lessons.length }}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-button (click)="createCourse()">
+          <ion-icon name="add" slot="start"></ion-icon>
+          Add new course
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="editorArea">
+    <div class="courseSettings">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>
+            <h3>Course settings</h3>
+          </ion-label>
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label>Name</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Description</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Test</ion-label>
+          <ion-checkbox></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div class="lessonSettings">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>
+            <h3>Lesson settings</h3>
+          </ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Name</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Description</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Test</ion-label>
+          <ion-checkbox></ion-checkbox>
+        </ion-item>
+        <ion-item class="textArea">
+          <ion-label position="floating">Text</ion-label>
+          <ion-textarea
+            rows="20"
+            placeholder="Enter the text to be typed here..."
+            autoGrow="true"
+          ></ion-textarea>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
   <!--
     - multiple boolean checkboxes
     - ion-select for view

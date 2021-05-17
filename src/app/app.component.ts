@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { UserService } from './core/services/user/user.service';
 import { version } from '../../package.json';
+import { QuickSettingsComponent } from './shared/components/quick-settings/quick-settings.component';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -27,12 +29,16 @@ export class AppComponent {
 
   public appPages = [
     { title: 'Home', url: 'home', icon: 'home' },
+    { title: 'Editor', url: 'editor', icon: 'pencil' },
     { title: 'Chapters', url: 'chapters', icon: 'book' },
     { title: 'Texts', url: 'texts', icon: 'document-text' },
     { title: 'Settings', url: '/settings/', icon: 'settings' },
   ];
   version = version;
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private popoverController: PopoverController
+  ) {
     this.userService.prepare();
   }
 
@@ -46,5 +52,18 @@ export class AppComponent {
 
   openLink(link: string) {
     window.location.href = link;
+  }
+
+  async openQuickSettings(event?: any) {
+    const popover = await this.popoverController.create({
+      component: QuickSettingsComponent,
+      cssClass: 'my-custom-class',
+      event: event,
+      translucent: true,
+    });
+    await popover.present();
+
+    const { role } = await popover.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
   }
 }

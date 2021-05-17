@@ -11,17 +11,7 @@
           <ion-list-header>
             {{ getUsername() }}
           </ion-list-header>
-          <ion-note>
-            FireFinger {{ version }}
-            <ion-button
-              (click)="openLink('http://wiki.cc-cdv.lu/display/PUB/FireFinger')"
-            >
-              <ion-icon
-                slot="icon-only"
-                name="information-circle-outline"
-              ></ion-icon>
-            </ion-button>
-          </ion-note>
+
           <app-login></app-login>
 
           <ion-menu-toggle
@@ -44,10 +34,40 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-
-        <app-quick-settings></app-quick-settings>
+        <div id="about">
+          <ion-note>
+            <p>
+              FireFinger {{ version }}
+              <ion-button
+                fill="clear"
+                size="small"
+                (click)="
+                  openLink('http://wiki.cc-cdv.lu/display/PUB/FireFinger')
+                "
+              >
+                <ion-icon
+                  slot="icon-only"
+                  name="information-circle-outline"
+                ></ion-icon>
+              </ion-button>
+            </p>
+            <p>
+              2021 Centre pour le développement des compétences relatives à la
+              vue
+            </p>
+          </ion-note>
+        </div>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"> </ion-router-outlet>
   </ion-split-pane>
+  <ion-button
+    color="tertiary"
+    id="settings"
+    fill="clear"
+    size="large"
+    (click)="openQuickSettings($event)"
+  >
+    <ion-icon slot="icon-only" name="settings"></ion-icon>
+  </ion-button>
 </ion-app>

@@ -1,0 +1,30 @@
+.container {
+  height: 100%;
+  width: 100%;
+  .courseList {
+    height: 100%;
+    width: 25%;
+    float: left;
+  }
+
+  .editorArea {
+    height: 100%;
+    width: 75%;
+    float: right;
+    .courseSettings {
+    }
+
+    .lessonSettings {
+    }
+    .textArea {
+    }
+  }
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.fullHeight {
+  height: 100%;
+}

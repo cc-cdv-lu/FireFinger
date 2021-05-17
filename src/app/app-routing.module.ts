@@ -18,6 +18,11 @@ const routes: Routes = [
       import('./feat/home/home.module').then((m) => m.HomeModule),
   },
   {
+    path: 'editor',
+    loadChildren: () =>
+      import('./feat/editor/editor.module').then((m) => m.EditorModule),
+  },
+  {
     path: 'settings',
     loadChildren: () =>
       import('./feat/settings/settings.module').then((m) => m.SettingsModule),
