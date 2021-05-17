@@ -8,12 +8,16 @@ import { IonToggle } from '@ionic/angular';
 })
 export class DarkModeToggleComponent implements AfterViewInit {
   toggle: HTMLIonToggleElement;
-  constructor() {}
+  constructor() {
+  }
   ngAfterViewInit() {
+    this.prepare();
+  }
+
+  prepare() {
     // Query for the toggle that is used to change between themes
-    const toggle: HTMLIonToggleElement = document.querySelector(
-      '#darkModeToggle'
-    );
+    const toggle: HTMLIonToggleElement =
+      document.querySelector('#darkModeToggle');
 
     // Listen for the toggle check/uncheck to toggle the dark class on the <body>
     toggle.addEventListener('ionChange', (ev: CustomEvent) => {
