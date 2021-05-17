@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from './core/services/user/user.service';
 import { version } from '../../package.json';
-import { QuickSettingsComponent } from './shared/components/quick-settings/quick-settings.component';
-import { PopoverController } from '@ionic/angular';
+import { ConfigService } from './core';
 
 @Component({
   selector: 'app-root',
@@ -37,9 +36,11 @@ export class AppComponent {
   version = version;
   constructor(
     private userService: UserService,
-    private popoverController: PopoverController
+    private configService: ConfigService
   ) {
     this.userService.prepare();
+    this.configService.prepare();
+    // TODO: load dark mode?
   }
 
   getUsername() {
@@ -52,18 +53,5 @@ export class AppComponent {
 
   openLink(link: string) {
     window.location.href = link;
-  }
-
-  async openQuickSettings(event?: any) {
-    const popover = await this.popoverController.create({
-      component: QuickSettingsComponent,
-      cssClass: 'my-custom-class',
-      event: event,
-      translucent: true,
-    });
-    await popover.present();
-
-    const { role } = await popover.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
   }
 }

@@ -22,8 +22,10 @@ type Config = {
 export class ConfigService {
   loadedConfig: Config;
 
-  constructor(userService: UserService) {
-    userService.onUserChange.subscribe((username) => {
+  constructor(private userService: UserService) {}
+
+  prepare() {
+    this.userService.onUserChange.subscribe((username) => {
       this.retrieveConfig(username);
     });
   }

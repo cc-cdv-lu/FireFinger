@@ -25,21 +25,25 @@ export class UserService {
     this.addNewUser(username);
   }
 
-  prepare() {
-    this.getUserlist().then((ul) => (this.userlist = ul));
-    Storage.get({ key: LAST_USER }).then((user) => {
-      console.log('last thingy:', user);
-      if (
-        user &&
-        user.value &&
-        user.value !== 'null' &&
-        user.value !== 'undefined'
-      ) {
-        this.login(user.value);
-        console.log('Loading config for previous user.', user);
-      } else {
-        console.log('There is noone to login...');
-      }
+  async prepare(): Promise<string | undefined> {
+    return new Promise<string | undefined>((resolve, reject) => {
+      this.getUserlist().then((ul) => (this.userlist = ul));
+      Storage.get({ key: LAST_USER }).then((user) => {
+        console.log('last thingy:', user);
+        if (
+          user &&
+          user.value &&
+          user.value !== 'null' &&
+          user.value !== 'undefined'
+        ) {
+          this.login(user.value);
+          console.log('Loading config for previous user.', user);
+          return resolve(user.value);
+        } else {
+          console.log('There is noone to login...');
+        }
+        return resolve(undefined);
+      });
     });
   }
 
