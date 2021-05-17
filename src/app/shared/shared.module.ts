@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { NewUserComponent } from './components/new-user/new-user.component';
-import { IonicThemeSwitcherModule } from 'ionic-theme-switcher';
 import { ThemeSwitcherComponent } from './components/theme-switcher/theme-switcher.component';
 import { DarkModeToggleComponent } from './components/dark-mode-toggle/dark-mode-toggle.component';
 
@@ -24,7 +23,6 @@ import { DarkModeToggleComponent } from './components/dark-mode-toggle/dark-mode
     FormsModule,
     IonicModule,
     RouterModule,
-    IonicThemeSwitcherModule,
   ],
   exports: [QuickSettingsComponent, LoginComponent],
 })
