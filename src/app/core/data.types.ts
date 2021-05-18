@@ -47,6 +47,8 @@ export interface Course {
   id: string;
   name: string;
   description: string;
+  author?: string;
+  creationDate?: Date;
 }
 export interface Lesson {
   id: string;

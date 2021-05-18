@@ -12,6 +12,8 @@ import {
   Lesson,
 } from '../../data.types';
 
+import { courseList } from './default_courses';
+
 const { Filesystem } = Plugins;
 
 @Injectable({
@@ -135,7 +137,41 @@ export class FileService {
 
   saveCourses(courses: Course[]) {}
 
-  createDefaultCourses() {}
+  async createDefaultCourses() {
+    for (let course of courseList) {
+      // Create course
+      await Filesystem.mkdir({
+        path: this.basePath + course.id,
+        directory: this.dir,
+      });
+      // Should not write lesson metadata?
+      // If it's included - importing much easier
+      // If not regenerating give more consistency?
+      await Filesystem.writeFile({
+        path: this.basePath + course.id + '.ffc',
+        directory: this.dir,
+        encoding: FilesystemEncoding.UTF8,
+        data: JSON.stringify(course),
+      });
+
+      for (let lesson of course.lessons) {
+        let lessonPath = this.basePath + course.id + lesson.id;
+
+        await Filesystem.writeFile({
+          path: lessonPath + '.ffl',
+          directory: this.dir,
+          encoding: FilesystemEncoding.UTF8,
+          data: JSON.stringify(lesson),
+        });
+        await Filesystem.writeFile({
+          path: lessonPath + '.txt',
+          directory: this.dir,
+          encoding: FilesystemEncoding.UTF8,
+          data: lesson.content,
+        });
+      }
+    }
+  }
 
   async deleteAllTheThings() {
     await Filesystem.deleteFile({ path: this.basePath, directory: this.dir });
