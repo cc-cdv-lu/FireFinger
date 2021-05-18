@@ -64,5 +64,21 @@ export interface CompletedLesson {
   stats: LessonStats;
 }
 
+export const DEFAULT_COURSE: Course = {
+  description: '(No description)',
+  id: Date.now().toString(),
+  lessons: [],
+  name: '(No name)',
+};
+
+export const DEFAULT_LESSON: Lesson = {
+  content: '',
+  description: '(No description)',
+  display: 'DEFAULT',
+  id: Date.now().toString(),
+  name: '(No name)',
+  type: 'DEFAULT',
+};
+
 export const DISPLAY_TYPES: Array<string> = ['DEFAULT'];
 export const LESSON_TYPES: Array<string> = ['DEFAULT'];

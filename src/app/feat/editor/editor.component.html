@@ -32,6 +32,20 @@
           <ion-icon name="bug" slot="start"></ion-icon>
           Debug
         </ion-button>
+        <ion-button (click)="loadAllFromFile()">
+          <ion-icon name="folder" slot="start"></ion-icon>
+          loadAllFromFile
+        </ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-button (click)="createDefaultCourses()">
+          <ion-icon name="folder" slot="start"></ion-icon>
+          createDefaultCourses
+        </ion-button>
+        <ion-button (click)="deleteAllTheThings()">
+          <ion-icon name="folder" slot="start"></ion-icon>
+          deleteAllTheThings
+        </ion-button>
       </ion-item>
       <div class="courseSettings" *ngIf="loadedCourse !== undefined">
         <ion-list-header>

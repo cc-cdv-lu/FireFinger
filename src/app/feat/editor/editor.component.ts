@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Course, Lesson } from 'src/app/core';
+import { FileService } from 'src/app/core/services/file/file.service';
 
 @Component({
   selector: 'app-editor',
@@ -68,7 +69,7 @@ export class EditorComponent implements OnInit {
   loadedCourse: Course = undefined;
   loadedLesson: Lesson = undefined;
 
-  constructor() {}
+  constructor(private fileService: FileService) {}
 
   ngOnInit() {
     this.loadedCourse = this.courseList[1];
@@ -79,7 +80,6 @@ export class EditorComponent implements OnInit {
   }
 
   createCourse() {
-    // TODO
     const newCourse = {
       id: 'Set id?',
       lessons: [],
@@ -97,18 +97,33 @@ export class EditorComponent implements OnInit {
       id: 'Enter id?',
       name: 'Lesson name here',
       type: 'DEFAULT',
-      content: ''
+      content: '',
     });
   }
 
+  loadAllFromFile() {
+    this.fileService.loadCourses();
+  }
+
+  createDefaultCourses() {
+    this.fileService.createDefaultCourses();
+  }
+
+  deleteAllTheThings() {
+    this.fileService.deleteAllTheThings();
+  }
+
   loadCourse(courseId: string) {
-    // TODO
+    const course = this.courseList.find((course) => course.id === courseId);
+    if (course) {
+      this.loadedCourse = course;
+    }
   }
 
   loadLesson(courseId: string, lessonId: string) {
-    // TODO
     const course = this.courseList.find((course) => course.id === courseId);
     if (course) {
+      // this.loadedCourse = course;
       const lesson = course.lessons.find((lesson) => lesson.id === lessonId);
       if (lesson) {
         this.loadedLesson = lesson;
