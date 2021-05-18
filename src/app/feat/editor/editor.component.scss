@@ -3,13 +3,14 @@
   width: 100%;
   .courseList {
     height: 100%;
-    width: 25%;
+    width: 30%;
     float: left;
+    border-right: 1px solid var(--ion-color-light);
   }
 
   .editorArea {
     height: 100%;
-    width: 75%;
+    width: 70%;
     float: right;
     .courseSettings {
     }

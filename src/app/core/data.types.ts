@@ -54,6 +54,7 @@ export interface Lesson {
   description: string;
   type: string; // Courses interface (text, image, ...)
   display: string; // Prefered display style
+  content: string;
 }
 // Saved in user
 export interface CompletedLesson {

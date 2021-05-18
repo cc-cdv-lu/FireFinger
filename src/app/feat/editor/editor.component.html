@@ -6,9 +6,20 @@
           <h3>Courses</h3>
         </ion-label>
       </ion-list-header>
-      <ion-item *ngFor="let course of courseList">
-        <ion-label>{{ course.name }}</ion-label>
-        <ion-note slot="end">{{ course.lessons.length }}</ion-note>
+      <ion-item>
+        <ion-label color="primary">Select course</ion-label>
+        <ion-select
+          placeholder="Select One"
+          [(ngModel)]="loadedCourse"
+          name="Course"
+          ngDefaultControl
+          [compareWith]="compareWith"
+          (ionChange)="loadedCourse = $event.detail.value"
+        >
+          <ion-select-option *ngFor="let course of courseList" [value]="course">
+            <b>{{ course.name }}</b> ({{ course.lessons.length }})
+          </ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-button (click)="createCourse()">
@@ -16,12 +27,13 @@
           Add new course
         </ion-button>
       </ion-item>
-    </ion-list>
-  </div>
-
-  <div class="editorArea">
-    <div class="courseSettings">
-      <ion-list>
+      <ion-item>
+        <ion-button (click)="debug()">
+          <ion-icon name="bug" slot="start"></ion-icon>
+          Debug
+        </ion-button>
+      </ion-item>
+      <div class="courseSettings" *ngIf="loadedCourse !== undefined">
         <ion-list-header>
           <ion-label>
             <h3>Course settings</h3>
@@ -29,20 +41,45 @@
         </ion-list-header>
 
         <ion-item>
-          <ion-label>Name</ion-label>
-          <ion-input></ion-input>
+          <ion-label color="primary">Name</ion-label>
+          <ion-input
+            name="Name"
+            ngDefaultControl
+            [(ngModel)]="loadedCourse.name"
+          ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Description</ion-label>
-          <ion-input></ion-input>
+          <ion-label color="primary">Description</ion-label>
+          <ion-input
+            name="Description"
+            ngDefaultControl
+            [(ngModel)]="loadedCourse.description"
+          ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Test</ion-label>
+          <ion-label color="primary">Test</ion-label>
           <ion-checkbox></ion-checkbox>
         </ion-item>
-      </ion-list>
-    </div>
-    <div class="lessonSettings">
+        <ion-list-header>
+          <ion-label>
+            <h3>Lessons</h3>
+          </ion-label>
+        </ion-list-header>
+        <ion-item *ngFor="let lesson of loadedCourse.lessons">
+          <ion-label>{{ lesson.name }}</ion-label>
+          <ion-button fill="clear" (click)="loadedLesson = lesson">
+            <ion-icon slot="icon-only" name="create-outline"> </ion-icon>
+          </ion-button>
+          <ion-button color="danger" fill="clear">
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </div>
+    </ion-list>
+  </div>
+
+  <div class="editorArea">
+    <div class="lessonSettings" *ngIf="loadedLesson">
       <ion-list>
         <ion-list-header>
           <ion-label>
@@ -50,21 +87,32 @@
           </ion-label>
         </ion-list-header>
         <ion-item>
-          <ion-label>Name</ion-label>
-          <ion-input></ion-input>
+          <ion-label color="tertiary">Name</ion-label>
+          <ion-input
+            name="Name"
+            ngDefaultControl
+            [(ngModel)]="loadedLesson.name"
+          ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Description</ion-label>
-          <ion-input></ion-input>
+          <ion-label color="tertiary">Description</ion-label>
+          <ion-input
+            name="Description"
+            ngDefaultControl
+            [(ngModel)]="loadedLesson.description"
+          ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Test</ion-label>
+          <ion-label color="tertiary">Test</ion-label>
           <ion-checkbox></ion-checkbox>
         </ion-item>
         <ion-item class="textArea">
-          <ion-label position="floating">Text</ion-label>
+          <ion-label position="floating" color="tertiary">Text</ion-label>
           <ion-textarea
             rows="20"
+            name="Content"
+            ngDefaultControl
+            [(ngModel)]="loadedLesson.content"
             placeholder="Enter the text to be typed here..."
             autoGrow="true"
           ></ion-textarea>
