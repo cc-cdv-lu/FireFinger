@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Course, Lesson } from 'src/app/core';
 import { FileService } from 'src/app/core/services/file/file.service';
-import { courseList } from 'src/app/core/services/file/default_courses';
 
 @Component({
   selector: 'app-editor',
@@ -16,8 +15,9 @@ export class EditorComponent implements OnInit {
   constructor(private fileService: FileService) {}
 
   ngOnInit() {
-    this.courseList = courseList;
-    this.loadedCourse = this.courseList[1];
+    // this.courseList = courseList;
+    // this.loadedCourse = this.courseList[1];
+    this.fileService.loadCourses().then((list) => (this.courseList = list));
   }
 
   debug() {
@@ -25,6 +25,7 @@ export class EditorComponent implements OnInit {
   }
 
   createCourse() {
+    // Move this logic to filesystem and create file simultaneously
     const newCourse = {
       id: 'Set id?',
       lessons: [],
