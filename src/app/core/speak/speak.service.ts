@@ -32,7 +32,7 @@ export class SpeakService {
 
   async sayTTS(text: string, lang?: string) {
     lang = lang ? lang : 'de';
-    const {voices} = await TextToSpeech.getSupportedVoices();
+    const { voices } = await TextToSpeech.getSupportedVoices();
     const langs = await TextToSpeech.getSupportedLanguages();
     console.log('Supported voices: ', voices);
     console.log('Supported langs: ', langs);
@@ -41,8 +41,8 @@ export class SpeakService {
       text,
       lang,
       category: 'ambient',
-      pitch: 1.0,
-      rate: 1.0,
+      pitch: 2.0,
+      rate: 0.4,
       volume: 1.0,
       voice,
     });
