@@ -78,8 +78,8 @@ export class FileService {
   }
 
   async loadCourses(): Promise<Course[]> {
-    // TODO: instead search for folders and then their corresponding metadata files
-    // Generate default data when no metadata is found (and save it?)
+    // TODO: Generate default data when no metadata is found (and save it?)
+    await this.prepare();
     let output: Course[] = [];
     // Search for metadata file in courses
     const contents = await Filesystem.readdir({

@@ -11,17 +11,56 @@ export class EditorComponent implements OnInit {
   loadedCourse: Course = undefined;
   loadedLesson: Lesson = undefined;
 
+  /* TODO:
+  SAVE TO FILE SEEMS NOT TO WORK?
+  LOADS 9 LESSONS INSTEAD OF 3???
+  */
+
   courseList: Course[];
+  private savedContent: Course[];
   constructor(private fileService: FileService) {}
 
   ngOnInit() {
-    // this.courseList = courseList;
-    // this.loadedCourse = this.courseList[1];
     this.loadAllFromFile();
   }
 
   debug() {
     console.log('Loaded course:', this.loadedCourse);
+  }
+
+  /* File related */
+
+  async loadAllFromFile() {
+    this.courseList = await this.fileService.loadCourses();
+    this.savedContent = JSON.parse(JSON.stringify(this.courseList)) as Course[];
+    if (this.courseList.length > 0) {
+      this.loadedCourse = this.courseList[0];
+    } else {
+      this.loadedCourse = undefined;
+    }
+  }
+
+  async createDefaultCourses() {
+    await this.fileService.createDefaultCourses();
+    await this.loadAllFromFile();
+  }
+
+  async deleteAllTheThings() {
+    await this.fileService.deleteAllTheThings();
+    await this.loadAllFromFile();
+  }
+
+  async saveAllToFile() {
+    await this.fileService.saveCourses(this.courseList);
+    this.savedContent = this.courseList;
+  }
+
+  /* Local stuff*/
+
+  hasChanges(): boolean {
+    return (
+      JSON.stringify(this.courseList) !== JSON.stringify(this.savedContent)
+    );
   }
 
   createCourse() {
@@ -47,24 +86,6 @@ export class EditorComponent implements OnInit {
     });
   }
 
-  async loadAllFromFile() {
-    this.courseList = await this.fileService
-      .loadCourses()
-      .catch(() => (this.courseList = []));
-    if (this.courseList.length > 0) {
-      this.loadedCourse = this.courseList[0];
-    }
-  }
-
-  async createDefaultCourses() {
-    await this.fileService.createDefaultCourses();
-  }
-
-  async deleteAllTheThings() {
-    await this.fileService.deleteAllTheThings();
-    await this.loadAllFromFile();
-  }
-
   loadCourse(courseId: string) {
     const course = this.courseList.find((course) => course.id === courseId);
     if (course) {
@@ -83,8 +104,13 @@ export class EditorComponent implements OnInit {
     }
   }
 
-  async saveAllToFile() {
-    await this.fileService.saveCourses(this.courseList);
+  deleteLesson(lessonId: string) {
+    const index = this.loadedCourse.lessons.findIndex(
+      (lesson) => lesson.id === lessonId
+    );
+    if (index) {
+      this.loadedCourse.lessons.splice(index, 1);
+    }
   }
 
   compareWith(o1: Course, o2: Course | Course[]) {

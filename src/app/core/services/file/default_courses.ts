@@ -3,12 +3,6 @@ import { Course } from '../../data.types';
 export const courseList: Array<Course> = [
   {
     id: 'Set 1',
-    lessons: [],
-    name: 'Some course 1',
-    description: 'Bla bla bla',
-  },
-  {
-    id: 'Set 2',
     lessons: [
       {
         description: 'Some description...',
@@ -36,6 +30,12 @@ export const courseList: Array<Course> = [
         content: 'asdf sdfsdfsdghgdfhfgh jasldkjfsadölfjaslkfjdas öfljköaslj',
       },
     ],
+    name: 'Some course 1',
+    description: 'Bla bla bla',
+  },
+  {
+    id: 'Set 2',
+    lessons: [],
     name: 'testi test 1',
     description: 'Bla bla bla',
   },

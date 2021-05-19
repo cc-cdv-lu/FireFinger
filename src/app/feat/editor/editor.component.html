@@ -5,6 +5,10 @@
         <ion-label>
           <h3>Courses</h3>
         </ion-label>
+        <ion-button *ngIf="hasChanges()">
+          <ion-icon slot="start" name="save"></ion-icon>
+          Save changes
+        </ion-button>
       </ion-list-header>
       <ion-item>
         <ion-label color="primary">Select course</ion-label>
@@ -25,6 +29,10 @@
         <ion-button (click)="createCourse()">
           <ion-icon name="add" slot="start"></ion-icon>
           Add new course
+        </ion-button>
+        <ion-button color="danger" (click)="createCourse()">
+          <ion-icon name="trash" slot="start"></ion-icon>
+          Delete course
         </ion-button>
       </ion-item>
       <ion-item>
@@ -74,17 +82,30 @@
           <ion-label color="primary">Test</ion-label>
           <ion-checkbox></ion-checkbox>
         </ion-item>
+        <ion-item>
+          <ion-button (click)="createLesson()">
+            <ion-icon name="add" slot="start"></ion-icon>
+            Add new lesson
+          </ion-button>
+        </ion-item>
         <ion-list-header>
           <ion-label>
             <h3>Lessons</h3>
           </ion-label>
         </ion-list-header>
-        <ion-item *ngFor="let lesson of loadedCourse.lessons">
+        <ion-item
+          *ngFor="let lesson of loadedCourse.lessons"
+          [color]="lesson.id === loadedLesson?.id ? 'secondary' : ''"
+        >
           <ion-label>{{ lesson.name }}</ion-label>
           <ion-button fill="clear" (click)="loadedLesson = lesson">
             <ion-icon slot="icon-only" name="create-outline"> </ion-icon>
           </ion-button>
-          <ion-button color="danger" fill="clear">
+          <ion-button
+            color="danger"
+            fill="clear"
+            (click)="deleteLesson(lesson.id)"
+          >
             <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
           </ion-button>
         </ion-item>
@@ -106,6 +127,14 @@
             name="Name"
             ngDefaultControl
             [(ngModel)]="loadedLesson.name"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="tertiary">ID</ion-label>
+          <ion-input
+            name="id"
+            ngDefaultControl
+            [(ngModel)]="loadedLesson.id"
           ></ion-input>
         </ion-item>
         <ion-item>
