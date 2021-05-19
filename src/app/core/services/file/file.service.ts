@@ -165,6 +165,9 @@ export class FileService {
   }
 
   async saveCourses(courses: Course[]) {
+    await this.deleteAllTheThings();
+    await this.prepare();
+    console.log('Deleting everything before saving to file...', courses);
     for (let course of courses) {
       // Create course
       await Filesystem.mkdir({
@@ -238,4 +241,9 @@ export class FileService {
     const check = await this.folderOrFileExists(path, directory);
     console.log(`Folder ${path} should be deleted now: ${!check}`);
   }
+
+  async importCourse() {}
+  async importCourses() {}
+  async exportCourse() {}
+  async exportCourses() {}
 }

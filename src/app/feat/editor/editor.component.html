@@ -5,7 +5,7 @@
         <ion-label>
           <h3>Courses</h3>
         </ion-label>
-        <ion-button *ngIf="hasChanges()">
+        <ion-button *ngIf="hasChanges()" (click)="saveAllToFile()">
           <ion-icon slot="start" name="save"></ion-icon>
           Save changes
         </ion-button>

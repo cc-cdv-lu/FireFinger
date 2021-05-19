@@ -14,6 +14,9 @@ export class EditorComponent implements OnInit {
   /* TODO:
   SAVE TO FILE SEEMS NOT TO WORK?
   LOADS 9 LESSONS INSTEAD OF 3???
+
+  Deleting courses and lessons should delete the files and folders linked to it
+  Or more easy: NUKE before saving each time. Not as nice but will be more error-proof
   */
 
   courseList: Course[];
@@ -102,6 +105,10 @@ export class EditorComponent implements OnInit {
         this.loadedLesson = lesson;
       }
     }
+  }
+
+  deleteCourse(courseId: string) {
+
   }
 
   deleteLesson(lessonId: string) {
