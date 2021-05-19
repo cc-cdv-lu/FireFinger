@@ -6,6 +6,7 @@ import {
   StatsService,
   ConfigService,
 } from 'src/app/core';
+import { SpeakService } from 'src/app/core/speak/speak.service';
 import { CharacterComponent } from '../character/character.component';
 
 @Component({
@@ -22,7 +23,8 @@ export class TypingIoComponent implements AfterViewInit {
   constructor(
     private textService: TextService,
     private configService: ConfigService,
-    private statsService: StatsService
+    private statsService: StatsService,
+    private speakService: SpeakService
   ) {}
   ngAfterViewInit() {
     this.charComponent.onTypingSuccess.subscribe((e) => {
@@ -33,6 +35,14 @@ export class TypingIoComponent implements AfterViewInit {
     this.charComponent.onTypingError.subscribe((e) => {
       this.statsService.registerMistake(e);
     });
+  }
+
+  speak1() {
+    this.speakService.say(this.getView().curr + this.getView().next, 'de');
+  }
+
+  speak2() {
+    this.speakService.sayTTS(this.getView().curr + this.getView().next, 'de');
   }
 
   getView(): View {
