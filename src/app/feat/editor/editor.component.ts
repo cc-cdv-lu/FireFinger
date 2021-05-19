@@ -108,14 +108,17 @@ export class EditorComponent implements OnInit {
   }
 
   deleteCourse(courseId: string) {
-
+    const index = this.courseList.findIndex((course) => course.id === courseId);
+    if (index >= 0) {
+      this.courseList.splice(index, 1);
+    }
   }
 
   deleteLesson(lessonId: string) {
     const index = this.loadedCourse.lessons.findIndex(
       (lesson) => lesson.id === lessonId
     );
-    if (index) {
+    if (index >= 0) {
       this.loadedCourse.lessons.splice(index, 1);
     }
   }
