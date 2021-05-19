@@ -17,7 +17,7 @@ export class EditorComponent implements OnInit {
   ngOnInit() {
     // this.courseList = courseList;
     // this.loadedCourse = this.courseList[1];
-    this.fileService.loadCourses().then((list) => (this.courseList = list));
+    this.loadAllFromFile();
   }
 
   debug() {
@@ -48,10 +48,12 @@ export class EditorComponent implements OnInit {
   }
 
   async loadAllFromFile() {
-    await this.fileService
+    this.courseList = await this.fileService
       .loadCourses()
-      .then((list) => (this.courseList = list))
       .catch(() => (this.courseList = []));
+    if (this.courseList.length > 0) {
+      this.loadedCourse = this.courseList[0];
+    }
   }
 
   async createDefaultCourses() {

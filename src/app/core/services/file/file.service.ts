@@ -207,12 +207,8 @@ export class FileService {
 
   async deleteAllTheThings() {
     await this.deleteFolder(this.basePath, this.dir);
-    const check = await Filesystem.readdir({
-      path: this.basePath,
-      directory: this.dir,
-    });
-    console.log('Everything should be deleted now...', check);
-    // await this.prepare();
+    const check = await this.folderOrFileExists(this.basePath, this.dir);
+    console.warn('Everything should be deleted now...', !check);
   }
 
   async deleteFile(path: string, directory: FilesystemDirectory) {
