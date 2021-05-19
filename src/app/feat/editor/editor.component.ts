@@ -112,6 +112,9 @@ export class EditorComponent implements OnInit {
     if (index >= 0) {
       this.courseList.splice(index, 1);
     }
+    if (this.courseList.length > 0) {
+      this.loadedCourse = this.courseList[0];
+    }
   }
 
   deleteLesson(lessonId: string) {
@@ -121,6 +124,7 @@ export class EditorComponent implements OnInit {
     if (index >= 0) {
       this.loadedCourse.lessons.splice(index, 1);
     }
+    this.loadedLesson = undefined;
   }
 
   compareWith(o1: Course, o2: Course | Course[]) {

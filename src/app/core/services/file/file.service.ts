@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {
-  Plugins,
-  FilesystemDirectory,
-  FilesystemEncoding,
+  Filesystem,
+  Directory,
+  Encoding,
   StatResult,
-} from '@capacitor/core';
+} from '@capacitor/filesystem';
 import {
   Course,
   DEFAULT_COURSE,
@@ -13,8 +13,6 @@ import {
 } from '../../data.types';
 
 import { courseList } from './default_courses';
-
-const { Filesystem } = Plugins;
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +32,7 @@ export class FileService {
   */
 
   basePath: string = 'FireFinger/docs';
-  dir = FilesystemDirectory.Data;
+  dir = Directory.Data;
 
   constructor() {
     this.prepare();
@@ -63,10 +61,7 @@ export class FileService {
     }
   }
 
-  async folderOrFileExists(
-    path: string,
-    dir: FilesystemDirectory
-  ): Promise<boolean> {
+  async folderOrFileExists(path: string, dir: Directory): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       return Filesystem.stat({
         directory: dir,
@@ -192,7 +187,7 @@ export class FileService {
       await Filesystem.writeFile({
         path: `${this.basePath}/${course.id}.ffc`,
         directory: this.dir,
-        encoding: FilesystemEncoding.UTF8,
+        encoding: Encoding.UTF8,
         data: JSON.stringify(course),
       });
 
@@ -202,13 +197,13 @@ export class FileService {
         await Filesystem.writeFile({
           path: lessonPath + '.ffl',
           directory: this.dir,
-          encoding: FilesystemEncoding.UTF8,
+          encoding: Encoding.UTF8,
           data: JSON.stringify(lesson),
         });
         await Filesystem.writeFile({
           path: lessonPath + '.txt',
           directory: this.dir,
-          encoding: FilesystemEncoding.UTF8,
+          encoding: Encoding.UTF8,
           data: lesson.content,
         });
       }
@@ -228,12 +223,12 @@ export class FileService {
     console.warn('Everything should be deleted now...', !check);
   }
 
-  async deleteFile(path: string, directory: FilesystemDirectory) {
+  async deleteFile(path: string, directory: Directory) {
     const exists = await this.folderOrFileExists(path, directory);
     if (!exists) return;
     await Filesystem.deleteFile({ path, directory });
   }
-  async deleteFolder(path: string, directory: FilesystemDirectory) {
+  async deleteFolder(path: string, directory: Directory) {
     const exists = await this.folderOrFileExists(path, directory);
     if (!exists) return;
 

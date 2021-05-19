@@ -1,9 +1,8 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { Plugins } from '@capacitor/core';
+import { Storage } from '@capacitor/storage';
 const LAST_USER = 'ff_last_user';
 const USER_LIST = 'ff_user_list';
 
-const { Storage } = Plugins;
 @Injectable({
   providedIn: 'root',
 })

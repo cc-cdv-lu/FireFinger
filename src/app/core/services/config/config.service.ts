@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Plugins } from '@capacitor/core';
+import { Storage } from '@capacitor/storage';
 import { DEFAULT_STYLE, DEFAULT_USER, Style, User } from '../../data.types';
 
 import { UserService } from '../user/user.service';
-
-const { Storage } = Plugins;
 
 const DEFAULT_CONFIG: Config = {
   style: DEFAULT_STYLE,

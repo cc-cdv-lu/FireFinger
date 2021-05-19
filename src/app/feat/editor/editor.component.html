@@ -30,7 +30,7 @@
           <ion-icon name="add" slot="start"></ion-icon>
           Add new course
         </ion-button>
-        <ion-button color="danger" (click)="deleteCourse(course.id)">
+        <ion-button color="danger" *ngIf="loadedCourse" (click)="deleteCourse(loadedCourse.id)">
           <ion-icon name="trash" slot="start"></ion-icon>
           Delete course
         </ion-button>
