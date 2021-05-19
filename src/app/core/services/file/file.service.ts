@@ -126,12 +126,21 @@ export class FileService {
 
         if (this.isFile(lessonStat)) {
           // Check for metadata
-          if (lesson.endsWith('.ffl') || lesson.endsWith('.txt')) {
-            let newLesson: Lesson = DEFAULT_LESSON;
-            const baseLessonFileName = lesson
-              .replace('.ffl', '')
-              .replace('.txt', '');
-            const lessonBasePath = `${this.basePath}/${courseFolder}/${baseLessonFileName}`;
+          if (!lesson.endsWith('.ffl') && !lesson.endsWith('.txt')) {
+            continue;
+          }
+          let newLesson: Lesson = DEFAULT_LESSON;
+          const baseLessonFileName = lesson
+            .replace('.ffl', '')
+            .replace('.txt', '');
+          // Skip if lesson has already been created (by metadata or by text file)
+          if (course.lessons.find((l) => l.id === baseLessonFileName)) {
+            continue;
+          }
+          const lessonBasePath = `${this.basePath}/${courseFolder}/${baseLessonFileName}`;
+
+          // Load metadata for lesson
+          if (this.folderOrFileExists(lessonBasePath + '.ffl', this.dir)) {
             const lMeta = await Filesystem.readFile({
               path: lessonBasePath + '.ffl',
               directory: this.dir,
@@ -139,7 +148,9 @@ export class FileService {
             if (lMeta) {
               newLesson = { ...(JSON.parse(lMeta.data) as Lesson) };
             }
-            // Check for content data
+          }
+          // Check for content data
+          if (this.folderOrFileExists(lessonBasePath + '.txt', this.dir)) {
             const lContent = await Filesystem.readFile({
               path: lessonBasePath + '.txt',
               directory: this.dir,
@@ -147,12 +158,13 @@ export class FileService {
             if (lContent) {
               newLesson.content = lContent.data;
             }
-            course.lessons.push(newLesson);
           }
+          course.lessons.push(newLesson);
         }
       }
       output.push(course);
     }
+    console.log('Loaded from file:', output);
     return output;
   }
 
@@ -165,9 +177,9 @@ export class FileService {
   }
 
   async saveCourses(courses: Course[]) {
+    console.log('Deleting everything before saving to file...', courses);
     await this.deleteAllTheThings();
     await this.prepare();
-    console.log('Deleting everything before saving to file...', courses);
     for (let course of courses) {
       // Create course
       await Filesystem.mkdir({
@@ -201,9 +213,11 @@ export class FileService {
         });
       }
     }
+    console.log('Changes saved to file:', courses);
   }
 
   async createDefaultCourses() {
+    console.log('Creating default courses:', courseList);
     await this.prepare();
     await this.saveCourses(courseList);
   }
