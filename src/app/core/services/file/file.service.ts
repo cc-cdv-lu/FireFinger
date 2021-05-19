@@ -164,10 +164,8 @@ export class FileService {
     return stat.type === 'file';
   }
 
-  saveCourses(courses: Course[]) {}
-
-  async createDefaultCourses() {
-    for (let course of courseList) {
+  async saveCourses(courses: Course[]) {
+    for (let course of courses) {
       // Create course
       await Filesystem.mkdir({
         path: `${this.basePath}/${course.id}`,
@@ -202,12 +200,46 @@ export class FileService {
     }
   }
 
+  async createDefaultCourses() {
+    await this.prepare();
+    await this.saveCourses(courseList);
+  }
+
   async deleteAllTheThings() {
-    const results = await Filesystem.deleteFile({
+    await this.deleteFolder(this.basePath, this.dir);
+    const check = await Filesystem.readdir({
       path: this.basePath,
       directory: this.dir,
     });
-    console.log('Deleted all the files...', results);
-    await this.prepare();
+    console.log('Everything should be deleted now...', check);
+    // await this.prepare();
+  }
+
+  async deleteFile(path: string, directory: FilesystemDirectory) {
+    const exists = await this.folderOrFileExists(path, directory);
+    if (!exists) return;
+    await Filesystem.deleteFile({ path, directory });
+  }
+  async deleteFolder(path: string, directory: FilesystemDirectory) {
+    const exists = await this.folderOrFileExists(path, directory);
+    if (!exists) return;
+
+    const folder = await Filesystem.readdir({ path, directory });
+    for (let entry of folder.files) {
+      const entryPath = `${path}/${entry}`;
+      const stat = await Filesystem.stat({ path: entryPath, directory });
+      if (this.isFile(stat)) {
+        await Filesystem.deleteFile({ path: entryPath, directory });
+        continue;
+      }
+      if (this.isDirectory(stat)) {
+        await this.deleteFolder(entryPath, directory);
+        continue;
+      }
+    }
+
+    const res = await Filesystem.deleteFile({ path, directory });
+    const check = await this.folderOrFileExists(path, directory);
+    console.log(`Folder ${path} should be deleted now: ${!check}`);
   }
 }

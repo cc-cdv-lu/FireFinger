@@ -47,16 +47,20 @@ export class EditorComponent implements OnInit {
     });
   }
 
-  loadAllFromFile() {
-    this.fileService.loadCourses();
+  async loadAllFromFile() {
+    await this.fileService
+      .loadCourses()
+      .then((list) => (this.courseList = list))
+      .catch(() => (this.courseList = []));
   }
 
-  createDefaultCourses() {
-    this.fileService.createDefaultCourses();
+  async createDefaultCourses() {
+    await this.fileService.createDefaultCourses();
   }
 
-  deleteAllTheThings() {
-    this.fileService.deleteAllTheThings();
+  async deleteAllTheThings() {
+    await this.fileService.deleteAllTheThings();
+    await this.loadAllFromFile();
   }
 
   loadCourse(courseId: string) {
@@ -77,8 +81,8 @@ export class EditorComponent implements OnInit {
     }
   }
 
-  saveAll() {
-    // TODO
+  async saveAllToFile() {
+    await this.fileService.saveCourses(this.courseList);
   }
 
   compareWith(o1: Course, o2: Course | Course[]) {
