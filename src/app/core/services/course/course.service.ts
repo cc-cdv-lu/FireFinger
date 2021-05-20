@@ -42,9 +42,9 @@ export class CourseService {
 
   setLesson(course: Course, index: number) {
     this.textService.setText(course.lessons[index].content);
+    this.currentLessonIndex = index;
     this.currentCourse = course;
     this.currentLesson = course.lessons[index];
-    this.currentLessonIndex = index;
   }
 
   nextLesson() {
