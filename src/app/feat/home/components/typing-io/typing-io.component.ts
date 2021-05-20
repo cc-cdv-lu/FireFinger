@@ -5,8 +5,8 @@ import {
   Style,
   StatsService,
   ConfigService,
-} from 'src/app/core';
-import { SpeakService } from 'src/app/core/speak/speak.service';
+  SpeakService,
+} from '@app/core';
 import { CharacterComponent } from '../character/character.component';
 
 @Component({

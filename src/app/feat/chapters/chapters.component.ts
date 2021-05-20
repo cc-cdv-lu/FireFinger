@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Course } from 'src/app/core';
-import { CourseService } from 'src/app/core/services/course/course.service';
-import { FileService } from 'src/app/core/services/file/file.service';
+import { CourseService, FileService, Course } from '@app/core/services';
 
 @Component({
   selector: 'app-chapters',

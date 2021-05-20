@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Course, Lesson } from 'src/app/core';
-import { FileService } from 'src/app/core/services/file/file.service';
+import { Course, Lesson, FileService } from '@app/core';
 
 @Component({
   selector: 'app-editor',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { UserService } from 'src/app/core';
+import { UserService } from '@app/core';
 import { NewUserComponent } from '../new-user/new-user.component';
 
 @Component({

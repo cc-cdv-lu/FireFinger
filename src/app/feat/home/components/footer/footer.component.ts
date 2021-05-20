@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StatsService, TextService } from 'src/app/core';
-import { CourseService } from 'src/app/core/services/course/course.service';
+import { StatsService, TextService, CourseService } from '@app/core';
 
 @Component({
   selector: 'app-footer',

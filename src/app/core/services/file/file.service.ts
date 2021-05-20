@@ -25,7 +25,7 @@ import {
   DEFAULT_COURSE,
   DEFAULT_LESSON,
   Lesson,
-} from '../../data.types';
+} from '@app/core/data.types';
 
 import { courseList } from './default_courses';
 

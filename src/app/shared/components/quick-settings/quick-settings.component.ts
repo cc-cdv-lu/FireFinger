@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfigService } from 'src/app/core/services';
+import { ConfigService } from '@app/core/services';
 
 @Component({
   selector: 'app-quick-settings',

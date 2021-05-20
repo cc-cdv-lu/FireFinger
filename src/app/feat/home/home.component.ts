@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
-import { QuickSettingsComponent } from 'src/app/shared/components/quick-settings/quick-settings.component';
+import { QuickSettingsComponent } from '@app/shared/components/quick-settings/quick-settings.component';
 
 @Component({
   selector: 'app-home',

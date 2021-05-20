@@ -8,8 +8,8 @@
  * End of lesson screen + move to next lesson using nextLesson()
  */
 import { Injectable } from '@angular/core';
-import { Course, Lesson } from '../../data.types';
-import { TextService } from '../text/text.service';
+import { Course, Lesson } from '@app/core/data.types';
+import { TextService } from '@app/core/services/text/text.service';
 
 @Injectable({
   providedIn: 'root',
