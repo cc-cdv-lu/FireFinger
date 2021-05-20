@@ -23,14 +23,28 @@ export class CourseService {
   currentLesson: Lesson = undefined;
   currentLessonIndex: number = undefined;
 
-  getCurrentLesson() {
+  /**
+   * @returns the currently loaded course or undefined if none is loaded
+   */
+  getCurrentCourse(): Course {
+    return this.currentCourse;
+  }
+
+  /**
+   * @returns the currently loaded lesson or undefined if none is loaded
+   */
+  getCurrentLesson(): Lesson {
+    if (!this.currentCourse) {
+      return undefined;
+    }
     return this.currentCourse.lessons[this.currentLessonIndex];
   }
 
   setLesson(course: Course, index: number) {
-    this.textService.setText(course[index].content);
+    this.textService.setText(course.lessons[index].content);
     this.currentCourse = course;
     this.currentLesson = course.lessons[index];
+    this.currentLessonIndex = index;
   }
 
   nextLesson() {

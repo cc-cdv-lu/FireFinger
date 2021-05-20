@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StatsService, TextService } from 'src/app/core';
+import { CourseService } from 'src/app/core/services/course/course.service';
 
 @Component({
   selector: 'app-footer',
@@ -9,10 +10,21 @@ import { StatsService, TextService } from 'src/app/core';
 export class FooterComponent implements OnInit {
   constructor(
     private textService: TextService,
-    private statsService: StatsService
+    private statsService: StatsService,
+    private courseService: CourseService
   ) {}
 
   ngOnInit() {}
+
+  getCourseName() {
+    const course = this.courseService.getCurrentCourse();
+    return course ? course.name : 'No chapter loaded';
+  }
+
+  getLessonName() {
+    const lesson = this.courseService.getCurrentLesson();
+    return lesson ? lesson.name : 'No lesson loaded';
+  }
 
   getProgress() {
     return this.textService.getProgress();
