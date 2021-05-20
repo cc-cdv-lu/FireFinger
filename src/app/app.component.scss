@@ -4,6 +4,10 @@
   left: 0px;
 }
 
+ion-menu {
+  width: 10vw;
+}
+
 ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
 }

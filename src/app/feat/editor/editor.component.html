@@ -5,7 +5,7 @@
         <ion-label>
           <h3>Courses</h3>
         </ion-label>
-        <ion-button *ngIf="hasChanges()" (click)="saveAllToFile()">
+        <ion-button *ngIf="hasChanges()" color="tertiary" (click)="saveAllToFile()">
           <ion-icon slot="start" name="save"></ion-icon>
           Save changes
         </ion-button>
@@ -128,7 +128,7 @@
   <div class="editorArea">
     <div class="lessonSettings" *ngIf="loadedLesson">
       <ion-list>
-        <ion-list-header color="primary">
+        <ion-list-header color="tertiary">
           <ion-label>
             <h3>Lesson settings</h3>
           </ion-label>

@@ -14,6 +14,12 @@ export class TextService {
   private text: string = '';
   private index: number = 0;
 
+  /** TODO:
+   * The current chapter and lesson need to be known
+   * -> After a lesson is done, it should be saved to the user as Completed Lesson
+   * This should be viewable in the chapter selection
+   */
+
   private view: View = { prev: '', curr: '', next: '' };
 
   constructor() {
@@ -47,8 +53,6 @@ Mach’s gut. Antwort: Mach’s besser. / Du auch.`
   }
 
   updateView(index: number, text: string): boolean {
-    // TODO: line end at Enter
-
     this.index = index;
     this.text = text;
 
