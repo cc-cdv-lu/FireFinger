@@ -38,7 +38,7 @@ export class FileService {
     this.prepare();
   }
 
-  async prepare() {
+  private async prepare() {
     // Check if default folder structure exists
     // else create default structure (FireFinger/docs)
     // And also default courses?
@@ -61,7 +61,7 @@ export class FileService {
     }
   }
 
-  async folderOrFileExists(path: string, dir: Directory): Promise<boolean> {
+  private async folderOrFileExists(path: string, dir: Directory): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       return Filesystem.stat({
         directory: dir,
@@ -72,7 +72,10 @@ export class FileService {
     });
   }
 
-  async loadCourses(): Promise<Course[]> {
+  /**
+   * Retrieves courses from file storage and returns it as an Array of course-ojbects
+   */
+  public async getCourses(): Promise<Course[]> {
     // TODO: Generate default data when no metadata is found (and save it?)
     await this.prepare();
     let output: Course[] = [];
@@ -163,15 +166,20 @@ export class FileService {
     return output;
   }
 
-  isDirectory(stat: StatResult) {
+  private isDirectory(stat: StatResult) {
     return stat.type === 'directory';
   }
 
-  isFile(stat: StatResult) {
+  private isFile(stat: StatResult) {
     return stat.type === 'file';
   }
 
-  async saveCourses(courses: Course[]) {
+  /**
+   * Overwrites all files with the contents of the given array. Deletes missing courses and lessons automatically.
+   * Inface it deletes everything and creates new files and folders
+   * @param courses Array of course-objects that should be saved
+   */
+  public async saveCourses(courses: Course[]) {
     console.log('Deleting everything before saving to file...', courses);
     await this.deleteAllTheThings();
     await this.prepare();
@@ -211,24 +219,30 @@ export class FileService {
     console.log('Changes saved to file:', courses);
   }
 
-  async createDefaultCourses() {
+  /**
+   * Creates the default courses retrieved from the internal .ts file
+   */
+  public async createDefaultCourses() {
     console.log('Creating default courses:', courseList);
     await this.prepare();
     await this.saveCourses(courseList);
   }
 
-  async deleteAllTheThings() {
+  /**
+   * Deletes every file and folder related to the saved courses
+   */
+  public async deleteAllTheThings() {
     await this.deleteFolder(this.basePath, this.dir);
     const check = await this.folderOrFileExists(this.basePath, this.dir);
     console.warn('Everything should be deleted now...', !check);
   }
 
-  async deleteFile(path: string, directory: Directory) {
+  private async deleteFile(path: string, directory: Directory) {
     const exists = await this.folderOrFileExists(path, directory);
     if (!exists) return;
     await Filesystem.deleteFile({ path, directory });
   }
-  async deleteFolder(path: string, directory: Directory) {
+  private async deleteFolder(path: string, directory: Directory) {
     const exists = await this.folderOrFileExists(path, directory);
     if (!exists) return;
 
@@ -251,8 +265,8 @@ export class FileService {
     console.log(`Folder ${path} should be deleted now: ${!check}`);
   }
 
-  async importCourse() {}
-  async importCourses() {}
-  async exportCourse() {}
-  async exportCourses() {}
+  async importCourse() { }
+  async importCourses() { }
+  async exportCourse(course: Course) { }
+  async exportCourses(courses: Course[]) { }
 }
