@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Dialog } from '@capacitor/dialog';
+
 import { UserService } from '@app/core';
 import { NewUserComponent } from '../new-user/new-user.component';
 
@@ -27,21 +29,19 @@ export class LoginComponent implements OnInit {
     this.userService.login(username);
   }
 
+  // TODO: user prompt instead
   async newUser() {
     console.log('Some new user...');
 
-    const modal = await this.modalController.create({
-      component: NewUserComponent,
-      cssClass: 'my-custom-class',
+    const { value, cancelled } = await Dialog.prompt({
+      title: 'New user',
+      message: `Enter username:`,
     });
-    await modal.present();
-    await modal.onWillDismiss().then((data) => {
-      const newUser = data.data.newUser;
-      if (newUser) {
-        this.login(newUser);
-      } else {
-        console.warn('Received invalid new user...', data);
-      }
-    });
+    if (value) {
+      this.login(value);
+    } else {
+      console.warn('Received invalid new user...', cancelled);
+    }
+    return;
   }
 }
