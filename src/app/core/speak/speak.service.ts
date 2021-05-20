@@ -1,3 +1,11 @@
+/***
+ * THOUGHTS AND PRAYERS
+ * ScreenReader only works, if screenreader is enabled...
+ * maybe use this instead
+ * https://github.com/capacitor-community/text-to-speech
+ * It also has muuuch more functionality
+
+ * */
 import { Injectable } from '@angular/core';
 
 import { ScreenReader } from '@capacitor/screen-reader';
@@ -8,11 +16,6 @@ import { TextToSpeech } from '@capacitor-community/text-to-speech';
 })
 export class SpeakService {
   constructor() {}
-
-  // ScreenReader only works, if screenreader is enabled...
-  // maybe use this instead
-  // https://github.com/capacitor-community/text-to-speech
-  // It also has muuuch more functionality
 
   checkScreenReaderEnabled = async () => {
     const { value } = await ScreenReader.isEnabled();
@@ -30,6 +33,12 @@ export class SpeakService {
     await ScreenReader.speak({ value, language });
   }
 
+  /**
+   * This function will also work if no Screen Reader is currently active
+   * and has more customisation options
+   * @param value What the
+   * @param language
+   */
   async sayTTS(text: string, lang?: string) {
     lang = lang ? lang : 'de';
     const { voices } = await TextToSpeech.getSupportedVoices();

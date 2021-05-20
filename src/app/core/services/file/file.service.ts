@@ -1,3 +1,18 @@
+/***
+ * THOUGHTS AND PRAYERS
+ *   Folder structure
+  BASE PATH/docs/courses or similar
+  course1.ffc       <- Course metadata
+  course1/
+    lesson1.txt
+    lesson1.ffl
+    lesson2.txt     <- Lesson content
+    lesson2.ffl     <- Lesson metadata
+  course2/
+  course3/
+  course4/
+ */
+
 import { Injectable } from '@angular/core';
 import {
   Filesystem,
@@ -18,19 +33,6 @@ import { courseList } from './default_courses';
   providedIn: 'root',
 })
 export class FileService {
-  /*   Folder structure
-  BASE PATH/docs/courses or similar
-  course1.ffc       <- Course metadata
-  course1/
-    lesson1.txt
-    lesson1.ffl
-    lesson2.txt     <- Lesson content
-    lesson2.ffl     <- Lesson metadata
-  course2/
-  course3/
-  course4/
-  */
-
   basePath: string = 'FireFinger/docs';
   dir = Directory.Data;
 
@@ -61,7 +63,10 @@ export class FileService {
     }
   }
 
-  private async folderOrFileExists(path: string, dir: Directory): Promise<boolean> {
+  private async folderOrFileExists(
+    path: string,
+    dir: Directory
+  ): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       return Filesystem.stat({
         directory: dir,
@@ -265,8 +270,8 @@ export class FileService {
     console.log(`Folder ${path} should be deleted now: ${!check}`);
   }
 
-  async importCourse() { }
-  async importCourses() { }
-  async exportCourse(course: Course) { }
-  async exportCourses(courses: Course[]) { }
+  async importCourse() {}
+  async importCourses() {}
+  async exportCourse(course: Course) {}
+  async exportCourses(courses: Course[]) {}
 }

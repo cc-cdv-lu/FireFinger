@@ -1,3 +1,11 @@
+/***
+ * THOUGHTS AND PRAYERS
+ *
+ * Check contents of bla
+ * Don't register same mistake twice in a row
+ * 
+ */
+
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,11 +14,6 @@ import { Injectable } from '@angular/core';
 export class StatsService {
   mistakeCount = 0;
   successCount = 0;
-
-  /*
-   * Check contents of bla
-   * Don't register same mistake twice in a row
-   */
 
   constructor() {}
 

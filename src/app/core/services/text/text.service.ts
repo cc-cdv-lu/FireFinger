@@ -1,3 +1,9 @@
+/***
+ * THOUGHTS AND PRAYERS
+ * -> After a lesson is done, it should be saved to the user as Completed Lesson
+ * This should be viewable in the chapter selection
+ * 
+ */
 import { EventEmitter, Injectable, Output } from '@angular/core';
 
 export type View = {
@@ -17,12 +23,6 @@ export class TextService {
   @Output() onTextChanged = new EventEmitter<string>();
   @Output() onTextFinished = new EventEmitter();
   @Output() onNextCharacter = new EventEmitter();
-
-  /** TODO:
-   * The current chapter and lesson need to be known
-   * -> After a lesson is done, it should be saved to the user as Completed Lesson
-   * This should be viewable in the chapter selection
-   */
 
   private view: View = { prev: '', curr: '', next: '' };
 

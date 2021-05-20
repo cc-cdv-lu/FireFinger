@@ -1,3 +1,12 @@
+/***
+ * THOUGHTS AND PRAYERS
+ * What about having Course as an Class instance?
+ * It would manager it's own events and states - instead of having multiple services doing this?
+ * 
+ * TODO:
+ * Serialize current course, lesson and index
+ * End of lesson screen + move to next lesson using nextLesson()
+ */
 import { Injectable } from '@angular/core';
 import { Course, Lesson } from '../../data.types';
 import { TextService } from '../text/text.service';
@@ -6,10 +15,6 @@ import { TextService } from '../text/text.service';
   providedIn: 'root',
 })
 export class CourseService {
-  /***
-   * What about having Course as an Class instance?
-   * It would manager it's own events and states - instead of having multiple services doing this?
-   */
 
   constructor(private textService: TextService) {
     this.textService.onTextChanged.subscribe((text: string) => {
