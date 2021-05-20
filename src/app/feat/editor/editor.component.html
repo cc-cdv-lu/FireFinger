@@ -1,7 +1,7 @@
 <div class="container">
   <div class="courseList">
     <ion-list>
-      <ion-list-header>
+      <ion-list-header color="primary">
         <ion-label>
           <h3>Courses</h3>
         </ion-label>
@@ -30,7 +30,11 @@
           <ion-icon name="add" slot="start"></ion-icon>
           Add new course
         </ion-button>
-        <ion-button color="danger" *ngIf="loadedCourse" (click)="deleteCourse(loadedCourse.id)">
+        <ion-button
+          color="danger"
+          *ngIf="loadedCourse"
+          (click)="deleteCourse(loadedCourse.id)"
+        >
           <ion-icon name="trash" slot="start"></ion-icon>
           Delete course
         </ion-button>
@@ -56,7 +60,7 @@
         </ion-button>
       </ion-item>
       <div class="courseSettings" *ngIf="loadedCourse !== undefined">
-        <ion-list-header>
+        <ion-list-header color="primary">
           <ion-label>
             <h3>Course settings</h3>
           </ion-label>
@@ -68,6 +72,14 @@
             name="Name"
             ngDefaultControl
             [(ngModel)]="loadedCourse.name"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="primary">ID</ion-label>
+          <ion-input
+            name="id"
+            ngDefaultControl
+            [(ngModel)]="loadedCourse.id"
           ></ion-input>
         </ion-item>
         <ion-item>
@@ -88,7 +100,7 @@
             Add new lesson
           </ion-button>
         </ion-item>
-        <ion-list-header>
+        <ion-list-header color="primary">
           <ion-label>
             <h3>Lessons</h3>
           </ion-label>
@@ -116,7 +128,7 @@
   <div class="editorArea">
     <div class="lessonSettings" *ngIf="loadedLesson">
       <ion-list>
-        <ion-list-header>
+        <ion-list-header color="primary">
           <ion-label>
             <h3>Lesson settings</h3>
           </ion-label>

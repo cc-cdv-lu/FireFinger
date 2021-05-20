@@ -8,15 +8,15 @@ import { FileService } from 'src/app/core/services/file/file.service';
   styleUrls: ['./chapters.component.scss'],
 })
 export class ChaptersComponent implements OnInit {
-
-  constructor(private fileService: FileService) { }
+  constructor(private fileService: FileService) {}
 
   courses: Course[];
 
-  ngOnInit() { }
-
-  async reload() {
-    this.courses = await this.fileService.loadCourses();
+  ngOnInit() {
+    this.reload();
   }
 
+  async reload() {
+    this.courses = await this.fileService.getCourses();
+  }
 }

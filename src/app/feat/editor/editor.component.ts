@@ -34,7 +34,7 @@ export class EditorComponent implements OnInit {
   /* File related */
 
   async loadAllFromFile() {
-    this.courseList = await this.fileService.loadCourses();
+    this.courseList = await this.fileService.getCourses();
     this.savedContent = JSON.parse(JSON.stringify(this.courseList)) as Course[];
     if (this.courseList.length > 0) {
       this.loadedCourse = this.courseList[0];
