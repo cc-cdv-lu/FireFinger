@@ -1,7 +1,22 @@
 <ion-list>
-  <ion-list-header color="primary">Courses</ion-list-header>
-  <ion-item *ngFor="let course of courses">
-    <b>{{ course.name }}</b>
-    <ion-note color="primary" slot="end">{{ course.lessons?.length }}</ion-note>
+  <ion-item color="secondary">
+    <ion-button (click)="reload()">Reload</ion-button>
   </ion-item>
+  <div class="course" *ngFor="let course of courses">
+    <ion-list-header color="primary">
+      {{ course.name }}
+      <ion-note color="primary" slot="end">
+        {{ course.lessons?.length }}
+      </ion-note>
+    </ion-list-header>
+    <ion-item *ngFor="let lesson of course.lessons; let i = index">
+      <b>{{ lesson.name }}</b>
+      <ion-note color="primary" slot="end">
+        {{ lesson.content.length }}
+      </ion-note>
+      <ion-item>
+        <ion-button (click)="loadLesson(course, i)">Load {{ lesson.name }}</ion-button>
+      </ion-item>
+    </ion-item>
+  </div>
 </ion-list>
