@@ -51,8 +51,8 @@ export class SpeakService {
       text,
       lang,
       category: 'ambient',
-      pitch: 1.2,
-      rate: 1.0,
+      pitch: 0.9,
+      rate: 1.5,
       volume: 1.0,
       voice,
     });

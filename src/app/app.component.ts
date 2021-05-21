@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from './core/services/user/user.service';
 import { version } from '../../package.json';
 import { ConfigService } from './core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -36,10 +37,13 @@ export class AppComponent {
   version = version;
   constructor(
     private userService: UserService,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private translate: TranslateService
   ) {
     this.userService.prepare();
     this.configService.prepare();
+    this.translate.setDefaultLang('en');
+    this.translate.use('de');
     // TODO: load dark mode?
   }
 

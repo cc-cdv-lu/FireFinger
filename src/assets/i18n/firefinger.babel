@@ -2788,7 +2788,7 @@
         <language>
             <code>lb-LU</code>
             <source_id/>
-            <source_file>lb-LU.json</source_file>
+            <source_file>lu_translations.json</source_file>
         </language>
     </languages>
     <translation_files>
@@ -2802,7 +2802,7 @@
             <file>fr_translations.json</file>
         </translation_file>
         <translation_file>
-            <file>lb-LU.json</file>
+            <file>lu_translations.json</file>
         </translation_file>
     </translation_files>
     <editor_configuration>

@@ -48,12 +48,30 @@ export class TextService {
     return this.view;
   }
 
+  getIndex() {
+    return this.index;
+  }
+
+  getText() {
+    return this.text;
+  }
+
   getCurrentWord(): string {
     const curr = this.getView().curr;
     let next = this.getView().next;
     next = next.split(' ')[0];
 
     return curr + next;
+  }
+
+  getCurrentForBraille() {
+    const c = this.getView().curr;
+    if (!c) {
+      return '';
+    }
+    // https://www.fileformat.info/info/unicode/char/2880/index.htm
+    // Replace new line char with point-8 (Enter-Button on braille display)
+    return c.replace('\n', '\u2880');
   }
 
   /**

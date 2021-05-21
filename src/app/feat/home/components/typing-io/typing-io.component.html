@@ -1,6 +1,5 @@
 <div class="container">
-  <ion-button (click)="speak1()">Say1 {{getView().curr}}</ion-button>
-  <ion-button (click)="speak2()">Say2 {{getView().curr}}</ion-button>
+  <ion-button (click)="speak1()">Say1 {{ getView().curr }}</ion-button>
   <ion-grid>
     <ion-row
       class="text"
@@ -10,11 +9,11 @@
       }"
     >
       <ion-col class="prev">{{ getView().prev }}&lrm;</ion-col>
-      <ion-col
-        size="auto"
-        [ngClass]="isInputFocused ? 'highlight' : ''"
-      >
-        <app-character [character]="getView().curr"></app-character>
+      <ion-col size="auto" [ngClass]="isInputFocused ? 'highlight' : ''">
+        <app-character
+          id="inputLetter"
+          [character]="getView().curr"
+        ></app-character>
       </ion-col>
       <ion-col class="next">&lrm;{{ getView().next }}</ion-col>
     </ion-row>

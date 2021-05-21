@@ -7,6 +7,7 @@ import {
   ConfigService,
   SpeakService,
 } from '@app/core';
+import { StringHelperService } from '@app/core/string-helper/string-helper.service';
 import { CharacterComponent } from '../character/character.component';
 
 @Component({
@@ -24,13 +25,20 @@ export class TypingIoComponent implements AfterViewInit {
     private textService: TextService,
     private configService: ConfigService,
     private statsService: StatsService,
-    private speakService: SpeakService
+    private speakService: SpeakService,
+    private stringHelper: StringHelperService
   ) {}
   ngAfterViewInit() {
     this.charComponent.onTypingSuccess.subscribe((e) => {
       this.textService.advance();
       this.statsService.registerSuccess(e);
-      this.speakService.playChar(e.typed);
+      this.speakService.playChar(
+        this.getView().curr + 
+        this.stringHelper.getRestOfWord(
+          this.textService.getText(),
+          this.textService.getIndex()
+        )
+      );
     });
 
     this.charComponent.onTypingError.subscribe((e) => {
@@ -48,6 +56,15 @@ export class TypingIoComponent implements AfterViewInit {
       return this.textService.getCurrentWord();
     } else {
       return '';
+    }
+  }
+
+  focusInput() {
+    const input = document.getElementById('inputLetter');
+    if (input) {
+      input.setAttribute('tabindex', '1');
+      input.focus();
+      console.log('Setting focus to input...');
     }
   }
 
