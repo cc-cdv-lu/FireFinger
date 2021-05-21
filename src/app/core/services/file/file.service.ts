@@ -13,7 +13,7 @@
   course4/
  */
 
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import {
   Filesystem,
   Directory,
@@ -28,6 +28,7 @@ import {
 } from '@app/core/data.types';
 
 import { courseList } from './default_courses';
+import { CourseService } from '../course/course.service';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +36,10 @@ import { courseList } from './default_courses';
 export class FileService {
   basePath: string = 'FireFinger/docs';
   dir = Directory.Data;
+
+  @Output() onCoursesLoaded: EventEmitter<Course[]> = new EventEmitter<
+    Course[]
+  >();
 
   constructor() {
     this.prepare();
@@ -168,6 +173,7 @@ export class FileService {
       output.push(course);
     }
     console.log('Loaded from file:', output);
+    this.onCoursesLoaded.emit(output);
     return output;
   }
 

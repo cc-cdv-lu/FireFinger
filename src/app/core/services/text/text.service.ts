@@ -16,7 +16,7 @@ export type View = {
   providedIn: 'root',
 })
 export class TextService {
-  // TODO: Serialize these two on save
+  // TODO: Serialize these two on save - or better save whole session...
   private text: string = '';
   private index: number = 0;
 
