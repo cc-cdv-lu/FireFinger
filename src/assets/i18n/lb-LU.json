@@ -1,0 +1,166 @@
+{
+	"chapterView": {
+		"chapters": "",
+		"letterCount": "",
+		"openFolder": "",
+		"startChapter": ""
+	},
+	"general": {
+		"chaptersLoaded": "",
+		"closeapp": "",
+		"enter": "",
+		"lettertask": "",
+		"login": "",
+		"progressbar": "",
+		"typingspeed": ""
+	},
+	"keys": {
+		"apostrophe": "",
+		"enter": "",
+		"space": "",
+		"umlaut": "",
+		"uppercase": ""
+	},
+	"mainView": {
+		"mistakes": "",
+		"typespeed": ""
+	},
+	"nav": {
+		"home": "",
+		"levels": "",
+		"login": "",
+		"myTexts": "",
+		"settings": "",
+		"summary": "",
+		"title": ""
+	},
+	"settings": {
+		"about": {
+			"title": "",
+			"wiki": ""
+		},
+		"application": {
+			"description": "",
+			"difficulty": {
+				"maxMistakeCount": {
+					"description": "",
+					"title": ""
+				},
+				"maxMistakePercentage": {
+					"description": "",
+					"title": ""
+				},
+				"minTypeSpeed": {
+					"description": "",
+					"title": ""
+				},
+				"playFailSound": "",
+				"playWinSound": "",
+				"title": ""
+			},
+			"files": {
+				"add": "",
+				"button": "",
+				"delete": "",
+				"description": "",
+				"override": "",
+				"title": ""
+			},
+			"lang": {
+				"description": "",
+				"title": ""
+			},
+			"title": ""
+		},
+		"chapter": {
+			"description": "",
+			"title": ""
+		},
+		"lang": {
+			"de": "",
+			"en": "",
+			"fr": ""
+		},
+		"style": {
+			"colorscheme": "",
+			"description": "",
+			"errorwarning": "",
+			"fontFamily": "",
+			"fontFamilyNote": "",
+			"fontshortcut": "",
+			"fontsize": "",
+			"hideFocus": "",
+			"showGuideline": "",
+			"theme": "",
+			"title": ""
+		},
+		"user": {
+			"description": "",
+			"stats": {
+				"laststats": "",
+				"mistakes": "",
+				"mostmistakes": "",
+				"name": "",
+				"overallstats": "",
+				"title": ""
+			},
+			"title": ""
+		},
+		"voice": {
+			"control": {
+				"save": "",
+				"test": "",
+				"testphrase": "",
+				"title": ""
+			},
+			"description": "",
+			"other": {
+				"amplitude": {
+					"description": "",
+					"title": ""
+				},
+				"capitals": {
+					"description": "",
+					"longDescription": "",
+					"title": ""
+				},
+				"pitch": {
+					"description": "",
+					"title": ""
+				},
+				"speed": {
+					"description": "",
+					"title": ""
+				},
+				"volume": {
+					"description": "",
+					"title": ""
+				}
+			},
+			"title": "",
+			"variant": ""
+		}
+	},
+	"special": {
+		"and": "",
+		"dash": "",
+		"enter": "",
+		"eot": "",
+		"euro": "",
+		"major": "",
+		"space": ""
+	},
+	"summary": {
+		"backbutton": "",
+		"continuebutton": "",
+		"mistakesperkey": "",
+		"result": {
+			"fail": "",
+			"mistakes": "",
+			"slow": "",
+			"title": "",
+			"win": ""
+		},
+		"totalmistakes": ""
+	}
+}

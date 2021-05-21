@@ -1,0 +1,166 @@
+{
+	"chapterView": {
+		"chapters": "Chapters:",
+		"letterCount": "Number of letters",
+		"openFolder": "Open FireFinger folder in Explorer",
+		"startChapter": "Start chapter"
+	},
+	"general": {
+		"chaptersLoaded": "chapter(s) loaded",
+		"closeapp": "Close FireFinger",
+		"enter": "Enter",
+		"lettertask": "Letter exercice",
+		"login": "Login",
+		"progressbar": "Progressbar of the chapter",
+		"typingspeed": "Typing speed"
+	},
+	"keys": {
+		"apostrophe": "Apostrophe",
+		"enter": "New Line",
+		"space": "Space",
+		"umlaut": "umlaut",
+		"uppercase": "Upper case"
+	},
+	"mainView": {
+		"mistakes": "Mistakes",
+		"typespeed": "Typespeed"
+	},
+	"nav": {
+		"home": "Start",
+		"levels": "Chapters",
+		"login": "Login",
+		"myTexts": "My texts",
+		"settings": "Settings",
+		"summary": "Summary",
+		"title": "Navigation"
+	},
+	"settings": {
+		"about": {
+			"title": "If you have any issues, questions or inquiries contact us via",
+			"wiki": "New updates, changelogs and other useful informations about FireFinger can be found on our wiki"
+		},
+		"application": {
+			"description": "General settings for the whole application",
+			"difficulty": {
+				"maxMistakeCount": {
+					"description": "Maximum of mistakes allowed per chapter",
+					"title": "Max. mistake count"
+				},
+				"maxMistakePercentage": {
+					"description": "Maximum Percentage of allowed mistakes",
+					"title": "Max. mistake %"
+				},
+				"minTypeSpeed": {
+					"description": "Minimum amount of letters that have to be typed per minute",
+					"title": "Min. type speed"
+				},
+				"playFailSound": "Play fail sound",
+				"playWinSound": "Win sound",
+				"title": "Difficulty"
+			},
+			"files": {
+				"add": "Add folder",
+				"button": "Open folder in Explorer",
+				"delete": "Remove folder",
+				"description": "Each text needs to be put into a folder with the name of the lesson. See example lesson with example texts as template.",
+				"override": "(Re)-create default lesson files",
+				"title": "Lesson files"
+			},
+			"lang": {
+				"description": "Choose the language of the interface. To change the language of the reading voice go to the voice settings.",
+				"title": "Language settings"
+			},
+			"title": "Application"
+		},
+		"chapter": {
+			"description": "Manually select which chapter to launch",
+			"title": "Chapter selection"
+		},
+		"lang": {
+			"de": "German",
+			"en": "English",
+			"fr": "French"
+		},
+		"style": {
+			"colorscheme": "Change color scheme",
+			"description": "Adjust colors and font size",
+			"errorwarning": "Flash screen red when user mistyped letter",
+			"fontFamily": "Font family",
+			"fontFamilyNote": "Fonts must be installed in order to work. Visit our Wiki to download them:",
+			"fontshortcut": "Can also be changed via Ctrl + (+) or Ctrl + (arrow up).",
+			"fontsize": "Font size",
+			"hideFocus": "Hide focus outline when input is focused",
+			"showGuideline": "Display guideline",
+			"theme": "Theme",
+			"title": "Style"
+		},
+		"user": {
+			"description": "Information about the user's sessions",
+			"stats": {
+				"laststats": "Last session's stats",
+				"mistakes": "Mistakes",
+				"mostmistakes": "Most mistakes",
+				"name": "Name",
+				"overallstats": "Overall stats",
+				"title": "Statistics"
+			},
+			"title": "User"
+		},
+		"voice": {
+			"control": {
+				"save": "Save settings",
+				"test": "Test voice settings",
+				"testphrase": "Enter test phrase:",
+				"title": "Control"
+			},
+			"description": "All settings related to the reading voice",
+			"other": {
+				"amplitude": {
+					"description": "How loud the voice will be",
+					"title": "Amplitude"
+				},
+				"capitals": {
+					"description": "(See below)",
+					"longDescription": "Emit click sound if word starts with capital\n\n          <b>1:</b> Use a click sound to indicate when a word starts with a capital letter, or double click if word is all capitals.\n<br>\n          <b>2:</b> Speak the word \"capital\" before a word which begins with a capital letter.\n<br>\n          <b>Other values:</b> Increases the pitch for words which begin with a capital letter. The greater the value, the greater the increase in pitch. (eg.: 20)",
+					"title": "Capitals"
+				},
+				"pitch": {
+					"description": "Additional gap between words in 10 ms units",
+					"title": "Pitch"
+				},
+				"speed": {
+					"description": "Words per minute",
+					"title": "Speed"
+				},
+				"volume": {
+					"description": "Volume relative to the global volume",
+					"title": "Volume"
+				}
+			},
+			"title": "Voice output",
+			"variant": "Voice variant"
+		}
+	},
+	"special": {
+		"and": "ampersand",
+		"dash": "dash sign",
+		"enter": "enter",
+		"eot": "Reached end of text. Press anything to continue.",
+		"euro": "euro sign",
+		"major": "Major",
+		"space": "space"
+	},
+	"summary": {
+		"backbutton": "Back",
+		"continuebutton": "Continue",
+		"mistakesperkey": "Error rate per letter",
+		"result": {
+			"fail": "Awww! Better luck next time!",
+			"mistakes": "You mistyped too often. Pay attention to the keys your hitting.",
+			"slow": "Sadly, you were too slow. Try to keep up the pace next time.",
+			"title": "Result",
+			"win": "Congratulation you mastered this lesson! Check your results and proceed to the next level."
+		},
+		"totalmistakes": "Total mistakes"
+	}
+}

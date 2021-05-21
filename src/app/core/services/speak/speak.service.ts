@@ -10,12 +10,13 @@ import { Injectable } from '@angular/core';
 
 import { ScreenReader } from '@capacitor/screen-reader';
 import { TextToSpeech } from '@capacitor-community/text-to-speech';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SpeakService {
-  constructor() {}
+  constructor(private translate: TranslateService) {}
 
   checkScreenReaderEnabled = async () => {
     const { value } = await ScreenReader.isEnabled();
@@ -50,10 +51,67 @@ export class SpeakService {
       text,
       lang,
       category: 'ambient',
-      pitch: 2.0,
-      rate: 0.4,
+      pitch: 1.2,
+      rate: 1.0,
       volume: 1.0,
       voice,
     });
+  }
+
+  play(str: string, type: number) {
+    if (!str || str.length === 0) {
+      return;
+    }
+    /* Special case for letter lessons */
+    if (type === 0) {
+      return this.sayTTS(this.filterSpecialChars(str[0]));
+    }
+
+    if (!str) {
+      return;
+    }
+    if (str.length === 1) {
+      this.playChar(str);
+    } else {
+      this.playWord(str);
+    }
+  }
+
+  playWord(str: string) {
+    this.sayTTS(str);
+  }
+
+  playChar(str: string) {
+    if (str.length > 1) {
+      this.sayTTS(str);
+    }
+
+    // Check if letter is uppercase
+    if (str !== str.toLowerCase()) {
+      return this.sayTTS(this.translate.instant('special.major') + ' ' + str);
+    }
+
+    str = this.filterSpecialChars(str);
+
+    this.sayTTS(str);
+  }
+
+  filterSpecialChars(char: string): string {
+    switch (char) {
+      case '\n':
+        return this.translate.instant('special.enter');
+      case ' ':
+        return this.translate.instant('special.space');
+      case '&':
+        return this.translate.instant('special.and');
+      case '€':
+        return this.translate.instant('special.euro');
+      case '-':
+        return this.translate.instant('special.dash');
+      case '✓':
+        return this.translate.instant('special.eot');
+      default:
+        return char;
+    }
   }
 }

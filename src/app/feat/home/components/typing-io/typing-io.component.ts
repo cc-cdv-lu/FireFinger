@@ -30,11 +30,25 @@ export class TypingIoComponent implements AfterViewInit {
     this.charComponent.onTypingSuccess.subscribe((e) => {
       this.textService.advance();
       this.statsService.registerSuccess(e);
+      this.speakService.playChar(e.typed);
     });
 
     this.charComponent.onTypingError.subscribe((e) => {
       this.statsService.registerMistake(e);
     });
+  }
+
+  trySpeakWord() {
+    const prev = this.getView().prev;
+    if (
+      prev.length === 0 ||
+      prev[prev.length - 1] === ' ' ||
+      prev[prev.length - 1] === '\n'
+    ) {
+      return this.textService.getCurrentWord();
+    } else {
+      return '';
+    }
   }
 
   speak1() {

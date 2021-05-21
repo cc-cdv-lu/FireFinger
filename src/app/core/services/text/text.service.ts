@@ -2,7 +2,7 @@
  * THOUGHTS AND PRAYERS
  * -> After a lesson is done, it should be saved to the user as Completed Lesson
  * This should be viewable in the chapter selection
- * 
+ *
  */
 import { EventEmitter, Injectable, Output } from '@angular/core';
 
@@ -46,6 +46,14 @@ export class TextService {
 
   getView() {
     return this.view;
+  }
+
+  getCurrentWord(): string {
+    const curr = this.getView().curr;
+    let next = this.getView().next;
+    next = next.split(' ')[0];
+
+    return curr + next;
   }
 
   /**
