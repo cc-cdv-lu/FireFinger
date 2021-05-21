@@ -46,15 +46,15 @@ export class ConfigService {
   }
 
   getTTS(): TTSConfig {
-    return this.getConfig().tts ?? DEFAULT_TTS;
+    return this.getConfig().tts;
   }
 
   getStyle(): Style {
-    return this.getConfig().style ?? DEFAULT_STYLE;
+    return this.getConfig().style;
   }
 
   getUser(): User {
-    return this.getConfig().user ?? DEFAULT_USER;
+    return this.getConfig().user;
   }
 
   async saveConfig(username?: string): Promise<void> {
