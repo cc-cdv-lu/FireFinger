@@ -33,13 +33,15 @@ export class TypingIoComponent implements AfterViewInit {
       this.textService.advance();
       this.statsService.registerSuccess(e);
       this.speakService.playChar(
-        this.getView().curr + 
-        this.stringHelper.getRestOfWord(
-          this.textService.getText(),
-          this.textService.getIndex()
-        )
+        this.getView().curr +
+          this.stringHelper.getRestOfWord(
+            this.textService.getText(),
+            this.textService.getIndex()
+          )
       );
     });
+
+    this.focusInput();
 
     this.charComponent.onTypingError.subscribe((e) => {
       this.statsService.registerMistake(e);
@@ -68,11 +70,7 @@ export class TypingIoComponent implements AfterViewInit {
     }
   }
 
-  speak1() {
-    this.speakService.say(this.getView().curr + this.getView().next, 'de');
-  }
-
-  speak2() {
+  sayLine() {
     this.speakService.sayTTS(this.getView().curr + this.getView().next, 'de');
   }
 

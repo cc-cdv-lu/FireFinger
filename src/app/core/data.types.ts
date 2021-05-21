@@ -39,6 +39,34 @@ export interface User {
   completedLessons?: Array<CompletedLesson>;
 }
 
+/*TTS*/
+export const DEFAULT_TTS: TTSConfig = {
+  volume: 1.0,
+  pitch: 0.9,
+  rate: 1.2,
+  voice: 0,
+  category: 'ambient',
+};
+export interface TTSConfig {
+  volume: number;
+  pitch: number;
+  rate: number;
+  voice: number;
+  category: 'ambient' | 'playback';
+}
+/*CONFIG*/
+export const DEFAULT_CONFIG: Config = {
+  style: DEFAULT_STYLE,
+  user: DEFAULT_USER,
+  tts: DEFAULT_TTS,
+};
+
+export interface Config {
+  style: Style;
+  user: User;
+  tts: TTSConfig;
+}
+
 /*xxxx*/
 
 /* COURSES */

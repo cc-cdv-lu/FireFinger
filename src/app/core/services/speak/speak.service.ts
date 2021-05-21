@@ -9,14 +9,18 @@
 import { Injectable } from '@angular/core';
 
 import { ScreenReader } from '@capacitor/screen-reader';
-import { TextToSpeech } from '@capacitor-community/text-to-speech';
+import { TextToSpeech, TTSOptions } from '@capacitor-community/text-to-speech';
 import { TranslateService } from '@ngx-translate/core';
+import { ConfigService } from '../config/config.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SpeakService {
-  constructor(private translate: TranslateService) {}
+  constructor(
+    private translate: TranslateService,
+    private configService: ConfigService
+  ) {}
 
   checkScreenReaderEnabled = async () => {
     const { value } = await ScreenReader.isEnabled();
@@ -42,20 +46,16 @@ export class SpeakService {
    */
   async sayTTS(text: string, lang?: string) {
     lang = lang ? lang : 'de';
+    /* MOVE This to config/settings
     const { voices } = await TextToSpeech.getSupportedVoices();
     const langs = await TextToSpeech.getSupportedLanguages();
     console.log('Supported voices: ', voices);
     console.log('Supported langs: ', langs);
-    const voice = 0;
-    await TextToSpeech.speak({
-      text,
-      lang,
-      category: 'ambient',
-      pitch: 0.9,
-      rate: 1.5,
-      volume: 1.0,
-      voice,
-    });
+    */
+    const config = this.configService.getTTS();
+    const options: TTSOptions = { ...config, text, lang };
+    console.log('Using these options: ', options);
+    await TextToSpeech.speak(options);
   }
 
   play(str: string, type: number) {
