@@ -275,8 +275,17 @@ export class FileService {
     console.log(`Folder ${path} should be deleted now: ${!check}`);
   }
 
-  async importCourse() {}
-  async importCourses() {}
+  async importCourses(): Promise<Course[]> {
+    const fileName = `Download/file.ff`;
+    const dir = Directory.External;
+
+    const file = await Filesystem.readFile({ path: fileName, directory: dir });
+    console.log('File: ', file)
+    if (!file.data) {
+      return [];
+    }
+    return JSON.parse(file.data) as Course[];
+  }
   async exportCourses(courses: Course[]) {
     // TODO:
     /*
@@ -296,9 +305,7 @@ export class FileService {
       directory: dir,
     });
     console.log('Done exporting...', writeFile);
-    const stat = await Filesystem.stat({ path: fileName, directory: dir });
-    console.log(stat);
     const file = await Filesystem.readFile({ path: writeFile.uri });
-    console.log('File:', file.data);
+    console.log('File:', file);
   }
 }

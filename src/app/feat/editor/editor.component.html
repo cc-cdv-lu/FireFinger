@@ -1,3 +1,5 @@
+<img src="{{ yourImageDataURL }}" style="height: 100px" />
+
 <div class="container">
   <div class="courseList">
     <ion-list>
@@ -8,6 +10,7 @@
         <ion-button
           *ngIf="hasChanges()"
           color="tertiary"
+          fill="solid"
           (click)="saveAllToFile()"
         >
           <ion-icon slot="start" name="save"></ion-icon>
@@ -48,6 +51,12 @@
           <ion-icon name="duplicate" slot="start"></ion-icon>
           Import courses
         </ion-button>
+        <input
+          type="file"
+          (change)="loadImageFromDevice($event)"
+          id="file-input"
+          accept="image/png, image/jpeg"
+        />
         <ion-button *ngIf="courseList?.length > 0" (click)="exportCourses()">
           <ion-icon name="download" slot="start"></ion-icon>
           Export courses

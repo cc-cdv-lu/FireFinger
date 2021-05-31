@@ -10,6 +10,8 @@ export class EditorComponent implements OnInit {
   loadedCourse: Course = undefined;
   loadedLesson: Lesson = undefined;
 
+  yourImageDataURL: string;
+
   /* TODO:
   SAVE TO FILE SEEMS NOT TO WORK?
   LOADS 9 LESSONS INSTEAD OF 3???
@@ -126,10 +128,30 @@ export class EditorComponent implements OnInit {
     this.loadedLesson = undefined;
   }
 
-  importCourses() {}
+  async importCourses() {
+    const bla = await this.fileService.importCourses();
+    console.log(bla);
+  }
   async exportCourses() {
     await this.saveAllToFile();
     await this.fileService.exportCourses(this.courseList);
+  }
+
+  loadImageFromDevice(event) {
+    const file = event.target.files[0];
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      // note using fat arrow function here if we intend to point at current Class context.
+      this.yourImageDataURL = reader.result as string;
+    };
+
+    reader.onerror = (error) => {
+      //handle errors
+    };
   }
 
   compareWith(o1: Course, o2: Course | Course[]) {
