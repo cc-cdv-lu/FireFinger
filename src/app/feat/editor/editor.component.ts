@@ -10,18 +10,11 @@ import { Course, Lesson, FileService } from '@app/core';
 export class EditorComponent implements OnInit {
   loadedCourse: Course = undefined;
   loadedLesson: Lesson = undefined;
-
-  /* TODO:
-  SAVE TO FILE SEEMS NOT TO WORK?
-  LOADS 9 LESSONS INSTEAD OF 3???
-
-  Deleting courses and lessons should delete the files and folders linked to it
-  Or more easy: NUKE before saving each time. Not as nice but will be more error-proof
-  */
-
   courseList: Course[];
   private savedContent: Course[];
-  download = '';
+
+  download = ''; // DEBUG for export
+
   constructor(private fileService: FileService, private http: HttpClient) {}
 
   ngOnInit() {
@@ -70,7 +63,7 @@ export class EditorComponent implements OnInit {
   createCourse() {
     // Move this logic to filesystem and create file simultaneously
     const newCourse = {
-      id: 'Set id?',
+      id: 'courseID-' + Date.now(),
       lessons: [],
       name: 'New course',
       description: 'Enter course description',
@@ -80,14 +73,16 @@ export class EditorComponent implements OnInit {
   }
 
   createLesson() {
-    this.loadedCourse.lessons.push({
+    const newLesson = {
       description: 'Enter lesson description or leave empty',
       display: 'DEFAULT',
-      id: 'Enter id?',
+      id: 'lessonID-' + Date.now(),
       name: 'Lesson name here',
       type: 'DEFAULT',
       content: '',
-    });
+    } as Lesson;
+    this.loadedCourse.lessons.push(newLesson);
+    this.loadedLesson = newLesson;
   }
 
   loadCourse(courseId: string) {

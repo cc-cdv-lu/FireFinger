@@ -57,18 +57,15 @@
         ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-button (click)="importCourses()">
-          <ion-icon name="duplicate" slot="start"></ion-icon>
-          Import courses
-        </ion-button>
-
         <ion-button *ngIf="courseList?.length > 0" (click)="exportCourses()">
-          <ion-icon name="download" slot="start"></ion-icon>
+          <ion-icon name="download-outline" slot="start"></ion-icon>
           Export courses
         </ion-button>
-        <ion-button [href]="download" [download]="download">TEST</ion-button>
       </ion-item>
       <ion-item>
+        <ion-button color="warning" [href]="download" [download]="download">
+          Download TEST
+        </ion-button>
         <ion-button color="warning" (click)="debug()">
           <ion-icon name="bug" slot="start"></ion-icon>
           Debug
@@ -88,7 +85,7 @@
           NUKE
         </ion-button>
       </ion-item>
-      <div class="courseSettings" *ngIf="loadedCourse !== undefined">
+      <div class="courseSettings" *ngIf="loadedCourse">
         <ion-list-header color="primary">
           <ion-label>
             <h3>Course settings</h3>
