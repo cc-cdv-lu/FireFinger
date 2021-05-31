@@ -5,7 +5,11 @@
         <ion-label>
           <h3>Courses</h3>
         </ion-label>
-        <ion-button *ngIf="hasChanges()" color="tertiary" (click)="saveAllToFile()">
+        <ion-button
+          *ngIf="hasChanges()"
+          color="tertiary"
+          (click)="saveAllToFile()"
+        >
           <ion-icon slot="start" name="save"></ion-icon>
           Save changes
         </ion-button>
@@ -40,6 +44,16 @@
         </ion-button>
       </ion-item>
       <ion-item>
+        <ion-button (click)="importCourses()">
+          <ion-icon name="duplicate" slot="start"></ion-icon>
+          Import courses
+        </ion-button>
+        <ion-button *ngIf="courseList?.length > 0" (click)="exportCourses()">
+          <ion-icon name="download" slot="start"></ion-icon>
+          Export courses
+        </ion-button>
+      </ion-item>
+      <ion-item>
         <ion-button color="warning" (click)="debug()">
           <ion-icon name="bug" slot="start"></ion-icon>
           Debug
@@ -54,7 +68,7 @@
           <ion-icon name="folder" slot="start"></ion-icon>
           createDefaultCourses
         </ion-button>
-        <ion-button color="danger" (click)="deleteAllTheThings()">
+        <ion-button color="warning" (click)="deleteAllTheThings()">
           <ion-icon name="nuclear" slot="start"></ion-icon>
           NUKE
         </ion-button>
@@ -94,16 +108,14 @@
           <ion-label color="primary">Test</ion-label>
           <ion-checkbox></ion-checkbox>
         </ion-item>
-        <ion-item>
-          <ion-button (click)="createLesson()">
-            <ion-icon name="add" slot="start"></ion-icon>
-            Add new lesson
-          </ion-button>
-        </ion-item>
         <ion-list-header color="primary">
           <ion-label>
             <h3>Lessons</h3>
           </ion-label>
+          <ion-button fill="solid" color="tertiary" (click)="createLesson()">
+            <ion-icon name="add" slot="start"></ion-icon>
+            Add new lesson
+          </ion-button>
         </ion-list-header>
         <ion-item
           *ngFor="let lesson of loadedCourse.lessons"

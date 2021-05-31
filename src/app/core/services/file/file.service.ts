@@ -28,7 +28,6 @@ import {
 } from '@app/core/data.types';
 
 import { courseList } from './default_courses';
-import { CourseService } from '../course/course.service';
 
 @Injectable({
   providedIn: 'root',
@@ -262,7 +261,7 @@ export class FileService {
       const entryPath = `${path}/${entry}`;
       const stat = await Filesystem.stat({ path: entryPath, directory });
       if (this.isFile(stat)) {
-        await Filesystem.deleteFile({ path: entryPath, directory });
+        await this.deleteFile(entryPath, directory);
         continue;
       }
       if (this.isDirectory(stat)) {
@@ -278,6 +277,28 @@ export class FileService {
 
   async importCourse() {}
   async importCourses() {}
-  async exportCourse(course: Course) {}
-  async exportCourses(courses: Course[]) {}
+  async exportCourses(courses: Course[]) {
+    // TODO:
+    /*
+    - save
+    - zip folder of courses
+    - download zip
+    */
+    const fileName = `Download/file.ff`;
+    const dir = Directory.External;
+    const data = { courses: courses };
+    const toWrite = JSON.stringify(data);
+    console.log('Exporting ', data, toWrite);
+    await Filesystem.deleteFile({ path: fileName, directory: dir });
+    const writeFile = await Filesystem.writeFile({
+      path: fileName,
+      data: toWrite, // your data to write (ex. base64)
+      directory: dir,
+    });
+    console.log('Done exporting...', writeFile);
+    const stat = await Filesystem.stat({ path: fileName, directory: dir });
+    console.log(stat);
+    const file = await Filesystem.readFile({ path: writeFile.uri });
+    console.log('File:', file.data);
+  }
 }

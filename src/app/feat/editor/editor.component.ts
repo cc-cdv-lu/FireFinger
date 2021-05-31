@@ -126,6 +126,12 @@ export class EditorComponent implements OnInit {
     this.loadedLesson = undefined;
   }
 
+  importCourses() {}
+  async exportCourses() {
+    await this.saveAllToFile();
+    await this.fileService.exportCourses(this.courseList);
+  }
+
   compareWith(o1: Course, o2: Course | Course[]) {
     if (!o1 || !o2) {
       return o1 === o2;
