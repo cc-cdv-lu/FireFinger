@@ -11,8 +11,6 @@ export class EditorComponent implements OnInit {
   loadedCourse: Course = undefined;
   loadedLesson: Lesson = undefined;
 
-  yourImageDataURL: string;
-
   /* TODO:
   SAVE TO FILE SEEMS NOT TO WORK?
   LOADS 9 LESSONS INSTEAD OF 3???
@@ -140,14 +138,16 @@ export class EditorComponent implements OnInit {
 
   chooseFile(event) {
     const file = event.target.files[0];
-    this.fileService.importCoursesAsZIP(file);
     const reader = new FileReader();
     reader.readAsText(file, 'UTF-8');
     reader.addEventListener('load', (event) => {
-      const result = JSON.parse(reader.result as string) as Course[];
-      this.courseList.concat(result);
-      console.log(this.courseList);
+      const result = JSON.parse(reader.result as string);
+      const courses = result.courses as Course[];
 
+      this.courseList = this.courseList.concat(courses);
+      if (this.courseList.length > 0) {
+        this.loadedCourse = this.courseList[0];
+      }
       this.saveAllToFile();
     });
   }

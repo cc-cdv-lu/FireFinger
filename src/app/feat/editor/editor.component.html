@@ -1,5 +1,3 @@
-<img src="{{ yourImageDataURL }}" style="height: 100px" />
-
 <div class="container">
   <div class="courseList">
     <ion-list>
@@ -47,16 +45,16 @@
         </ion-button>
       </ion-item>
       <ion-item>
-        <input
+        <ion-label color="primary" position="stacked">
+          <ion-icon name="download" slot="start"></ion-icon>
+          Import courses
+        </ion-label>
+        <ion-input
           type="file"
           (change)="chooseFile($event)"
           id="file-input"
           accept=".ff, text/plain"
-        />
-        <ion-label>
-          <ion-icon name="download" slot="start"></ion-icon>
-          Import courses
-        </ion-label>
+        ></ion-input>
       </ion-item>
       <ion-item>
         <ion-button (click)="importCourses()">
