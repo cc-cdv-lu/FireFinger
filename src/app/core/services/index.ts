@@ -5,4 +5,5 @@ export * from './user/user.service';
 export * from './course/course.service';
 export * from './file/file.service';
 export * from './speak/speak.service';
+export * from './string-helper/string-helper.service';
 export * from '../data.types';

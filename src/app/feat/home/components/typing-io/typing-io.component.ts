@@ -5,9 +5,9 @@ import {
   Style,
   StatsService,
   ConfigService,
+  StringHelperService,
   SpeakService,
 } from '@app/core';
-import { StringHelperService } from '@app/core/string-helper/string-helper.service';
 import { CharacterComponent } from '../character/character.component';
 
 @Component({
