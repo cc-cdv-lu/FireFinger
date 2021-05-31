@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Course, Lesson, FileService } from '@app/core';
 
@@ -22,7 +23,8 @@ export class EditorComponent implements OnInit {
 
   courseList: Course[];
   private savedContent: Course[];
-  constructor(private fileService: FileService) {}
+  download = '';
+  constructor(private fileService: FileService, private http: HttpClient) {}
 
   ngOnInit() {
     this.loadAllFromFile();
@@ -128,30 +130,26 @@ export class EditorComponent implements OnInit {
     this.loadedLesson = undefined;
   }
 
-  async importCourses() {
-    const bla = await this.fileService.importCourses();
-    console.log(bla);
-  }
   async exportCourses() {
     await this.saveAllToFile();
-    await this.fileService.exportCourses(this.courseList);
+    this.download = await this.fileService.exportCourses(this.courseList);
+    console.log('Download:', this.download);
+    const w = await this.http.get(this.download).toPromise();
+    console.log(w);
   }
 
-  loadImageFromDevice(event) {
+  chooseFile(event) {
     const file = event.target.files[0];
-
+    this.fileService.importCoursesAsZIP(file);
     const reader = new FileReader();
+    reader.readAsText(file, 'UTF-8');
+    reader.addEventListener('load', (event) => {
+      const result = JSON.parse(reader.result as string) as Course[];
+      this.courseList.concat(result);
+      console.log(this.courseList);
 
-    reader.readAsDataURL(file);
-
-    reader.onload = () => {
-      // note using fat arrow function here if we intend to point at current Class context.
-      this.yourImageDataURL = reader.result as string;
-    };
-
-    reader.onerror = (error) => {
-      //handle errors
-    };
+      this.saveAllToFile();
+    });
   }
 
   compareWith(o1: Course, o2: Course | Course[]) {

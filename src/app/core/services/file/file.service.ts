@@ -20,12 +20,16 @@ import {
   Encoding,
   StatResult,
 } from '@capacitor/filesystem';
+
+import { Share } from '@capacitor/share';
 import {
   Course,
   DEFAULT_COURSE,
   DEFAULT_LESSON,
   Lesson,
 } from '@app/core/data.types';
+
+import * as jzip from 'jszip';
 
 import { courseList } from './default_courses';
 
@@ -280,13 +284,13 @@ export class FileService {
     const dir = Directory.External;
 
     const file = await Filesystem.readFile({ path: fileName, directory: dir });
-    console.log('File: ', file)
+    console.log('File: ', file);
     if (!file.data) {
       return [];
     }
     return JSON.parse(file.data) as Course[];
   }
-  async exportCourses(courses: Course[]) {
+  async exportCourses(courses: Course[]): Promise<string> {
     // TODO:
     /*
     - save
@@ -298,14 +302,25 @@ export class FileService {
     const data = { courses: courses };
     const toWrite = JSON.stringify(data);
     console.log('Exporting ', data, toWrite);
-    await Filesystem.deleteFile({ path: fileName, directory: dir });
     const writeFile = await Filesystem.writeFile({
       path: fileName,
       data: toWrite, // your data to write (ex. base64)
       directory: dir,
     });
+    await Share.share({
+      title: 'Export of courses 👍👍👍',
+      url: writeFile.uri,
+      dialogTitle: 'Save file',
+    });
     console.log('Done exporting...', writeFile);
-    const file = await Filesystem.readFile({ path: writeFile.uri });
-    console.log('File:', file);
+    return writeFile.uri;
+  }
+
+  async importCoursesAsZIP(inputFile: any) {
+    const wat = await jzip().loadAsync(inputFile, {
+      base64: true,
+      createFolders: false,
+    });
+    console.log(wat);
   }
 }

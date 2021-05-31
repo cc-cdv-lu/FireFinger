@@ -47,20 +47,28 @@
         </ion-button>
       </ion-item>
       <ion-item>
+        <input
+          type="file"
+          (change)="chooseFile($event)"
+          id="file-input"
+          accept=".ff, text/plain"
+        />
+        <ion-label>
+          <ion-icon name="download" slot="start"></ion-icon>
+          Import courses
+        </ion-label>
+      </ion-item>
+      <ion-item>
         <ion-button (click)="importCourses()">
           <ion-icon name="duplicate" slot="start"></ion-icon>
           Import courses
         </ion-button>
-        <input
-          type="file"
-          (change)="loadImageFromDevice($event)"
-          id="file-input"
-          accept="image/png, image/jpeg"
-        />
+
         <ion-button *ngIf="courseList?.length > 0" (click)="exportCourses()">
           <ion-icon name="download" slot="start"></ion-icon>
           Export courses
         </ion-button>
+        <ion-button [href]="download" [download]="download">TEST</ion-button>
       </ion-item>
       <ion-item>
         <ion-button color="warning" (click)="debug()">
