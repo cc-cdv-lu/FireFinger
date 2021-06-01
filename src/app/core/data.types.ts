@@ -82,8 +82,8 @@ export interface Lesson {
   id: string;
   name: string;
   description: string;
-  type: string; // Courses interface (text, image, ...)
-  display: string; // Prefered display style
+  type: 'shuffled_words' | 'shuffled_characters' | 'static'; // Courses interface (text, image, ...)
+  display: 'character' | 'word' | 'line' | 'multiple_lines' | 'image'; // Prefered display style
   content: string;
 }
 // Saved in user
@@ -104,10 +104,10 @@ export const DEFAULT_COURSE: Course = {
 export const DEFAULT_LESSON: Lesson = {
   content: '',
   description: '(No description)',
-  display: 'DEFAULT',
+  display: 'line',
   id: Date.now().toString(),
   name: '(No name)',
-  type: 'DEFAULT',
+  type: 'static',
 };
 
 export const DISPLAY_TYPES: Array<string> = ['DEFAULT'];

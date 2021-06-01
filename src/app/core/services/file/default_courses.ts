@@ -7,8 +7,8 @@ export const courseList: Array<Course> = [
       {
         description: 'Some description...',
         id: 'dfgdg',
-        display: 'DEFAULT',
-        type: 'DEFAULT',
+        display: 'line',
+        type: 'static',
         name: 'Some name.....',
         content:
           'ertertetetert jklasdföldsaf jasldkjfsadölfjaslkfjdas öfljköaslj',
@@ -16,16 +16,16 @@ export const courseList: Array<Course> = [
       {
         description: 'Some other description...',
         id: 'soowodo21',
-        display: 'DEFAULT',
-        type: 'DEFAULT',
+        display: 'line',
+        type: 'static',
         name: 'Some blupp',
         content: 'nbmvcnvncvbn jklasdföldsaf sdfsdfvxcvxcvxcvxcv öfljköaslj',
       },
       {
         description: 'More description...',
         id: 'xcvxcvxv',
-        display: 'DEFAULT',
-        type: 'DEFAULT',
+        display: 'line',
+        type: 'static',
         name: 'Some bla.....',
         content: 'asdf sdfsdfsdghgdfhfgh jasldkjfsadölfjaslkfjdas öfljköaslj',
       },

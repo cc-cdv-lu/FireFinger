@@ -13,14 +13,16 @@ export class EditorComponent implements OnInit {
   private savedContent: Course[];
 
   lessonTypes = [
-    { title: 'Random words', id: 'random_words' },
-    { title: 'Standard', id: 'DEFAULT' },
-    { title: 'Simple image', id: 'images' },
+    { title: 'Random words', id: 'shuffled_words' },
+    { title: 'Random characters', id: 'shuffled_characters' },
+    { title: 'Standard', id: 'static' }, // aka static
   ];
   lessonDisplays = [
-    { title: 'Single character', id: 'single_character' },
-    { title: 'Line', id: 'DEFAULT' },
+    { title: 'Single character', id: 'character' },
+    { title: 'Single words', id: 'word' },
+    { title: 'Single line', id: 'line' },
     { title: 'Multiple lines', id: 'multiple_lines' },
+    { title: 'Image', id: 'image' },
   ];
 
   constructor(private fileService: FileService) {}
@@ -104,10 +106,10 @@ export class EditorComponent implements OnInit {
   createLesson() {
     const newLesson = {
       description: 'Enter lesson description or leave empty',
-      display: 'DEFAULT',
+      display: 'line',
       id: 'lessonID-' + Date.now(),
       name: 'Lesson name here',
-      type: 'DEFAULT',
+      type: 'static',
       content: '',
     } as Lesson;
     this.loadedCourse.lessons.push(newLesson);
