@@ -24,8 +24,6 @@ export class EditorComponent implements OnInit {
     { title: 'Multiple lines', id: 'multiple_lines' },
   ];
 
-  download = ''; // DEBUG for export
-
   constructor(private fileService: FileService, private http: HttpClient) {}
 
   ngOnInit() {
@@ -136,12 +134,14 @@ export class EditorComponent implements OnInit {
 
   async exportCourses() {
     await this.saveAllToFile();
-    this.download = await this.fileService.exportCourses(this.courseList);
-    console.log('Download:', this.download);
-    const w = await this.http.get(this.download).toPromise();
-    console.log(w);
+    const data = JSON.stringify({ courses: this.courseList });
+    this.createDownload('courses.ff', data);
   }
 
+  /**
+   * Handle selected file to be imported as course
+   * @param event Ion-Input chose file event
+   */
   chooseFile(event) {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -156,6 +156,22 @@ export class EditorComponent implements OnInit {
       }
       this.saveAllToFile();
     });
+  }
+
+  createDownload(filename: string, text: string) {
+    var element = document.createElement('a');
+    element.setAttribute(
+      'href',
+      'data:text/plain;charset=utf-8,' + encodeURIComponent(text)
+    );
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
   }
 
   compareWith(o1: Course | Lesson, o2: Course | Course[] | Lesson | Lesson[]) {

@@ -278,49 +278,4 @@ export class FileService {
     const check = await this.folderOrFileExists(path, directory);
     console.log(`Folder ${path} should be deleted now: ${!check}`);
   }
-
-  async importCourses(): Promise<Course[]> {
-    const fileName = `Download/file.ff`;
-    const dir = Directory.External;
-
-    const file = await Filesystem.readFile({ path: fileName, directory: dir });
-    console.log('File: ', file);
-    if (!file.data) {
-      return [];
-    }
-    return JSON.parse(file.data) as Course[];
-  }
-  async exportCourses(courses: Course[]): Promise<string> {
-    // TODO:
-    /*
-    - save
-    - zip folder of courses
-    - download zip
-    */
-    const fileName = `Download/file.ff`;
-    const dir = Directory.External;
-    const data = { courses: courses };
-    const toWrite = JSON.stringify(data);
-    console.log('Exporting ', data, toWrite);
-    const writeFile = await Filesystem.writeFile({
-      path: fileName,
-      data: toWrite, // your data to write (ex. base64)
-      directory: dir,
-    });
-    await Share.share({
-      title: 'Export of courses 👍👍👍',
-      url: writeFile.uri,
-      dialogTitle: 'Save file',
-    });
-    console.log('Done exporting...', writeFile);
-    return writeFile.uri;
-  }
-
-  async importCoursesAsZIP(inputFile: any) {
-    const wat = await jzip().loadAsync(inputFile, {
-      base64: true,
-      createFolders: false,
-    });
-    console.log(wat);
-  }
 }
