@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Course, Lesson, FileService } from '@app/core';
 
@@ -24,7 +23,7 @@ export class EditorComponent implements OnInit {
     { title: 'Multiple lines', id: 'multiple_lines' },
   ];
 
-  constructor(private fileService: FileService, private http: HttpClient) {}
+  constructor(private fileService: FileService) {}
 
   ngOnInit() {
     this.loadAllFromFile();
@@ -36,6 +35,9 @@ export class EditorComponent implements OnInit {
 
   /* File related */
 
+  /**
+   * Loads all courses from file
+   */
   async loadAllFromFile() {
     this.courseList = await this.fileService.getCourses();
     this.savedContent = JSON.parse(JSON.stringify(this.courseList)) as Course[];
@@ -46,31 +48,46 @@ export class EditorComponent implements OnInit {
     }
   }
 
+  /**
+   * Creates default courses and loads their content
+   */
   async createDefaultCourses() {
     await this.fileService.createDefaultCourses();
     await this.loadAllFromFile();
   }
 
+  /**
+   * Deletes everything
+   */
   async deleteAllTheThings() {
     await this.fileService.deleteAllTheThings();
     await this.loadAllFromFile();
   }
 
+  /**
+   * Saves everything to file
+   */
   async saveAllToFile() {
     await this.fileService.saveCourses(this.courseList);
     this.savedContent = this.courseList;
   }
 
-  /* Local stuff*/
+  // Other
 
+  /**
+   * Compares current changes to saved version
+   * @returns true if there are changes
+   */
   hasChanges(): boolean {
     return (
       JSON.stringify(this.courseList) !== JSON.stringify(this.savedContent)
     );
   }
 
+  /**
+   * Creates new course with default values
+   */
   createCourse() {
-    // Move this logic to filesystem and create file simultaneously
     const newCourse = {
       id: 'courseID-' + Date.now(),
       lessons: [],
@@ -81,6 +98,9 @@ export class EditorComponent implements OnInit {
     this.loadedCourse = newCourse;
   }
 
+  /**
+   * Creates new lesson for the current course with default values
+   */
   createLesson() {
     const newLesson = {
       description: 'Enter lesson description or leave empty',
@@ -94,6 +114,10 @@ export class EditorComponent implements OnInit {
     this.loadedLesson = newLesson;
   }
 
+  /**
+   * Loads course at the given index
+   * @param courseId index of course
+   */
   loadCourse(courseId: string) {
     const course = this.courseList.find((course) => course.id === courseId);
     if (course) {
@@ -101,6 +125,11 @@ export class EditorComponent implements OnInit {
     }
   }
 
+  /**
+   * Loads the specified lesson
+   * @param courseId index of course
+   * @param lessonId index of lesson
+   */
   loadLesson(courseId: string, lessonId: string) {
     const course = this.courseList.find((course) => course.id === courseId);
     if (course) {
@@ -112,6 +141,10 @@ export class EditorComponent implements OnInit {
     }
   }
 
+  /**
+   * Deletes course at the given index
+   * @param courseId index of course
+   */
   deleteCourse(courseId: string) {
     const index = this.courseList.findIndex((course) => course.id === courseId);
     if (index >= 0) {
@@ -122,6 +155,10 @@ export class EditorComponent implements OnInit {
     }
   }
 
+  /**
+   * Deletes lesson in currently loaded course at the given index
+   * @param lessonId index of lesson
+   */
   deleteLesson(lessonId: string) {
     const index = this.loadedCourse.lessons.findIndex(
       (lesson) => lesson.id === lessonId
@@ -132,6 +169,9 @@ export class EditorComponent implements OnInit {
     this.loadedLesson = undefined;
   }
 
+  /**
+   * Exports courses as ff-file that can be downloaded
+   */
   async exportCourses() {
     await this.saveAllToFile();
     const data = JSON.stringify({ courses: this.courseList });
@@ -150,6 +190,7 @@ export class EditorComponent implements OnInit {
       const result = JSON.parse(reader.result as string);
       const courses = result.courses as Course[];
 
+      // TODO: Generate default data when no metadata is found (and save it?)
       this.courseList = this.courseList.concat(courses);
       if (this.courseList.length > 0) {
         this.loadedCourse = this.courseList[0];
@@ -158,6 +199,11 @@ export class EditorComponent implements OnInit {
     });
   }
 
+  /**
+   * Creates a text file and triggers the download
+   * @param filename What downloaded file should be called
+   * @param text Contents of downloaded file
+   */
   createDownload(filename: string, text: string) {
     var element = document.createElement('a');
     element.setAttribute(

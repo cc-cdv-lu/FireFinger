@@ -21,15 +21,12 @@ import {
   StatResult,
 } from '@capacitor/filesystem';
 
-import { Share } from '@capacitor/share';
 import {
   Course,
   DEFAULT_COURSE,
   DEFAULT_LESSON,
   Lesson,
 } from '@app/core/data.types';
-
-import * as jzip from 'jszip';
 
 import { courseList } from './default_courses';
 
@@ -48,10 +45,11 @@ export class FileService {
     this.prepare();
   }
 
+  /**
+   * Checks if default folder structure exists
+   * else create default structure (FireFinger/docs)
+   */
   private async prepare() {
-    // Check if default folder structure exists
-    // else create default structure (FireFinger/docs)
-    // And also default courses?
     const exists1 = await this.folderOrFileExists(
       this.basePath.split('/')[0],
       this.dir
@@ -71,6 +69,12 @@ export class FileService {
     }
   }
 
+  /**
+   * Checks whether the specified file or folder exists
+   * @param path Path to folder or file to check
+   * @param dir Directory to look in
+   * @returns whether the file or folder exists
+   */
   private async folderOrFileExists(
     path: string,
     dir: Directory
@@ -86,10 +90,10 @@ export class FileService {
   }
 
   /**
-   * Retrieves courses from file storage and returns it as an Array of course-ojbects
+   * Retrieves courses from file storage
+   * @returns an Array of course-objects
    */
   public async getCourses(): Promise<Course[]> {
-    // TODO: Generate default data when no metadata is found (and save it?)
     await this.prepare();
     let output: Course[] = [];
     // Search for metadata file in courses
@@ -180,10 +184,20 @@ export class FileService {
     return output;
   }
 
+  /**
+   * Checks whether file of StatResult is a directory
+   * @param stat
+   * @returns true or false
+   */
   private isDirectory(stat: StatResult) {
     return stat.type === 'directory';
   }
 
+  /**
+   * Checks whether file of StatResult is a file
+   * @param stat
+   * @returns
+   */
   private isFile(stat: StatResult) {
     return stat.type === 'file';
   }
@@ -251,11 +265,23 @@ export class FileService {
     console.warn('Everything should be deleted now...', !check);
   }
 
+  /**
+   * Checks whether file exists and then deletes it
+   * @param path Path to file
+   * @param directory
+   * @returns void
+   */
   private async deleteFile(path: string, directory: Directory) {
     const exists = await this.folderOrFileExists(path, directory);
     if (!exists) return;
     await Filesystem.deleteFile({ path, directory });
   }
+  /**
+   * Checks whether folder exists and then deletes it and its contents recursively
+   * @param path Path to folder
+   * @param directory
+   * @returns void
+   */
   private async deleteFolder(path: string, directory: Directory) {
     const exists = await this.folderOrFileExists(path, directory);
     if (!exists) return;
