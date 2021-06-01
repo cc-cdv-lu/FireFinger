@@ -1,5 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { CourseService, TextService } from '@app/core';
+import { CourseService } from '@app/core';
 
 @Component({
   selector: 'app-typing-io',
@@ -11,7 +11,7 @@ export class TypingIoComponent implements AfterViewInit {
   constructor(private courseService: CourseService) {}
 
   getDisplay() {
-    this.courseService.getCurrentLesson().display;
+    return this.courseService.getCurrentLesson().display;
   }
 
   isReady() {

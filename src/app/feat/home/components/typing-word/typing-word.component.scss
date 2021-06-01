@@ -1,0 +1,55 @@
+.container {
+  height: 100%;
+  width: 100%;
+
+  background-color: var(--ion-background-color);
+}
+
+ion-grid {
+  --ion-grid-padding: 0px;
+  --ion-grid-column-padding: 0px;
+
+  width: 100%;
+
+  position: fixed;
+  display: block;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.center {
+  text-align: center;
+}
+.text {
+  font-size: 3em;
+  width: 100%;
+  // color: var(--ion-color-medium);
+  color: var(--ion-text-color);
+}
+.highlight {
+  color: var(--ion-color-tertiary);
+}
+.prev {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  direction: rtl;
+  text-align: right;
+}
+
+.characterhelper {
+  position: fixed;
+  bottom: 8vh;
+  width: 100%;
+}
+
+.next {
+  // grid-auto-columns: auto;
+  text-align: start;
+  width: 100%;
+  position: relative;
+  text-overflow: clip;
+  // text-overflow: ellipsis;
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}

@@ -1,10 +1,10 @@
 <div class="typingContainer" *ngIf="isReady()">
   <div class="typingArea" [ngSwitch]="getDisplay()">
-    <app-typing-character *ngSwitchCase="character"></app-typing-character>
-    <app-typing-line *ngSwitchCase="word"></app-typing-line>
-    <app-typing-line *ngSwitchCase="multiple_lines"></app-typing-line>
-    <app-typing-image *ngSwitchCase="image"></app-typing-image>
-    <!--<app-typing-line *ngSwitchCase="line"></app-typing-line>-->
-    <app-typing-line *ngSwitchDefault></app-typing-line>
+    <app-typing-character *ngSwitchCase="'character'"></app-typing-character>
+    <app-typing-word *ngSwitchCase="'word'"></app-typing-word>
+    <app-typing-image *ngSwitchCase="'image'"></app-typing-image>
+    <app-typing-line *ngSwitchCase="'line'"></app-typing-line>
+    <!--<app-typing-line *ngSwitchCase="multiple_lines"></app-typing-line>-->
+    <!--<app-typing-line *ngSwitchDefault></app-typing-line>-->
   </div>
 </div>

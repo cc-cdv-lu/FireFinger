@@ -36,4 +36,8 @@ export class FooterComponent implements OnInit {
   getMistakeText(): string {
     return Math.round(this.statsService.getMistakeRatio() * 100) + '%';
   }
+
+  getDisplay(): string {
+    return this.courseService.getCurrentLesson()?.display;
+  }
 }
