@@ -13,6 +13,17 @@ export class EditorComponent implements OnInit {
   courseList: Course[];
   private savedContent: Course[];
 
+  lessonTypes = [
+    { title: 'Random words', id: 'random_words' },
+    { title: 'Standard', id: 'DEFAULT' },
+    { title: 'Simple image', id: 'images' },
+  ];
+  lessonDisplays = [
+    { title: 'Single character', id: 'single_character' },
+    { title: 'Line', id: 'DEFAULT' },
+    { title: 'Multiple lines', id: 'multiple_lines' },
+  ];
+
   download = ''; // DEBUG for export
 
   constructor(private fileService: FileService, private http: HttpClient) {}
@@ -147,13 +158,13 @@ export class EditorComponent implements OnInit {
     });
   }
 
-  compareWith(o1: Course, o2: Course | Course[]) {
+  compareWith(o1: Course | Lesson, o2: Course | Course[] | Lesson | Lesson[]) {
     if (!o1 || !o2) {
       return o1 === o2;
     }
 
     if (Array.isArray(o2)) {
-      return o2.some((u: Course) => u.id === o1.id);
+      return o2.some((u: Course | Lesson) => u.id === o1.id);
     }
 
     return o1.id === o2.id;

@@ -9,7 +9,9 @@
           *ngIf="hasChanges()"
           color="tertiary"
           fill="solid"
+          strong
           (click)="saveAllToFile()"
+          size="small"
         >
           <ion-icon slot="start" name="save"></ion-icon>
           Save changes
@@ -124,7 +126,12 @@
           <ion-label>
             <h3>Lessons</h3>
           </ion-label>
-          <ion-button fill="solid" color="tertiary" (click)="createLesson()">
+          <ion-button
+            size="small"
+            fill="solid"
+            color="tertiary"
+            (click)="createLesson()"
+          >
             <ion-icon name="add" slot="start"></ion-icon>
             Add new lesson
           </ion-button>
@@ -184,6 +191,40 @@
         <ion-item>
           <ion-label color="tertiary">Test</ion-label>
           <ion-checkbox></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Lesson type</ion-label>
+          <ion-select
+            name="type"
+            ngDefaultControl
+            compareWith="type"
+            [(ngModel)]="loadedLesson.type"
+            (ionChange)="loadedLesson.type = $event.detail.value"
+          >
+            <ion-select-option
+              *ngFor="let type of lessonTypes"
+              [value]="type.id"
+            >
+              {{ type.title }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Lesson display</ion-label>
+          <ion-select
+            name="display"
+            ngDefaultControl
+            compareWith="display"
+            [(ngModel)]="loadedLesson.display"
+            (ionChange)="loadedLesson.display = $event.detail.value"
+          >
+            <ion-select-option
+              *ngFor="let display of lessonDisplays"
+              [value]="display.id"
+            >
+              {{ display.title }}
+            </ion-select-option>
+          </ion-select>
         </ion-item>
         <ion-item class="textArea">
           <ion-label position="floating" color="tertiary">Text</ion-label>
