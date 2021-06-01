@@ -8,6 +8,7 @@ import {
   View,
   Style,
 } from '@app/core';
+import { TypingService } from '../../services/typing/typing.service';
 import { CharacterComponent } from '../character/character.component';
 
 @Component({
@@ -28,7 +29,8 @@ export class TypingLineComponent implements AfterViewInit {
     private configService: ConfigService,
     private statsService: StatsService,
     private speakService: SpeakService,
-    private stringHelper: StringHelperService
+    private stringHelper: StringHelperService,
+    public typingService: TypingService
   ) {}
   ngAfterViewInit() {
     this.charComponent.onTypingSuccess.subscribe((e) => {
@@ -50,19 +52,6 @@ export class TypingLineComponent implements AfterViewInit {
     });
   }
 
-  trySpeakWord() {
-    const prev = this.getView().prev;
-    if (
-      prev.length === 0 ||
-      prev[prev.length - 1] === ' ' ||
-      prev[prev.length - 1] === '\n'
-    ) {
-      return this.textService.getCurrentWord();
-    } else {
-      return '';
-    }
-  }
-
   focusInput() {
     const input = document.getElementById('inputLetter');
     if (input) {
@@ -82,34 +71,5 @@ export class TypingLineComponent implements AfterViewInit {
 
   getStyle(): Style {
     return this.configService.getStyle();
-  }
-
-  setFontSize(f: number) {
-    if (f > 0) {
-      this.getStyle().fontSize = f;
-    }
-  }
-
-  specifyCharacter(character: string): string {
-    let output = '';
-    switch (character.toLowerCase()) {
-      case ' ':
-        output = 'SPACE';
-        break;
-      case 'ä':
-      case 'ü':
-      case 'ö':
-        output = 'Umlaut';
-        break;
-      case 'é':
-      case 'è':
-      case 'ê':
-        output = 'Accent';
-        break;
-    }
-    if (character.toLowerCase() !== character) {
-      output += '\n' + 'Major';
-    }
-    return output.trim();
   }
 }

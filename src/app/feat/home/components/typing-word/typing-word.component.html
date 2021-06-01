@@ -1,4 +1,3 @@
-blaaaaaa
 <div class="container">
   <ion-button (click)="sayLine()">SayLine</ion-button>
   <!--Extract grid as a seperate component? NGSwitch for different types of display styles? -->
@@ -21,11 +20,11 @@ blaaaaaa
     </ion-row>
   </ion-grid>
 
-  <ion-button (click)="setFontSize(getStyle().fontSize - 1)">
+  <ion-button (click)="typingService.setFontSize(getStyle().fontSize - 1)">
     <ion-icon name="remove"></ion-icon>
   </ion-button>
 
-  <ion-button (click)="setFontSize(getStyle().fontSize + 1)">
+  <ion-button (click)="typingService.setFontSize(getStyle().fontSize + 1)">
     <ion-icon name="add"></ion-icon>
   </ion-button>
   <div
@@ -33,6 +32,6 @@ blaaaaaa
     *ngIf="getStyle().showHelper"
     [ngStyle]="{ 'font-size': getStyle().fontSize * 0.3 + 'em' }"
   >
-    {{ specifyCharacter(getView().curr) }}
+    {{ typingService.specifyCharacter(getView().curr) }}
   </div>
 </div>

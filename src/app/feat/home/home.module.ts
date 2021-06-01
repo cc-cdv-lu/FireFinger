@@ -12,6 +12,8 @@ import { TypingImageComponent } from './components/typing-image/typing-image.com
 import { TypingLineComponent } from './components/typing-line/typing-line.component';
 import { TypingWordComponent } from './components/typing-word/typing-word.component';
 
+import { TypingService } from './services/typing/typing.service';
+
 const routes: Routes = [
   {
     path: '',
@@ -31,5 +33,6 @@ const routes: Routes = [
     TypingWordComponent,
     CharacterComponent,
   ],
+  providers: [TypingService],
 })
 export class HomeModule {}
