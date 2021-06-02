@@ -55,14 +55,21 @@ export class TypingLineComponent implements AfterViewInit {
       }
     });
 
-    this.textService.onTextFinished.subscribe(() => {
-      // this.userService.
+    this.textService.onTextFinished.subscribe(async () => {
       const lessonComplete: CompletedLesson = {
         courseId: this.courseService.currentCourse.id,
         lessonId: this.courseService.currentLesson.id,
         date: new Date(Date.now()),
         stats: this.statsService.stats,
       };
+      const user = await this.userService.getCurrentUser();
+      if (!user.completedLessons) {
+        user.completedLessons = [lessonComplete];
+      } else {
+        user.completedLessons.push(lessonComplete);
+      }
+      await this.userService.editUser(user);
+      console.log('Updated user:', user);
     });
 
     this.focusInput();
