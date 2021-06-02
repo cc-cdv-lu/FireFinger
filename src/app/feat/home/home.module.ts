@@ -7,7 +7,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { TypingIoComponent } from './components/typing-io/typing-io.component';
 import { CharacterComponent } from './components/character/character.component';
 
-import { TypingImageComponent } from './components/typing-image/typing-image.component';
 import { TypingLineComponent } from './components/typing-line/typing-line.component';
 
 import { TypingService } from './services/typing/typing.service';
@@ -25,7 +24,6 @@ const routes: Routes = [
     HomeComponent,
     FooterComponent,
     TypingIoComponent,
-    TypingImageComponent,
     TypingLineComponent,
     CharacterComponent,
   ],
