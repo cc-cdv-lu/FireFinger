@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { User } from '@app/core/data.types';
+import { DEFAULT_USER, User } from '@app/core/data.types';
 import { Storage } from '@capacitor/storage';
 const LAST_USER = 'ff_last_user';
 const USER_LIST = 'ff_user_list';
@@ -83,7 +83,9 @@ export class UserService {
   async getUser(username: string): Promise<User> {
     const data = await Storage.get({ key: `${USER}${username}` });
     const user = JSON.parse(data.value) as User;
-    return user ? user : undefined;
+    const output = user ? user : DEFAULT_USER;
+    output.name = username;
+    return output;
   }
 
   async editUser(user: User) {

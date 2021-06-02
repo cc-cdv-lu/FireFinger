@@ -10,12 +10,23 @@
       </ion-note>
     </ion-list-header>
     <ion-item *ngFor="let lesson of course.lessons; let i = index">
-      <b>{{ lesson.name }}</b>
+      <ion-icon
+        slot="start"
+        color="secondary"
+        icon="checkmark-circle"
+        *ngIf="isLessonCompleted(course.id, lesson.id)"
+      >
+      </ion-icon>
+      <ion-label>
+        <b>{{ lesson.name }}</b>
+      </ion-label>
       <ion-note color="primary" slot="end">
         {{ lesson.content.length }}
       </ion-note>
       <ion-item>
-        <ion-button (click)="loadLesson(course, i)">Load {{ lesson.name }}</ion-button>
+        <ion-button (click)="loadLesson(course, i)"
+          >Load {{ lesson.name }}</ion-button
+        >
       </ion-item>
     </ion-item>
   </div>
