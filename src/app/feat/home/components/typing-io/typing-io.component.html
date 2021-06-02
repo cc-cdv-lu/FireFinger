@@ -1,7 +1,9 @@
 <div class="typingContainer" *ngIf="isReady()">
   <div class="typingArea" [ngSwitch]="getDisplay()">
-    <app-typing-image *ngSwitchCase="'image'"></app-typing-image>
     <app-typing-multiline *ngSwitchCase="multiple_lines"></app-typing-multiline>
+    <!--
+      <app-typing-image *ngSwitchCase="'image'"></app-typing-image>
+    -->
     <!-- Default works for: line, word and character -->
     <app-typing-line *ngSwitchDefault></app-typing-line>
   </div>

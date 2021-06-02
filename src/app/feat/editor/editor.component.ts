@@ -201,6 +201,23 @@ export class EditorComponent implements OnInit {
     });
   }
 
+  async uploadImage(event) {
+    const file = event.target.files[0];
+    const base64 = await this.getBase64(file);
+    if (base64) {
+      this.loadedLesson.imgSrc = base64;
+    }
+  }
+
+  private getBase64(file): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+    });
+  }
+
   /**
    * Creates a text file and triggers the download
    * @param filename What downloaded file should be called

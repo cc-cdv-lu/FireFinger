@@ -2,6 +2,13 @@
   <ion-button (click)="sayLine()">SayLine</ion-button>
   <!--Extract grid as a seperate component? NGSwitch for different types of display styles? -->
   <ion-grid>
+    <ion-row *ngIf="getLesson().display === 'image'" class="image">
+      <ion-col></ion-col>
+      <ion-col>
+        <img [src]="getLesson().imgSrc" />
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
     <ion-row
       class="text"
       [ngStyle]="{

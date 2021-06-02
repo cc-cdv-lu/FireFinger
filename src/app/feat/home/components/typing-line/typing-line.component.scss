@@ -25,6 +25,15 @@ ion-grid {
   // color: var(--ion-color-medium);
   color: var(--ion-text-color);
 }
+.image {
+  ion-col {
+    display: flex;
+    justify-content: center;
+    img {
+      height: 30vh;
+    }
+  }
+}
 .highlight {
   color: var(--ion-color-tertiary);
 }

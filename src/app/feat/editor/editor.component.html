@@ -226,6 +226,19 @@
             </ion-select-option>
           </ion-select>
         </ion-item>
+        <ion-item *ngIf="loadedLesson.display === 'image'" class="imageArea">
+          <ion-input
+            type="file"
+            (change)="uploadImage($event)"
+            id="image-input"
+            accept="image/gif, image/jpeg, image/png"
+          ></ion-input>
+          <img
+            *ngIf="loadedLesson.content"
+            [src]="loadedLesson.imgSrc"
+            style="height: 20vh"
+          />
+        </ion-item>
         <ion-item class="textArea">
           <ion-label position="floating" color="tertiary">Text</ion-label>
           <ion-textarea

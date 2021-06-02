@@ -83,6 +83,10 @@ export class TypingLineComponent implements AfterViewInit {
     return this.textService.getView();
   }
 
+  getLesson() {
+    return this.courseService.currentLesson;
+  }
+
   private getLineView(): View {
     return this.textService.getView();
   }
