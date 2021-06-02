@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ConfigService, Style, TextService, View } from '@app/core';
-import { CharacterComponent } from '../../components/character/character.component';
+import { ConfigService, TextService, View } from '@app/core';
 
 @Injectable()
 export class TypingService {
