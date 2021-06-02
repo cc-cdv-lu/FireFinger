@@ -3,28 +3,41 @@
  *
  * Check contents of bla
  * Don't register same mistake twice in a row
- * 
+ *
  */
 
 import { Injectable } from '@angular/core';
+import { LessonStats } from '@app/core/data.types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StatsService {
-  mistakeCount = 0;
+  stats: LessonStats;
   successCount = 0;
 
-  constructor() {}
+  constructor() {
+    this.reset();
+  }
 
   reset() {
-    this.mistakeCount = 0;
     this.successCount = 0;
+    this.stats = {
+      mistakes: 0,
+      time: 0,
+      length: 0,
+      rating: 0,
+    };
   }
+
+  startTimer() {}
+  pauseTimer() {}
+  endTimer() {}
+  resetTimer() {}
 
   registerMistake(bla: any) {
     console.log('Mistake registered.', bla);
-    this.mistakeCount++;
+    this.stats.mistakes++;
   }
   registerSuccess(bla: any) {
     console.log('Success registered.', bla);
@@ -32,13 +45,13 @@ export class StatsService {
   }
 
   getMistakeCount(): number {
-    return this.mistakeCount;
+    return this.stats.mistakes;
   }
 
   getMistakeRatio(): number {
-    const sum = this.mistakeCount + this.successCount;
+    const sum = this.stats.mistakes + this.successCount;
     if (sum > 0) {
-      return this.mistakeCount / sum;
+      return this.stats.mistakes / sum;
     } else {
       return 0;
     }

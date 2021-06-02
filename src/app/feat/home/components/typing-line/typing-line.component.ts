@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import {
   TextService,
   ConfigService,
@@ -8,6 +8,8 @@ import {
   View,
   Style,
   CourseService,
+  UserService,
+  CompletedLesson,
 } from '@app/core';
 import { TypingService } from '../../services/typing/typing.service';
 import { CharacterComponent } from '../character/character.component';
@@ -32,9 +34,11 @@ export class TypingLineComponent implements AfterViewInit {
     private speakService: SpeakService,
     private stringHelper: StringHelperService,
     public typingService: TypingService,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private userService: UserService
   ) {}
   ngAfterViewInit() {
+    // Try to move this up to typing-io? or down to character-component?
     this.charComponent.onTypingSuccess.subscribe((e) => {
       this.textService.advance();
       this.statsService.registerSuccess(e);
@@ -49,6 +53,16 @@ export class TypingLineComponent implements AfterViewInit {
       } else {
         this.speakService.playChar(this.getView().curr);
       }
+    });
+
+    this.textService.onTextFinished.subscribe(() => {
+      // this.userService.
+      const lessonComplete: CompletedLesson = {
+        courseId: this.courseService.currentCourse.id,
+        lessonId: this.courseService.currentLesson.id,
+        date: new Date(Date.now()),
+        stats: this.statsService.stats,
+      };
     });
 
     this.focusInput();
@@ -97,7 +111,6 @@ export class TypingLineComponent implements AfterViewInit {
       return { prev: '', curr: view.curr, next: '' };
     }
     const regexp = new RegExp('[ \n]');
-    console.log('Spliut:', view.next.split(regexp));
     view.next = view.next.split(regexp)[0];
     if (view.prev) {
       const prevSplit = view.prev.split(regexp);

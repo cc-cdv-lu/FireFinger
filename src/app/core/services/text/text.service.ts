@@ -82,6 +82,7 @@ export class TextService {
     const hasFinished = this.updateView();
     if (hasFinished) {
       console.warn('FINISHED!');
+      this.onTextFinished.emit();
     }
     this.onNextCharacter.emit(this.text[this.index]);
   }

@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
+import { User } from '@app/core/data.types'
 import { Storage } from '@capacitor/storage';
 const LAST_USER = 'ff_last_user';
 const USER_LIST = 'ff_user_list';
@@ -72,5 +73,14 @@ export class UserService {
       value: JSON.stringify({ users: this.userlist }),
     });
     console.log('Tried adding new user:', this.userlist);
+  }
+
+  async getUser(username: string): Promise<User> {
+    const list = await  this.getUserlist();
+    return undefined;
+  }
+
+  async editUser(user: User) {
+    
   }
 }
