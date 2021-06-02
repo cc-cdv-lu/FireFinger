@@ -1,6 +1,6 @@
 <div class="typingContainer" *ngIf="isReady()">
   <div class="typingArea" [ngSwitch]="getDisplay()">
-    <app-typing-multiline *ngSwitchCase="multiple_lines"></app-typing-multiline>
+    <app-typing-multiline *ngSwitchCase="'multiple_lines'"></app-typing-multiline>
     <!--
       <app-typing-image *ngSwitchCase="'image'"></app-typing-image>
     -->

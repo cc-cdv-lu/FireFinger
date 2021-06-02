@@ -25,7 +25,10 @@ export class LoginComponent implements OnInit {
     return this.userService.userlist;
   }
 
-  login(username: any) {
+  login(username) {
+    // TODO: THIS NEEDS FIX ASAP
+    console.warn('THIS IS BROKEN, PLEASE FIX');
+    return;
     this.userService.login(username);
   }
 

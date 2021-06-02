@@ -7,7 +7,7 @@
       name="username"
       [(value)]="userService.username"
       ngDefaultControl
-      (ionChange)="login($event.detail.value)"
+      (ionChange)="login($event)"
     >
       <ion-select-option *ngFor="let user of getUserlist()" [value]="user">
         {{ user }}

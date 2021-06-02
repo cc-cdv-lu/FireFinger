@@ -10,6 +10,7 @@ import { CharacterComponent } from './components/character/character.component';
 import { TypingLineComponent } from './components/typing-line/typing-line.component';
 
 import { TypingService } from './services/typing/typing.service';
+import { TypingMultilineComponent } from './components/typing-multiline/typing-multiline.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
     FooterComponent,
     TypingIoComponent,
     TypingLineComponent,
+    TypingMultilineComponent,
     CharacterComponent,
   ],
   providers: [TypingService],

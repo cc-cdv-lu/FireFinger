@@ -85,6 +85,7 @@ export interface Lesson {
   type: 'shuffled_words' | 'shuffled_characters' | 'static'; // Courses interface (text, image, ...)
   display: 'character' | 'word' | 'line' | 'multiple_lines' | 'image'; // Prefered display style
   content: string;
+  language?: string;
   imgSrc?: string;
 }
 // Saved in user

@@ -35,7 +35,6 @@ export class ChaptersComponent implements OnInit {
   loadLesson(course: Course, index: number) {
     this.courseService.setLesson(course, index);
     this.router.navigateByUrl('home');
-    // Navigate to home
   }
 
   isLessonCompleted(courseId: string, lessonId: string): boolean {

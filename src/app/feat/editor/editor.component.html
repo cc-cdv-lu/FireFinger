@@ -25,7 +25,6 @@
           name="Course"
           ngDefaultControl
           [compareWith]="compareWith"
-          (ionChange)="loadedCourse = $event.detail.value"
         >
           <ion-select-option *ngFor="let course of courseList" [value]="course">
             <b>{{ course.name }}</b> ({{ course.lessons.length }})
@@ -65,9 +64,6 @@
         </ion-button>
       </ion-item>
       <ion-item>
-        <ion-button color="warning" [href]="download" [download]="download">
-          Download TEST
-        </ion-button>
         <ion-button color="warning" (click)="debug()">
           <ion-icon name="bug" slot="start"></ion-icon>
           Debug
@@ -199,7 +195,6 @@
             ngDefaultControl
             compareWith="type"
             [(ngModel)]="loadedLesson.type"
-            (ionChange)="loadedLesson.type = $event.detail.value"
           >
             <ion-select-option
               *ngFor="let type of lessonTypes"
@@ -216,7 +211,6 @@
             ngDefaultControl
             compareWith="display"
             [(ngModel)]="loadedLesson.display"
-            (ionChange)="loadedLesson.display = $event.detail.value"
           >
             <ion-select-option
               *ngFor="let display of lessonDisplays"
