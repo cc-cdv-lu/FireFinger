@@ -88,13 +88,14 @@ export class CourseService {
       }
     } else if (lesson.type === 'shuffled_words') {
       for (let i = 0; i < lesson.iterations; i++) {
-        const regexp = new RegExp('[ \n]*');
+        const regexp = new RegExp('[ \n]');
         const split = lesson.content.split(regexp);
+        console.log('Lesson split:', split);
         const randomIndex = Math.round(Math.random() * split.length);
-        text += split[randomIndex] += ' ';
+        text += split[randomIndex] += '\n';
       }
     }
-
+    console.warn('Setting text to:', text);
     this.textService.setText(text);
     this.currentLessonIndex = index;
     this.currentCourse = course;

@@ -21,7 +21,7 @@
         <b>{{ lesson.name }}</b>
       </ion-label>
       <ion-note color="primary" slot="end">
-        {{ lesson.content.length }}
+        {{ lesson.display }} {{ lesson.type }} {{ lesson.content.length }}
       </ion-note>
       <ion-item>
         <ion-button (click)="loadLesson(course, i)"
