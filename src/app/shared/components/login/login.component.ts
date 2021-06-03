@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
 import { Dialog } from '@capacitor/dialog';
 
 import { UserService } from '@app/core';
-import { NewUserComponent } from '../new-user/new-user.component';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +10,7 @@ import { NewUserComponent } from '../new-user/new-user.component';
 })
 export class LoginComponent implements OnInit {
   constructor(
-    public userService: UserService,
-    private modalController: ModalController
+    public userService: UserService
   ) {}
 
   ngOnInit() {}
