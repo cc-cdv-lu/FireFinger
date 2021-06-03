@@ -175,6 +175,21 @@
           ></ion-input>
         </ion-item>
         <ion-item>
+          <ion-label color="tertiary">Language</ion-label>
+          <ion-select
+            name="lang"
+            ngDefaultControl
+            [(ngModel)]="loadedLesson.language"
+          >
+            <ion-select-option
+              *ngFor="let lang of lessonLanguages"
+              [value]="lang.id"
+            >
+              {{ lang.title }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
           <ion-label color="tertiary">ID</ion-label>
           <ion-input
             name="id"

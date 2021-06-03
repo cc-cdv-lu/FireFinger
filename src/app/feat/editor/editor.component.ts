@@ -24,6 +24,11 @@ export class EditorComponent implements OnInit {
     { title: 'Multiple lines', id: 'multiple_lines' },
     { title: 'Image', id: 'image' },
   ];
+  lessonLanguages = [
+    { title: 'German', id: 'de' },
+    { title: 'French', id: 'fr' },
+    { title: 'English', id: 'en' },
+  ];
 
   constructor(private fileService: FileService) {}
 
