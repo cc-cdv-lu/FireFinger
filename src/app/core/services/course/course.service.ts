@@ -9,7 +9,6 @@
  */
 import { Injectable } from '@angular/core';
 import { Course, Lesson } from '@app/core/data.types';
-import { Storage } from '@capacitor/storage';
 import { TextService } from '@app/core/services/text/text.service';
 import { FileService } from '../file/file.service';
 
@@ -78,7 +77,25 @@ export class CourseService {
   }
 
   setLesson(course: Course, index: number) {
-    this.textService.setText(course.lessons[index].content);
+    const lesson = course.lessons[index];
+    let text = '';
+    if (!lesson.type || lesson.type === 'static') {
+      text = lesson.content;
+    } else if (lesson.type === 'shuffled_characters') {
+      for (let i = 0; i < lesson.iterations; i++) {
+        const randomIndex = Math.round(Math.random() * lesson.content.length);
+        text += lesson.content[randomIndex];
+      }
+    } else if (lesson.type === 'shuffled_words') {
+      for (let i = 0; i < lesson.iterations; i++) {
+        const regexp = new RegExp('[ \n]*');
+        const split = lesson.content.split(regexp);
+        const randomIndex = Math.round(Math.random() * split.length);
+        text += split[randomIndex] += ' ';
+      }
+    }
+
+    this.textService.setText(text);
     this.currentLessonIndex = index;
     this.currentCourse = course;
     this.currentLesson = course.lessons[index];

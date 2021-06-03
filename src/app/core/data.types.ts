@@ -87,6 +87,7 @@ export interface Lesson {
   content: string;
   language?: string;
   imgSrc?: string;
+  iterations?: number;
 }
 // Saved in user
 export interface CompletedLesson {

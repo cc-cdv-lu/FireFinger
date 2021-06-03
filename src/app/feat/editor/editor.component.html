@@ -239,6 +239,16 @@
             style="height: 20vh"
           />
         </ion-item>
+        <ion-item *ngIf="loadedLesson.type !== 'static'">
+          <ion-label>Iterations</ion-label>
+          <ion-input
+            type="number"
+            name="iterations"
+            ngDefaultControl
+            placeholder="15"
+            [(ngModel)]="loadedLesson.iterations"
+          ></ion-input>
+        </ion-item>
         <ion-item class="textArea">
           <ion-label position="floating" color="tertiary">Text</ion-label>
           <ion-textarea
