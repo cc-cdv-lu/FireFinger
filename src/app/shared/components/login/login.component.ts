@@ -26,12 +26,11 @@ export class LoginComponent implements OnInit {
   }
 
   login(event: any) {
-    console.log(event)
+    console.log(event);
     const username = event.detail.value;
     this.userService.login(username);
   }
 
-  // TODO: user prompt instead
   async newUser() {
     console.log('Some new user...');
 
@@ -40,8 +39,7 @@ export class LoginComponent implements OnInit {
       message: `Enter username:`,
     });
     if (value) {
-    this.userService.login(value);
-      // Is already triggered by ngModel change
+      this.userService.login(value);
     } else {
       console.warn('Received invalid new user...', cancelled);
     }

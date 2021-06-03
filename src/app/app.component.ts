@@ -28,11 +28,11 @@ export class AppComponent {
 */
 
   public appPages = [
-    { title: 'Home', url: 'home', icon: 'home' },
-    { title: 'Editor', url: 'editor', icon: 'pencil' },
-    { title: 'Chapters', url: 'chapters', icon: 'book' },
-    { title: 'Texts', url: 'texts', icon: 'document-text' },
-    { title: 'Settings', url: '/settings/', icon: 'settings' },
+    { title: 'Home', url: 'home', icon: 'home', accesskey: '1' },
+    { title: 'Editor', url: 'editor', icon: 'pencil', accesskey: '2' },
+    { title: 'Chapters', url: 'chapters', icon: 'book', accesskey: '3' },
+    { title: 'Texts', url: 'texts', icon: 'document-text', accesskey: '4' },
+    { title: 'Settings', url: '/settings/', icon: 'settings', accesskey: '5' },
   ];
   version = version;
   constructor(
