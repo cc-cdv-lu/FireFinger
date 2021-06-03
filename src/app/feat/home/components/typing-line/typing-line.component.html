@@ -1,5 +1,4 @@
 <div class="container">
-  <ion-button (click)="sayLine()">SayLine</ion-button>
   <!--Extract grid as a seperate component? NGSwitch for different types of display styles? -->
   <ion-grid>
     <ion-row *ngIf="getLesson().display === 'image'" class="image">
@@ -27,13 +26,6 @@
     </ion-row>
   </ion-grid>
 
-  <ion-button (click)="typingService.setFontSize(getStyle().fontSize - 1)">
-    <ion-icon name="remove"></ion-icon>
-  </ion-button>
-
-  <ion-button (click)="typingService.setFontSize(getStyle().fontSize + 1)">
-    <ion-icon name="add"></ion-icon>
-  </ion-button>
   <div
     class="center highlight characterhelper"
     *ngIf="getStyle().showHelper"

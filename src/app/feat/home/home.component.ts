@@ -8,20 +8,7 @@ import { QuickSettingsComponent } from '@app/shared/components/quick-settings/qu
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private popoverController: PopoverController) {}
+  constructor() {}
 
   ngOnInit() {}
-
-  async openQuickSettings(event?: any) {
-    const popover = await this.popoverController.create({
-      component: QuickSettingsComponent,
-      cssClass: 'my-custom-class',
-      event: event,
-      translucent: true,
-    });
-    await popover.present();
-
-    const { role } = await popover.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
-  }
 }
