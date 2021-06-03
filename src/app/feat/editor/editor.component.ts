@@ -180,6 +180,16 @@ export class EditorComponent implements OnInit {
     this.createDownload('courses.ff', data);
   }
 
+  getMailTo() {
+    let mailTo = `mailto:julien.hoffmann@cc-cdv.lu?subject=FireFinger%20Cours&body=Hei%20meng%20Couren%20vum%20FireFinger%3A%0D%0A%0D%0A${encodeURI(
+      JSON.stringify(this.courseList)
+    )}`;
+
+    console.log(mailTo);
+
+    return mailTo;
+  }
+
   /**
    * Handle selected file to be imported as course
    * @param event Ion-Input chose file event

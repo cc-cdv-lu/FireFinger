@@ -64,6 +64,12 @@
         </ion-button>
       </ion-item>
       <ion-item>
+        <ion-button *ngIf="courseList?.length > 0" [href]="getMailTo()">
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          Send courses
+        </ion-button>
+      </ion-item>
+      <ion-item>
         <ion-button color="warning" (click)="debug()">
           <ion-icon name="bug" slot="start"></ion-icon>
           Debug
