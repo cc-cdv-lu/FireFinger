@@ -15,7 +15,7 @@ export class UserService {
   constructor() {}
 
   login(username: string) {
-    if (!username) {
+    if (!username || typeof username !== 'string') {
       console.warn('Undefined user tried to login');
       return;
     }

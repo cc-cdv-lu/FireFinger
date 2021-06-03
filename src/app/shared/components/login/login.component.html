@@ -5,7 +5,7 @@
       [disabled]="getUserlist().length === 0"
       placeholder="Select One"
       name="username"
-      [(value)]="userService.username"
+      [(ngModel)]="userService.username"
       ngDefaultControl
       (ionChange)="login($event)"
     >
