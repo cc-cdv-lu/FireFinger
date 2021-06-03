@@ -25,7 +25,9 @@ export class LoginComponent implements OnInit {
     return this.userService.userlist;
   }
 
-  login(username: string) {
+  login(event: any) {
+    console.log(event)
+    const username = event.detail.value;
     this.userService.login(username);
   }
 
@@ -38,7 +40,8 @@ export class LoginComponent implements OnInit {
       message: `Enter username:`,
     });
     if (value) {
-      this.login(value);
+    this.userService.login(value);
+      // Is already triggered by ngModel change
     } else {
       console.warn('Received invalid new user...', cancelled);
     }
