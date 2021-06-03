@@ -83,7 +83,9 @@ export class CourseService {
       text = lesson.content;
     } else if (lesson.type === 'shuffled_characters') {
       for (let i = 0; i < lesson.iterations; i++) {
-        const randomIndex = Math.round(Math.random() * lesson.content.length);
+        const randomIndex = Math.round(
+          Math.random() * (lesson.content.length - 1)
+        );
         text += lesson.content[randomIndex];
       }
     } else if (lesson.type === 'shuffled_words') {
@@ -91,7 +93,7 @@ export class CourseService {
         const regexp = new RegExp('[ \n]');
         const split = lesson.content.split(regexp);
         console.log('Lesson split:', split);
-        const randomIndex = Math.round(Math.random() * split.length);
+        const randomIndex = Math.round(Math.random() * (split.length - 1));
         text += split[randomIndex] += '\n';
       }
     }
