@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { emojisplosion, emojisplosions } from 'emojisplosion';
 
 type Typing = {
   expected: string;
@@ -44,16 +53,36 @@ const impossibleKeys = ['´', '`', 'ß', '�'];
   templateUrl: './character.component.html',
   styleUrls: ['./character.component.scss'],
 })
-export class CharacterComponent {
+export class CharacterComponent implements AfterViewInit {
   @Input() character: string;
   @Output() typingOutput = new EventEmitter<Typing>();
 
   @Output() onTypingError = new EventEmitter<Typing>();
   @Output() onTypingSuccess = new EventEmitter<Typing>();
 
+  @ViewChild('io') io: ElementRef;
+
   isCorrect = true;
   typed: string;
   constructor() {}
+  ngAfterViewInit(): void {
+    console.warn('CHILD:', this.io);
+    this.onTypingSuccess.subscribe(() => {
+      emojisplosion({
+        // container: this.io.nativeElement,
+        emojiCount: () => Math.random() * 15,
+        emojis: ['🔥', '🤙', '👏', '🎆', '🎇', '✨', '🚀', '😀', '😊', '🎉'],
+        physics: {
+          framerate: 60,
+          opacityDecay: 20,
+        },
+        position: () => ({
+          x: innerWidth / 2 + (Math.random() * innerWidth) / 10,
+          y: innerHeight / 2 + innerHeight / 5,
+        }),
+      });
+    });
+  }
 
   keyEvent(event: KeyboardEvent) {
     // To trap focus here...
