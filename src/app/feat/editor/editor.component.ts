@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Course, Lesson, FileService } from '@app/core';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-editor',
@@ -30,7 +31,10 @@ export class EditorComponent implements OnInit {
     { title: 'English', id: 'en' },
   ];
 
-  constructor(private fileService: FileService) {}
+  constructor(
+    private fileService: FileService,
+    private loadingController: LoadingController
+  ) {}
 
   ngOnInit() {
     this.loadAllFromFile();
@@ -75,8 +79,15 @@ export class EditorComponent implements OnInit {
    * Saves everything to file
    */
   async saveAllToFile() {
+    const loading = await this.loadingController.create({
+      message: 'Saving changes, please wait...',
+      showBackdrop: true,
+      duration: 120000,
+    });
+    await loading.present();
     await this.fileService.saveCourses(this.courseList);
     this.savedContent = this.courseList;
+    await loading.dismiss();
   }
 
   // Other
