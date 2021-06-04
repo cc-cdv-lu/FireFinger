@@ -28,6 +28,11 @@ const routes: Routes = [
       import('./feat/chapters/chapters.module').then((m) => m.ChaptersModule),
   },
   {
+    path: 'stats',
+    loadChildren: () =>
+      import('./feat/stats/stats.module').then((m) => m.StatsModule),
+  },
+  {
     path: 'settings',
     loadChildren: () =>
       import('./feat/settings/settings.module').then((m) => m.SettingsModule),
@@ -40,4 +45,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

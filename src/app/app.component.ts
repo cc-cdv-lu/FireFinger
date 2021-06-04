@@ -32,7 +32,8 @@ export class AppComponent {
     { title: 'Editor', url: 'editor', icon: 'pencil', accesskey: '2' },
     { title: 'Chapters', url: 'chapters', icon: 'book', accesskey: '3' },
     { title: 'Texts', url: 'texts', icon: 'document-text', accesskey: '4' },
-    { title: 'Settings', url: '/settings/', icon: 'settings', accesskey: '5' },
+    { title: 'Stats', url: 'stats', icon: 'stats-chart', accesskey: '5' },
+    { title: 'Settings', url: '/settings/', icon: 'settings', accesskey: '6' },
   ];
   version = version;
   constructor(
