@@ -26,13 +26,7 @@ export class TextService {
 
   private view: View = { prev: '', curr: '', next: '' };
 
-  constructor() {
-    this.setText(
-      `Tschüss, schönen Tag noch.\n` +
-        `Schönes Wochenende.\n` +
-        `Mach’s gut. Antwort: Mach’s besser. / Du auch.`
-    );
-  }
+  constructor() {}
 
   /**
    * @returns The current progress in fraction (e.g. 0.3)

@@ -40,4 +40,8 @@ export class FooterComponent implements OnInit {
   getDisplay(): string {
     return this.courseService.getCurrentLesson()?.display;
   }
+
+  getTime() {
+    return this.statsService.getTimer();
+  }
 }

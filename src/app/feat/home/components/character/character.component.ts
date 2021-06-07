@@ -70,7 +70,7 @@ export class CharacterComponent implements AfterViewInit {
     this.onTypingSuccess.subscribe(() => {
       emojisplosion({
         // container: this.io.nativeElement,
-        emojiCount: () => Math.random() * 15,
+        emojiCount: () => Math.random() * 45,
         emojis: ['🔥', '🤙', '👏', '🎆', '🎇', '✨', '🚀', '😀', '😊', '🎉'],
         physics: {
           framerate: 60,

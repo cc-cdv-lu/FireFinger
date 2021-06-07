@@ -27,6 +27,8 @@ export class TypingLineComponent implements AfterViewInit {
   // DEBUG: Change this
   isInputFocused = true;
 
+  // TODO: pause timer when focus is lost
+
   constructor(
     private textService: TextService,
     private configService: ConfigService,
@@ -55,7 +57,14 @@ export class TypingLineComponent implements AfterViewInit {
       }
     });
 
+
+    this.textService.onTextChanged.subscribe(() => {
+      this.statsService.resetTimer();
+      this.statsService.startTimer();
+    });
+
     this.textService.onTextFinished.subscribe(async () => {
+      this.statsService.pauseTimer();
       const lessonComplete: CompletedLesson = {
         courseId: this.courseService.currentCourse.id,
         lessonId: this.courseService.currentLesson.id,

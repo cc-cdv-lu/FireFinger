@@ -15,6 +15,7 @@ import { LessonStats } from '@app/core/data.types';
 export class StatsService {
   stats: LessonStats;
   successCount = 0;
+  timer;
 
   constructor() {
     this.reset();
@@ -30,10 +31,21 @@ export class StatsService {
     };
   }
 
-  startTimer() {}
-  pauseTimer() {}
-  endTimer() {}
-  resetTimer() {}
+  startTimer() {
+    this.timer = setInterval(() => {
+      this.stats.time += 10;
+    }, 10);
+  }
+  pauseTimer() {
+    clearInterval(this.timer);
+  }
+  resetTimer() {
+    clearInterval(this.timer);
+    this.stats.time = 0;
+  }
+  getTimer(): number {
+    return this.stats.time;
+  }
 
   registerMistake(bla: any) {
     console.log('Mistake registered.', bla);
