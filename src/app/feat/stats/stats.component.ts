@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User, UserService, CompletedLesson } from '@app/core';
 
 @Component({
   selector: 'app-stats',
@@ -6,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stats.component.scss'],
 })
 export class StatsComponent implements OnInit {
+  user: User;
 
-  constructor() { }
+  constructor(private userService: UserService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.reloadData();
+  }
 
+  async reloadData() {
+    this.user = await this.userService.getCurrentUser();
+    // display nicely?
+  }
+
+  async deleteCompletedLessons() {
+    await this.reloadData();
+
+    this.user.completedLessons = [];
+    this.userService.editUser(this.user);
+  }
 }

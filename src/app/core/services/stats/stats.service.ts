@@ -14,15 +14,15 @@ import { LessonStats } from '@app/core/data.types';
 })
 export class StatsService {
   stats: LessonStats;
-  successCount = 0;
-  timer;
+  timer: any;
+
+  /*Note: Text length is effectivly equal to successcount */
 
   constructor() {
     this.reset();
   }
 
   reset() {
-    this.successCount = 0;
     this.stats = {
       mistakes: 0,
       time: 0,
@@ -53,7 +53,7 @@ export class StatsService {
   }
   registerSuccess(bla: any) {
     console.log('Success registered.', bla);
-    this.successCount++;
+    this.stats.length++;
   }
 
   getMistakeCount(): number {
@@ -61,7 +61,7 @@ export class StatsService {
   }
 
   getMistakeRatio(): number {
-    const sum = this.stats.mistakes + this.successCount;
+    const sum = this.stats.mistakes + this.stats.length;
     if (sum > 0) {
       return this.stats.mistakes / sum;
     } else {
