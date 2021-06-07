@@ -15,7 +15,6 @@ import {
 })
 export class ChaptersComponent implements OnInit {
   constructor(
-    private fileService: FileService,
     private courseService: CourseService,
     private router: Router,
     private userService: UserService
@@ -28,7 +27,7 @@ export class ChaptersComponent implements OnInit {
   }
 
   async reload() {
-    this.courses = await this.fileService.getCourses();
+    this.courses = await this.courseService.getCourses();
     this.user = await this.userService.getCurrentUser();
   }
 

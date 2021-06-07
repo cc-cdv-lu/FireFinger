@@ -23,7 +23,10 @@ interface SavedSession {
   providedIn: 'root',
 })
 export class CourseService {
-  constructor(private textService: TextService, fileService: FileService) {
+  constructor(
+    private textService: TextService,
+    private fileService: FileService
+  ) {
     // This should be somewhere else...
 
     fileService.onFilesParsedToCourses.subscribe((courses) => {
@@ -74,7 +77,10 @@ export class CourseService {
   /**
    * @returns a list of available courses
    */
-  getCourses(): Course[] {
+  async getCourses(): Promise<Course[]> {
+    if (!this.courses) {
+      this.courses = await this.fileService.getCourses();
+    }
     return this.courses;
   }
 
@@ -131,7 +137,7 @@ export class CourseService {
         text += split[randomIndex] += '\n';
       }
     }
-    console.warn('Setting text to:', text);
+    console.warn('Setting text to:\n', text);
     this.textService.setText(text);
     this.currentLessonIndex = index;
     this.currentCourse = course;

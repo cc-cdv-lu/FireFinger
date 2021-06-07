@@ -34,14 +34,14 @@ export class StatsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('Is it loaded?', this.user, this.completedLessons);
-    if (this.courseService.courses) {
-      this.reloadData();
-    }
+    this.reloadData();
   }
 
   async reloadData() {
     this.user = await this.userService.getCurrentUser();
+
+    // Just to initialize CourseService
+    const courses = await this.courseService.getCourses();
 
     this.completedLessons = [];
     this.user.completedLessons.forEach((lesson) => {
@@ -51,9 +51,9 @@ export class StatsComponent implements OnInit {
         lesson.courseId,
         lesson.lessonId
       );
+      console.log(completed);
       this.completedLessons.push(completed);
     });
-    // display nicely?
   }
 
   async deleteCompletedLessons() {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Course, Lesson, FileService } from '@app/core';
+import { Course, Lesson, CourseService, FileService } from '@app/core';
 import { LoadingController } from '@ionic/angular';
 
 @Component({
@@ -32,6 +32,7 @@ export class EditorComponent implements OnInit {
   ];
 
   constructor(
+    private couresService: CourseService,
     private fileService: FileService,
     private loadingController: LoadingController
   ) {}
@@ -50,7 +51,7 @@ export class EditorComponent implements OnInit {
    * Loads all courses from file
    */
   async loadAllFromFile() {
-    this.courseList = await this.fileService.getCourses();
+    this.courseList = await this.couresService.getCourses();
     this.savedContent = JSON.parse(JSON.stringify(this.courseList)) as Course[];
     if (this.courseList.length > 0) {
       this.loadedCourse = this.courseList[0];
