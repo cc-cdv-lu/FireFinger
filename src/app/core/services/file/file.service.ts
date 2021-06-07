@@ -37,7 +37,7 @@ export class FileService {
   basePath: string = 'FireFinger/docs';
   dir = Directory.Data;
 
-  @Output() onCoursesLoaded: EventEmitter<Course[]> = new EventEmitter<
+  @Output() onFilesParsedToCourses: EventEmitter<Course[]> = new EventEmitter<
     Course[]
   >();
 
@@ -180,7 +180,7 @@ export class FileService {
       output.push(course);
     }
     console.log('Loaded from file:', output);
-    this.onCoursesLoaded.emit(output);
+    this.onFilesParsedToCourses.emit(output);
     return output;
   }
 

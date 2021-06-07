@@ -1,5 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { User, UserService, CompletedLesson } from '@app/core';
+import {
+  User,
+  UserService,
+  CompletedLesson,
+  Course,
+  Lesson,
+  CourseService,
+} from '@app/core';
+
+interface CompletedLessonDisplay extends CompletedLesson {
+  lesson: Lesson;
+  course: Course;
+}
 
 @Component({
   selector: 'app-stats',
@@ -8,17 +20,39 @@ import { User, UserService, CompletedLesson } from '@app/core';
 })
 export class StatsComponent implements OnInit {
   user: User;
+  completedLessons: CompletedLessonDisplay[] = [];
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private courseService: CourseService
+  ) {
     this.userService.onUserChange.subscribe(() => this.reloadData());
+
+    this.courseService.onCoursesLoaded.subscribe((courses) => {
+      this.reloadData();
+    });
   }
 
   ngOnInit() {
-    this.reloadData();
+    console.log('Is it loaded?', this.user, this.completedLessons);
+    if (this.courseService.courses) {
+      this.reloadData();
+    }
   }
 
   async reloadData() {
     this.user = await this.userService.getCurrentUser();
+
+    this.completedLessons = [];
+    this.user.completedLessons.forEach((lesson) => {
+      const completed = lesson as CompletedLessonDisplay;
+      completed.course = this.courseService.getCourse(lesson.courseId);
+      completed.lesson = this.courseService.getLesson(
+        lesson.courseId,
+        lesson.lessonId
+      );
+      this.completedLessons.push(completed);
+    });
     // display nicely?
   }
 

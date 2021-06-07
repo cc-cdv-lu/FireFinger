@@ -7,7 +7,7 @@
  * Serialize current course, lesson and index
  * End of lesson screen + move to next lesson using nextLesson()
  */
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Course, Lesson } from '@app/core/data.types';
 import { TextService } from '@app/core/services/text/text.service';
 import { FileService } from '../file/file.service';
@@ -25,8 +25,11 @@ interface SavedSession {
 export class CourseService {
   constructor(private textService: TextService, fileService: FileService) {
     // This should be somewhere else...
-    /*
-    fileService.onCoursesLoaded.subscribe((courses) => {
+
+    fileService.onFilesParsedToCourses.subscribe((courses) => {
+      this.courses = courses;
+      this.onCoursesLoaded.emit(courses);
+      /*
       if (this.currentCourse && this.currentLesson) {
         return;
       }
@@ -42,9 +45,8 @@ export class CourseService {
             this.textService.setIndex(session.index);
           }
         }
-      });
+      });*/
     });
-    */
 
     this.textService.onTextChanged.subscribe((text: string) => {
       this.currentCourse = undefined;
@@ -58,12 +60,44 @@ export class CourseService {
   currentCourse: Course = undefined;
   currentLesson: Lesson = undefined;
   currentLessonIndex: number = undefined;
+  courses: Course[];
+
+  onCoursesLoaded: EventEmitter<Course[]> = new EventEmitter<Course[]>();
 
   /**
    * @returns the currently loaded course or undefined if none is loaded
    */
   getCurrentCourse(): Course {
     return this.currentCourse;
+  }
+
+  /**
+   * @returns a list of available courses
+   */
+  getCourses(): Course[] {
+    return this.courses;
+  }
+
+  /**
+   * Find course by id
+   * @param id of the course
+   * @returns course with matching id
+   */
+  getCourse(id: string): Course {
+    if (!this.courses) return undefined;
+    return this.courses.find((course) => course.id === id);
+  }
+
+  /**
+   * Find lesson by id
+   * @param courseId id of the course
+   * @param lessonId id of the lesson
+   */
+  getLesson(courseId: string, lessonId: string): Lesson {
+    if (!this.courses) return undefined;
+    const course = this.getCourse(courseId);
+    if (!course) return undefined;
+    return course.lessons.find((lesson) => lesson.id === lessonId);
   }
 
   /**
