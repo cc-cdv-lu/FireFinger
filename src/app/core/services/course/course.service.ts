@@ -30,15 +30,11 @@ export class CourseService {
     private fileService: FileService
   ) {
     // This should be somewhere else...
-    this.tryLoadSavedSession();
+    this.tryLoadingPreviousSession();
 
     fileService.onFilesParsedToCourses.subscribe((courses) => {
       this.courses = courses;
       this.onCoursesLoaded.emit(courses);
-
-      if (this.currentCourse && this.currentLesson) {
-        return;
-      }
     });
 
     this.textService.onTextChanged.subscribe((text: string) => {
@@ -46,10 +42,6 @@ export class CourseService {
       this.currentLesson = undefined;
       this.currentLessonIndex = undefined;
     });
-
-    // Workaround to trigger first load
-
-    // TODO: add eventemitter to fileservice to check if courses are loaded and then set last session
   }
 
   currentCourse: Course = undefined;
@@ -59,7 +51,14 @@ export class CourseService {
 
   onCoursesLoaded: EventEmitter<Course[]> = new EventEmitter<Course[]>();
 
-  async tryLoadSavedSession() {
+  /**
+   * Tries to load previous session. If another session is already is loaded, the loading is stopped.
+   */
+  async tryLoadingPreviousSession() {
+    if (this.currentCourse && this.currentLesson) {
+      return;
+    }
+
     if (!this.courses) this.courses = await this.fileService.getCourses();
 
     const val = await Storage.get({ key: SAVED_SESSION });
@@ -70,7 +69,7 @@ export class CourseService {
     const course = this.getCourse(session.courseId);
 
     const lessonIndex = course.lessons.findIndex(
-      (l) => (l.id = session.lessonId)
+      (l) => (l.id === session.lessonId)
     );
 
     if (course && lessonIndex >= 0 && session.index >= 0) {
@@ -80,6 +79,9 @@ export class CourseService {
     console.log('Loaded previous session.', session);
   }
 
+  /**
+   * Saves current session to storage
+   */
   async saveSession() {
     const savedSession: SavedSession = {
       index: this.textService.getIndex(),
@@ -168,7 +170,6 @@ export class CourseService {
     this.currentLessonIndex = index;
     this.currentCourse = course;
     this.currentLesson = course.lessons[index];
-
   }
 
   nextLesson() {

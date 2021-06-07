@@ -51,7 +51,6 @@ export class StatsComponent implements OnInit {
         lesson.courseId,
         lesson.lessonId
       );
-      console.log(completed);
       this.completedLessons.push(completed);
     });
   }
