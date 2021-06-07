@@ -55,8 +55,8 @@ export class TypingLineComponent implements AfterViewInit {
       } else {
         this.speakService.playChar(this.getView().curr);
       }
+      this.courseService.saveSession();
     });
-
 
     this.textService.onTextChanged.subscribe(() => {
       this.statsService.resetTimer();

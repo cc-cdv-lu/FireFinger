@@ -12,6 +12,8 @@ import { Course, Lesson } from '@app/core/data.types';
 import { TextService } from '@app/core/services/text/text.service';
 import { FileService } from '../file/file.service';
 
+import { Storage } from '@capacitor/storage';
+
 const SAVED_SESSION = 'SAVED_SESSION';
 interface SavedSession {
   index: number;
@@ -28,27 +30,15 @@ export class CourseService {
     private fileService: FileService
   ) {
     // This should be somewhere else...
+    this.tryLoadSavedSession();
 
     fileService.onFilesParsedToCourses.subscribe((courses) => {
       this.courses = courses;
       this.onCoursesLoaded.emit(courses);
-      /*
+
       if (this.currentCourse && this.currentLesson) {
         return;
       }
-      Storage.get({ key: SAVED_SESSION }).then((val) => {
-        if (val && val.value) {
-          const session = JSON.parse(val.value) as SavedSession;
-          const course = courses.find((c) => (c.id = session.courseId));
-          const lessonIndex = course.lessons.findIndex(
-            (l) => (l.id = session.lessonId)
-          );
-          if (course && lessonIndex && session.index) {
-            this.setLesson(course, lessonIndex);
-            this.textService.setIndex(session.index);
-          }
-        }
-      });*/
     });
 
     this.textService.onTextChanged.subscribe((text: string) => {
@@ -56,6 +46,8 @@ export class CourseService {
       this.currentLesson = undefined;
       this.currentLessonIndex = undefined;
     });
+
+    // Workaround to trigger first load
 
     // TODO: add eventemitter to fileservice to check if courses are loaded and then set last session
   }
@@ -66,6 +58,40 @@ export class CourseService {
   courses: Course[];
 
   onCoursesLoaded: EventEmitter<Course[]> = new EventEmitter<Course[]>();
+
+  async tryLoadSavedSession() {
+    if (!this.courses) this.courses = await this.fileService.getCourses();
+
+    const val = await Storage.get({ key: SAVED_SESSION });
+    if (!val?.value) return console.warn('No previous session found...');
+    console.warn('Loaded from storage:', val.value);
+
+    const session = JSON.parse(val.value) as SavedSession;
+    const course = this.getCourse(session.courseId);
+
+    const lessonIndex = course.lessons.findIndex(
+      (l) => (l.id = session.lessonId)
+    );
+
+    if (course && lessonIndex >= 0 && session.index >= 0) {
+      this.setLesson(course, lessonIndex);
+      this.textService.setIndex(session.index);
+    }
+    console.log('Loaded previous session.', session);
+  }
+
+  async saveSession() {
+    const savedSession: SavedSession = {
+      index: this.textService.getIndex(),
+      courseId: this.getCurrentCourse().id,
+      lessonId: this.getCurrentLesson().id,
+    };
+    Storage.set({
+      key: SAVED_SESSION,
+      value: JSON.stringify(savedSession),
+    });
+    console.log('saved session:', savedSession);
+  }
 
   /**
    * @returns the currently loaded course or undefined if none is loaded
@@ -142,6 +168,7 @@ export class CourseService {
     this.currentLessonIndex = index;
     this.currentCourse = course;
     this.currentLesson = course.lessons[index];
+
   }
 
   nextLesson() {
