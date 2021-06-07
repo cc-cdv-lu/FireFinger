@@ -231,7 +231,8 @@ export class EditorComponent implements OnInit {
 
   async uploadImage(event) {
     const file = event.target.files[0];
-    const base64 = await this.getBase64(file);
+    let base64 = await this.getBase64(file);
+    base64 = this.resizeBase64Image(base64, 400, 350);
     if (base64) {
       this.loadedLesson.imgSrc = base64;
     }
@@ -244,6 +245,35 @@ export class EditorComponent implements OnInit {
       reader.onload = () => resolve(reader.result as string);
       reader.onerror = (error) => reject(error);
     });
+  }
+
+  private resizeBase64Image(
+    base64Str: string,
+    maxWidth: number = 400,
+    maxHeight: number = 350
+  ) {
+    const img = new Image();
+    img.src = base64Str;
+    const canvas = document.createElement('canvas');
+    let width = img.width;
+    let height = img.height;
+
+    if (width > height) {
+      if (width > maxWidth) {
+        height *= maxWidth / width;
+        width = maxWidth;
+      }
+    } else {
+      if (height > maxHeight) {
+        width *= maxHeight / height;
+        height = maxHeight;
+      }
+    }
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, width, height);
+    return canvas.toDataURL();
   }
 
   /**
