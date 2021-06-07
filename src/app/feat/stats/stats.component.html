@@ -32,7 +32,7 @@
       </ion-row>
       <ion-row *ngFor="let lesson of user.completedLessons">
         <ion-col>{{ lesson.date | date: "dd/MM/YYYY HH:mm" }}</ion-col>
-        <ion-col>{{ lesson.courseId }} - {{ lesson.courseId }}</ion-col>
+        <ion-col>{{ lesson.courseId }} - {{ lesson.lessonId }}</ion-col>
 
         <ion-col>{{ lesson.stats.time | date: "mm:ss:SS" }}</ion-col>
         <ion-col>{{ lesson.stats.mistakes }} </ion-col>
