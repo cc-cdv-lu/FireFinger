@@ -8,9 +8,10 @@
  * End of lesson screen + move to next lesson using nextLesson()
  */
 import { EventEmitter, Injectable } from '@angular/core';
-import { Course, Lesson } from '@app/core/data.types';
+import { Course, Lesson, LessonStats } from '@app/core/data.types';
 import { TextService } from '@app/core/services/text/text.service';
 import { FileService } from '../file/file.service';
+import { StatsService } from '../stats/stats.service';
 
 import { Storage } from '@capacitor/storage';
 
@@ -19,6 +20,7 @@ interface SavedSession {
   index: number;
   courseId: string;
   lessonId: string;
+  stats?: LessonStats;
 }
 
 @Injectable({
@@ -27,7 +29,8 @@ interface SavedSession {
 export class CourseService {
   constructor(
     private textService: TextService,
-    private fileService: FileService
+    private fileService: FileService,
+    private statsService: StatsService
   ) {
     // This should be somewhere else...
     this.tryLoadingPreviousSession();
@@ -68,8 +71,10 @@ export class CourseService {
     const session = JSON.parse(val.value) as SavedSession;
     const course = this.getCourse(session.courseId);
 
+    if (session.stats) this.statsService.stats = session.stats;
+
     const lessonIndex = course.lessons.findIndex(
-      (l) => (l.id === session.lessonId)
+      (l) => l.id === session.lessonId
     );
 
     if (course && lessonIndex >= 0 && session.index >= 0) {
@@ -87,6 +92,7 @@ export class CourseService {
       index: this.textService.getIndex(),
       courseId: this.getCurrentCourse().id,
       lessonId: this.getCurrentLesson().id,
+      stats: this.statsService.stats
     };
     Storage.set({
       key: SAVED_SESSION,

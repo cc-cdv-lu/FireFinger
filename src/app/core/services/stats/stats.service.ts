@@ -32,6 +32,7 @@ export class StatsService {
   }
 
   startTimer() {
+    if(this.timer) return;
     this.timer = setInterval(() => {
       this.stats.time += 10;
     }, 10);
