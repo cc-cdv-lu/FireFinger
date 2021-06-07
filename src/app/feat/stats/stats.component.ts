@@ -9,7 +9,9 @@ import { User, UserService, CompletedLesson } from '@app/core';
 export class StatsComponent implements OnInit {
   user: User;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) {
+    this.userService.onUserChange.subscribe(() => this.reloadData());
+  }
 
   ngOnInit() {
     this.reloadData();

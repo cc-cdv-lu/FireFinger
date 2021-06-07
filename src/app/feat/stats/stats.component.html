@@ -4,29 +4,41 @@
       <h2>Stats for user {{ user.name }}</h2>
     </ion-title>
 
-      <ion-button slot="end" (click)="deleteCompletedLessons()">
+    <ion-buttons slot="end">
+      <ion-button (click)="reloadData()">
+        <ion-icon name="reload" slot="start"></ion-icon>
+        Reload
+      </ion-button>
+      <ion-button (click)="deleteCompletedLessons()">
         <ion-icon name="trash" slot="start"></ion-icon>
         Clear
       </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>Date</ion-col>
-      <ion-col>CourseId-LessonId</ion-col>
-      <ion-col>Time</ion-col>
-      <ion-col>Mistakes</ion-col>
-      <ion-col>Length</ion-col>
-      <ion-col>Rating</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let lesson of user.completedLessons">
-      <ion-col>{{ lesson.date | date: "dd/MM/YYYY HH:mm" }}</ion-col>
-      <ion-col>{{ lesson.courseId }} - {{ lesson.courseId }}</ion-col>
+  <ion-list>
+    <ion-list-header>
+      <h3>Stats</h3>
+    </ion-list-header>
 
-      <ion-col>{{ lesson.stats.time | date: "mm:ss:SS" }}</ion-col>
-      <ion-col>{{ lesson.stats.mistakes }} </ion-col>
-      <ion-col>{{ lesson.stats.length }} </ion-col>
-      <ion-col>{{ lesson.stats.rating }} </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col>Date</ion-col>
+        <ion-col>CourseId-LessonId</ion-col>
+        <ion-col>Time</ion-col>
+        <ion-col>Mistakes</ion-col>
+        <ion-col>Length</ion-col>
+        <ion-col>Rating</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let lesson of user.completedLessons">
+        <ion-col>{{ lesson.date | date: "dd/MM/YYYY HH:mm" }}</ion-col>
+        <ion-col>{{ lesson.courseId }} - {{ lesson.courseId }}</ion-col>
+
+        <ion-col>{{ lesson.stats.time | date: "mm:ss:SS" }}</ion-col>
+        <ion-col>{{ lesson.stats.mistakes }} </ion-col>
+        <ion-col>{{ lesson.stats.length }} </ion-col>
+        <ion-col>{{ lesson.stats.rating }} </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
 </div>
