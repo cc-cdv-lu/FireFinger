@@ -127,6 +127,7 @@ export class EditorComponent implements OnInit {
       id: 'lessonID-' + Date.now(),
       name: 'Lesson name here',
       type: 'static',
+      iterations: 15,
       content: '',
     } as Lesson;
     this.loadedCourse.lessons.push(newLesson);

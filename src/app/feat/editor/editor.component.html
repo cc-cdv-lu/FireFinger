@@ -108,6 +108,8 @@
           <ion-label color="primary">ID</ion-label>
           <ion-input
             name="id"
+            disabled
+            required
             ngDefaultControl
             [(ngModel)]="loadedCourse.id"
           ></ion-input>
@@ -190,6 +192,8 @@
           <ion-label color="tertiary">ID</ion-label>
           <ion-input
             name="id"
+            disabled
+            required
             ngDefaultControl
             [(ngModel)]="loadedLesson.id"
           ></ion-input>
@@ -254,6 +258,7 @@
             ngDefaultControl
             placeholder="15"
             [(ngModel)]="loadedLesson.iterations"
+            required
           ></ion-input>
         </ion-item>
         <ion-item class="textArea">
