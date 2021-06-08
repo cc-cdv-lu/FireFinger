@@ -1,3 +1,11 @@
 .container {
-    color: black;
+  color: black;
+  overflow-y: scroll;
+}
+
+.header {
+  font-weight: bold;
+}
+ion-list {
+  padding-top: 0;
 }

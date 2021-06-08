@@ -1,7 +1,7 @@
 <div class="container">
   <ion-toolbar color="tertiary">
     <ion-title>
-      <h2>Stats for user {{ user?.name || '???' }}</h2>
+      <h2>Stats for user {{ user?.name || "???" }}</h2>
     </ion-title>
 
     <ion-buttons slot="end">
@@ -17,14 +17,15 @@
   </ion-toolbar>
 
   <ion-list *ngIf="completedLessons">
-    <ion-list-header>
-      <h3>Stats</h3>
+    <ion-list-header color="primary">
+      <h3>History</h3>
     </ion-list-header>
 
     <ion-grid>
-      <ion-row>
+      <ion-row class="header">
         <ion-col>Date</ion-col>
-        <ion-col>CourseId-LessonId</ion-col>
+        <ion-col>Course</ion-col>
+        <ion-col>Lesson</ion-col>
         <ion-col>Time</ion-col>
         <ion-col>Mistakes</ion-col>
         <ion-col>Length</ion-col>
@@ -32,7 +33,8 @@
       </ion-row>
       <ion-row *ngFor="let lesson of completedLessons">
         <ion-col>{{ lesson.date | date: "dd/MM/YYYY HH:mm" }}</ion-col>
-        <ion-col>{{ lesson.course?.name }} - {{ lesson.lesson?.name }}</ion-col>
+        <ion-col>{{ lesson.course?.name }}</ion-col>
+        <ion-col>{{ lesson.lesson?.name }}</ion-col>
 
         <ion-col>{{ lesson.stats.time | date: "mm:ss:SS" }}</ion-col>
         <ion-col>{{ lesson.stats.mistakes }} </ion-col>
@@ -40,5 +42,24 @@
         <ion-col>{{ lesson.stats.rating }} </ion-col>
       </ion-row>
     </ion-grid>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header color="primary">
+      <h3>Overall stats</h3>
+    </ion-list-header>
+
+    <ion-item>...</ion-item>
+    <ion-item>...</ion-item>
+    <ion-item>...</ion-item>
+    <ion-item>...</ion-item>
+    <ion-item>...</ion-item>
+    <ion-item>...</ion-item>
+    <ion-item>...</ion-item>
+    <ion-item>...</ion-item>
+    <ion-item>...</ion-item>
+    <ion-item>...</ion-item>
+    <ion-item>...</ion-item>
+    <ion-item>...</ion-item>
   </ion-list>
 </div>
