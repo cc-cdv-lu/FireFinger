@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   CourseService,
-  FileService,
   Course,
   UserService,
   User,
