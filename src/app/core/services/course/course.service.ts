@@ -66,7 +66,6 @@ export class CourseService {
 
     const val = await Storage.get({ key: SAVED_SESSION });
     if (!val?.value) return console.warn('No previous session found...');
-    console.warn('Loaded from storage:', val.value);
 
     const session = JSON.parse(val.value) as SavedSession;
     const course = this.getCourse(session.courseId);
@@ -98,7 +97,13 @@ export class CourseService {
       key: SAVED_SESSION,
       value: JSON.stringify(savedSession),
     });
-    console.log('saved session:', savedSession);
+  }
+
+  /**
+   * Clear saved session from storage
+   */
+  async clearSession() {
+    await Storage.remove({ key: SAVED_SESSION });
   }
 
   /**

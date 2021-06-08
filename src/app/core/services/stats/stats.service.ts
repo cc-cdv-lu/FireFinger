@@ -62,11 +62,9 @@ export class StatsService {
   }
 
   registerMistake(typing: Typing) {
-    console.log('Mistake registered.', typing);
     this.stats.mistakes++;
   }
   registerSuccess(typing: Typing) {
-    console.log('Success registered.', typing);
     this.stats.length++;
   }
 

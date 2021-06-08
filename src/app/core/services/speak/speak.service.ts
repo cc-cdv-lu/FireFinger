@@ -54,7 +54,6 @@ export class SpeakService {
     */
     const config = this.configService.getTTS();
     const options: TTSOptions = { ...config, text, lang };
-    console.log('Using these options: ', options);
     await TextToSpeech.speak(options);
   }
 

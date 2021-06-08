@@ -62,7 +62,6 @@ export class CharacterComponent implements AfterViewInit {
   typed: string;
   constructor() {}
   ngAfterViewInit(): void {
-    console.warn('CHILD:', this.io);
     this.onTypingSuccess.subscribe(() => {
       emojisplosion({
         // container: this.io.nativeElement,
