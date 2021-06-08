@@ -33,7 +33,7 @@ export class CourseService {
     private statsService: StatsService
   ) {
     // This should be somewhere else...
-    this.tryLoadingPreviousSession();
+    this.restorePreviousSession();
 
     fileService.onFilesParsedToCourses.subscribe((courses) => {
       this.courses = courses;
@@ -57,7 +57,7 @@ export class CourseService {
   /**
    * Tries to load previous session. If another session is already is loaded, the loading is stopped.
    */
-  async tryLoadingPreviousSession() {
+  async restorePreviousSession() {
     if (this.currentCourse && this.currentLesson) {
       return;
     }
