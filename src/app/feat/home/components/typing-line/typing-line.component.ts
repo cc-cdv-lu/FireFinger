@@ -59,6 +59,7 @@ export class TypingLineComponent implements AfterViewInit {
       if (this.textService.getIndex() < this.textService.getText().length) {
         this.courseService.saveSession();
       } else {
+        this.statsService.pauseTimer();
         this.courseService.clearSession();
       }
     });
