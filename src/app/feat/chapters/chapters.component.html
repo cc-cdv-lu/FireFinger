@@ -25,17 +25,25 @@
           *ngIf="isLessonCompleted(course.id, lesson.id)"
         >
         </ion-icon>
+        <ion-icon
+          slot="start"
+          color="default"
+          icon="ellipse-outline"
+          *ngIf="!isLessonCompleted(course.id, lesson.id)"
+        >
+        </ion-icon>
+
+        <ion-button (click)="loadLesson(course, i)">
+          <ion-icon name="play" slot="start"></ion-icon>
+          Load
+        </ion-button>
+
         <ion-label>
           <b>{{ lesson.name }}</b>
         </ion-label>
         <ion-note color="primary" slot="end">
           {{ lesson.display }} {{ lesson.type }} {{ lesson.content.length }}
         </ion-note>
-        <ion-item>
-          <ion-button (click)="loadLesson(course, i)"
-            >Load {{ lesson.name }}</ion-button
-          >
-        </ion-item>
       </ion-item>
     </div>
   </ion-list>
