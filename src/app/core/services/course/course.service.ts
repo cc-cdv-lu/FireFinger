@@ -117,7 +117,7 @@ export class CourseService {
    * @returns a list of available courses
    */
   async getCourses(): Promise<Course[]> {
-    if (!this.courses) {
+    if (!this.courses || this.courses.length === 0) {
       this.courses = await this.fileService.getCourses();
     }
     return this.courses;

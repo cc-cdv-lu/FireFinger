@@ -1,4 +1,18 @@
 <div class="container">
+  <ion-toolbar color="tertiary">
+    <ion-title>Editor</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button *ngIf="courseList?.length > 0" (click)="exportCourses()">
+        <ion-icon name="download-outline" slot="start"></ion-icon>
+        Export courses
+      </ion-button>
+      <ion-button *ngIf="courseList?.length > 0" [href]="getMailTo()">
+        <ion-icon name="mail-outline" slot="start"></ion-icon>
+        Send courses
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
   <div class="courseList">
     <ion-list>
       <ion-list-header color="primary">
@@ -57,18 +71,7 @@
           accept=".ff, text/plain"
         ></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-button *ngIf="courseList?.length > 0" (click)="exportCourses()">
-          <ion-icon name="download-outline" slot="start"></ion-icon>
-          Export courses
-        </ion-button>
-      </ion-item>
-      <ion-item>
-        <ion-button *ngIf="courseList?.length > 0" [href]="getMailTo()">
-          <ion-icon name="mail-outline" slot="start"></ion-icon>
-          Send courses
-        </ion-button>
-      </ion-item>
+
       <ion-item>
         <ion-button color="warning" (click)="debug()">
           <ion-icon name="bug" slot="start"></ion-icon>
@@ -160,13 +163,13 @@
   <div class="editorArea">
     <div class="lessonSettings" *ngIf="loadedLesson">
       <ion-list>
-        <ion-list-header color="tertiary">
+        <ion-list-header color="secondary">
           <ion-label>
             <h3>Lesson settings</h3>
           </ion-label>
         </ion-list-header>
         <ion-item>
-          <ion-label color="tertiary">Name</ion-label>
+          <ion-label color="secondary">Name</ion-label>
           <ion-input
             name="Name"
             ngDefaultControl
@@ -174,7 +177,7 @@
           ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label color="tertiary">Language</ion-label>
+          <ion-label color="secondary">Language</ion-label>
           <ion-select
             name="lang"
             ngDefaultControl
@@ -189,7 +192,7 @@
           </ion-select>
         </ion-item>
         <ion-item>
-          <ion-label color="tertiary">ID</ion-label>
+          <ion-label color="secondary">ID</ion-label>
           <ion-input
             name="id"
             disabled
@@ -199,7 +202,7 @@
           ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label color="tertiary">Description</ion-label>
+          <ion-label color="secondary">Description</ion-label>
           <ion-input
             name="Description"
             ngDefaultControl
@@ -262,7 +265,7 @@
           ></ion-input>
         </ion-item>
         <ion-item class="textArea">
-          <ion-label position="floating" color="tertiary">Text</ion-label>
+          <ion-label position="floating" color="secondary">Text</ion-label>
           <ion-textarea
             rows="20"
             name="Content"

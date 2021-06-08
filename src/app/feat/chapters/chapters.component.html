@@ -1,33 +1,42 @@
-<ion-list>
-  <ion-item color="secondary">
-    <ion-button (click)="reload()">Reload</ion-button>
-  </ion-item>
-  <div class="course" *ngFor="let course of courses">
-    <ion-list-header color="primary">
-      {{ course.name }}
-      <ion-note color="primary" slot="end">
-        {{ course.lessons?.length }}
-      </ion-note>
-    </ion-list-header>
-    <ion-item *ngFor="let lesson of course.lessons; let i = index">
-      <ion-icon
-        slot="start"
-        color="secondary"
-        icon="checkmark-circle"
-        *ngIf="isLessonCompleted(course.id, lesson.id)"
-      >
-      </ion-icon>
-      <ion-label>
-        <b>{{ lesson.name }}</b>
-      </ion-label>
-      <ion-note color="primary" slot="end">
-        {{ lesson.display }} {{ lesson.type }} {{ lesson.content.length }}
-      </ion-note>
-      <ion-item>
-        <ion-button (click)="loadLesson(course, i)"
-          >Load {{ lesson.name }}</ion-button
+<div class="container">
+  <ion-toolbar color="tertiary">
+    <ion-title>Chapters</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="reload()">
+        <ion-icon name="reload" slot="start"></ion-icon>
+        Reload
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-list>
+    <div class="course" *ngFor="let course of courses">
+      <ion-list-header color="primary">
+        {{ course.name }}
+        <ion-note color="primary" slot="end">
+          {{ course.lessons?.length }}
+        </ion-note>
+      </ion-list-header>
+      <ion-item *ngFor="let lesson of course.lessons; let i = index">
+        <ion-icon
+          slot="start"
+          color="secondary"
+          icon="checkmark-circle"
+          *ngIf="isLessonCompleted(course.id, lesson.id)"
         >
+        </ion-icon>
+        <ion-label>
+          <b>{{ lesson.name }}</b>
+        </ion-label>
+        <ion-note color="primary" slot="end">
+          {{ lesson.display }} {{ lesson.type }} {{ lesson.content.length }}
+        </ion-note>
+        <ion-item>
+          <ion-button (click)="loadLesson(course, i)"
+            >Load {{ lesson.name }}</ion-button
+          >
+        </ion-item>
       </ion-item>
-    </ion-item>
-  </div>
-</ion-list>
+    </div>
+  </ion-list>
+</div>

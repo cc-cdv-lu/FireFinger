@@ -31,7 +31,7 @@ export class AppComponent {
     { title: 'Home', url: 'home', icon: 'home', accesskey: '1' },
     { title: 'Editor', url: 'editor', icon: 'pencil', accesskey: '2' },
     { title: 'Chapters', url: 'chapters', icon: 'book', accesskey: '3' },
-    { title: 'Texts', url: 'texts', icon: 'document-text', accesskey: '4' },
+    /*{ title: 'Texts', url: 'texts', icon: 'document-text', accesskey: '4' },*/
     { title: 'Stats', url: 'stats', icon: 'stats-chart', accesskey: '5' },
     { title: 'Settings', url: '/settings/', icon: 'settings', accesskey: '6' },
   ];
