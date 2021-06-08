@@ -97,6 +97,11 @@ export interface CompletedLesson {
   stats: LessonStats;
 }
 
+export interface Typing {
+  expected: string;
+  typed: string;
+}
+
 export const DEFAULT_COURSE: Course = {
   description: '(No description)',
   id: Date.now().toString(),

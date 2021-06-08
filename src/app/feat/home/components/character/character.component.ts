@@ -7,12 +7,8 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { emojisplosion, emojisplosions } from 'emojisplosion';
-
-type Typing = {
-  expected: string;
-  typed: string;
-};
+import { Typing } from '@app/core';
+import { emojisplosion } from 'emojisplosion';
 
 const ignoreKeys = [
   'ContextMenu',
@@ -89,6 +85,10 @@ export class CharacterComponent implements AfterViewInit {
     if (event.key === 'Tab') {
       event.preventDefault();
     }
+    // We are already at the end of the text...
+    if (this.character === '✓') {
+      return;
+    }
 
     // Ignores everything like Shift, Tab, Control, Dead, ...
     if (ignoreKeys.includes(event.key)) {
@@ -99,7 +99,6 @@ export class CharacterComponent implements AfterViewInit {
       console.log('Should probably ignore this...', event.key);
       return;
     }
-
     const typing = { expected: this.character, typed: event.key };
     this.typingOutput.emit(typing);
     this.isCorrect =

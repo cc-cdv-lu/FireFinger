@@ -92,7 +92,7 @@ export class CourseService {
       index: this.textService.getIndex(),
       courseId: this.getCurrentCourse().id,
       lessonId: this.getCurrentLesson().id,
-      stats: this.statsService.stats
+      stats: this.statsService.stats,
     };
     Storage.set({
       key: SAVED_SESSION,
@@ -172,6 +172,7 @@ export class CourseService {
       }
     }
     console.warn('Setting text to:\n', text);
+    this.statsService.reset();
     this.textService.setText(text);
     this.currentLessonIndex = index;
     this.currentCourse = course;
