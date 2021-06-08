@@ -87,7 +87,7 @@ export class EditorComponent implements OnInit {
     });
     await loading.present();
     await this.fileService.saveCourses(this.courseList);
-    this.savedContent = this.courseList;
+    this.savedContent = JSON.parse(JSON.stringify(this.courseList)) as Course[];
     await loading.dismiss();
   }
 
