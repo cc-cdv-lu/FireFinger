@@ -88,7 +88,9 @@ export class TypingLineComponent implements AfterViewInit {
       console.log('Updated user:', user);
     });
 
-    this.focusInput();
+    setTimeout(() => {
+      this.focusInput();
+    });
 
     this.charComponent.onTypingError.subscribe((e) => {
       this.statsService.registerMistake(e);
@@ -100,7 +102,7 @@ export class TypingLineComponent implements AfterViewInit {
     if (input) {
       input.setAttribute('tabindex', '1');
       input.focus();
-      console.log('Setting focus to input...');
+      console.warn('Setting focus to input...');
     }
   }
 

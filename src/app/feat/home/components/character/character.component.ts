@@ -80,7 +80,8 @@ export class CharacterComponent implements AfterViewInit {
 
     setTimeout(() => {
       this.io.nativeElement.focus();
-    }, 100)
+      console.warn('Focus was set');
+    }, 100);
   }
 
   keyEvent(event: KeyboardEvent) {
