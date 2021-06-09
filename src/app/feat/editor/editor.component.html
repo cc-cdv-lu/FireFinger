@@ -140,7 +140,11 @@
             Add new lesson
           </ion-button>
         </ion-list-header>
+        <ion-item *ngIf="loadedCourse.lessons.length === 0">
+          <ion-label color="danger"><i>- No lessons present -</i></ion-label>
+        </ion-item>
         <ion-item
+        (click)="loadedLesson = lesson"
           *ngFor="let lesson of loadedCourse.lessons"
           [color]="lesson.id === loadedLesson?.id ? 'secondary' : ''"
         >

@@ -125,7 +125,7 @@ export class EditorComponent implements OnInit {
       description: 'Enter lesson description or leave empty',
       display: 'line',
       id: 'lessonID-' + Date.now(),
-      name: 'Lesson name here',
+      name: 'New lesson',
       type: 'static',
       iterations: 15,
       content: '',
