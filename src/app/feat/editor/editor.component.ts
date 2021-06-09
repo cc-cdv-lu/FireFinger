@@ -242,13 +242,12 @@ export class EditorComponent implements OnInit {
 
   /**
    * Creates URL that opens the default Mail program via a prefilled e-mail containing the all courses with all the lessons
+   * Bug: Simply does nothing when there are image lessons in the list
    */
   getMailTo() {
     let mailTo = `mailto:julien.hoffmann@cc-cdv.lu?subject=FireFinger%20Cours&body=Hei%20meng%20Couren%20vum%20FireFinger%3A%0D%0A%0D%0A${encodeURI(
       JSON.stringify(this.courseList)
     )}`;
-
-    console.log('Sending mail to:', { mailTo });
 
     return mailTo;
   }
