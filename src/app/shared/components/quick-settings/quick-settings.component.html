@@ -119,6 +119,14 @@
     </ion-range>
   </ion-item>
 
+  <ion-item>
+    <ion-label>Test speech</ion-label>
+    <ion-button color="tertiary" size="small" (click)="ttsTest()">
+      <ion-icon name="play" slot="start"></ion-icon>
+      Play test
+    </ion-button>
+  </ion-item>
+
   <ion-item *ngIf="hasChanges()">
     <ion-button color="tertiary" slot="end" (click)="saveConfig()">
       <ion-icon slot="start" name="save"></ion-icon>

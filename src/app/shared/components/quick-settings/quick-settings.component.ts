@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Config, ConfigService } from '@app/core/services';
+import { Config, ConfigService, SpeakService } from '@app/core/services';
 
 @Component({
   selector: 'app-quick-settings',
@@ -12,7 +12,7 @@ export class QuickSettingsComponent implements OnInit {
   maxFontSize = 100;
   savedConfig: string;
 
-  constructor(private configService: ConfigService) {}
+  constructor(private configService: ConfigService, private speakService: SpeakService) {}
 
   ngOnInit() {
     this.updateSavedConfig();
@@ -25,6 +25,11 @@ export class QuickSettingsComponent implements OnInit {
   saveConfig() {
     this.updateSavedConfig();
     return this.configService.saveConfig();
+  }
+
+  ttsTest() {
+    const text = 'Das ist ein Test';
+    this.speakService.play(text);
   }
 
   private updateSavedConfig() {

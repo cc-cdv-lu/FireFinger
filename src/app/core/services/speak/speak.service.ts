@@ -57,7 +57,7 @@ export class SpeakService {
     await TextToSpeech.speak(options);
   }
 
-  play(str: string, type: number) {
+  play(str: string, type: number = 1) {
     if (!str || str.length === 0) {
       return;
     }
