@@ -65,14 +65,18 @@ export class CharacterComponent implements AfterViewInit {
     this.onTypingSuccess.subscribe(() => {
       emojisplosion({
         // container: this.io.nativeElement,
-        emojiCount: () => Math.random() * 45,
+        emojiCount: () => Math.random() * 15,
         emojis: ['🔥', '🤙', '👏', '🎆', '🎇', '✨', '🚀', '😀', '😊', '🎉'],
         physics: {
           framerate: 60,
           opacityDecay: 20,
+          fontSize: {
+            min: 16,
+            max: 75,
+          },
         },
         position: () => ({
-          x: innerWidth / 2 + (Math.random() * innerWidth) / 10,
+          x: innerWidth / 2 + (Math.random() * innerWidth) / 5,
           y: innerHeight / 2 + innerHeight / 5,
         }),
       });
