@@ -248,6 +248,8 @@ export class EditorComponent implements OnInit {
       JSON.stringify(this.courseList)
     )}`;
 
+    console.log('Sending mail to:', { mailTo });
+
     return mailTo;
   }
 
