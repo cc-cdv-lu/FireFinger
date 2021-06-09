@@ -109,7 +109,7 @@ export class TextService {
       console.warn('Reached end...');
       this.view.curr = '✓';
       this.view.prev = this.text;
-      this.onTextFinished.emit();
+      this.view.next = '';
       return true;
     }
 

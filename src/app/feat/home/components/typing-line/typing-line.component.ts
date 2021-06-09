@@ -70,6 +70,7 @@ export class TypingLineComponent implements AfterViewInit {
     });
 
     this.textService.onTextFinished.subscribe(async () => {
+      console.warn('End of text reached, saving progress...');
       this.statsService.pauseTimer();
       const lessonComplete: CompletedLesson = {
         courseId: this.courseService.currentCourse.id,
