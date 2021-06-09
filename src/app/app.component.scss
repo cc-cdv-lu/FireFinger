@@ -5,7 +5,8 @@
 }
 
 ion-menu {
-  width: 10vw;
+  max-width: 25vw;
+  min-width: 10vw;
 }
 
 ion-menu ion-content {
