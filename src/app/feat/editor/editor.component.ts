@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Course, Lesson, CourseService, FileService } from '@app/core';
-import { LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-editor',
@@ -34,7 +34,8 @@ export class EditorComponent implements OnInit {
   constructor(
     private couresService: CourseService,
     private fileService: FileService,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -165,28 +166,69 @@ export class EditorComponent implements OnInit {
    * Deletes course at the given index
    * @param courseId index of course
    */
-  deleteCourse(courseId: string) {
+  async deleteCourse(courseId: string) {
     const index = this.courseList.findIndex((course) => course.id === courseId);
-    if (index >= 0) {
-      this.courseList.splice(index, 1);
-    }
-    if (this.courseList.length > 0) {
-      this.loadedCourse = this.courseList[0];
-    }
+    const alert = await this.alertController.create({
+      header: 'Deleting course',
+      subHeader: this.courseList[index].name,
+      message: 'Are you sure you want to delete this course?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            return;
+          },
+        },
+        {
+          text: 'Confirm',
+          handler: () => {
+            if (index >= 0) {
+              this.courseList.splice(index, 1);
+            }
+            if (this.courseList.length > 0) {
+              this.loadedCourse = this.courseList[0];
+            }
+          },
+        },
+      ],
+    });
+    await alert.present();
   }
 
   /**
    * Deletes lesson in currently loaded course at the given index
    * @param lessonId index of lesson
    */
-  deleteLesson(lessonId: string) {
+  async deleteLesson(lessonId: string) {
     const index = this.loadedCourse.lessons.findIndex(
       (lesson) => lesson.id === lessonId
     );
-    if (index >= 0) {
-      this.loadedCourse.lessons.splice(index, 1);
-    }
-    this.loadedLesson = undefined;
+
+    const alert = await this.alertController.create({
+      header: 'Deleting lesson',
+      subHeader: this.loadedCourse.lessons[index].name,
+      message: 'Are you sure you want to delete this lesson?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            return;
+          },
+        },
+        {
+          text: 'Confirm',
+          handler: () => {
+            if (index >= 0) {
+              this.loadedCourse.lessons.splice(index, 1);
+            }
+            this.loadedLesson = undefined;
+          },
+        },
+      ],
+    });
+    await alert.present();
   }
 
   /**
