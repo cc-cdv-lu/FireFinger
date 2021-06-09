@@ -77,6 +77,10 @@ export class CharacterComponent implements AfterViewInit {
         }),
       });
     });
+
+    setTimeout(() => {
+      this.io.nativeElement.focus();
+    }, 100)
   }
 
   keyEvent(event: KeyboardEvent) {

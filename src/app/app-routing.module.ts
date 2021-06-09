@@ -8,11 +8,6 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'folder/:id',
-    loadChildren: () =>
-      import('./feat/folder/folder.module').then((m) => m.FolderPageModule),
-  },
-  {
     path: 'home',
     loadChildren: () =>
       import('./feat/home/home.module').then((m) => m.HomeModule),
