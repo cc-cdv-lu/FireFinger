@@ -3,12 +3,14 @@ export interface Style {
   fontSize: number;
   fontFamily: string;
   showHelper: boolean;
+  emojisplosion?: boolean;
 }
 
 export const DEFAULT_STYLE: Style = {
   fontFamily: 'Arial',
   fontSize: 5,
   showHelper: false,
+  emojisplosion: false
 };
 
 /* STATS */

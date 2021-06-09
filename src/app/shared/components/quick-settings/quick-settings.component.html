@@ -49,7 +49,19 @@
     >
     </ion-toggle>
   </ion-item>
-  <app-theme-switcher></app-theme-switcher>
+
+  <ion-item>
+    <ion-label>Emojisplosion💥🎆</ion-label>
+    <ion-toggle
+      [(ngModel)]="getConfig().style.emojisplosion"
+      name="emojisplosion"
+      ngDefaultControl
+    >
+    </ion-toggle>
+  </ion-item>
+  <!--
+    <app-theme-switcher></app-theme-switcher>
+  -->
   <app-dark-mode-toggle></app-dark-mode-toggle>
 
   <ion-list-header color="tertiary">

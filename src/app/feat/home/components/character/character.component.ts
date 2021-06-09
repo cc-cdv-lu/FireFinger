@@ -7,7 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { Typing } from '@app/core';
+import { ConfigService, Typing } from '@app/core';
 import { emojisplosion } from 'emojisplosion';
 
 const ignoreKeys = [
@@ -60,9 +60,10 @@ export class CharacterComponent implements AfterViewInit {
 
   isCorrect = true;
   typed: string;
-  constructor() {}
+  constructor(private configService: ConfigService) {}
   ngAfterViewInit(): void {
     this.onTypingSuccess.subscribe(() => {
+      if (!this.configService.getStyle().emojisplosion) return;
       emojisplosion({
         // container: this.io.nativeElement,
         emojiCount: () => Math.random() * 15,
