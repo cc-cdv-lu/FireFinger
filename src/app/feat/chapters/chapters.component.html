@@ -17,7 +17,14 @@
           {{ course.lessons?.length }}
         </ion-note>
       </ion-list-header>
-      <ion-item *ngFor="let lesson of course.lessons; let i = index">
+      <ion-item *ngIf="course.lessons.length === 0">
+        <ion-label color="danger"><i>- No lessons present -</i></ion-label>
+      </ion-item>
+      <ion-item
+        *ngFor="let lesson of course.lessons; let i = index"
+        (click)="loadLesson(course, i)"
+        class="lesson"
+      >
         <ion-icon
           slot="start"
           color="secondary"
@@ -33,10 +40,13 @@
         >
         </ion-icon>
 
-        <ion-button (click)="loadLesson(course, i)">
-          <ion-icon name="play" slot="start"></ion-icon>
-          Load
-        </ion-button>
+        <!--
+
+          <ion-button (click)="loadLesson(course, i)">
+            <ion-icon name="play" slot="start"></ion-icon>
+            Load
+          </ion-button>
+        -->
 
         <ion-label>
           <b>{{ lesson.name }}</b>
