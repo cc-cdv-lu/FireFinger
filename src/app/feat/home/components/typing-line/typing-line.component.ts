@@ -44,16 +44,20 @@ export class TypingLineComponent implements AfterViewInit {
     this.charComponent.onTypingSuccess.subscribe((e) => {
       this.textService.advance();
       this.statsService.registerSuccess(e);
-      if (this.courseService.currentLesson.display !== 'character') {
+      if (this.courseService.currentLesson.display === 'character') {
+        this.speakService.playChar(
+          this.getView().curr,
+          this.getLesson().language
+        );
+      } else {
         this.speakService.playChar(
           this.getView().curr +
             this.stringHelper.getRestOfWord(
               this.textService.getText(),
               this.textService.getIndex()
-            )
+            ),
+          this.getLesson().language
         );
-      } else {
-        this.speakService.playChar(this.getView().curr);
       }
       this.statsService.startTimer();
       if (this.textService.getIndex() < this.textService.getText().length) {
@@ -107,7 +111,10 @@ export class TypingLineComponent implements AfterViewInit {
   }
 
   sayLine() {
-    this.speakService.sayTTS(this.getView().curr + this.getView().next, 'de');
+    this.speakService.sayTTS(
+      this.getView().curr + this.getView().next,
+      this.getLesson().language
+    );
   }
 
   getView(): View {

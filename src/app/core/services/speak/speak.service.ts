@@ -57,42 +57,45 @@ export class SpeakService {
     await TextToSpeech.speak(options);
   }
 
-  play(str: string, type: number = 1) {
+  play(str: string, type: number = 1, language?: string) {
     if (!str || str.length === 0) {
       return;
     }
     /* Special case for letter lessons */
     if (type === 0) {
-      return this.sayTTS(this.filterSpecialChars(str[0]));
+      return this.sayTTS(this.filterSpecialChars(str[0]), language);
     }
 
     if (!str) {
       return;
     }
     if (str.length === 1) {
-      this.playChar(str);
+      this.playChar(str, language);
     } else {
-      this.playWord(str);
+      this.playWord(str, language);
     }
   }
 
-  playWord(str: string) {
-    this.sayTTS(str);
+  playWord(str: string, language?: string) {
+    this.sayTTS(str, language);
   }
 
-  playChar(str: string) {
+  playChar(str: string, language?: string) {
     if (str.length > 1) {
-      this.sayTTS(str);
+      this.sayTTS(str, language);
     }
 
     // Check if letter is uppercase
     if (str !== str.toLowerCase()) {
-      return this.sayTTS(this.translate.instant('special.major') + ' ' + str);
+      return this.sayTTS(
+        this.translate.instant('special.major') + ' ' + str,
+        language
+      );
     }
 
     str = this.filterSpecialChars(str);
 
-    this.sayTTS(str);
+    this.sayTTS(str, language);
   }
 
   filterSpecialChars(char: string): string {
