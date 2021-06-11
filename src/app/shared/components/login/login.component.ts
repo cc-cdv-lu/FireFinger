@@ -25,9 +25,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(event: any) {
-    console.log(event);
     const username = event.detail.value;
-    this.userService.login(username);
+    this.userService.loginByName(username);
   }
 
   async newUser() {
@@ -44,19 +43,24 @@ export class LoginComponent implements OnInit {
           placeholder: 'Name',
           name: 'name',
         },
-        { label: 'Age', id: 'age', type: 'number', placeholder: 'Age', name: 'age' },
+        {
+          label: 'Age',
+          id: 'age',
+          type: 'number',
+          placeholder: 'Age',
+          name: 'age',
+        },
       ],
       buttons: [
         { text: 'Cancel', role: 'cancel' },
         {
           text: 'Ok',
-          handler: (d) => {
-            const user = d as User;
-            console.log(d);
-            if (d.name) {
+          handler: (data) => {
+            const user = data as User;
+            if (user.name) {
               this.userService.login(user);
             } else {
-              console.warn('Received invalid new user...', d);
+              console.warn('Received invalid new user...', data);
             }
           },
         },

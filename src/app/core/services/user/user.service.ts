@@ -17,7 +17,6 @@ export class UserService {
   login(user: User) {
     this.loginByName(user.name);
     this.editUser(user);
-    // TODO: create user entry in db
   }
 
   loginByName(username: string) {
