@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Dialog } from '@capacitor/dialog';
 
-import { UserService } from '@app/core';
+import { User, UserService } from '@app/core';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ import { UserService } from '@app/core';
 })
 export class LoginComponent implements OnInit {
   constructor(
-    public userService: UserService
+    public userService: UserService,
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {}
@@ -31,15 +33,35 @@ export class LoginComponent implements OnInit {
   async newUser() {
     console.log('Some new user...');
 
-    const { value, cancelled } = await Dialog.prompt({
-      title: 'New user',
-      message: `Enter username:`,
+    const alert = await this.alertController.create({
+      header: 'New user',
+      message: 'Enter username:',
+      inputs: [
+        {
+          label: 'Name',
+          id: 'name',
+          type: 'text',
+          placeholder: 'Name',
+          name: 'name',
+        },
+        { label: 'Age', id: 'age', type: 'number', placeholder: 'Age', name: 'age' },
+      ],
+      buttons: [
+        { text: 'Cancel', role: 'cancel' },
+        {
+          text: 'Ok',
+          handler: (d) => {
+            const user = d as User;
+            console.log(d);
+            if (d.name) {
+              this.userService.login(user);
+            } else {
+              console.warn('Received invalid new user...', d);
+            }
+          },
+        },
+      ],
     });
-    if (value) {
-      this.userService.login(value);
-    } else {
-      console.warn('Received invalid new user...', cancelled);
-    }
-    return;
+    alert.present();
   }
 }

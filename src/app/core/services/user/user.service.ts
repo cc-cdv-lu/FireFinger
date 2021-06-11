@@ -14,7 +14,13 @@ export class UserService {
   public userlist: Array<string> = [];
   constructor() {}
 
-  login(username: string) {
+  login(user: User) {
+    this.loginByName(user.name);
+    this.editUser(user);
+    // TODO: create user entry in db
+  }
+
+  loginByName(username: string) {
     if (!username || typeof username !== 'string') {
       console.warn('Undefined user tried to login');
       return;
@@ -37,7 +43,7 @@ export class UserService {
           user.value !== 'null' &&
           user.value !== 'undefined'
         ) {
-          this.login(user.value);
+          this.loginByName(user.value);
           console.log('Loading config for previous user.', user);
           return resolve(user.value);
         } else {

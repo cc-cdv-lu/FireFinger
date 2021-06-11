@@ -10,7 +10,7 @@ export const DEFAULT_STYLE: Style = {
   fontFamily: 'Arial',
   fontSize: 5,
   showHelper: false,
-  emojisplosion: false
+  emojisplosion: false,
 };
 
 /* STATS */
@@ -36,8 +36,9 @@ export const DEFAULT_USER: User = {
 };
 
 export interface User {
-  stats: UserStats;
   name: string;
+  stats?: UserStats;
+  age?: number;
   completedLessons?: Array<CompletedLesson>;
 }
 
