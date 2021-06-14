@@ -11,6 +11,7 @@ import {
   UserService,
   CompletedLesson,
 } from '@app/core';
+import { AlertController } from '@ionic/angular';
 import { TypingService } from '../../services/typing/typing.service';
 import { CharacterComponent } from '../character/character.component';
 
@@ -37,7 +38,8 @@ export class TypingLineComponent implements AfterViewInit {
     private stringHelper: StringHelperService,
     public typingService: TypingService,
     private courseService: CourseService,
-    private userService: UserService
+    private userService: UserService,
+    private alertController: AlertController
   ) {}
   ngAfterViewInit() {
     // Try to move this up to typing-io? or down to character-component?
@@ -69,7 +71,8 @@ export class TypingLineComponent implements AfterViewInit {
     });
 
     this.charComponent.onFinishedLesson.subscribe(() => {
-      // TODO: navigate to end of lesson screen
+      console.log('Lesson finished, summary incoming');
+      this.showSummaryScreen();
     });
 
     this.textService.onTextChanged.subscribe(() => {
@@ -164,5 +167,30 @@ export class TypingLineComponent implements AfterViewInit {
 
   getStyle(): Style {
     return this.configService.getStyle();
+  }
+
+  async showSummaryScreen() {
+    const s = this.statsService.stats;
+    const isSuccess = true;
+    const alert = await this.alertController.create({
+      header: 'Lesson completed',
+      subHeader: 'WIN / FAIL',
+      message: `
+      Cours: ${this.courseService.currentCourse.name}
+      Lesson: ${this.courseService.currentLessonIndex + 1} / ${
+        this.courseService.currentCourse.lessons.length
+      }
+      Mistakes: ${s.mistakes}/${s.length}
+      Rating: ${s.rating}
+      Time: ${s.time}
+      `,
+      buttons: ['Done'],
+    });
+    await alert.present();
+    await alert.onDidDismiss();
+
+    if (isSuccess) {
+      this.courseService.nextLesson();
+    }
   }
 }
