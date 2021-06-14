@@ -9,17 +9,17 @@
   <ion-card-content>
     <ion-list>
       <ion-item>
-        <ion-icon name="close-outline" slot="start"></ion-icon>
+        <ion-icon name="close-outline" color="danger" slot="start"></ion-icon>
         Mistakes: {{ stats.mistakes }}/{{ stats.length }}
       </ion-item>
 
       <ion-item>
-        <ion-icon name="time-outline" slot="start"></ion-icon>
+        <ion-icon name="time-outline" color="primary" slot="start"></ion-icon>
         Time: {{ stats.time / 1000 }} seconds
       </ion-item>
 
       <ion-item>
-        <ion-icon name="time-outline" slot="start"></ion-icon>
+        <ion-icon name="star" color="warning" slot="start"></ion-icon>
         Rating: {{ stats.rating }}
 
         <ion-icon name="star"></ion-icon>
