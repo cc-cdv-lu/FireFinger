@@ -68,6 +68,10 @@ export class TypingLineComponent implements AfterViewInit {
       }
     });
 
+    this.charComponent.onFinishedLesson.subscribe(() => {
+      // TODO: navigate to end of lesson screen
+    });
+
     this.textService.onTextChanged.subscribe(() => {
       this.statsService.resetTimer();
       this.statsService.startTimer();

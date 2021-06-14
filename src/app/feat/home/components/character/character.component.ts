@@ -56,6 +56,8 @@ export class CharacterComponent implements AfterViewInit {
   @Output() onTypingError = new EventEmitter<Typing>();
   @Output() onTypingSuccess = new EventEmitter<Typing>();
 
+  @Output() onFinishedLesson = new EventEmitter<Typing>();
+
   @ViewChild('io') io: ElementRef;
 
   isCorrect = true;
@@ -96,6 +98,7 @@ export class CharacterComponent implements AfterViewInit {
     }
     // We are already at the end of the text...
     if (this.character === '✓') {
+      this.onFinishedLesson.emit();
       return;
     }
 
