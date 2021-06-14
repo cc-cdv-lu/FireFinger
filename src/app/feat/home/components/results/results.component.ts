@@ -9,7 +9,6 @@ import { ModalController } from '@ionic/angular';
 })
 export class ResultsComponent implements OnInit {
   @Input() stats: LessonStats;
-  @Input() isSuccess: boolean;
   @Input() lesson: Lesson;
   @Input() course: Course;
   @Input() lessonIndex: number;

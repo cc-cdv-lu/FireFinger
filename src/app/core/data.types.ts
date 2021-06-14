@@ -20,6 +20,7 @@ export interface LessonStats {
   time: number;
   mistakes: number;
   length: number;
+  isSuccess?: boolean;
 }
 export interface SessionsStats {
   // How many letters were typed since last mistake

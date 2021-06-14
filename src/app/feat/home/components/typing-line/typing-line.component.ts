@@ -171,13 +171,11 @@ export class TypingLineComponent implements AfterViewInit {
   }
 
   async showSummaryScreen() {
-    const isSuccess = true;
-
+    this.statsService.stats.isSuccess = true;
     const modal = await this.modalController.create({
       component: ResultsComponent,
       swipeToClose: true,
       componentProps: {
-        isSuccess,
         stats: this.statsService.stats,
         lesson: this.courseService.currentLesson,
         course: this.courseService.currentCourse,
@@ -185,10 +183,11 @@ export class TypingLineComponent implements AfterViewInit {
       },
     });
 
+
     await modal.present();
     await modal.onDidDismiss();
 
-    if (isSuccess) {
+    if (this.statsService.stats.isSuccess) {
       this.courseService.nextLesson();
     }
   }
