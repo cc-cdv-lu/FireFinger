@@ -11,9 +11,10 @@ import {
   UserService,
   CompletedLesson,
 } from '@app/core';
-import { AlertController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { TypingService } from '../../services/typing/typing.service';
 import { CharacterComponent } from '../character/character.component';
+import { ResultsComponent } from '../results/results.component';
 
 @Component({
   selector: 'app-typing-line',
@@ -39,7 +40,7 @@ export class TypingLineComponent implements AfterViewInit {
     public typingService: TypingService,
     private courseService: CourseService,
     private userService: UserService,
-    private alertController: AlertController
+    private modalController: ModalController
   ) {}
   ngAfterViewInit() {
     // Try to move this up to typing-io? or down to character-component?
@@ -170,24 +171,22 @@ export class TypingLineComponent implements AfterViewInit {
   }
 
   async showSummaryScreen() {
-    const s = this.statsService.stats;
     const isSuccess = true;
-    const alert = await this.alertController.create({
-      header: 'Lesson completed',
-      subHeader: 'WIN / FAIL',
-      message: `
-      Cours: ${this.courseService.currentCourse.name}
-      Lesson: ${this.courseService.currentLessonIndex + 1} / ${
-        this.courseService.currentCourse.lessons.length
-      }
-      Mistakes: ${s.mistakes}/${s.length}
-      Rating: ${s.rating}
-      Time: ${s.time}
-      `,
-      buttons: ['Done'],
+
+    const modal = await this.modalController.create({
+      component: ResultsComponent,
+      swipeToClose: true,
+      componentProps: {
+        isSuccess,
+        stats: this.statsService.stats,
+        lesson: this.courseService.currentLesson,
+        course: this.courseService.currentCourse,
+        lessonIndex: this.courseService.currentLessonIndex,
+      },
     });
-    await alert.present();
-    await alert.onDidDismiss();
+
+    await modal.present();
+    await modal.onDidDismiss();
 
     if (isSuccess) {
       this.courseService.nextLesson();

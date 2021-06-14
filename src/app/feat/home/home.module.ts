@@ -11,6 +11,7 @@ import { TypingLineComponent } from './components/typing-line/typing-line.compon
 
 import { TypingService } from './services/typing/typing.service';
 import { TypingMultilineComponent } from './components/typing-multiline/typing-multiline.component';
+import { ResultsComponent } from './components/results/results.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
     TypingLineComponent,
     TypingMultilineComponent,
     CharacterComponent,
+    ResultsComponent,
   ],
   providers: [TypingService],
 })

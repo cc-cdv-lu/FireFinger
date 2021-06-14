@@ -1,0 +1,45 @@
+<ion-card button="true" (click)="dismiss()">
+  <ion-card-header>
+    <ion-card-subtitle>Lesson completed</ion-card-subtitle>
+    <ion-card-title>
+      {{ lesson.name }} ({{ lessonIndex + 1 }}/{{ course.lessons.length }})
+    </ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-list>
+      <ion-item>
+        <ion-icon name="close-outline" slot="start"></ion-icon>
+        Mistakes: {{ stats.mistakes }}/{{ stats.length }}
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="time-outline" slot="start"></ion-icon>
+        Time: {{ stats.time / 1000 }} seconds
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="time-outline" slot="start"></ion-icon>
+        Rating: {{ stats.rating }}
+
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-half-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </ion-item>
+
+      <ion-item> Win??? {{ isSuccess }} </ion-item>
+    </ion-list>
+    <ion-button
+      size="large"
+      expand="block"
+      fill="solid"
+      slot="end"
+      (click)="dismiss()"
+    >
+      <span *ngIf="isSuccess">Continue</span>
+      <span *ngIf="!isSuccess">Retry</span>
+    </ion-button>
+  </ion-card-content>
+</ion-card>
